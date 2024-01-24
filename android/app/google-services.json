@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1058122216239",
+    "project_id": "rentalcar-31233",
+    "storage_bucket": "rentalcar-31233.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058122216239:android:94f72fd6458dbf42e2e7da",
+        "android_client_info": {
+          "package_name": "com.example.luxurycars"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe3-FZA6htKZmD1A18JXHwqDIdS0hp1RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
