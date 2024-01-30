@@ -31,18 +31,21 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
     return Scaffold(
       backgroundColor: ProjectColors.lightgrey,
       appBar: AppBar(
+        toolbarHeight: 40,
         backgroundColor: ProjectColors.primarycolor1,
         title: Text(
           'ADD ADVERTISEMENTS',
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: ProjectColors.black),
+              fontSize: MediaQuery.of(context).size.height * .02,
+              fontWeight: FontWeight.bold,
+              color: ProjectColors.white),
         ),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
             )),
@@ -53,62 +56,50 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .18,
+              height: MediaQuery.of(context).size.height * .15,
               child: Column(
                 children: [
                   sizedboc,
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
-                      onTap: () {
-                        pickImage();
+                      onTap: () async {
+                        await pickImage();
+                        final Map<String, dynamic> image = {"image": imageurl};
+                        if (imageurl.isNotEmpty) {
+                          DatabaseMethods().addAdvertismentforuser(image);
+                        }
+
+                        imageurl = '';
                       },
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          text(text: 'SELECT IMAGE  '),
-                          Icon(Icons.camera_alt)
+                          Text(
+                            'SELECT IMAGE  ',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * .02,
+                                fontWeight: FontWeight.bold,
+                                color: ProjectColors.primarycolor1),
+                          ),
+                          Icon(
+                            Icons.add_photo_alternate_outlined,
+                            color: ProjectColors.white,
+                            weight: 3.4,
+                            size: 30,
+                          )
                         ],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          'Tap Button to Upload'.toUpperCase(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize:
-                                  MediaQuery.of(context).size.height * .02),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            final Map<String, dynamic> image = {
-                              "image": imageurl
-                            };
-                            DatabaseMethods().addAdvertismentforuser(image);
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * .05,
-                            width: MediaQuery.of(context).size.width * .4,
-                            color: ProjectColors.primarycolor1,
-                            child: Center(
-                                child: Text(
-                              'UPLOAD',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: ProjectColors.black,
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      .023),
-                            )),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                  Text(
+                    'It May Take Some Time To Upload The Image.',
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.height * .015,
+                        color: ProjectColors.primarycolor1,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ],
               ),
             ),
@@ -141,7 +132,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Color.fromARGB(255, 255, 247, 247)),
+                              color: Color.fromARGB(255, 255, 255, 255)),
                           child: Column(
                             children: [
                               Container(
@@ -153,6 +144,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
+                              sizedboc,
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -161,9 +153,9 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                                       onPressed: () {
                                         deleteAdvertisement(docId);
                                       },
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.delete,
-                                        color: Colors.red,
+                                        color: Color.fromARGB(255, 230, 15, 0),
                                         size: 30,
                                       )),
                                 ],

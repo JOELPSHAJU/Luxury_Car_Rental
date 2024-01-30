@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+import 'package:luxurycars/Universaltools.dart';
+
 import 'package:luxurycars/UserPanel/Notifications.dart';
 import 'package:luxurycars/UserPanel/privacy_policies.dart';
 
 import 'package:luxurycars/UserPanel/profile_page.dart';
 import 'package:luxurycars/UserPanel/rentalrulesuser.dart';
-import 'package:luxurycars/UserPanel/settings.dart';
-import 'package:luxurycars/authentication/loginpage.dart';
+
 import 'package:luxurycars/authentication/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -69,6 +67,7 @@ class _UserNavigationState extends State<UserNavigation> {
                 : const Text('Guest0123@gmail.com'),
             currentAccountPicture: CircleAvatar(
               radius: 55,
+              backgroundColor: Colors.black,
               child: ClipOval(
                 child: docData?['profile'] != null
                     ? Image.network(
@@ -98,10 +97,10 @@ class _UserNavigationState extends State<UserNavigation> {
             ),
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.person,
               size: 30,
-              color: Colors.grey,
+              color: ProjectColors.primarycolor1,
             ),
             title: const Text('Profile'),
             onTap: () {
@@ -110,10 +109,10 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.list_alt_rounded,
               size: 30,
-              color: Colors.grey,
+              color: ProjectColors.primarycolor1,
             ),
             title: const Text('Rental Rules'),
             onTap: () {
@@ -122,45 +121,28 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: const Icon(
-              Icons.notification_important,
-              size: 30,
-              color: Colors.grey,
-            ),
+            leading: Icon(Icons.notification_important,
+                size: 30, color: ProjectColors.primarycolor1),
             title: const Text('Notifications'),
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (ctx2) => const Notifications()));
             },
           ),
-          ListTile(
-            leading: const Icon(
-              Icons.settings,
-              size: 30,
-              color: Colors.grey,
-            ),
-            title: const Text('Settings'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ctx2) => const SettingsPage()));
-            },
-          ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .3,
+            height: MediaQuery.of(context).size.height * .39,
           ),
           const Divider(
             thickness: 2,
           ),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.privacy_tip,
-              color: Colors.grey,
+              color: ProjectColors.primarycolor1,
               size: 30,
             ),
             title: const Text('Privacy Policies'),
-            onTap: () async {
-              final sharedprefs = await SharedPreferences.getInstance();
-              await sharedprefs.clear();
+            onTap: () {
               // ignore: use_build_context_synchronously
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (ctx) => const PrivacyPolicies()),
@@ -168,23 +150,53 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: const Icon(
-              Icons.exit_to_app,
-              size: 30,
-              color: Colors.grey,
-            ),
+            leading: Icon(Icons.exit_to_app,
+                size: 30, color: ProjectColors.primarycolor1),
             title: const Text('Sign out'),
-            onTap: () async {
-              final sharedprefs = await SharedPreferences.getInstance();
-              await sharedprefs.clear();
-              // ignore: use_build_context_synchronously
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (ctx2) => const LoginPage()),
-                  (route) => false);
+            onTap: () {
+              showSignOutAlert(context);
             },
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> showSignOutAlert(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Do you really want to sign out?',
+            style: TextStyle(fontSize: 17),
+          ),
+          actions: [
+            OutlinedButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 109, 109, 109),
+                        fontWeight: FontWeight.bold))),
+            OutlinedButton(
+              onPressed: () async {
+                final sharedprefs = await SharedPreferences.getInstance();
+                await sharedprefs.clear();
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (ctx2) => const LoginPage()),
+                    (route) => false);
+              },
+              child: Text(
+                'Sign Out',
+                style: TextStyle(
+                    color: ProjectColors.primarycolor1,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

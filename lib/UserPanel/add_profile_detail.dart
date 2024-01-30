@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
-import 'package:luxurycars/UserPanel/UserHomePage.dart';
+
 import 'package:luxurycars/UserPanel/profile_page.dart';
 
 class Addprofile extends StatefulWidget {
@@ -40,20 +40,19 @@ class _AddprofileState extends State<Addprofile> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: AlertDialog(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         content: Container(
+          width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                       icon: const Icon(Icons.arrow_back_ios)),
-                  sizedboc,
-                  sizedboc,
                   Text(
                     'ADD PROFILE DETAILS',
                     style: TextStyle(
@@ -69,12 +68,32 @@ class _AddprofileState extends State<Addprofile> {
                       onPressed: () {
                         imagepicker();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add_a_photo_rounded,
-                        size: 30,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
                       )),
                 ],
               ),
+              ProfileImageUrl.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(ProfileImageUrl),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: const AssetImage('assets/new/avatar.png'),
+                              fit: BoxFit.cover)),
+                    ),
               Row(
                 children: [
                   text(text: 'SELECT COVER PICTURE'),
@@ -82,41 +101,86 @@ class _AddprofileState extends State<Addprofile> {
                       onPressed: () {
                         coverimagepicker();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add_a_photo_rounded,
-                        size: 30,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
                       )),
                 ],
               ),
+              ProfileImageUrl.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(CoverImageUrl),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: AssetImage('assets/new/cover.jpg'),
+                              fit: BoxFit.cover)),
+                    ),
               Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    textformfield(
-                        hint: 'Full Name',
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _name,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Address',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Full Name'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _address,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Age',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Address'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _age,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: "Email",
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Age'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _email,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Phone Number',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Email Address'),
+                    ProjectUtils().sizedbox10,
+                   
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _phonenumber,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Pin Code',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Phone Number'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _pincode,
-                        keyboardtype: TextInputType.name),
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Pin Code'),
+                    ProjectUtils().sizedbox10,
                   ],
                 ),
               ),
@@ -125,6 +189,10 @@ class _AddprofileState extends State<Addprofile> {
               ),
               GestureDetector(
                 onTap: () {
+                  if (ProfileImageUrl.isEmpty || CoverImageUrl.isEmpty) {
+                    ProjectUtils().errormessage(
+                        context: context, text: 'Please Select A Image!');
+                  }
                   if (_formKey.currentState!.validate()) {
                     uploaddata();
                     setState(() {});
@@ -135,20 +203,23 @@ class _AddprofileState extends State<Addprofile> {
                     _phonenumber.clear();
                     _pincode.clear();
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (ctx2) => ProfiePage()),
+                      MaterialPageRoute(builder: (ctx2) => const ProfiePage()),
                     );
                   }
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: ProjectColors.primarycolor1,
+                  ),
                   width: MediaQuery.of(context).size.width * .5,
                   height: MediaQuery.of(context).size.height * .07,
-                  color: ProjectColors.primarycolor1,
                   child: Center(
                     child: Text(
                       'ADD DETAILS',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: ProjectColors.black,
+                          color: ProjectColors.white,
                           fontSize: MediaQuery.of(context).size.height * .02),
                     ),
                   ),
@@ -188,6 +259,7 @@ class _AddprofileState extends State<Addprofile> {
     try {
       await referenceDirImagtoupload.putFile(File(file.path));
       ProfileImageUrl = await referenceDirImagtoupload.getDownloadURL();
+      setState(() {});
       if (ProfileImageUrl.isEmpty) {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context)

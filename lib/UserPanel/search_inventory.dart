@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/filter_pages.dart';
@@ -18,38 +18,42 @@ class SearchInventory extends StatefulWidget {
 }
 
 final decorationTextFormField = InputDecoration(
-  fillColor: const Color.fromARGB(255, 227, 227, 227),
-  label: const Row(
+  fillColor: const Color.fromARGB(255, 255, 255, 255),
+  label: Row(
     children: [
       Icon(
         Icons.search,
-        color: Colors.grey,
+        color: ProjectColors.primarycolor1,
       ),
-      SizedBox(
+      const SizedBox(
         width: 10,
       ),
-      Text(
-        'Search Your Inventory',
+      const Text(
+        'Search Your Inventory....',
         style: TextStyle(fontWeight: FontWeight.w400),
       )
     ],
   ),
-  hintText: 'Search Your Inventory',
   hintStyle: const TextStyle(
-      fontWeight: FontWeight.w400, color: Color.fromARGB(255, 122, 122, 122)),
+      fontWeight: FontWeight.w400, color: Color.fromARGB(255, 148, 148, 148)),
   filled: true,
   enabledBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
-      borderRadius: BorderRadius.circular(0)),
+      borderSide:
+          const BorderSide(width: 1, color: Color.fromARGB(255, 129, 129, 129)),
+      borderRadius: BorderRadius.circular(100)),
   focusedBorder: OutlineInputBorder(
       borderSide: const BorderSide(
+        width: 1,
         color: Colors.deepOrange,
       ),
-      borderRadius: BorderRadius.circular(0)),
+      borderRadius: BorderRadius.circular(100)),
   errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(color: Colors.redAccent)),
-  border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
+      borderRadius: BorderRadius.circular(100),
+      borderSide: const BorderSide(
+        color: Colors.redAccent,
+        width: 1,
+      )),
+  border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
 );
 const String type = 'Category';
 
@@ -125,9 +129,19 @@ class _SearchInventoryState extends State<SearchInventory> {
     return Scaffold(
         extendBody: true,
         appBar: AppBar(
-          leading: const Icon(Icons.search_sharp),
+          elevation: 4,
+          leading: IconButton(
+            icon: Icon(
+              Icons.filter_list,
+              color: ProjectColors.primarycolor1,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const FilterPage()));
+            },
+          ),
           toolbarHeight: 70,
-          backgroundColor: ProjectColors.primarycolor1,
+          backgroundColor: Colors.white,
           title: SizedBox(
             height: 50,
             child: TextFormField(
@@ -136,129 +150,143 @@ class _SearchInventoryState extends State<SearchInventory> {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const FilterPage()));
-              },
-              child: Container(
-                  height: 40,
-                  color: ProjectColors.primarycolor1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.filter_list_sharp),
-                      text(text: 'Filter')
-                    ],
-                  )),
-            ),
-            Expanded(
-              child: _resultlist.isEmpty
-                  ? Center(
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/bg/Screenshot 2024-01-11 193510-PhotoRoom.png-PhotoRoom.png',
-                          width: MediaQuery.of(context).size.height * .18,
+        body: Container(
+          color: const Color.fromARGB(255, 239, 239, 239),
+          child: Column(
+            children: [
+              Expanded(
+                child: _resultlist.isEmpty
+                    ? Center(
+                        child: Stack(
+                          children: [
+                            Lottie.asset(
+                              'assets/animations/Animation - 1706182910823.json',
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                            Positioned(
+                              bottom: 30.0,
+                              left: 100.0,
+                              child: Center(
+                                child: Text(
+                                  'Oops,No Inventory Found!',
+                                  style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width * .04,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        const Color.fromARGB(255, 81, 81, 81),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          'Oops,No Inventory Found !',
-                          style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * .04,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 81, 81, 81)),
-                        )
-                      ],
-                    ))
-                  : ListView.builder(
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            final selectedDocument = _resultlist[index];
-                            final documentID = selectedDocument.id;
+                      )
+                    : ListView.builder(
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              final selectedDocument = _resultlist[index];
+                              final documentID = selectedDocument.id;
 
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) =>
-                                    ParticularInventory(id: documentID)));
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                height: 168,
-                                decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 195, 202, 204),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        width: 130,
-                                        height: 130,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    '${_resultlist[index]['Image Urls'][0]}'),
-                                                fit: BoxFit.cover)),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) =>
+                                      ParticularInventory(id: documentID)));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  height: 168,
+                                  decoration: BoxDecoration(
+                                      color: ProjectUtils().listcolor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          width: 130,
+                                          height: 130,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      '${_resultlist[index]['Image Urls'][0]}'),
+                                                  fit: BoxFit.cover)),
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${_resultlist[index]['Company']}  \n${_resultlist[index]['Model Name']}',
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            'Category : ${_resultlist[index]['Category']}',
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                              'Price : ${_resultlist[index]['Price Per Day']}',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w400)),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                              'Fuel Type : ${_resultlist[index]['Fuel Type']}',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w400)),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        );
-                      },
-                      itemCount: _resultlist.length,
-                    ),
-            ),
-          ],
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${_resultlist[index]['Company']}  \n${_resultlist[index]['Model Name']}',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          .017,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'Category : ${_resultlist[index]['Category']}',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          .016,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                                'Price : ${_resultlist[index]['Price Per Day']}',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .016,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                                'Fuel Type : ${_resultlist[index]['Fuel Type']}',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .016,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                          );
+                        },
+                        itemCount: _resultlist.length,
+                      ),
+              ),
+            ],
+          ),
         ));
   }
 }

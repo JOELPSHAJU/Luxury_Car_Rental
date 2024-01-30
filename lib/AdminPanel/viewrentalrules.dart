@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/homepage_admin.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 
 class ViewRental extends StatelessWidget {
@@ -10,23 +10,24 @@ class ViewRental extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
         backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
         title: Text(
           'RENTAL RULES',
           style: TextStyle(
-              fontSize: 20,
-              color: ProjectColors.black,
+              fontSize: MediaQuery.of(context).size.height * .02,
+              color: ProjectColors.white,
               fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: ProjectColors.black),
+            icon: Icon(Icons.arrow_back, color: ProjectColors.white),
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AdminHome()));
+              Navigator.of(context).pop();
             }),
       ),
       body: Container(
+        color: const Color.fromARGB(255, 235, 235, 235),
         child: Row(
           children: [
             StreamBuilder<QuerySnapshot>(
@@ -45,15 +46,16 @@ class ViewRental extends StatelessWidget {
                             child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: const Color.fromARGB(
-                                        255, 212, 212, 212)),
+                                    color: Color.fromARGB(255, 255, 255, 255)),
                                 width: MediaQuery.of(context).size.width * .93,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     '$a. ' + client['rule'],
-                                    style: const TextStyle(
-                                        fontSize: 20,
+                                    style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                .02,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )),

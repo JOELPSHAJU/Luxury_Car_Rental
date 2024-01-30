@@ -31,6 +31,7 @@ class DatabaseMethods {
     String newoverview,
     String newzerotohundred,
     String newseatingcapacity,
+    String mainimage,
     String newnumberplate,
     List<String> newimages,
   ) {
@@ -52,6 +53,7 @@ class DatabaseMethods {
       'Fuel Tank Capacity': newfueltankcapacity,
       'Ground Clearence': newgroundclearnce,
       'Gearbox': newgearbox,
+      'MainImage': mainimage,
       'Price Per Day': newprice,
       'Overview': newoverview,
       'Image Urls': newimages

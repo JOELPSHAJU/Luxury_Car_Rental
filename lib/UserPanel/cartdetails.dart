@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
@@ -13,9 +12,9 @@ import 'package:luxurycars/UserPanel/ontapdetails.dart';
 import 'package:luxurycars/UserPanel/rentalrulesuser.dart';
 
 // ignore: must_be_immutable
-class ParticularInventory extends StatelessWidget {
+class CartDetails extends StatelessWidget {
   String id;
-  ParticularInventory({super.key, required this.id});
+  CartDetails({super.key, required this.id});
 
   final String collectionName = 'cardetails';
   Widget details({required label, required data, required addons}) {
@@ -108,12 +107,7 @@ class ParticularInventory extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                                image: DecorationImage(
-                                    image: AssetImage('assets/loading.jpg'),
-                                    opacity: .5,
-                                    fit: BoxFit.cover)),
+                            color: const Color.fromARGB(255, 255, 255, 255),
                             height: MediaQuery.of(context).size.height * 0.29,
                             width: double.infinity,
                             child: FractionallySizedBox(
@@ -170,30 +164,21 @@ class ParticularInventory extends StatelessWidget {
                                         };
                                         DatabaseMethods().addtocart(car);
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                duration: Duration(seconds: 2),
-                                                backgroundColor:
-                                                    const Color.fromARGB(
-                                                        255, 255, 255, 255),
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.green,
                                                 behavior:
                                                     SnackBarBehavior.floating,
-                                                content: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      .13,
-                                                  child: Center(
-                                                    child: LottieBuilder.asset(
-                                                      'assets/animations/cartadded.json',
-                                                      fit: BoxFit.fitHeight,
-                                                    ),
-                                                  ),
+                                                content: Text(
+                                                  'Inventory Added To Cart',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 )));
                                       },
                                       icon: Icon(
                                         Icons.shopping_cart,
                                         size: 30,
-                                        color: ProjectColors.secondarycolor2,
+                                        color: Colors.blue,
                                       ))
                                 ],
                               ),
@@ -214,7 +199,7 @@ class ParticularInventory extends StatelessWidget {
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .023,
+                                              .025,
                                           fontWeight: FontWeight.bold,
                                           color:
                                               ProjectColors.secondarycolor2)),
@@ -225,7 +210,7 @@ class ParticularInventory extends StatelessWidget {
                                       overview,
                                       style: const TextStyle(
                                           fontSize: 15,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   )
                                 ],
@@ -250,7 +235,8 @@ class ParticularInventory extends StatelessWidget {
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            color: const Color.fromARGB(
+                                                255, 158, 74, 74),
                                             image: const DecorationImage(
                                                 image: AssetImage(
                                                   'assets/max/logo.png',
@@ -317,7 +303,7 @@ class ParticularInventory extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Color.fromARGB(
-                                                          255, 255, 17, 0)),
+                                                          255, 128, 22, 14)),
                                                 ),
                                               ),
                                             ],
@@ -343,7 +329,7 @@ class ParticularInventory extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize:
                                           MediaQuery.of(context).size.height *
-                                              .023,
+                                              .025,
                                       fontWeight: FontWeight.bold,
                                       color: ProjectColors.secondarycolor2),
                                 ),

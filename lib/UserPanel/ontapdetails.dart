@@ -56,7 +56,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -83,7 +83,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -110,7 +110,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -137,7 +137,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -164,7 +164,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -190,8 +190,9 @@ class OntapDetails extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1.6, color: Colors.grey),
+                ),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -218,7 +219,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -245,7 +246,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -272,7 +273,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -299,7 +300,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(
@@ -326,7 +327,7 @@ class OntapDetails extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6)),
+                    border: Border.all(width: 1.6, color: Colors.grey)),
                 height: MediaQuery.of(context).size.height * .18,
                 width: MediaQuery.of(context).size.width * .6,
                 child: Column(

@@ -18,7 +18,8 @@ textstyles({
 }) {
   return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: MediaQuery.of(context).size.height * .02);
+      color: ProjectColors.primarycolor1,
+      fontSize: MediaQuery.of(context).size.height * .017);
 }
 
 class _DeleteInventoryState extends State<DeleteInventory> {
@@ -26,12 +27,12 @@ class _DeleteInventoryState extends State<DeleteInventory> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: 40,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: ProjectColors.black,
+            color: ProjectColors.white,
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AdminHome()));
+              Navigator.of(context).pop();
             },
           ),
           iconTheme:
@@ -41,103 +42,110 @@ class _DeleteInventoryState extends State<DeleteInventory> {
             'delete Inventory'.toUpperCase(),
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: ProjectColors.black),
+                fontSize: MediaQuery.of(context).size.height * .02,
+                color: ProjectColors.white),
           ),
           backgroundColor: ProjectColors.primarycolor1,
         ),
-        body: Column(children: [
-          Expanded(
-              child: FutureBuilder<QuerySnapshot>(
-            future: FirebaseFirestore.instance.collection('cardetails').get(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              }
+        body: Container(
+          color: Color.fromARGB(255, 228, 228, 228),
+          child: Column(children: [
+            Expanded(
+                child: FutureBuilder<QuerySnapshot>(
+              future: FirebaseFirestore.instance.collection('cardetails').get(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
 
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    final doc = snapshot.data!.docs[index];
-                    String currentDocumentId = doc.id;
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * .19,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 209, 209, 209),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * .35,
-                                height: MediaQuery.of(context).size.height * .9,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        image:
-                                            NetworkImage(doc['Image Urls'][0]),
-                                        fit: BoxFit.cover)),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                showAlertDialog(context, currentDocumentId);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final doc = snapshot.data!.docs[index];
+                      String currentDocumentId = doc.id;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * .18,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width * .53,
+                                      MediaQuery.of(context).size.width * .27,
                                   height:
-                                      MediaQuery.of(context).size.height * .9,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        doc['Company'] +
-                                            ' ' +
-                                            doc['Model Name'],
-                                        style: textstyles(context: context),
-                                      ),
-                                      Text(
-                                        'Category : ' + ' ' + doc['Category'],
-                                        style: textstyles(context: context),
-                                      ),
-                                      Text(
-                                        'Price/day : ' +
-                                            ' ₹' +
-                                            doc['Price Per Day'],
-                                        style: textstyles(context: context),
-                                      ),
-                                      Text(
-                                        'Fuel Type : ' + '' + doc['Fuel Type'],
-                                        style: textstyles(context: context),
-                                      ),
-                                    ],
-                                  ),
+                                      MediaQuery.of(context).size.width * .27,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                              doc['Image Urls'][0]),
+                                          fit: BoxFit.cover)),
                                 ),
                               ),
-                            )
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  showAlertDialog(context, currentDocumentId);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * .53,
+                                    height:
+                                        MediaQuery.of(context).size.height * .9,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          doc['Company'] +
+                                              ' ' +
+                                              doc['Model Name'],
+                                          style: textstyles(context: context),
+                                        ),
+                                        Text(
+                                          'Category : ' + ' ' + doc['Category'],
+                                          style: textstyles(context: context),
+                                        ),
+                                        Text(
+                                          'Price/day : ' +
+                                              ' ₹' +
+                                              doc['Price Per Day'],
+                                          style: textstyles(context: context),
+                                        ),
+                                        Text(
+                                          'Fuel Type : ' +
+                                              '' +
+                                              doc['Fuel Type'],
+                                          style: textstyles(context: context),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              }
+                      );
+                    },
+                  );
+                }
 
-              return const Center(child: CircularProgressIndicator());
-            },
-          ))
-        ]));
+                return const Center(child: CircularProgressIndicator());
+              },
+            ))
+          ]),
+        ));
   }
 
   showAlertDialog(BuildContext context, String id) {

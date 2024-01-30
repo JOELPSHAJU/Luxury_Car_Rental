@@ -46,7 +46,7 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Add Inventory'),
             onTap: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                   MaterialPageRoute(builder: (ctx) => const AddInventory()));
             },
           ),
@@ -57,7 +57,7 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Update Inventory'),
             onTap: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                   MaterialPageRoute(builder: (ctx) => const UpdateInventory()));
             },
           ),
@@ -68,7 +68,7 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Delete Inventory'),
             onTap: () {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                   MaterialPageRoute(builder: (ctx) => const DeleteInventory()));
             },
           ),
@@ -79,8 +79,8 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('View Inventory'),
             onTap: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => ViewInventories()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => ViewInventories()));
             },
           ),
           ListTile(
@@ -90,8 +90,8 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Add Rental Rules'),
             onTap: () async {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AddRentalRules()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => AddRentalRules()));
             },
           ),
           ListTile(
@@ -101,8 +101,8 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('View Rental Rules'),
             onTap: () async {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => ViewRental()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => ViewRental()));
             },
           ),
           ListTile(
@@ -134,7 +134,7 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Popular Inventories'),
             onTap: () async {
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                   MaterialPageRoute(builder: (ctx) => PopularInventories()));
             },
           ),
@@ -145,8 +145,8 @@ class AdminNavigationBar extends StatelessWidget {
             ),
             title: const Text('Add Notification'),
             onTap: () async {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => addnotification()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => addnotification()));
             },
           ),
           ListTile(

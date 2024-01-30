@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
@@ -66,24 +67,22 @@ class _BookingPageState extends State<BookingPage> {
       children: [
         Row(
           children: [
-            const Icon(
+            Icon(
               Icons.car_rental_outlined,
-              color: const Color.fromARGB(255, 82, 82, 82),
+              color: ProjectColors.primarycolor1,
             ),
-            Text(
-              label,
-              style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 82, 82, 82)),
-            ),
+            Text(label,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: ProjectColors.primarycolor1)),
           ],
         ),
         Text(
           details,
           style: const TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               color: Color.fromARGB(255, 54, 54, 54)),
         ),
       ],
@@ -100,7 +99,7 @@ class _BookingPageState extends State<BookingPage> {
   };
   final formkeycheck = GlobalKey<FormState>();
   final topicstyle = TextStyle(
-      fontSize: 20,
+      fontSize: 16,
       color: ProjectColors.secondarycolor2,
       fontWeight: FontWeight.bold);
   final textstyle = TextStyle(
@@ -113,10 +112,11 @@ class _BookingPageState extends State<BookingPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
-        backgroundColor: ProjectColors.secondarycolor2,
+        backgroundColor: ProjectColors.primarycolor1,
         title: const Text(
           'Book Your Inventory',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+              fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -127,6 +127,7 @@ class _BookingPageState extends State<BookingPage> {
             },
             icon: const Icon(
               Icons.arrow_back,
+              size: 23,
               color: Colors.white,
             )),
       ),
@@ -148,7 +149,7 @@ class _BookingPageState extends State<BookingPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            ' $company\n$modelname',
+                            '$company\n$modelname',
                             style: textstyle,
                           ),
                           Row(
@@ -250,59 +251,64 @@ class _BookingPageState extends State<BookingPage> {
                 height: 20,
               ),
               Form(
-                  autovalidateMode: AutovalidateMode.always,
                   key: formkeycheck,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: TextFormField(
-                          keyboardType: TextInputType.none,
-                          validator: validator,
-                          controller: _pickupDateController,
-                          onTap: () async {
-                            final pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.now(),
-                              lastDate: DateTime(2100),
-                            );
-                            setState(() {
-                              _pickupDate = pickedDate;
-                            });
-                            _calculateTotalCost();
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            labelText: 'Pickup Date',
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .07,
+                          child: TextFormField(
+                            keyboardType: TextInputType.none,
+                            validator: validator,
+                            controller: _pickupDateController,
+                            onTap: () async {
+                              final pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(2100),
+                              );
+                              setState(() {
+                                _pickupDate = pickedDate;
+                              });
+                              _calculateTotalCost();
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100)),
+                              labelText: 'Pickup Date',
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 16.0),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: TextFormField(
-                          keyboardType: TextInputType.none,
-                          validator: validator,
-                          controller: _dropoffDateController,
-                          onTap: () async {
-                            final pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: _pickupDate ?? DateTime.now(),
-                              firstDate: _pickupDate ?? DateTime.now(),
-                              lastDate: DateTime(2100),
-                            );
-                            setState(() {
-                              _dropoffDate = pickedDate;
-                            });
-                            _calculateTotalCost();
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            labelText: 'Dropoff Date',
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .07,
+                          child: TextFormField(
+                            keyboardType: TextInputType.none,
+                            validator: validator,
+                            controller: _dropoffDateController,
+                            onTap: () async {
+                              final pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: _pickupDate ?? DateTime.now(),
+                                firstDate: _pickupDate ?? DateTime.now(),
+                                lastDate: DateTime(2100),
+                              );
+                              setState(() {
+                                _dropoffDate = pickedDate;
+                              });
+                              _calculateTotalCost();
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100)),
+                              labelText: 'Dropoff Date',
+                            ),
                           ),
                         ),
                       ),
@@ -324,42 +330,53 @@ class _BookingPageState extends State<BookingPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: TextFormField(
-                          validator: validator,
-                          controller: _namecontroller,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            labelText: 'Full Name',
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .07,
+                          child: TextFormField(
+                            validator: validator,
+                            controller: _namecontroller,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(100)),
+                              labelText: 'Full Name',
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 16.0),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: TextFormField(
-                          validator: validator,
-                          controller: _phonenumbercontroller,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            labelText: 'Phone Number',
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .07,
+                          child: TextFormField(
+                            validator: validator,
+                            controller: _phonenumbercontroller,
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100)),
+                              labelText: 'Phone Number',
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 16.0),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: TextFormField(
-                          controller: _emailcontroller,
-                          validator: validator,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            labelText: 'Email',
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * .07,
+                          child: TextFormField(
+                            controller: _emailcontroller,
+                            validator: validator,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100)),
+                              labelText: 'Email',
+                            ),
                           ),
                         ),
                       ),
@@ -371,13 +388,13 @@ class _BookingPageState extends State<BookingPage> {
               ),
               const SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Total Cost:   ₹${_totalCost.toStringAsFixed(2)}',
+                    'Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
                     style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * .03,
-                        fontWeight: FontWeight.bold),
+                        fontSize: MediaQuery.of(context).size.height * .025,
+                        fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -393,7 +410,7 @@ class _BookingPageState extends State<BookingPage> {
                 width: MediaQuery.of(context).size.width * .8,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: ProjectColors.secondarycolor2),
+                        backgroundColor: ProjectColors.primarycolor1),
                     onPressed: () {
                       if (formkeycheck.currentState!.validate()) {
                         uploadbookingdata();
@@ -402,7 +419,10 @@ class _BookingPageState extends State<BookingPage> {
                                   id: docsid,
                                 )));
                         snackbar();
-                      } else {}
+                      } else {
+                        ProjectUtils().errormessage(
+                            context: context, text: 'Please Fill The Fields');
+                      }
                     },
                     child: const Text(
                       'Request Rental',
@@ -420,14 +440,32 @@ class _BookingPageState extends State<BookingPage> {
   }
 
   snackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Colors.white,
       behavior: SnackBarBehavior.floating,
-      backgroundColor: Color.fromARGB(255, 0, 189, 6),
-      content: Text(
-        'Booking Request Sent',
-        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .4,
+            height: MediaQuery.of(context).size.height * .1,
+            child: LottieBuilder.asset('assets/animations/requestsent.json'),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * .03,
+            child: const Center(
+              child: Text(
+                'Booking Request Sent',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 46, 183, 0),
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+        ],
       ),
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     ));
   }
 

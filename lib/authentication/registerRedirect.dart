@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
-import 'package:luxurycars/authentication/loginpage.dart';
+
 import 'package:luxurycars/authentication/login.dart';
 
 class RegisterRedirect extends StatelessWidget {
@@ -17,7 +17,7 @@ class RegisterRedirect extends StatelessWidget {
                     'assets/bg/registerscss.jpg',
                   ),
                   fit: BoxFit.cover)),
-          width: MediaQuery.of(context).size.width * double.infinity,
+          width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Padding(
             padding: const EdgeInsets.all(8.0),

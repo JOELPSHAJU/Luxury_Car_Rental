@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/profile_page.dart';
@@ -24,7 +23,7 @@ Widget text({required text, required context}) {
   return Text(
     text,
     style: TextStyle(
-        fontSize: MediaQuery.of(context).size.height * .02,
+        fontSize: MediaQuery.of(context).size.height * .018,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 0, 0, 0)),
   );
@@ -59,9 +58,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
     _address.text = widget.details['address'].toString();
     _pincode.text = widget.details['pincode'].toString();
     pofileImageUrl = widget.details['profile'].toString();
-    coverImageUrl = widget.details['Cover'].toString();
+    coverImageUrl = widget.details['cover'].toString();
     return SingleChildScrollView(
       child: AlertDialog(
+        backgroundColor: Colors.white,
         content: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,13 +89,36 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   IconButton(
                       onPressed: () {
                         imagepicker();
+                        setState(() {});
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add_a_photo_rounded,
-                        size: 30,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
                       )),
                 ],
               ),
+              pofileImageUrl.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                pofileImageUrl,
+                              ),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: const AssetImage('assets/new/avatar.png'),
+                              fit: BoxFit.cover)),
+                    ),
               Row(
                 children: [
                   text(text: 'SELECT COVER PICTURE', context: context),
@@ -103,44 +126,94 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       onPressed: () {
                         coverimagepicker();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add_a_photo_rounded,
-                        size: 30,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
                       )),
                 ],
               ),
+              coverImageUrl.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(coverImageUrl),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: const AssetImage('assets/new/cover.jpg'),
+                              fit: BoxFit.cover)),
+                    ),
               Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    textformfield(
-                        hint: 'Full Name',
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _name,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Address',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Full Name'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _address,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Age',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Address'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _age,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: "Email",
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Age'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _email,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Phone Number',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Email Address'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _phonenumber,
-                        keyboardtype: TextInputType.name),
-                    textformfield(
-                        hint: 'Pin Code',
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Phone Number'),
+                    ProjectUtils().sizedbox10,
+                    ProjectUtils().textformfieldaddinventory(
+                        context: context,
                         controller: _pincode,
-                        keyboardtype: TextInputType.name),
+                        keyboardtype: TextInputType.name,
+                        focusedcolor: ProjectColors.primarycolor1,
+                        enabled: Colors.grey,
+                        hint: 'Pin Code'),
+                    ProjectUtils().sizedbox10,
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              text(
+                  text: 'It May Take Some Time To Upload The Image',
+                  context: context),
               const SizedBox(
                 height: 10,
               ),
@@ -171,15 +244,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   }
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: ProjectColors.primarycolor1,
+                  ),
                   width: MediaQuery.of(context).size.width * .5,
                   height: MediaQuery.of(context).size.height * .07,
-                  color: ProjectColors.primarycolor1,
                   child: Center(
                     child: Text(
-                      'ADD DETAILS',
+                      'UPDATE DETAILS',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: ProjectColors.black,
+                          color: ProjectColors.white,
                           fontSize: MediaQuery.of(context).size.height * .02),
                     ),
                   ),
@@ -235,6 +311,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
         ScaffoldMessenger.of(context)
             // ignore: use_build_context_synchronously
             .showSnackBar(SnackBar(
+                // ignore: use_build_context_synchronously
                 content: text(text: 'No Image Selected', context: context)));
       }
     } catch (e) {
@@ -257,6 +334,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
       if (coverImageUrl.isEmpty) {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            // ignore: use_build_context_synchronously
             content: text(text: 'No Image Selected', context: context)));
       }
     } catch (e) {

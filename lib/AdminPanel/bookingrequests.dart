@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class BookingRequest extends StatefulWidget {
   const BookingRequest({super.key});
@@ -26,7 +27,7 @@ class _BookingRequestState extends State<BookingRequest> {
           ' ' + client,
           style: TextStyle(
               fontSize: MediaQuery.of(context).size.height * .02,
-              color: const Color.fromARGB(255, 10, 19, 34),
+              color: ProjectColors.primarycolor1,
               fontWeight: FontWeight.bold),
         ),
       ],
@@ -49,12 +50,15 @@ class _BookingRequestState extends State<BookingRequest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        toolbarHeight: 40,
+        backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'BOOKING  REQUEST',
           style: TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+              fontSize: MediaQuery.of(context).size.height * .02,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
             icon: const Icon(
@@ -65,7 +69,8 @@ class _BookingRequestState extends State<BookingRequest> {
               Navigator.of(context).pop();
             }),
       ),
-      body: SizedBox(
+      body: Container(
+        color: Color.fromARGB(255, 241, 241, 241),
         width: MediaQuery.of(context).size.width * double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,8 +112,7 @@ class _BookingRequestState extends State<BookingRequest> {
                             padding: const EdgeInsets.all(5),
                             child: Container(
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 211, 211, 211),
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(0),
                                 ),
                                 width: MediaQuery.of(context).size.width * .9,
@@ -127,7 +131,7 @@ class _BookingRequestState extends State<BookingRequest> {
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                .026,
+                                                .02,
                                             color: const Color.fromARGB(
                                                 255, 42, 42, 42)),
                                       ),
@@ -190,6 +194,9 @@ class _BookingRequestState extends State<BookingRequest> {
                                               DatabaseMethods()
                                                   .deleterequest(client.id);
                                               setState(() {});
+                                              ProjectUtils().sucessmessage(
+                                                  context: context,
+                                                  text: 'Request Accepted');
                                             },
                                             style: buttonstyle(
                                                 color: Colors.green),
@@ -225,6 +232,9 @@ class _BookingRequestState extends State<BookingRequest> {
                                               DatabaseMethods()
                                                   .deleterequest(client.id);
                                               setState(() {});
+                                              ProjectUtils().errormessage(
+                                                  context: context,
+                                                  text: 'Request Declined');
                                             },
                                             style:
                                                 buttonstyle(color: Colors.red),

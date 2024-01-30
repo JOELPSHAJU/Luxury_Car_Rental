@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luxurycars/Universaltools.dart';
 
 class HowitWorks extends StatelessWidget {
   const HowitWorks({super.key});
@@ -13,13 +12,14 @@ class HowitWorks extends StatelessWidget {
             heading,
             style: TextStyle(
                 fontSize: MediaQuery.of(Context).size.height * .02,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 color: const Color.fromARGB(255, 69, 5, 1)),
           ),
           Text(
             textdata,
-            style:
-                TextStyle(fontSize: MediaQuery.of(Context).size.height * .018),
+            style: TextStyle(
+                fontSize: MediaQuery.of(Context).size.height * .017,
+                fontWeight: FontWeight.w500),
           ),
         ],
       ),
@@ -47,7 +47,8 @@ class HowitWorks extends StatelessWidget {
                 child: Text(
               'You are important to us\nWe belive in a personalised experience for your ride.\nYou can always Contact Us if you need any help',
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.019,
+                  fontSize: MediaQuery.of(context).size.height * 0.017,
+                  fontWeight: FontWeight.w500,
                   color: const Color.fromARGB(255, 0, 0, 0)),
               textAlign: TextAlign.center,
             )),
@@ -58,10 +59,13 @@ class HowitWorks extends StatelessWidget {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                bottom: 8.0,
+              ),
               child: Container(
-                color: Color.fromARGB(255, 201, 212, 218),
-                width: MediaQuery.of(context).size.width * .99,
+                color: Color.fromARGB(255, 212, 217, 217),
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .50,
                 child: Row(
                   children: [

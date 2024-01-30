@@ -28,21 +28,22 @@ class _ViewInventoriesState extends State<ViewInventories> {
     }
 
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 242, 242, 242),
         appBar: AppBar(
+          toolbarHeight: 40,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: ProjectColors.white,
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AdminHome()));
+              Navigator.of(context).pop();
             },
           ),
           centerTitle: true,
           title: Text(
-            'VIEW Inventories'.toUpperCase(),
+            'View Inventories',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: MediaQuery.of(context).size.height * .022,
                 color: ProjectColors.white),
           ),
           backgroundColor: ProjectColors.primarycolor1,
@@ -62,8 +63,7 @@ class _ViewInventoriesState extends State<ViewInventories> {
                               child: Container(
                                   height: 150,
                                   decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                          255, 235, 235, 235),
+                                      color: Color.fromARGB(255, 255, 255, 255),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: GestureDetector(
                                     onTap: () {

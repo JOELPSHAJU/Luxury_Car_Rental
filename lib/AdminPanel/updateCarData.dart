@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/UserPanel/booking_page.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class UpdatecarData extends StatelessWidget {
   final String documentid;
-  UpdatecarData({required this.documentid});
+  UpdatecarData({super.key, required this.documentid});
   final cardetailsdata = [];
 
   @override
@@ -21,7 +19,7 @@ class UpdatecarData extends StatelessWidget {
                 snapshot.data!.data() as Map<String, dynamic>;
 
             return Container(
-                height: MediaQuery.of(context).size.height * .23,
+                height: MediaQuery.of(context).size.height * .2,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
                 child: Row(
@@ -29,8 +27,8 @@ class UpdatecarData extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        width: 130,
-                        height: 120,
+                        width: MediaQuery.of(context).size.width * .27,
+                        height: MediaQuery.of(context).size.width * .27,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
@@ -50,7 +48,8 @@ class UpdatecarData extends StatelessWidget {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500,
+                                color: ProjectColors.primarycolor1),
                           ),
                           const SizedBox(
                             height: 10,
@@ -60,7 +59,8 @@ class UpdatecarData extends StatelessWidget {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500,
+                                color: ProjectColors.primarycolor1),
                           ),
                           const SizedBox(
                             height: 10,
@@ -70,7 +70,8 @@ class UpdatecarData extends StatelessWidget {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500,
+                                color: ProjectColors.primarycolor1),
                           ),
                           const SizedBox(
                             height: 10,
@@ -80,7 +81,8 @@ class UpdatecarData extends StatelessWidget {
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500,
+                                color: ProjectColors.primarycolor1),
                           ),
                         ],
                       ),

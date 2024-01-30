@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
@@ -148,12 +149,18 @@ class _FilterPageState extends State<FilterPage> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: ProjectColors.primarycolor1,
-          title: text(text: 'Find Your Inventory'),
+          title: ProjectUtils().headingsmall(
+              context: context,
+              color: Colors.white,
+              text: 'Find Your Specifications'),
           leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: const Icon(Icons.arrow_back)),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
         ),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -162,26 +169,33 @@ class _FilterPageState extends State<FilterPage> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 75,
+                height: 76,
                 color: ProjectColors.primarycolor1,
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.filter_list),
+                      const Icon(
+                        Icons.filter_list,
+                        color: Colors.white,
+                      ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: DropdownMenu<String>(
                           menuHeight: 250,
-                          textStyle:
-                              const TextStyle(fontWeight: FontWeight.bold),
+                          textStyle: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 134, 134, 134)),
                           width: MediaQuery.of(context).size.width * .7,
                           initialSelection: filterdropdown.first,
                           inputDecorationTheme: InputDecorationTheme(
+                              contentPadding: const EdgeInsets.all(15),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(0)),
+                                  borderSide:
+                                      const BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(100)),
                               fillColor:
-                                  const Color.fromARGB(131, 255, 255, 255),
+                                  const Color.fromARGB(255, 243, 243, 243),
                               filled: true),
                           onSelected: (String? value) {
                             setState(() {
@@ -207,27 +221,34 @@ class _FilterPageState extends State<FilterPage> {
                       List<DocumentSnapshot> documents = snapshot.data!;
                       if (documents.isEmpty) {
                         return Center(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/bg/Screenshot 2024-01-11 193510-PhotoRoom.png-PhotoRoom.png',
-                              width: MediaQuery.of(context).size.width * .5,
-                            ),
-                            Text(
-                              'Oops,No Inventory Found For This Brand!',
-                              style: TextStyle(
-                                  fontSize:
-                                      MediaQuery.of(context).size.width * .04,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 81, 81, 81)),
-                            )
-                          ],
-                        ));
+                          child: Stack(
+                            children: [
+                              Lottie.asset(
+                                'assets/animations/Animation - 1706182910823.json',
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                              Positioned(
+                                bottom: 30.0,
+                                left: 50.0,
+                                child: Text(
+                                  'Oops,No Inventory Found In This Spec!',
+                                  style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width * .04,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        const Color.fromARGB(255, 81, 81, 81),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       }
 
                       return Container(
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 222, 222, 222),
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
                         height: MediaQuery.of(context).size.height * .99,
@@ -247,12 +268,11 @@ class _FilterPageState extends State<FilterPage> {
                                         )));
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Container(
-                                    height: 164,
+                                    height: 160,
                                     decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 225, 225, 225),
+                                        color: ProjectUtils().listcolor,
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Row(
@@ -260,15 +280,15 @@ class _FilterPageState extends State<FilterPage> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Container(
-                                            width: 100,
-                                            height: 100,
+                                            width: 130,
+                                            height: 130,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 image: DecorationImage(
                                                     image: NetworkImage(
                                                         data['Image Urls'][0]),
-                                                    fit: BoxFit.fill)),
+                                                    fit: BoxFit.cover)),
                                           ),
                                         ),
                                         Padding(
@@ -281,8 +301,12 @@ class _FilterPageState extends State<FilterPage> {
                                             children: [
                                               Text(
                                                 '${data['Company']}\n${data['Model Name']}',
-                                                style: const TextStyle(
-                                                    fontSize: 17,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .017,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -291,8 +315,12 @@ class _FilterPageState extends State<FilterPage> {
                                               ),
                                               Text(
                                                 'Category : ${data['Category']}',
-                                                style: const TextStyle(
-                                                    fontSize: 16,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .017,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -300,9 +328,13 @@ class _FilterPageState extends State<FilterPage> {
                                                 height: 10,
                                               ),
                                               Text(
-                                                'Price : ${data['Priceperday']}',
-                                                style: const TextStyle(
-                                                    fontSize: 16,
+                                                'Price : ${data['Price Per Day']}',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .017,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -311,8 +343,12 @@ class _FilterPageState extends State<FilterPage> {
                                               ),
                                               Text(
                                                 'Fuel Type : ${data['Fuel Type']}',
-                                                style: const TextStyle(
-                                                    fontSize: 16,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .017,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),

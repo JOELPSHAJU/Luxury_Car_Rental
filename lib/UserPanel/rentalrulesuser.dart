@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:luxurycars/Universaltools.dart';
 
-import 'package:luxurycars/UserPanel/Homepage.dart';
-
+// ignore: must_be_immutable
 class ViewRentalUser extends StatelessWidget {
   ViewRentalUser({super.key});
   int a = 1;
@@ -16,20 +15,22 @@ class ViewRentalUser extends StatelessWidget {
         title: Text(
           'RENTAL RULES',
           style: TextStyle(
-              fontSize: 20,
-              color: ProjectColors.black,
+              fontSize: MediaQuery.of(context).size.height * .019,
+              color: ProjectColors.white,
               fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: ProjectColors.black,
+              color: ProjectColors.white,
             ),
             onPressed: () {
               Navigator.of(context).pop();
             }),
       ),
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        color: const Color.fromARGB(255, 239, 239, 239),
         child: Row(
           children: [
             StreamBuilder<QuerySnapshot>(
@@ -42,25 +43,31 @@ class ViewRentalUser extends StatelessWidget {
                     final clients = snapshot.data?.docs.reversed.toList();
                     for (var client in clients!) {
                       final clientwidget = Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 211, 211, 211),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                width: MediaQuery.of(context).size.width * .93,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    '$a. ' + client['rule'],
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    color: ProjectUtils().listcolor,
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                )),
+                                  width:
+                                      MediaQuery.of(context).size.width * .93,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '$a. ' + client['rule'],
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .018,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  )),
+                            ),
                           ),
                         ],
                       );

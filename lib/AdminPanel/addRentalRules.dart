@@ -11,21 +11,6 @@ class AddRentalRules extends StatelessWidget {
   int b = 1;
   final rental = TextEditingController();
 
-  final decorationTextFormField = InputDecoration(
-    fillColor: const Color.fromARGB(255, 43, 0, 255),
-    enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
-        borderRadius: BorderRadius.circular(0)),
-    focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: Colors.deepOrange,
-        ),
-        borderRadius: BorderRadius.circular(0)),
-    errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(0),
-        borderSide: const BorderSide(color: Colors.redAccent)),
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
-  );
   final formkeys = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -33,140 +18,143 @@ class AddRentalRules extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AdminHome()));
+              Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back, color: ProjectColors.black)),
-        toolbarHeight: 60,
+            icon: Icon(Icons.arrow_back, color: ProjectColors.white)),
+        toolbarHeight: 40,
         backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
         title: Text(
           'ADD RENTAL RULES',
           style: TextStyle(
-              fontSize: 20,
-              color: ProjectColors.black,
+              fontSize: MediaQuery.of(context).size.height * .02,
+              color: ProjectColors.white,
               fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Form(
-              key: formkeys,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                        controller: rental,
-                        cursorColor: ProjectColors.primarycolor1,
-                        style: TextStyle(color: ProjectColors.black),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Fill This Field !';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: decorationTextFormField),
-                  ),
-                ],
-              )),
-          const SizedBox(
-            height: 30,
-          ),
-          InkWell(
-            onTap: () {
-              if (formkeys.currentState!.validate()) {
-                uploaddata();
-              } else {}
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: ProjectColors.primarycolor1,
-                    borderRadius: BorderRadius.circular(10)),
-                width: MediaQuery.of(context).size.width * .72,
-                height: 55,
-                child: Center(
-                  child: Text(
-                    'ADD RENTAL RULES',
-                    style: TextStyle(
-                        color: ProjectColors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+      body: Container(
+        color: Color.fromARGB(255, 240, 240, 240),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+            Form(
+                key: formkeys,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .07,
+                        child: ProjectUtils().textformfield(
+                            icon: Icons.star_border_outlined,
+                            controller: rental,
+                            obsecure: false,
+                            focusedcolor: ProjectColors.primarycolor1,
+                            enabled: Colors.grey,
+                            iconcolor: ProjectColors.primarycolor1),
+                      ),
+                    )
+                  ],
+                )),
+            const SizedBox(
+              height: 30,
+            ),
+            InkWell(
+              onTap: () {
+                if (formkeys.currentState!.validate()) {
+                  uploaddata();
+                } else {}
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: ProjectColors.primarycolor1,
+                      borderRadius: BorderRadius.circular(10)),
+                  width: MediaQuery.of(context).size.width * .5,
+                  height: MediaQuery.of(context).size.height * .06,
+                  child: Center(
+                    child: Text(
+                      'ADD RENTAL RULE',
+                      style: TextStyle(
+                          color: ProjectColors.white,
+                          fontSize: MediaQuery.of(context).size.height * .02,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('rentalrules')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      List<Row> clientwidgets = [];
-                      if (snapshot.hasData) {
-                        final clients = snapshot.data?.docs.reversed.toList();
-                        for (var client in clients!) {
-                          final clientwidget = Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                          255, 219, 219, 219),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    width:
-                                        MediaQuery.of(context).size.width * .8,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        // ignore: prefer_interpolation_to_compose_strings
-                                        '$b. ' + client['rule'],
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    )),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  final docId = client.id;
-                                  FirebaseFirestore.instance
-                                      .collection('rentalrules')
-                                      .doc(docId)
-                                      .delete();
-                                },
-                                icon:
-                                    const Icon(Icons.delete, color: Colors.red),
-                              )
-                            ],
-                          );
-                          clientwidgets.add(clientwidget);
-                          b++;
-                        }
-                      }
-                      return Expanded(
-                          child: ListView(
-                        children: clientwidgets,
-                      ));
-                    })
-              ],
+            const SizedBox(
+              height: 30,
             ),
-          ),
-        ],
+            Expanded(
+              child: Row(
+                children: [
+                  StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('rentalrules')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        List<Row> clientwidgets = [];
+                        if (snapshot.hasData) {
+                          final clients = snapshot.data?.docs.reversed.toList();
+                          for (var client in clients!) {
+                            final clientwidget = Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      width: MediaQuery.of(context).size.width *
+                                          .8,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          client['rule'],
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .018,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      )),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    final docId = client.id;
+                                    FirebaseFirestore.instance
+                                        .collection('rentalrules')
+                                        .doc(docId)
+                                        .delete();
+                                  },
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                )
+                              ],
+                            );
+                            clientwidgets.add(clientwidget);
+                            b++;
+                          }
+                        }
+                        return Expanded(
+                            child: ListView(
+                          children: clientwidgets,
+                        ));
+                      })
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
@@ -48,22 +49,30 @@ class SpecificBrand extends StatelessWidget {
             List<DocumentSnapshot> documents = snapshot.data!;
             if (documents.isEmpty) {
               return Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/bg/Screenshot 2024-01-11 193510-PhotoRoom.png-PhotoRoom.png',
-                    width: MediaQuery.of(context).size.width * .5,
-                  ),
-                  Text(
-                    'Oops,No Inventory Found For This Brand!',
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * .04,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 81, 81, 81)),
-                  )
-                ],
-              ));
+                child: Stack(
+                  children: [
+                    Lottie.asset(
+                      'assets/animations/Animation - 1706182910823.json',
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Positioned(
+                      bottom: 30.0,
+                      left: 70.0,
+                      child: Center(
+                        child: Text(
+                          'Oops,No Car Found For This Brand',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * .04,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 81, 81, 81),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
 
             return Container(
@@ -115,36 +124,48 @@ class SpecificBrand extends StatelessWidget {
                                   children: [
                                     Text(
                                       '${data['Company']}\n${data['Model Name']}',
-                                      style: const TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .017,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       'Category : ${data['Category']}',
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .016,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
-                                      'Price : ${data['Priceperday']}',
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                      'Price : ${data['Price Per Day']}',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .016,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       'Fuel Type : ${data['Fuel Type']}',
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .016,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ],
                                 ),

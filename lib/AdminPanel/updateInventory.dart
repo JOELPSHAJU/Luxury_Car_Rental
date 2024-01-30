@@ -28,20 +28,25 @@ class _UpdateInventoryState extends State<UpdateInventory> {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (ctx) => AdminHome()));
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 23,
+            )),
         iconTheme: IconThemeData(color: ProjectColors.black),
         centerTitle: true,
         title: Text(
           'Update Inventory'.toUpperCase(),
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: ProjectColors.black),
+              fontSize: MediaQuery.of(context).size.height * .023,
+              color: ProjectColors.white),
         ),
         backgroundColor: ProjectColors.primarycolor1,
       ),
@@ -58,8 +63,7 @@ class _UpdateInventoryState extends State<UpdateInventory> {
                             padding: const EdgeInsets.only(
                                 top: 8, left: 8, right: 8),
                             child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .23,
+                                height: MediaQuery.of(context).size.height * .2,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color:

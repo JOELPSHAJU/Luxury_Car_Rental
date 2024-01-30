@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class ViewBookings extends StatefulWidget {
   const ViewBookings({super.key});
@@ -15,7 +16,7 @@ Widget textbookingpage({required text, required context}) {
     style: TextStyle(
         fontSize: MediaQuery.of(context).size.height * .015,
         fontWeight: FontWeight.bold,
-        color: const Color.fromARGB(255, 0, 0, 0)),
+        color: ProjectColors.primarycolor1),
   );
 }
 
@@ -27,22 +28,28 @@ class _ViewBookingsState extends State<ViewBookings> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
+        toolbarHeight: 40,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             icon: const Icon(
               Icons.arrow_back,
+              size: 23,
               color: Colors.white,
             )),
-        title: const Text(
+        title: Text(
           'BOOKINGS',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.height * .023,
+              color: Colors.white),
         ),
       ),
       body: Container(
+        color: Color.fromARGB(255, 228, 228, 228),
         child: StreamBuilder<QuerySnapshot>(
           stream: requestReplyCollection.snapshots(),
           builder: (context, snapshot) {
@@ -73,7 +80,7 @@ class _ViewBookingsState extends State<ViewBookings> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 214, 214, 214),
+                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
                     height: MediaQuery.of(context).size.height * .24,
                     width: double.infinity,
@@ -82,9 +89,12 @@ class _ViewBookingsState extends State<ViewBookings> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height * .3,
+                            height: MediaQuery.of(context).size.height * .4,
                             width: MediaQuery.of(context).size.width * .3,
-                            child: Image.network(image),
+                            child: Image.network(
+                              image,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Padding(

@@ -65,6 +65,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       extendBody: true,
       body: SingleChildScrollView(
           child: Container(
@@ -92,13 +93,6 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                         height: MediaQuery.of(context).size.height * .2,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(0, 208, 208, 208),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Color.fromARGB(255, 203, 202, 202),
-                          //     blurRadius: 10,
-                          //     offset: Offset(0, 15), // Shadow position
-                          //   ),
-                          // ],
                         ),
                         width: double.infinity,
                         child: ListView.builder(

@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
+import 'package:luxurycars/Universaltools.dart';
 
 class Advertisement extends StatefulWidget {
   Advertisement({super.key});
@@ -23,6 +24,9 @@ class _AdvertisementState extends State<Advertisement> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/bg/homepageplaceholder.jpg'))),
       child: StreamBuilder<QuerySnapshot>(
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -47,11 +51,10 @@ class _AdvertisementState extends State<Advertisement> {
             );
           } else {
             return Center(
-                child: Image.asset(
-              'assets/bg/null2.jpg',
-              fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height * .3,
-            ));
+              child: CircularProgressIndicator(
+                color: ProjectUtils().primarycolor,
+              ),
+            );
           }
         },
         stream: advertisementsReference.snapshots(),

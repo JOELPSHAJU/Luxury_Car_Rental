@@ -28,7 +28,7 @@ class _ProfiePageState extends State<ProfiePage> {
           title: Text(
             'Profile',
             style: TextStyle(
-                fontWeight: FontWeight.bold, color: ProjectColors.black),
+                fontWeight: FontWeight.bold, color: ProjectColors.white),
           ),
           leading: IconButton(
               onPressed: () {
@@ -37,7 +37,7 @@ class _ProfiePageState extends State<ProfiePage> {
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: ProjectColors.black,
+                color: ProjectColors.white,
               )),
         ),
         body: SingleChildScrollView(

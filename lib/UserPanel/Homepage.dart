@@ -35,8 +35,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           extendBody: true,
           appBar: AppBar(
-            iconTheme: IconThemeData(color: ProjectColors.black),
-            backgroundColor: ProjectColors.primarycolor1,
+            elevation: 3,
+            iconTheme: IconThemeData(color: ProjectColors.primarycolor1),
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             centerTitle: true,
             title: Image.asset(
               'assets/logolettters.png',
@@ -48,16 +49,18 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => const Notifications()));
                   },
-                  icon: Icon(Icons.notifications, color: ProjectColors.black))
+                  icon: Icon(Icons.notifications,
+                      color: ProjectColors.primarycolor1))
             ],
           ),
-          drawer: UserNavigation(),
+          drawer: const UserNavigation(),
           body: pages[_currentindex],
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           bottomNavigationBar: CurvedNavigationBar(
-              backgroundColor: const Color.fromARGB(0, 0, 0, 0),
-              color: ProjectColors.primarycolor1,
-              buttonBackgroundColor: ProjectColors.primarycolor1,
+              animationCurve: Curves.easeIn,
+              backgroundColor: const Color.fromARGB(0, 93, 21, 21),
+              color: Color.fromRGBO(237, 246, 255, 1),
+              buttonBackgroundColor: Color.fromRGBO(237, 246, 255, 1),
               onTap: (index) {
                 setState(() {
                   _currentindex = index;
@@ -65,18 +68,26 @@ class _HomePageState extends State<HomePage> {
               },
               animationDuration: const Duration(milliseconds: 300),
               items: [
-                Icon(Icons.home, size: 30, color: ProjectColors.black),
+                Icon(
+                  Icons.home,
+                  size: 30,
+                  color: ProjectColors.primarycolor1,
+                ),
                 Icon(
                   Icons.search,
                   size: 30,
-                  color: ProjectColors.black,
+                  color: ProjectColors.primarycolor1,
                 ),
                 Icon(
                   Icons.shopping_cart,
                   size: 30,
-                  color: ProjectColors.black,
+                  color: ProjectColors.primarycolor1,
                 ),
-                Icon(Icons.book, size: 30, color: ProjectColors.black)
+                Icon(
+                  Icons.book,
+                  size: 30,
+                  color: ProjectColors.primarycolor1,
+                )
               ])),
     );
   }

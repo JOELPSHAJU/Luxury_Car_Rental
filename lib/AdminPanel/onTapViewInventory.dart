@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/viewInventory.dart';
-import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
+
+import 'package:luxurycars/AdminPanel/viewrentalrules.dart';
+
+import 'package:luxurycars/Universaltools.dart';
 
 // ignore: must_be_immutable
 class ViewSingleInventory extends StatefulWidget {
@@ -56,10 +58,12 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
           toolbarHeight: 35,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (ctx) => const ViewInventories()));
+                Navigator.of(context).pop();
               },
-              icon: const Icon(Icons.arrow_back)),
+              icon: Icon(
+                Icons.arrow_back,
+                color: ProjectColors.primarycolor1,
+              )),
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -130,41 +134,24 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                             ),
                           ),
                           SizedBox(
-                            height: 88,
+                            height: 64,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Text(
                                       '$company\n$modelname',
-                                      style: const TextStyle(
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .023,
+                                          fontWeight: FontWeight.w500),
                                     ),
-                                    IconButton(
-                                        onPressed: () {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                                  backgroundColor: Colors.green,
-                                                  behavior:
-                                                      SnackBarBehavior.floating,
-                                                  content: Text(
-                                                    'Inventory Added To Cart',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  )));
-                                        },
-                                        icon: const Icon(
-                                          Icons.shopping_cart,
-                                          size: 30,
-                                          color: Colors.black,
-                                        ))
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -178,10 +165,13 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text('Overview',
+                                  Text('Overview',
                                       style: TextStyle(
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold)),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .023,
+                                          fontWeight: FontWeight.w500)),
                                   SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * .9,
@@ -265,7 +255,12 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                                 ],
                                               ),
                                               TextButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (ctx) =>
+                                                              ViewRental()));
+                                                },
                                                 child: const Text(
                                                   'Rental Rules',
                                                   style: TextStyle(
@@ -288,7 +283,7 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -296,8 +291,10 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                 Text(
                                   'Technical Specification',
                                   style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              .023,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
@@ -437,8 +434,12 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                               children: [
                                                 Text(
                                                   '₹' + '$price',
-                                                  style: const TextStyle(
-                                                      fontSize: 29,
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              .03,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
@@ -479,11 +480,15 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                             },
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.black),
-                                            child: const Text(
+                                            child: Text(
                                               'Add to Popular',
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          .025,
                                                   color: Colors.white),
                                             ),
                                           ),
@@ -499,7 +504,10 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                   }
                 }
 
-                return const CircularProgressIndicator();
+                return Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Center(child: const CircularProgressIndicator()));
               },
             ),
           ),

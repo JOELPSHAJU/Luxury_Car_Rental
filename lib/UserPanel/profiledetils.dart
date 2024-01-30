@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 import 'package:luxurycars/UserPanel/add_profile_detail.dart';
@@ -41,6 +41,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   String emails = '';
   String pincode = '';
   String phone = '';
+  String Cover = '';
+  String profile = '';
 
   Future<void> fetchData() async {
     CollectionReference requestReplyCollection =
@@ -70,6 +72,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   fontstyle({required context}) {
     return TextStyle(
         fontSize: MediaQuery.of(context).size.height * .02,
+        color: Colors.grey,
+        fontWeight: FontWeight.w500);
+  }
+
+  fontdatastyle({required context}) {
+    return TextStyle(
+        fontSize: MediaQuery.of(context).size.height * .02,
+        color: ProjectColors.primarycolor1,
         fontWeight: FontWeight.w500);
   }
 
@@ -81,44 +91,74 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     if (docData == null) {
       return const Center(child: CircularProgressIndicator());
     } else if (docData!.isEmpty) {
-      return Center(
-          child: SizedBox(
-        height: MediaQuery.of(context).size.height * .07,
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return SizedBox(
-                      height: MediaQuery.of(context).size.height * .6,
-                      child: Addprofile());
-                });
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width * .5,
-              height: MediaQuery.of(context).size.height * .07,
-              color: ProjectColors.primarycolor1,
-              child: Center(
-                child: Row(
-                  children: [
-                    sizedboc,
-                    sizedboc,
-                    Text(
-                      'ADD PROFILE DETAILS',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ProjectColors.black,
-                          fontSize: MediaQuery.of(context).size.height * .02),
+      return Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/new/cover.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * .3,
+            child: Center(
+                child: Container(
+              height: 140,
+              width: 140,
+              decoration: BoxDecoration(
+                border: Border.all(width: 3, color: Colors.white),
+                borderRadius: BorderRadius.circular(100),
+                image: const DecorationImage(
+                    image: AssetImage(
+                      'assets/new/avatar.png',
                     ),
-                  ],
+                    fit: BoxFit.cover),
+              ),
+            )),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .09,
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                          height: MediaQuery.of(context).size.height * .6,
+                          child: Addprofile());
+                    });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: ProjectColors.primarycolor1,
+                      borderRadius: BorderRadius.circular(15)),
+                  width: MediaQuery.of(context).size.width * .5,
+                  height: MediaQuery.of(context).size.height * .07,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      sizedboc,
+                      sizedboc,
+                      Text(
+                        'ADD PROFILE DETAILS',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: ProjectColors.white,
+                            fontSize: MediaQuery.of(context).size.height * .02),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ));
+        ],
+      );
     } else {
       name = docData!['fullname'];
       age = docData!['age'];
@@ -126,6 +166,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       pincode = docData!['pincode'];
       phone = docData!['phonenumber'];
       emails = docData!['email'];
+      profile = docData!['profile'];
+      Cover = docData!['Cover'];
       return Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,21 +214,31 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             sizedb,
             Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Personal details',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                child: Row(
+                  children: [
+                    Text(
+                      'Personal details  ',
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.height * .023,
+                          fontWeight: FontWeight.bold,
+                          color: ProjectColors.primarycolor1),
+                    ),
+                  ],
                 )),
-            Divider(
+            const Divider(
               thickness: 2,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    'Name : ${docData!['fullname']}',
+                    'Full Name : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['fullname']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -196,10 +248,13 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    ' Age : ${docData!['age']}',
+                    ' Age : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['age']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -209,10 +264,13 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    ' Email : ${docData!['email']}',
+                    ' Email : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['email']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -222,10 +280,13 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    ' Phone Number : ${docData!['phonenumber']}',
+                    ' Phone Number : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['phonenumber']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -235,10 +296,13 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    ' Address : ${docData!['address']}',
+                    ' Address : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['address']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -248,10 +312,13 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  Icon(Icons.star_border),
                   Text(
-                    ' Pin Code : ${docData!['pincode']}',
+                    ' Zip Code : ',
                     style: fontstyle(context: context),
+                  ),
+                  Text(
+                    '${docData!['pincode']}',
+                    style: fontdatastyle(context: context),
                   ),
                 ],
               ),
@@ -269,6 +336,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                       "phone": phone,
                       "address": address,
                       "pincode": pincode,
+                      "cover": Cover,
+                      "profile": profile
                     };
                     showDialog(
                         context: context,
@@ -292,7 +361,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         'EDIT PROFILE',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: ProjectColors.black,
+                            color: ProjectColors.white,
                             fontSize: MediaQuery.of(context).size.height * .02),
                       ),
                     ),

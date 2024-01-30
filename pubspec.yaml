@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   carousel_slider: ^4.2.1
-  cloud_firestore: ^4.13.6
+  cloud_firestore: ^4.14.0
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
   dots_indicator: ^3.0.0
@@ -39,10 +39,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_datetime_picker: ^1.5.0
+  flutter_gif: ^0.0.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   image_picker: ^1.0.5
   intl: ^0.18.0
+  lottie: ^3.0.0
   shared_preferences: ^2.2.2
 
 dev_dependencies:
@@ -70,6 +72,7 @@ flutter:
     - assets/latest/
     - assets/carTypes/
     - assets/bg/
+    - assets/animations/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

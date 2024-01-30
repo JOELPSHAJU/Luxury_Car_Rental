@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
@@ -43,11 +43,11 @@ heading({required headingtext, required context}) {
   );
 }
 
-final div2 = Divider(
+const div2 = Divider(
   thickness: 2,
   color: Colors.black,
 );
-final div1 = Divider(thickness: 1);
+const div1 = Divider(thickness: 1);
 
 class _PrivacyPoliciesState extends State<PrivacyPolicies> {
   @override
@@ -57,13 +57,23 @@ class _PrivacyPoliciesState extends State<PrivacyPolicies> {
         appBar: AppBar(
           toolbarHeight: 60,
           centerTitle: true,
-          title: text(text: "Privacy Policy"),
+          title: Text(
+            'Privacy Policies',
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * .019,
+                fontWeight: FontWeight.w500,
+                color: Colors.white),
+          ),
           backgroundColor: ProjectColors.primarycolor1,
           leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(Icons.arrow_back)),
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 23,
+                color: Colors.white,
+              )),
         ),
         body: SingleChildScrollView(
             child: Container(
