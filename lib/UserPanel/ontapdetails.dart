@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class OntapDetails extends StatelessWidget {
   final String engine;
@@ -29,17 +31,17 @@ class OntapDetails extends StatelessWidget {
       required this.category});
 
   textstyle2({required context}) {
-    return TextStyle(
+    return GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .02,
         fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 0, 0, 0));
+        color: ProjectColors.primarycolor1);
   }
 
   textstyle1({required context}) {
-    return TextStyle(
+    return GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .02,
         fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 92, 92, 92));
+        color: Color.fromARGB(255, 143, 143, 143));
   }
 
   @override

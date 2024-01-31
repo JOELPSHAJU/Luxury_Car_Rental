@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ProjectUtils().sizedbox20,
                   ProjectUtils().sizedbox20,
                   ProjectUtils().headingbig(
-                      context: context, text: 'L O G I N', color: maincolor),
+                      context: context, text: 'LOGIN', color: maincolor),
                   ProjectUtils().sizedbox20,
                   Form(
                       autovalidateMode: AutovalidateMode.onUserInteraction,

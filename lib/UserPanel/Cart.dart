@@ -3,11 +3,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
-import 'package:luxurycars/UserPanel/cartdetails.dart';
+
+import 'package:luxurycars/UserPanel/viewontapInventory.dart';
 
 class AddtoCart extends StatefulWidget {
   const AddtoCart({super.key});
@@ -97,7 +99,10 @@ class _AddtoCartState extends State<AddtoCart> {
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => CartDetails(id: data['Id'])));
+                            builder: (ctx) => ParticularInventory(
+                                  id: data['Id'],
+                                  cart: 'cart',
+                                )));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -110,8 +115,10 @@ class _AddtoCartState extends State<AddtoCart> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    width: 130,
-                                    height: 120,
+                                    width:
+                                        MediaQuery.of(context).size.width * .44,
+                                    height:
+                                        MediaQuery.of(context).size.height * .1,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
@@ -121,7 +128,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(3),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -129,58 +136,60 @@ class _AddtoCartState extends State<AddtoCart> {
                                     children: [
                                       Text(
                                         '${data['Company']}\n${data['Model Name']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                .019,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
+                                                .018,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         'Category : ${data['Category']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 .016,
                                             fontWeight: FontWeight.w500),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
                                       ),
                                       Text(
                                         'Price : ₹${data['Priceperday']}/-',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 .016,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          DatabaseMethods()
-                                              .deletecartitem(docid);
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .04,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            DatabaseMethods()
+                                                .deletecartitem(docid);
 
-                                          setState(() {});
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                3), // <-- Radius
+                                            setState(() {});
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(3),
+                                                  side: BorderSide(
+                                                      color: ProjectColors
+                                                          .primarycolor1) // <-- Radius
+                                                  ),
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              elevation: 0),
+                                          child: const Text(
+                                            'Remove',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromARGB(
+                                                    255, 12, 12, 12)),
                                           ),
-                                          backgroundColor: Color.fromARGB(
-                                              255, 211, 211, 211),
-                                        ),
-                                        child: const Text(
-                                          'Remove From Cart',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(
-                                                  255, 12, 12, 12)),
                                         ),
                                       )
                                     ],

@@ -24,7 +24,7 @@ int _currentindex = 0;
 List pages = [
   const UserHomePageNew(),
   const SearchInventory(),
-  AddtoCart(),
+  const AddtoCart(),
   BookingsPage(),
 ];
 
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             elevation: 3,
             iconTheme: IconThemeData(color: ProjectColors.primarycolor1),
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             centerTitle: true,
             title: Image.asset(
               'assets/logolettters.png',
@@ -59,8 +59,8 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBar: CurvedNavigationBar(
               animationCurve: Curves.easeIn,
               backgroundColor: const Color.fromARGB(0, 93, 21, 21),
-              color: Color.fromRGBO(237, 246, 255, 1),
-              buttonBackgroundColor: Color.fromRGBO(237, 246, 255, 1),
+              color: const Color.fromRGBO(237, 246, 255, 1),
+              buttonBackgroundColor: const Color.fromRGBO(237, 246, 255, 1),
               onTap: (index) {
                 setState(() {
                   _currentindex = index;

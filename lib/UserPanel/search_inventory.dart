@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Universaltools.dart';
@@ -28,13 +29,13 @@ final decorationTextFormField = InputDecoration(
       const SizedBox(
         width: 10,
       ),
-      const Text(
+      Text(
         'Search Your Inventory....',
-        style: TextStyle(fontWeight: FontWeight.w400),
+        style: GoogleFonts.gowunBatang(fontWeight: FontWeight.w400),
       )
     ],
   ),
-  hintStyle: const TextStyle(
+  hintStyle: GoogleFonts.gowunBatang(
       fontWeight: FontWeight.w400, color: Color.fromARGB(255, 148, 148, 148)),
   filled: true,
   enabledBorder: OutlineInputBorder(
@@ -195,9 +196,10 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       ParticularInventory(id: documentID)));
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(10),
                               child: Container(
-                                  height: 168,
+                                  height:
+                                      MediaQuery.of(context).size.height * .16,
                                   decoration: BoxDecoration(
                                       color: ProjectUtils().listcolor,
                                       borderRadius: BorderRadius.circular(10)),
@@ -206,75 +208,83 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          width: 130,
-                                          height: 130,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .4,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
                                           decoration: BoxDecoration(
+                                              color: const Color.fromARGB(
+                                                  255, 224, 224, 224),
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               image: DecorationImage(
                                                   image: NetworkImage(
-                                                      '${_resultlist[index]['Image Urls'][0]}'),
-                                                  fit: BoxFit.cover)),
+                                                      '${_resultlist[index]['MainImage']}'),
+                                                  fit: BoxFit.contain)),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '${_resultlist[index]['Company']}  \n${_resultlist[index]['Model Name']}',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          .017,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              'Category : ${_resultlist[index]['Category']}',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          .016,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                                'Price : ${_resultlist[index]['Price Per Day']}',
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                '${_resultlist[index]['Company']} ${_resultlist[index]['Model Name']}',
                                                 style: TextStyle(
                                                     fontSize:
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .height *
-                                                            .016,
+                                                            .017,
                                                     fontWeight:
-                                                        FontWeight.w500)),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                                'Fuel Type : ${_resultlist[index]['Fuel Type']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
+                                                        FontWeight.w500),
+                                              ),
+                                              Text(
+                                                  'Price : ${_resultlist[index]['Price Per Day']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .016,
+                                                          fontWeight:
+                                                              FontWeight.w500)),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                  'Fuel Type : ${_resultlist[index]['Fuel Type']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .016,
+                                                          fontWeight:
+                                                              FontWeight.w500)),
+                                              Text(
+                                                'Category : ${_resultlist[index]['Category']}',
+                                                style:
+                                                    GoogleFonts.signikaNegative(
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
                                                                 .size
                                                                 .height *
                                                             .016,
-                                                    fontWeight:
-                                                        FontWeight.w500)),
-                                          ],
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       )
                                     ],

@@ -32,8 +32,7 @@ class UpdatecarData extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                                image:
-                                    NetworkImage('${cardata['Image Urls'][1]}'),
+                                image: NetworkImage('${cardata['MainImage']}'),
                                 fit: BoxFit.cover)),
                       ),
                     ),

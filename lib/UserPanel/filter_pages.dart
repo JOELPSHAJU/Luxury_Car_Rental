@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 import 'package:luxurycars/Universaltools.dart';
@@ -183,8 +184,8 @@ class _FilterPageState extends State<FilterPage> {
                         padding: const EdgeInsets.all(10.0),
                         child: DropdownMenu<String>(
                           menuHeight: 250,
-                          textStyle: const TextStyle(
-                              fontWeight: FontWeight.w500,
+                          textStyle: GoogleFonts.gowunBatang(
+                              fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 134, 134, 134)),
                           width: MediaQuery.of(context).size.width * .7,
                           initialSelection: filterdropdown.first,
@@ -194,8 +195,7 @@ class _FilterPageState extends State<FilterPage> {
                                   borderSide:
                                       const BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(100)),
-                              fillColor:
-                                  const Color.fromARGB(255, 243, 243, 243),
+                              fillColor: Color.fromARGB(255, 255, 255, 255),
                               filled: true),
                           onSelected: (String? value) {
                             setState(() {
@@ -270,7 +270,8 @@ class _FilterPageState extends State<FilterPage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Container(
-                                    height: 160,
+                                    height:
+                                        MediaQuery.of(context).size.width * .45,
                                     decoration: BoxDecoration(
                                         color: ProjectUtils().listcolor,
                                         borderRadius:
@@ -280,79 +281,90 @@ class _FilterPageState extends State<FilterPage> {
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Container(
-                                            width: 130,
-                                            height: 130,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .4,
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 image: DecorationImage(
                                                     image: NetworkImage(
-                                                        data['Image Urls'][0]),
-                                                    fit: BoxFit.cover)),
+                                                        data['MainImage']),
+                                                    fit: BoxFit.contain)),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '${data['Company']}\n${data['Model Name']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            .017,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'Category : ${data['Category']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            .017,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'Price : ${data['Price Per Day']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            .017,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'Fuel Type : ${data['Fuel Type']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            .017,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${data['Company']}\n${data['Model Name']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .017,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Category : ${data['Category']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .017,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Price : ${data['Price Per Day']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .017,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Fuel Type : ${data['Fuel Type']}',
+                                                  style: GoogleFonts
+                                                      .signikaNegative(
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              .017,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         )
                                       ],

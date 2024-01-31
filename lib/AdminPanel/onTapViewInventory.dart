@@ -86,7 +86,7 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                     String company = data['Company'];
                     String category = data['Category'];
                     String modelname = data['Model Name'];
-
+                    String mainimage = data['MainImage'];
                     String engine = data['Engine Displacement'];
                     String fueltank = data['Fuel Tank Capacity'];
                     String fueltype = data['Fuel Type'];
@@ -471,7 +471,8 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                                       'popular inventories')
                                                   .add({
                                                 'Id': docsid,
-                                                'Image': images[0],
+                                                'Image': mainimage,
+                                                'Model Name': modelname,
                                                 'Company': company,
                                                 'Category': category,
                                                 'Price': price

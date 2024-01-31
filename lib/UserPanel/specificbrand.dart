@@ -32,7 +32,10 @@ class SpecificBrand extends StatelessWidget {
         backgroundColor: ProjectColors.primarycolor1,
         title: Text(
           name,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.height * .023,
+              color: Colors.white),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -97,7 +100,7 @@ class SpecificBrand extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                          height: 165,
+                          height: MediaQuery.of(context).size.width * .37,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 225, 225, 225),
                               borderRadius: BorderRadius.circular(10)),
@@ -106,68 +109,63 @@ class SpecificBrand extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  width: 130,
-                                  height: 130,
+                                  width:
+                                      MediaQuery.of(context).size.width * .44,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                          image: NetworkImage(
-                                              data['Image Urls'][0]),
-                                          fit: BoxFit.cover)),
+                                          image:
+                                              NetworkImage(data['MainImage']),
+                                          fit: BoxFit.contain)),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${data['Company']}\n${data['Model Name']}',
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .017,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Category : ${data['Category']}',
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .016,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Price : ${data['Price Per Day']}',
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .016,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Fuel Type : ${data['Fuel Type']}',
-                                      style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .016,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${data['Company']}\n${data['Model Name']}',
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .017,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Category : ${data['Category']}',
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .016,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        'Price : ${data['Price Per Day']}',
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .016,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        'Fuel Type : ${data['Fuel Type']}',
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .016,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               )
                             ],

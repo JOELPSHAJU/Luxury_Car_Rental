@@ -49,7 +49,7 @@ class _RegisterscreenState extends State<Registerscreen> {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/bg/PicsArt_01-24-09.30.53.jpg'),
+                image: AssetImage('assets/bg/JJJ.jpg'),
                 fit: BoxFit.cover,
               )),
               child: Padding(
@@ -59,11 +59,8 @@ class _RegisterscreenState extends State<Registerscreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ProjectUtils().sizedbox20,
-                    ProjectUtils().sizedbox20,
                     ProjectUtils().headingbig(
-                        context: context,
-                        text: 'S I G N  U P',
-                        color: Colors.white),
+                        context: context, text: 'SIGN UP', color: Colors.white),
                     ProjectUtils().sizedbox20,
                     Form(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -150,27 +147,23 @@ class _RegisterscreenState extends State<Registerscreen> {
                           Color: ProjectUtils().textformfieldcolor),
                     ),
                     ProjectUtils().sizedbox20,
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Color.fromARGB(111, 0, 0, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ProjectUtils().headingsmall(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ProjectUtils().headingsmall(
+                            context: context,
+                            color: Colors.white,
+                            text: 'Already Have An Account? '),
+                        GestureDetector(
+                          onTap: () {
+                            gotoLogin(context);
+                          },
+                          child: ProjectUtils().headingsmall(
                               context: context,
                               color: Colors.white,
-                              text: 'Already Have An Account? '),
-                          GestureDetector(
-                            onTap: () {
-                              gotoLogin(context);
-                            },
-                            child: ProjectUtils().headingsmall(
-                                context: context,
-                                color: Colors.white,
-                                text: 'Login'),
-                          )
-                        ],
-                      ),
+                              text: 'Login'),
+                        )
+                      ],
                     ),
                   ],
                 ),

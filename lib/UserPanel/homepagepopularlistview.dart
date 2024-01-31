@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
 
 class popularinventories extends StatefulWidget {
@@ -10,11 +12,6 @@ class popularinventories extends StatefulWidget {
 }
 
 class _popularinventoriesState extends State<popularinventories> {
-  List<String> carimges = [
-    'assets/bg/PicsArt_01-11-12.11.10.png',
-    'assets/latest/bmw home.jpg',
-    'assets/latest/5842602.jpg',
-  ];
   late CollectionReference advertisementsReference;
 
   @override
@@ -25,8 +22,15 @@ class _popularinventoriesState extends State<popularinventories> {
   }
 
   title({required context}) {
-    return TextStyle(
-        fontSize: MediaQuery.of(context).size.height * .02,
+    return GoogleFonts.gowunBatang(
+        fontSize: MediaQuery.of(context).size.height * .025,
+        fontWeight: FontWeight.bold,
+        color: const Color.fromARGB(255, 84, 84, 84));
+  }
+
+  text({required context}) {
+    return GoogleFonts.gowunBatang(
+        fontSize: MediaQuery.of(context).size.height * .017,
         fontWeight: FontWeight.bold,
         color: const Color.fromARGB(255, 84, 84, 84));
   }
@@ -34,7 +38,7 @@ class _popularinventoriesState extends State<popularinventories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .35,
+      height: MediaQuery.of(context).size.height * .38,
       width: MediaQuery.of(context).size.width,
       child: StreamBuilder<QuerySnapshot>(
         builder: (context, snapshot) {
@@ -48,7 +52,6 @@ class _popularinventoriesState extends State<popularinventories> {
                     height: MediaQuery.of(context).size.height * .29,
                     width: MediaQuery.of(context).size.width * .96,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -59,23 +62,76 @@ class _popularinventoriesState extends State<popularinventories> {
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15)),
-                              height: MediaQuery.of(context).size.height * .25,
-                              width: MediaQuery.of(context).size.width * .96,
+                              height: MediaQuery.of(context).size.height * .2,
+                              width: MediaQuery.of(context).size.width * .8,
                               child: Image.network(doc['Image'])),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(9.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                doc['Company'],
+                                "${doc['Company']}  ${doc['Model Name']}",
                                 style: title(context: context),
                               ),
-                              Text(
-                                '₹' + doc['Price'] + '/day',
-                                style: title(context: context),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.circle,
+                                    size: 10,
+                                    color: Color.fromARGB(255, 84, 84, 84),
+                                  ),
+                                  Text(
+                                    '  ₹' + doc['Price'] + '/day',
+                                    style: text(context: context),
+                                  ),
+                                ],
                               ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.circle,
+                                    size: 10,
+                                    color: Color.fromARGB(255, 84, 84, 84),
+                                  ),
+                                  Text(
+                                    '  Category : ' + doc['Category'],
+                                    style: text(context: context),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * .04,
+                                width: MediaQuery.of(context).size.width * .9,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (ctx) =>
+                                                ParticularInventory(
+                                                    id: doc['Id'])));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(3),
+                                          side: BorderSide(
+                                              color: ProjectColors
+                                                  .primarycolor1) // <-- Radius
+                                          ),
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 0),
+                                  child: const Text(
+                                    'Book Now',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromARGB(255, 12, 12, 12)),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),

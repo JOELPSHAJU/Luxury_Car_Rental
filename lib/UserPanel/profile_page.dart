@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
 
@@ -27,8 +28,8 @@ class _ProfiePageState extends State<ProfiePage> {
           centerTitle: true,
           title: Text(
             'Profile',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: ProjectColors.white),
+            style: GoogleFonts.signikaNegative(
+                fontWeight: FontWeight.w500, color: ProjectColors.white),
           ),
           leading: IconButton(
               onPressed: () {

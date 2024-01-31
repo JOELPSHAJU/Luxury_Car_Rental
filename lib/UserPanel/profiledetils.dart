@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
@@ -70,14 +71,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   }
 
   fontstyle({required context}) {
-    return TextStyle(
+    return GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .02,
         color: Colors.grey,
         fontWeight: FontWeight.w500);
   }
 
   fontdatastyle({required context}) {
-    return TextStyle(
+    return GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .02,
         color: ProjectColors.primarycolor1,
         fontWeight: FontWeight.w500);
@@ -146,7 +147,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                       sizedboc,
                       Text(
                         'ADD PROFILE DETAILS',
-                        style: TextStyle(
+                        style: GoogleFonts.signikaNegative(
                             fontWeight: FontWeight.bold,
                             color: ProjectColors.white,
                             fontSize: MediaQuery.of(context).size.height * .02),
@@ -218,7 +219,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   children: [
                     Text(
                       'Personal details  ',
-                      style: TextStyle(
+                      style: GoogleFonts.signikaNegative(
                           fontSize: MediaQuery.of(context).size.height * .023,
                           fontWeight: FontWeight.bold,
                           color: ProjectColors.primarycolor1),

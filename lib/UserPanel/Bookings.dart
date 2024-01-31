@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 class BookingsPage extends StatefulWidget {
+  const BookingsPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _BookingsPageState createState() => _BookingsPageState();
 }
 
@@ -105,7 +109,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                       image: DecorationImage(
                                           image:
                                               NetworkImage('${data['Image']}'),
-                                          fit: BoxFit.contain)),
+                                          fit: BoxFit.cover)),
                                 ),
                               ),
                               Padding(
@@ -115,24 +119,30 @@ class _BookingsPageState extends State<BookingsPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
+                                      // ignore: prefer_adjacent_string_concatenation
                                       'Status : ' + '${data['Confirmation']}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .019,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          color: data['Confirmation'] ==
+                                                  'SUCESSFUL'
+                                              ? Colors.green
+                                              : Colors.red),
                                     ),
                                     const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       '${data['company']}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .019,
+                                          color: ProjectColors.primarycolor1,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(
@@ -140,48 +150,48 @@ class _BookingsPageState extends State<BookingsPage> {
                                     ),
                                     Text(
                                       'Category : ${data['category']}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       'Total Amount : ${data['Totalamount']}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       'Pickup Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Pickupdate']))}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       'Dropoff Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Dropoffdate']))}',
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ],
                                 ),

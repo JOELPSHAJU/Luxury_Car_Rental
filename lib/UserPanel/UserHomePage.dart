@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/UserPanel/advertisement.dart';
 import 'package:luxurycars/UserPanel/find_us.dart';
 import 'package:luxurycars/UserPanel/homepagepopularlistview.dart';
@@ -131,16 +132,9 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                       )),
                                   Row(
                                     children: [
-                                      Text(
-                                        carcategory[index],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .017,
-                                            color: Colors.black),
-                                      ),
+                                      Text(carcategory[index],
+                                          style: GoogleFonts.gowunBatang(
+                                              fontWeight: FontWeight.bold)),
                                     ],
                                   )
                                 ],

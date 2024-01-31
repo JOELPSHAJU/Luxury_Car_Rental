@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
 import 'package:luxurycars/authentication/loginpage.dart';
 import 'package:luxurycars/authentication/login.dart';
@@ -37,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * .93,
+          height: MediaQuery.of(context).size.height,
           width: double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
@@ -46,18 +48,27 @@ class _SplashScreenState extends State<SplashScreen> {
                   opacity: 0.5)),
           child: Center(
             child: Container(
-              child: const Column(
+              height: MediaQuery.of(context).size.height * .35,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('G O   D R I V E',
-                      style: TextStyle(
-                          fontSize: 38,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white)),
-                  Text(
-                    'Your Ultimate Travel Companion',
-                    style: TextStyle(),
+                  Column(
+                    children: [
+                      const Text('G O   D R I V E',
+                          style: TextStyle(
+                              fontSize: 38,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      Text('Your Ultimate Travel Companion',
+                          style: GoogleFonts.poppins(
+                            color: const Color.fromARGB(150, 255, 255, 255),
+                          )),
+                    ],
+                  ),
+                  LottieBuilder.asset(
+                    'assets/animations/loading.json',
+                    width: MediaQuery.of(context).size.width * .5,
                   )
                 ],
               ),

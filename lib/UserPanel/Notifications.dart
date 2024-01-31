@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 import 'package:luxurycars/Universaltools.dart';
 
@@ -15,7 +16,7 @@ class Notifications extends StatelessWidget {
         backgroundColor: ProjectColors.primarycolor1,
         title: Text(
           'Notification',
-          style: TextStyle(
+          style: GoogleFonts.signikaNegative(
               fontWeight: FontWeight.w500,
               fontSize: 16,
               color: ProjectColors.white),
@@ -55,7 +56,7 @@ class Notifications extends StatelessWidget {
                           ),
                           Text(
                             'No New Notifications!',
-                            style: TextStyle(
+                            style: GoogleFonts.signikaNegative(
                                 fontSize:
                                     MediaQuery.of(context).size.width * .04,
                                 fontWeight: FontWeight.w500,
@@ -79,11 +80,11 @@ class Notifications extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     client['note'],
-                                    style: TextStyle(
+                                    style: GoogleFonts.signikaNegative(
                                         fontSize:
                                             MediaQuery.of(context).size.height *
                                                 .02,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 )),
                           ),

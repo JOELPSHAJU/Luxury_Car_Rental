@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 // ignore: must_be_immutable
@@ -13,8 +14,8 @@ class ViewRentalUser extends StatelessWidget {
         backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
         title: Text(
-          'RENTAL RULES',
-          style: TextStyle(
+          'Rental Rules',
+          style: GoogleFonts.signikaNegative(
               fontSize: MediaQuery.of(context).size.height * .019,
               color: ProjectColors.white,
               fontWeight: FontWeight.bold),
@@ -59,7 +60,7 @@ class ViewRentalUser extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       '$a. ' + client['rule'],
-                                      style: TextStyle(
+                                      style: GoogleFonts.signikaNegative(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *

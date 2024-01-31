@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class HowitWorks extends StatelessWidget {
   const HowitWorks({super.key});
@@ -10,16 +12,15 @@ class HowitWorks extends StatelessWidget {
         children: [
           Text(
             heading,
-            style: TextStyle(
-                fontSize: MediaQuery.of(Context).size.height * .02,
-                fontWeight: FontWeight.w500,
-                color: const Color.fromARGB(255, 69, 5, 1)),
+            style: GoogleFonts.gowunBatang(
+                fontWeight: FontWeight.bold,
+                color: ProjectColors.primarycolor1),
           ),
           Text(
             textdata,
-            style: TextStyle(
-                fontSize: MediaQuery.of(Context).size.height * .017,
-                fontWeight: FontWeight.w500),
+            style: GoogleFonts.gowunBatang(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 34, 34, 34)),
           ),
         ],
       ),
@@ -45,11 +46,11 @@ class HowitWorks extends StatelessWidget {
             ),
             Center(
                 child: Text(
-              'You are important to us\nWe belive in a personalised experience for your ride.\nYou can always Contact Us if you need any help',
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.017,
-                  fontWeight: FontWeight.w500,
-                  color: const Color.fromARGB(255, 0, 0, 0)),
+              'You are important to us\nWe belive in a personalised experience \nfor your ride.\nYou can always Contact Us if you need any help',
+              style: GoogleFonts.gowunBatang(
+                  fontWeight: FontWeight.bold,
+                  color: ProjectColors.black,
+                  fontSize: MediaQuery.of(context).size.height * .018),
               textAlign: TextAlign.center,
             )),
             const Divider(

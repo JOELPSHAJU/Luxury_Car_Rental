@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:luxurycars/Universaltools.dart';
@@ -22,7 +23,7 @@ class UpdateProfile extends StatefulWidget {
 Widget text({required text, required context}) {
   return Text(
     text,
-    style: TextStyle(
+    style: GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .018,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 0, 0, 0)),
@@ -253,7 +254,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   child: Center(
                     child: Text(
                       'UPDATE DETAILS',
-                      style: TextStyle(
+                      style: GoogleFonts.signikaNegative(
                           fontWeight: FontWeight.bold,
                           color: ProjectColors.white,
                           fontSize: MediaQuery.of(context).size.height * .02),

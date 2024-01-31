@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProjectColors {
   static Color get primarycolor1 => const Color.fromARGB(255, 36, 127, 160);
@@ -65,14 +66,14 @@ class ProjectUtils {
   }) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: Color,
-      height: MediaQuery.of(context).size.height * .06,
+      decoration:
+          BoxDecoration(color: Color, borderRadius: BorderRadius.circular(100)),
+      height: MediaQuery.of(context).size.height * .07,
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.signikaNegative(
               fontWeight: FontWeight.bold,
-              fontFamily: 'fonts/Righteous-Regular.ttf',
               fontSize: MediaQuery.of(context).size.height * 0.03,
               color: Colors.white),
         ),
@@ -91,8 +92,8 @@ class ProjectUtils {
     return TextFormField(
       cursorColor: ProjectUtils().textformfieldcolor,
       cursorWidth: 3,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
+      style: GoogleFonts.signikaNegative(
+        fontWeight: FontWeight.w500,
         color: ProjectUtils().textformfieldcolor,
       ),
       controller: controller,
@@ -109,22 +110,23 @@ class ProjectUtils {
               width: 3,
               color: ProjectUtils().textformfieldcolor,
             ),
-            borderRadius: BorderRadius.circular(0)),
+            borderRadius: BorderRadius.circular(100)),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 3, color: enabled)),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
+            borderSide: BorderSide(width: 3, color: enabled),
+            borderRadius: BorderRadius.circular(100)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
         errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               width: 2,
               color: Color.fromARGB(255, 225, 15, 0),
             ),
-            borderRadius: BorderRadius.circular(0)),
+            borderRadius: BorderRadius.circular(100)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: 3,
               color: focusedcolor,
             ),
-            borderRadius: BorderRadius.circular(0)),
+            borderRadius: BorderRadius.circular(100)),
         prefixIcon: Icon(
           icon,
           size: 23,
@@ -161,7 +163,7 @@ class ProjectUtils {
           },
           decoration: InputDecoration(
             label: Text(hint),
-            labelStyle: const TextStyle(
+            labelStyle: GoogleFonts.signikaNegative(
                 color: Color.fromARGB(159, 0, 0, 0),
                 fontWeight: FontWeight.bold),
             filled: true,
@@ -193,7 +195,7 @@ class ProjectUtils {
   headingsmall({required context, required color, required text}) {
     return Text(
       text,
-      style: TextStyle(
+      style: GoogleFonts.gowunBatang(
         color: color,
         fontWeight: FontWeight.bold,
         fontSize: MediaQuery.of(context).size.height * 0.019,

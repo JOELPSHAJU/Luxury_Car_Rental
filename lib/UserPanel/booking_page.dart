@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
@@ -34,7 +35,8 @@ class _BookingPageState extends State<BookingPage> {
   late String maxpower = widget.data['MaxPower'];
   late String seating = widget.data['Seating'];
   late String zeroto = widget.data['Zero'];
-  late String image = widget.data['image'];
+
+  late String mainimage = widget.data['image'];
   late String number = widget.data['numberplate'];
   late String docsid = widget.data['docsid'];
 
@@ -67,24 +69,22 @@ class _BookingPageState extends State<BookingPage> {
       children: [
         Row(
           children: [
-            Icon(
+            const Icon(
               Icons.car_rental_outlined,
-              color: ProjectColors.primarycolor1,
+              color: Color.fromARGB(255, 132, 132, 132),
             ),
             Text(label,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    color: ProjectColors.primarycolor1)),
+                    color: const Color.fromARGB(255, 132, 132, 132))),
           ],
         ),
-        Text(
-          details,
-          style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Color.fromARGB(255, 54, 54, 54)),
-        ),
+        Text(details,
+            style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: ProjectColors.primarycolor1)),
       ],
     );
   }
@@ -98,25 +98,26 @@ class _BookingPageState extends State<BookingPage> {
     }
   };
   final formkeycheck = GlobalKey<FormState>();
-  final topicstyle = TextStyle(
+  final topicstyle = GoogleFonts.poppins(
       fontSize: 16,
       color: ProjectColors.secondarycolor2,
       fontWeight: FontWeight.bold);
-  final textstyle = TextStyle(
+  final textstyle = GoogleFonts.poppins(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     color: ProjectColors.secondarycolor2,
   );
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
         backgroundColor: ProjectColors.primarycolor1,
-        title: const Text(
+        title: Text(
           'Book Your Inventory',
-          style: TextStyle(
-              fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),
+          style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -154,18 +155,16 @@ class _BookingPageState extends State<BookingPage> {
                           ),
                           Row(
                             children: [
-                              const Text(
-                                'Category : ',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 82, 82, 82)),
-                              ),
+                              Text('Category : ',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color.fromARGB(255, 82, 82, 82))),
                               Text(
                                 category,
-                                style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
                                     color: Color.fromARGB(255, 82, 82, 82)),
                               ),
                             ],
@@ -173,7 +172,13 @@ class _BookingPageState extends State<BookingPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 90, width: 90, child: Image.network(image))
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .43,
+                        child: Image.network(
+                          mainimage,
+                          fit: BoxFit.cover,
+                        ))
                   ],
                 ),
               ),
@@ -276,6 +281,7 @@ class _BookingPageState extends State<BookingPage> {
                               _calculateTotalCost();
                             },
                             decoration: InputDecoration(
+                              labelStyle: GoogleFonts.gowunBatang(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100)),
                               labelText: 'Pickup Date',
@@ -305,6 +311,7 @@ class _BookingPageState extends State<BookingPage> {
                               _calculateTotalCost();
                             },
                             decoration: InputDecoration(
+                              labelStyle: GoogleFonts.gowunBatang(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100)),
                               labelText: 'Dropoff Date',
@@ -337,6 +344,7 @@ class _BookingPageState extends State<BookingPage> {
                             controller: _namecontroller,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
+                              labelStyle: GoogleFonts.gowunBatang(),
                               border: OutlineInputBorder(
                                   borderSide:
                                       const BorderSide(color: Colors.grey),
@@ -356,6 +364,7 @@ class _BookingPageState extends State<BookingPage> {
                             controller: _phonenumbercontroller,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
+                              labelStyle: GoogleFonts.gowunBatang(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100)),
                               labelText: 'Phone Number',
@@ -373,6 +382,7 @@ class _BookingPageState extends State<BookingPage> {
                             validator: validator,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
+                              labelStyle: GoogleFonts.gowunBatang(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100)),
                               labelText: 'Email',
@@ -390,12 +400,10 @@ class _BookingPageState extends State<BookingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    'Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * .025,
-                        fontWeight: FontWeight.w600),
-                  ),
+                  Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
+                      style: GoogleFonts.signikaNegative(
+                          fontSize: MediaQuery.of(context).size.height * .025,
+                          fontWeight: FontWeight.bold)),
                 ],
               ),
               const SizedBox(height: 10),
@@ -424,13 +432,11 @@ class _BookingPageState extends State<BookingPage> {
                             context: context, text: 'Please Fill The Fields');
                       }
                     },
-                    child: const Text(
-                      'Request Rental',
-                      style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )),
+                    child: Text('Request Rental',
+                        style: GoogleFonts.signikaNegative(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white))),
               ))
             ],
           ),
@@ -475,7 +481,7 @@ class _BookingPageState extends State<BookingPage> {
       "FullName": _namecontroller.text,
       "Email": _emailcontroller.text,
       "PhoneNumber": _phonenumbercontroller.text,
-      "Image": image,
+      "Image": mainimage,
       "Company": company,
       "Category": category,
       "ModelName": modelname,

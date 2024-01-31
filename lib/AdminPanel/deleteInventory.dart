@@ -84,8 +84,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                          image: NetworkImage(
-                                              doc['Image Urls'][0]),
+                                          image: NetworkImage(doc['MainImage']),
                                           fit: BoxFit.cover)),
                                 ),
                               ),

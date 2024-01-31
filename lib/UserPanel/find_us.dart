@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 class Findus extends StatelessWidget {
@@ -30,7 +31,7 @@ class Findus extends StatelessWidget {
           ),
           Text(
             'Find Us',
-            style: TextStyle(
+            style: GoogleFonts.signikaNegative(
                 fontSize: MediaQuery.of(context).size.height * .02,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 140, 140, 140)),
@@ -41,7 +42,7 @@ class Findus extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             'Ettumanoor-Ernakulam Road,Vyttila\nErnakulam - Kerala\nNear Tony&Guy\nKerala 682019',
-            style: TextStyle(
+            style: GoogleFonts.gowunBatang(
                 fontSize: MediaQuery.of(context).size.height * .018,
                 fontWeight: FontWeight.w400,
                 color: Colors.white),
@@ -51,7 +52,7 @@ class Findus extends StatelessWidget {
           ),
           Text(
             'Contact Us',
-            style: TextStyle(
+            style: GoogleFonts.signikaNegative(
                 fontSize: MediaQuery.of(context).size.height * .018,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 140, 140, 140)),
@@ -62,7 +63,7 @@ class Findus extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             '+91 8590182737\n+91 9281965899',
-            style: TextStyle(
+            style: GoogleFonts.gowunBatang(
                 fontSize: MediaQuery.of(context).size.height * .018,
                 fontWeight: FontWeight.w400,
                 color: Colors.white),
