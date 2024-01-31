@@ -33,7 +33,7 @@ class AddRentalRules extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 240, 240, 240),
+        color: const Color.fromARGB(255, 240, 240, 240),
         child: Column(
           children: [
             const SizedBox(
@@ -45,7 +45,7 @@ class AddRentalRules extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Container(
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.height * .07,
                         child: ProjectUtils().textformfield(
                             icon: Icons.star_border_outlined,

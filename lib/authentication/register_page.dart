@@ -49,7 +49,7 @@ class _RegisterscreenState extends State<Registerscreen> {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/bg/JJJ.jpg'),
+                image: AssetImage('assets/bg/null.jpg'),
                 fit: BoxFit.cover,
               )),
               child: Padding(
@@ -61,7 +61,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                     ProjectUtils().sizedbox20,
                     ProjectUtils().headingbig(
                         context: context, text: 'SIGN UP', color: Colors.white),
-                    ProjectUtils().sizedbox20,
+                    ProjectUtils().sizedbox10,
                     Form(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         key: formkey,
@@ -76,7 +76,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                                     text: 'Email')
                               ],
                             ),
-                            ProjectUtils().sizedbox10,
                             ProjectUtils().textformfield(
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
@@ -94,7 +93,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                                     text: 'Password')
                               ],
                             ),
-                            ProjectUtils().sizedbox10,
                             ProjectUtils().textformfield(
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
@@ -112,7 +110,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                                     text: 'Confirm Password')
                               ],
                             ),
-                            ProjectUtils().sizedbox10,
                             ProjectUtils().textformfield(
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
@@ -122,7 +119,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                                 obsecure: true),
                           ],
                         )),
-                    ProjectUtils().sizedbox20,
                     ProjectUtils().sizedbox20,
                     GestureDetector(
                       onTap: () {
@@ -150,19 +146,34 @@ class _RegisterscreenState extends State<Registerscreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ProjectUtils().headingsmall(
-                            context: context,
-                            color: Colors.white,
-                            text: 'Already Have An Account? '),
-                        GestureDetector(
-                          onTap: () {
-                            gotoLogin(context);
-                          },
-                          child: ProjectUtils().headingsmall(
-                              context: context,
-                              color: Colors.white,
-                              text: 'Login'),
-                        )
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(136, 0, 0, 0),
+                                borderRadius: BorderRadius.circular(10)),
+                            height: MediaQuery.of(context).size.height * .03,
+                            width: MediaQuery.of(context).size.width * .9,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ProjectUtils().headingsmall(
+                                    context: context,
+                                    color: Colors.white,
+                                    text: 'Already Have An Account? '),
+                                GestureDetector(
+                                  onTap: () {
+                                    gotoLogin(context);
+                                  },
+                                  child: ProjectUtils().headingsmall(
+                                      context: context,
+                                      color: Colors.white,
+                                      text: 'Login'),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
@@ -37,7 +38,7 @@ class RegisterRedirect extends StatelessWidget {
                         children: [
                           Text(
                             'Luxury car at your\nConvienient Location.',
-                            style: TextStyle(
+                            style: GoogleFonts.signikaNegative(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize:
@@ -45,8 +46,8 @@ class RegisterRedirect extends StatelessWidget {
                           ),
                           Text(
                             'Rent the latest model cars at affordable price',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
+                            style: GoogleFonts.gowunBatang(
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize:
                                     MediaQuery.of(context).size.height * .02),
@@ -76,7 +77,7 @@ class RegisterRedirect extends StatelessWidget {
                                         const Color.fromARGB(93, 0, 0, 0)),
                                 child: Text(
                                   "Let's Go !",
-                                  style: TextStyle(
+                                  style: GoogleFonts.signikaNegative(
                                       fontSize:
                                           MediaQuery.of(context).size.height *
                                               .026,

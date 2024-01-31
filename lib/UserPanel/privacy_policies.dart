@@ -147,7 +147,21 @@ class _PrivacyPoliciesState extends State<PrivacyPolicies> {
                     headingtext: 'Contact Us:',
                     context: context,
                     bodytext:
-                        'If you have any questions or concerns about this Privacy Policy, please contact us at joelpshaju@gmail.com\nBy using our car rental application, you agree to the terms outlined in this Privacy Policy.'),
+                        'If you have any questions or concerns about this Privacy Policy, please contact us at on any of the below details\nBy using our car rental application, you agree to the terms outlined in this Privacy Policy.'),
+                const Center(
+                  child: SelectableText(
+                    'joelpshaju@gmail.com',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+                ProjectUtils().sizedbox10,
+                const Center(
+                  child: SelectableText(
+                    '+91 8590182736',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+                ProjectUtils().sizedbox20
               ],
             ),
           ),

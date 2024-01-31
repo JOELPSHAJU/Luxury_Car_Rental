@@ -63,14 +63,14 @@ class _UserNavigationState extends State<UserNavigation> {
             accountName: docData?['fullname'] != null
                 ? Text('${docData?['fullname']}',
                     style: GoogleFonts.signikaNegative(
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                         color: ProjectColors.white,
                         fontSize: MediaQuery.of(context).size.height * .02))
                 : const Text('Guest0123'),
             accountEmail: docData?['email'] != null
                 ? Text('${docData?['email']}',
                     style: GoogleFonts.signikaNegative(
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                         color: ProjectColors.white,
                         fontSize: MediaQuery.of(context).size.height * .02))
                 : const Text('Guest0123@gmail.com'),
@@ -113,7 +113,7 @@ class _UserNavigationState extends State<UserNavigation> {
             ),
             title: Text('Profile',
                 style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -129,7 +129,7 @@ class _UserNavigationState extends State<UserNavigation> {
             ),
             title: Text('Rental Rules',
                 style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -143,7 +143,7 @@ class _UserNavigationState extends State<UserNavigation> {
             title: Text(
               'Notifications',
               style: GoogleFonts.signikaNegative(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: ProjectColors.black,
                   fontSize: MediaQuery.of(context).size.height * .02),
             ),
@@ -166,7 +166,7 @@ class _UserNavigationState extends State<UserNavigation> {
             ),
             title: Text('Privacy Policies',
                 style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -181,7 +181,7 @@ class _UserNavigationState extends State<UserNavigation> {
                 size: 30, color: ProjectColors.primarycolor1),
             title: Text('Sign out',
                 style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -201,7 +201,7 @@ class _UserNavigationState extends State<UserNavigation> {
           title: Text(
             'Do you really want to sign out?',
             style: GoogleFonts.signikaNegative(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 color: ProjectColors.primarycolor1,
                 fontSize: MediaQuery.of(context).size.height * .02),
           ),
@@ -211,7 +211,7 @@ class _UserNavigationState extends State<UserNavigation> {
                 child: Text('Cancel',
                     style: GoogleFonts.signikaNegative(
                         color: Color.fromARGB(255, 109, 109, 109),
-                        fontWeight: FontWeight.bold))),
+                        fontWeight: FontWeight.w600))),
             OutlinedButton(
               onPressed: () async {
                 final sharedprefs = await SharedPreferences.getInstance();
@@ -225,7 +225,7 @@ class _UserNavigationState extends State<UserNavigation> {
                 'Sign Out',
                 style: GoogleFonts.signikaNegative(
                     color: ProjectColors.primarycolor1,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ],

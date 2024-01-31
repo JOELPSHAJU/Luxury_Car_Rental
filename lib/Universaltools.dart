@@ -81,7 +81,7 @@ class ProjectUtils {
     );
   }
 
-  final textformfieldcolor = Color.fromARGB(255, 14, 42, 65);
+  final textformfieldcolor = Color.fromARGB(255, 14, 42, 65); 
   textformfield(
       {required icon,
       required controller,
@@ -90,11 +90,11 @@ class ProjectUtils {
       required enabled,
       required iconcolor}) {
     return TextFormField(
-      cursorColor: ProjectUtils().textformfieldcolor,
+      cursorColor: Colors.black,
       cursorWidth: 3,
       style: GoogleFonts.signikaNegative(
         fontWeight: FontWeight.w500,
-        color: ProjectUtils().textformfieldcolor,
+        color: Colors.white,
       ),
       controller: controller,
       validator: (value) {
@@ -118,7 +118,7 @@ class ProjectUtils {
         errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               width: 2,
-              color: Color.fromARGB(255, 225, 15, 0),
+              color: Color.fromARGB(255, 255, 58, 44),
             ),
             borderRadius: BorderRadius.circular(100)),
         focusedBorder: OutlineInputBorder(
@@ -149,7 +149,7 @@ class ProjectUtils {
       child: TextFormField(
           cursorColor: ProjectUtils().textformfieldcolor,
           cursorWidth: 3,
-          style: TextStyle(
+          style: GoogleFonts.signikaNegative(
             fontWeight: FontWeight.bold,
             color: ProjectUtils().textformfieldcolor,
           ),
@@ -195,7 +195,7 @@ class ProjectUtils {
   headingsmall({required context, required color, required text}) {
     return Text(
       text,
-      style: GoogleFonts.gowunBatang(
+      style: GoogleFonts.signikaNegative(
         color: color,
         fontWeight: FontWeight.bold,
         fontSize: MediaQuery.of(context).size.height * 0.019,
@@ -203,7 +203,7 @@ class ProjectUtils {
     );
   }
 
-  final listcolor = Color.fromARGB(255, 255, 255, 255);
+  final listcolor = const Color.fromARGB(255, 255, 255, 255);
   headingbig({required context, required text, required color}) {
     return Text(
       text,
