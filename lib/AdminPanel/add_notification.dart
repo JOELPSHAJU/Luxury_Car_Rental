@@ -51,6 +51,7 @@ class addnotification extends StatelessWidget {
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * .07,
                         child: ProjectUtils().textformfield(
+                           
                             icon: Icons.star,
                             controller: rental,
                             obsecure: false,

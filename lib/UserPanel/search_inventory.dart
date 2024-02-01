@@ -19,15 +19,12 @@ class SearchInventory extends StatefulWidget {
 }
 
 final decorationTextFormField = InputDecoration(
-  fillColor: const Color.fromARGB(255, 255, 255, 255),
+  fillColor: Colors.white,
   label: Row(
     children: [
       Icon(
         Icons.search,
         color: ProjectColors.primarycolor1,
-      ),
-      const SizedBox(
-        width: 10,
       ),
       Text(
         'Search Your Inventory....',
@@ -36,23 +33,25 @@ final decorationTextFormField = InputDecoration(
     ],
   ),
   hintStyle: GoogleFonts.gowunBatang(
-      fontWeight: FontWeight.w400, color: Color.fromARGB(255, 148, 148, 148)),
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: Color.fromARGB(255, 99, 99, 99)),
   filled: true,
   enabledBorder: OutlineInputBorder(
       borderSide:
-          const BorderSide(width: 1, color: Color.fromARGB(255, 129, 129, 129)),
+          const BorderSide(width: 1, color: Color.fromARGB(255, 204, 204, 204)),
       borderRadius: BorderRadius.circular(100)),
   focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        width: 1,
-        color: Colors.deepOrange,
+      borderSide: BorderSide(
+        width: 2,
+        color: ProjectColors.primarycolor1,
       ),
       borderRadius: BorderRadius.circular(100)),
   errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(100),
       borderSide: const BorderSide(
         color: Colors.redAccent,
-        width: 1,
+        width: 2,
       )),
   border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
 );
@@ -130,7 +129,6 @@ class _SearchInventoryState extends State<SearchInventory> {
     return Scaffold(
         extendBody: true,
         appBar: AppBar(
-          elevation: 4,
           leading: IconButton(
             icon: Icon(
               Icons.filter_list,

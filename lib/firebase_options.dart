@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDjuEWRoxctIhAPe0LJfYL64xA9trImh_Y',
-    appId: '1:1058122216239:web:66f7b4e4e9c89728e2e7da',
-    messagingSenderId: '1058122216239',
-    projectId: 'rentalcar-31233',
-    authDomain: 'rentalcar-31233.firebaseapp.com',
-    storageBucket: 'rentalcar-31233.appspot.com',
-    measurementId: 'G-RPKZ9EF49F',
+    apiKey: 'AIzaSyD6Zg9BA623l--21idrkgXOca2RLptwleg',
+    appId: '1:84697927902:web:4f6a98831303cbd233324f',
+    messagingSenderId: '84697927902',
+    projectId: 'nothins-564df',
+    authDomain: 'nothins-564df.firebaseapp.com',
+    storageBucket: 'nothins-564df.appspot.com',
+    measurementId: 'G-CE7Z03R709',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCe3-FZA6htKZmD1A18JXHwqDIdS0hp1RY',
-    appId: '1:1058122216239:android:94f72fd6458dbf42e2e7da',
-    messagingSenderId: '1058122216239',
-    projectId: 'rentalcar-31233',
-    storageBucket: 'rentalcar-31233.appspot.com',
+    apiKey: 'AIzaSyBAHjuuBXfWvbdk3OwDW6tATtM2KlM0hqk',
+    appId: '1:84697927902:android:c5f653008ad182e933324f',
+    messagingSenderId: '84697927902',
+    projectId: 'nothins-564df',
+    storageBucket: 'nothins-564df.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAVbYJw6v3L05RjAZhWhM2zGtAGvzJmOM8',
-    appId: '1:1058122216239:ios:3c917b833f10d305e2e7da',
-    messagingSenderId: '1058122216239',
-    projectId: 'rentalcar-31233',
-    storageBucket: 'rentalcar-31233.appspot.com',
+    apiKey: 'AIzaSyBBP0LYx7s8pwZPp6ClbH1r5r4YFtN4vD8',
+    appId: '1:84697927902:ios:acd28ac5d8df249f33324f',
+    messagingSenderId: '84697927902',
+    projectId: 'nothins-564df',
+    storageBucket: 'nothins-564df.appspot.com',
     iosBundleId: 'com.example.luxurycars',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAVbYJw6v3L05RjAZhWhM2zGtAGvzJmOM8',
-    appId: '1:1058122216239:ios:f7c46ab9c683f39de2e7da',
-    messagingSenderId: '1058122216239',
-    projectId: 'rentalcar-31233',
-    storageBucket: 'rentalcar-31233.appspot.com',
+    apiKey: 'AIzaSyBBP0LYx7s8pwZPp6ClbH1r5r4YFtN4vD8',
+    appId: '1:84697927902:ios:65a60d10ee636dfc33324f',
+    messagingSenderId: '84697927902',
+    projectId: 'nothins-564df',
+    storageBucket: 'nothins-564df.appspot.com',
     iosBundleId: 'com.example.luxurycars.RunnerTests',
   );
 }

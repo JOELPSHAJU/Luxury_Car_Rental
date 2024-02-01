@@ -14,12 +14,14 @@ class HowitWorks extends StatelessWidget {
             heading,
             style: GoogleFonts.gowunBatang(
                 fontWeight: FontWeight.bold,
+                fontSize: MediaQuery.of(Context).size.width * .04,
                 color: ProjectColors.primarycolor1),
           ),
           Text(
             textdata,
             style: GoogleFonts.gowunBatang(
                 fontWeight: FontWeight.bold,
+                fontSize: MediaQuery.of(Context).size.width * .035,
                 color: Color.fromARGB(255, 34, 34, 34)),
           ),
         ],
@@ -29,7 +31,7 @@ class HowitWorks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         child: Column(
           children: [
@@ -50,7 +52,7 @@ class HowitWorks extends StatelessWidget {
               style: GoogleFonts.gowunBatang(
                   fontWeight: FontWeight.bold,
                   color: ProjectColors.black,
-                  fontSize: MediaQuery.of(context).size.height * .018),
+                  fontSize: MediaQuery.of(context).size.width * .04),
               textAlign: TextAlign.center,
             )),
             const Divider(
@@ -65,7 +67,7 @@ class HowitWorks extends StatelessWidget {
                 bottom: 8.0,
               ),
               child: Container(
-                color: Color.fromARGB(255, 212, 217, 217),
+                color: const Color.fromARGB(255, 212, 217, 217),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .50,
                 child: Row(
@@ -74,32 +76,34 @@ class HowitWorks extends StatelessWidget {
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('assets/latest/bmvhalf.png'),
-                              fit: BoxFit.fitHeight)),
+                              fit: BoxFit.cover)),
                       width: MediaQuery.of(context).size.width * .48,
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * .50,
-                      width: MediaQuery.of(context).size.width * .48,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          howitworks(
-                              textdata:
-                                  'Search and find the suitable inventory for you',
-                              heading: '1. Find Your Inventory',
-                              Context: context),
-                          howitworks(
-                              textdata:
-                                  'Once you find it ,You can initiate the booking request by filling the necessary documents and send',
-                              heading: '2. Initiate Booking Request',
-                              Context: context),
-                          howitworks(
-                              textdata:
-                                  'You will recieve the confirmation once they accept the request',
-                              heading: '3. Confirm Booking',
-                              Context: context),
-                        ],
+                    Expanded(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            howitworks(
+                                textdata:
+                                    'Search and find the suitable inventory for you',
+                                heading: '1. Find Your Inventory',
+                                Context: context),
+                            howitworks(
+                                textdata:
+                                    'Once you find it ,You can initiate the booking request by filling the necessary documents and send',
+                                heading: '2. Initiate Booking Request',
+                                Context: context),
+                            howitworks(
+                                textdata:
+                                    'You will recieve the confirmation once they accept the request',
+                                heading: '3. Confirm Booking',
+                                Context: context),
+                          ],
+                        ),
                       ),
                     )
                   ],

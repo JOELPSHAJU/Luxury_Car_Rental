@@ -75,14 +75,14 @@ class _BookingPageState extends State<BookingPage> {
             ),
             Text(label,
                 style: GoogleFonts.poppins(
-                    fontSize: 15,
+                    fontSize: MediaQuery.of(context).size.width * .038,
                     fontWeight: FontWeight.w500,
                     color: const Color.fromARGB(255, 132, 132, 132))),
           ],
         ),
         Text(details,
             style: GoogleFonts.poppins(
-                fontSize: 16,
+                fontSize: MediaQuery.of(context).size.width * .038,
                 fontWeight: FontWeight.w500,
                 color: ProjectColors.primarycolor1)),
       ],
@@ -98,15 +98,19 @@ class _BookingPageState extends State<BookingPage> {
     }
   };
   final formkeycheck = GlobalKey<FormState>();
-  final topicstyle = GoogleFonts.poppins(
-      fontSize: 16,
-      color: ProjectColors.secondarycolor2,
-      fontWeight: FontWeight.bold);
-  final textstyle = GoogleFonts.poppins(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: ProjectColors.secondarycolor2,
-  );
+  topicstyle({required context}) {
+    return GoogleFonts.poppins(
+        fontSize: MediaQuery.of(context).size.width * .04,
+        color: ProjectColors.secondarycolor2,
+        fontWeight: FontWeight.w600);
+  }
+
+  textstyle({required context}) {
+    return GoogleFonts.poppins(
+        fontSize: MediaQuery.of(context).size.width * .04,
+        color: ProjectColors.secondarycolor2,
+        fontWeight: FontWeight.w600);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +121,9 @@ class _BookingPageState extends State<BookingPage> {
         title: Text(
           'Book Your Inventory',
           style: GoogleFonts.poppins(
-              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
+              fontWeight: FontWeight.w600,
+              fontSize: MediaQuery.of(context).size.width * .04,
+              color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -151,19 +157,22 @@ class _BookingPageState extends State<BookingPage> {
                         children: [
                           Text(
                             '$company\n$modelname',
-                            style: textstyle,
+                            style: textstyle(context: context),
                           ),
                           Row(
                             children: [
                               Text('Category : ',
                                   style: GoogleFonts.poppins(
-                                      fontSize: 16,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              .03,
                                       fontWeight: FontWeight.w600,
                                       color: Color.fromARGB(255, 82, 82, 82))),
                               Text(
                                 category,
                                 style: GoogleFonts.poppins(
-                                    fontSize: 16,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width * .03,
                                     fontWeight: FontWeight.w600,
                                     color: Color.fromARGB(255, 82, 82, 82)),
                               ),
@@ -196,7 +205,7 @@ class _BookingPageState extends State<BookingPage> {
                         children: [
                           Text(
                             'Inventory Details',
-                            style: topicstyle,
+                            style: topicstyle(context: context),
                           ),
                           const SizedBox(
                             height: 10,
@@ -250,7 +259,7 @@ class _BookingPageState extends State<BookingPage> {
               ),
               Text(
                 'Booking Details',
-                style: topicstyle,
+                style: topicstyle(context: context),
               ),
               const SizedBox(
                 height: 20,
@@ -330,7 +339,7 @@ class _BookingPageState extends State<BookingPage> {
                       ),
                       Text(
                         'Personal Details',
-                        style: topicstyle,
+                        style: topicstyle(context: context),
                       ),
                       const SizedBox(
                         height: 20,
@@ -402,7 +411,7 @@ class _BookingPageState extends State<BookingPage> {
                 children: [
                   Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
                       style: GoogleFonts.signikaNegative(
-                          fontSize: MediaQuery.of(context).size.height * .025,
+                          fontSize: MediaQuery.of(context).size.width * .038,
                           fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -434,7 +443,7 @@ class _BookingPageState extends State<BookingPage> {
                     },
                     child: Text('Request Rental',
                         style: GoogleFonts.signikaNegative(
-                            fontSize: 23,
+                            fontSize: MediaQuery.of(context).size.width * .06,
                             fontWeight: FontWeight.w700,
                             color: Colors.white))),
               ))

@@ -23,22 +23,22 @@ class _popularinventoriesState extends State<popularinventories> {
 
   title({required context}) {
     return GoogleFonts.gowunBatang(
-        fontSize: MediaQuery.of(context).size.height * .025,
+        fontSize: MediaQuery.of(context).size.width * .04,
         fontWeight: FontWeight.bold,
         color: const Color.fromARGB(255, 84, 84, 84));
   }
 
   text({required context}) {
     return GoogleFonts.gowunBatang(
-        fontSize: MediaQuery.of(context).size.height * .017,
+        fontSize: MediaQuery.of(context).size.width * .04,
         fontWeight: FontWeight.bold,
         color: const Color.fromARGB(255, 84, 84, 84));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * .38,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .44,
       width: MediaQuery.of(context).size.width,
       child: StreamBuilder<QuerySnapshot>(
         builder: (context, snapshot) {
@@ -48,94 +48,98 @@ class _popularinventoriesState extends State<popularinventories> {
               children: snapshot.data!.docs.map((doc) {
                 return Padding(
                   padding: const EdgeInsets.all(9.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .29,
-                    width: MediaQuery.of(context).size.width * .96,
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) =>
-                                    ParticularInventory(id: doc['Id'])));
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15)),
-                              height: MediaQuery.of(context).size.height * .2,
-                              width: MediaQuery.of(context).size.width * .8,
-                              child: Image.network(doc['Image'])),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(9.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${doc['Company']}  ${doc['Model Name']}",
-                                style: title(context: context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.circle,
-                                    size: 10,
-                                    color: Color.fromARGB(255, 84, 84, 84),
-                                  ),
-                                  Text(
-                                    '  ₹' + doc['Price'] + '/day',
-                                    style: text(context: context),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.circle,
-                                    size: 10,
-                                    color: Color.fromARGB(255, 84, 84, 84),
-                                  ),
-                                  Text(
-                                    '  Category : ' + doc['Category'],
-                                    style: text(context: context),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
+                  child: Center(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 4,
+                      width: MediaQuery.of(context).size.width * .96,
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) =>
+                                      ParticularInventory(id: doc['Id'])));
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15)),
                                 height:
-                                    MediaQuery.of(context).size.height * .04,
-                                width: MediaQuery.of(context).size.width * .9,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (ctx) =>
-                                                ParticularInventory(
-                                                    id: doc['Id'])));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(3),
-                                          side: BorderSide(
-                                              color: ProjectColors
-                                                  .primarycolor1) // <-- Radius
-                                          ),
-                                      backgroundColor: Colors.transparent,
-                                      elevation: 0),
-                                  child: const Text(
-                                    'Book Now',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(255, 12, 12, 12)),
-                                  ),
-                                ),
-                              )
-                            ],
+                                    MediaQuery.of(context).size.height * .25,
+                                width: MediaQuery.of(context).size.width * .8,
+                                child: Image.network(doc['Image'])),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(9.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${doc['Company']}  ${doc['Model Name']}",
+                                  style: title(context: context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.circle,
+                                      size: 10,
+                                      color: Color.fromARGB(255, 84, 84, 84),
+                                    ),
+                                    Text(
+                                      '  ₹' + doc['Price'] + '/day',
+                                      style: text(context: context),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.circle,
+                                      size: 10,
+                                      color: Color.fromARGB(255, 84, 84, 84),
+                                    ),
+                                    Text(
+                                      '  Category : ' + doc['Category'],
+                                      style: text(context: context),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * .04,
+                                  width: MediaQuery.of(context).size.width * .9,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (ctx) =>
+                                                  ParticularInventory(
+                                                      id: doc['Id'])));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(3),
+                                            side: BorderSide(
+                                                color: ProjectColors
+                                                    .primarycolor1) // <-- Radius
+                                            ),
+                                        backgroundColor: Colors.transparent,
+                                        elevation: 0),
+                                    child: const Text(
+                                      'Book Now',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 12, 12, 12)),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

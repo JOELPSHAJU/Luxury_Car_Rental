@@ -170,7 +170,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
               thickness: 2,
             ),
             sizedboc,
-            const whychooseus(),
+            const Whychooseus(),
             const Findus()
           ],
         ),

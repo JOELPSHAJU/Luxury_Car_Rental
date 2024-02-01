@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 
-class whychooseus extends StatelessWidget {
-  const whychooseus({super.key});
+class Whychooseus extends StatelessWidget {
+  const Whychooseus({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('Why choose our service ?',
-              style: GoogleFonts.signikaNegative(
+              style: GoogleFonts.poppins(
                   fontSize: MediaQuery.of(context).size.width * .05,
                   fontWeight: FontWeight.bold)),
           Padding(
@@ -24,8 +24,8 @@ class whychooseus extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.gowunBatang(
                     fontSize: MediaQuery.of(context).size.width * .04,
-                    color: const Color.fromARGB(255, 108, 108, 108),
-                    fontWeight: FontWeight.bold)),
+                    color: const Color.fromARGB(255, 73, 73, 73),
+                    fontWeight: FontWeight.w700)),
           ),
           const SizedBox(
             height: 10,
@@ -51,7 +51,7 @@ class whychooseus extends StatelessWidget {
                 'Go Drive provides top-class services at an affordable price.',
                 style: GoogleFonts.gowunBatang(
                     fontSize: MediaQuery.of(context).size.width * .04,
-                    color: const Color.fromARGB(255, 110, 110, 110),
+                    color: const Color.fromARGB(255, 73, 73, 73),
                     fontWeight: FontWeight.bold)),
           ),
           const SizedBox(
@@ -78,7 +78,7 @@ class whychooseus extends StatelessWidget {
                 'We hire best experts in everything\n concerning car rental.',
                 style: GoogleFonts.gowunBatang(
                     fontSize: MediaQuery.of(context).size.width * .04,
-                    color: const Color.fromARGB(255, 110, 110, 110),
+                    color: const Color.fromARGB(255, 73, 73, 73),
                     fontWeight: FontWeight.bold)),
           ),
           const SizedBox(
@@ -105,7 +105,7 @@ class whychooseus extends StatelessWidget {
                 'Our team guarantee reliable support in addition\n to the offered services.',
                 style: GoogleFonts.gowunBatang(
                     fontSize: MediaQuery.of(context).size.width * .04,
-                    color: const Color.fromARGB(255, 110, 110, 110),
+                    color: const Color.fromARGB(255, 73, 73, 73),
                     fontWeight: FontWeight.bold)),
           ),
           const SizedBox(
@@ -132,7 +132,7 @@ class whychooseus extends StatelessWidget {
                 'You can find our car rental officess throughout kerala',
                 style: GoogleFonts.gowunBatang(
                     fontSize: MediaQuery.of(context).size.width * .04,
-                    color: const Color.fromARGB(255, 110, 110, 110),
+                    color: const Color.fromARGB(255, 73, 73, 73),
                     fontWeight: FontWeight.bold)),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/Bookings.dart';
 import 'package:luxurycars/UserPanel/Cart.dart';
@@ -25,7 +26,7 @@ List pages = [
   const UserHomePageNew(),
   const SearchInventory(),
   const AddtoCart(),
-  BookingsPage(),
+  const BookingsPage(),
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           extendBody: true,
           appBar: AppBar(
-            elevation: 3,
+            bottomOpacity: 2,
             iconTheme: IconThemeData(color: ProjectColors.primarycolor1),
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            backgroundColor: Colors.white,
             centerTitle: true,
             title: Image.asset(
               'assets/logolettters.png',
@@ -56,39 +57,44 @@ class _HomePageState extends State<HomePage> {
           drawer: const UserNavigation(),
           body: pages[_currentindex],
           backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-          bottomNavigationBar: CurvedNavigationBar(
-              animationCurve: Curves.easeIn,
-              backgroundColor: const Color.fromARGB(0, 93, 21, 21),
-              color: const Color.fromRGBO(237, 246, 255, 1),
-              buttonBackgroundColor: const Color.fromRGBO(237, 246, 255, 1),
-              onTap: (index) {
-                setState(() {
-                  _currentindex = index;
-                });
-              },
-              animationDuration: const Duration(milliseconds: 300),
-              items: [
-                Icon(
-                  Icons.home,
-                  size: 30,
+          bottomNavigationBar: Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                border: Border.symmetric(
+                    horizontal: BorderSide(width: 1, color: Colors.grey))),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              child: GNav(
+                  gap: 8,
                   color: ProjectColors.primarycolor1,
-                ),
-                Icon(
-                  Icons.search,
-                  size: 30,
-                  color: ProjectColors.primarycolor1,
-                ),
-                Icon(
-                  Icons.shopping_cart,
-                  size: 30,
-                  color: ProjectColors.primarycolor1,
-                ),
-                Icon(
-                  Icons.book,
-                  size: 30,
-                  color: ProjectColors.primarycolor1,
-                )
-              ])),
+                  tabBackgroundColor: ProjectColors.primarycolor1,
+                  activeColor: Colors.white,
+                  padding: const EdgeInsets.all(10),
+                  onTabChange: (value) {
+                    setState(() {
+                      _currentindex = value;
+                    });
+                  },
+                  tabs: const [
+                    GButton(
+                      icon: Icons.home_outlined,
+                      text: 'Home',
+                    ),
+                    GButton(
+                      icon: Icons.search,
+                      text: 'Search',
+                    ),
+                    GButton(
+                      icon: Icons.shopping_cart_checkout_outlined,
+                      text: 'Cart',
+                    ),
+                    GButton(
+                      icon: Icons.bookmark_add_outlined,
+                      text: 'Bookings',
+                    ),
+                  ]),
+            ),
+          )),
     );
   }
 }

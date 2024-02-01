@@ -39,42 +39,59 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/latest/870688.webp'),
-                  fit: BoxFit.cover,
-                  opacity: 0.5)),
-          child: Center(
-            child: Container(
-              height: MediaQuery.of(context).size.height * .35,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/latest/870688.webp'),
+                    fit: BoxFit.cover,
+                    opacity: 0.5)),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Column(
-                    children: [
-                      const Text('G O   D R I V E',
-                          style: TextStyle(
-                              fontSize: 38,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      Text('Your Ultimate Travel Companion',
-                          style: GoogleFonts.poppins(
-                            color: const Color.fromARGB(150, 255, 255, 255),
-                          )),
-                    ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .48,
+                    width: MediaQuery.of(context).size.width,
                   ),
-                  LottieBuilder.asset(
-                    'assets/animations/loading.json',
-                    width: MediaQuery.of(context).size.width * .5,
-                  )
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .18,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('G O   D R I V E',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * .09,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)),
+                        const SizedBox(height: 10),
+                        Text('Your Ultimate Travel Companion',
+                            style: GoogleFonts.poppins(
+                              color: const Color.fromARGB(150, 255, 255, 255),
+                            )),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                      child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        LottieBuilder.asset(
+                          'assets/animations/loading.json',
+                          width: MediaQuery.of(context).size.width * .5,
+                        )
+                      ],
+                    ),
+                  ))
                 ],
               ),
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }

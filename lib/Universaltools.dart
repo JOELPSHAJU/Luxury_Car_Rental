@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProjectColors {
-  static Color get primarycolor1 => const Color.fromARGB(255, 36, 127, 160);
+  static Color get primarycolor1 => Color.fromARGB(255, 11, 137, 183);
   static Color get primarycolor2 => const Color.fromARGB(255, 40, 0, 66);
 
   static Color get secondarycolor1 => const Color.fromARGB(255, 54, 0, 101);
@@ -81,7 +81,7 @@ class ProjectUtils {
     );
   }
 
-  final textformfieldcolor = Color.fromARGB(255, 14, 42, 65); 
+  final textformfieldcolor = Color.fromARGB(255, 14, 42, 65);
   textformfield(
       {required icon,
       required controller,
@@ -89,51 +89,55 @@ class ProjectUtils {
       required focusedcolor,
       required enabled,
       required iconcolor}) {
-    return TextFormField(
-      cursorColor: Colors.black,
-      cursorWidth: 3,
-      style: GoogleFonts.signikaNegative(
-        fontWeight: FontWeight.w500,
-        color: Colors.white,
-      ),
-      controller: controller,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please Fill This Field !';
-        } else {
-          return null;
-        }
-      },
-      decoration: InputDecoration(
-        disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 3,
-              color: ProjectUtils().textformfieldcolor,
-            ),
-            borderRadius: BorderRadius.circular(100)),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 3, color: enabled),
-            borderRadius: BorderRadius.circular(100)),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-        errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2,
-              color: Color.fromARGB(255, 255, 58, 44),
-            ),
-            borderRadius: BorderRadius.circular(100)),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 3,
-              color: focusedcolor,
-            ),
-            borderRadius: BorderRadius.circular(100)),
-        prefixIcon: Icon(
-          icon,
-          size: 23,
-          color: iconcolor,
+    return SizedBox(
+      child: TextFormField(
+        cursorColor: Colors.black,
+        cursorWidth: 3,
+        style: GoogleFonts.signikaNegative(
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
         ),
+        controller: controller,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please Fill This Field !';
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 16),
+          disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3,
+                color: ProjectUtils().textformfieldcolor,
+              ),
+              borderRadius: BorderRadius.circular(100)),
+          enabledBorder: OutlineInputBorder(
+              gapPadding: 5,
+              borderSide: BorderSide(width: 3, color: enabled),
+              borderRadius: BorderRadius.circular(100)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 2,
+                color: Color.fromARGB(255, 255, 58, 44),
+              ),
+              borderRadius: BorderRadius.circular(100)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3,
+                color: focusedcolor,
+              ),
+              borderRadius: BorderRadius.circular(100)),
+          prefixIcon: Icon(
+            icon,
+            size: 23,
+            color: iconcolor,
+          ),
+        ),
+        obscureText: obsecure,
       ),
-      obscureText: obsecure,
     );
   }
 

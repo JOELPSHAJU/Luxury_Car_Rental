@@ -37,12 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await Auth().signInWithEmailandPassword(
           email: _emailcontroller.text, password: _passwordcontroller.text);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.green,
-        content: Text('Login Successfull'),
-        duration: Duration(seconds: 3),
-      ));
+      ProjectUtils().sucessmessage(context: context, text: 'Login Sucessful');
       const Center(child: CircularProgressIndicator());
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
@@ -52,12 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.red,
-          content: Text('invalid email or password'),
-          duration: Duration(seconds: 3),
-        ));
+        ProjectUtils()
+            .errormessage(context: context, text: 'invalid email or password');
       });
     } finally {
       setState(() {
@@ -68,10 +59,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textstyle = TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: MediaQuery.of(context).size.height * 0.019,
-        color: const Color.fromARGB(255, 255, 255, 255));
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.black,
@@ -105,7 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       context: context, text: 'LOGIN', color: maincolor),
                   ProjectUtils().sizedbox20,
                   Form(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       key: formkey,
                       child: Column(
                         children: [
@@ -173,11 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (c) => RegisterMain()));
+                              builder: (c) => const RegisterMain()));
                         },
                         child: ProjectUtils().headingsmall(
                             context: context,
-                            color: Colors.white,
+                            color: ProjectUtils().textformfieldcolor,
                             text: 'Sign Up'),
                       )
                     ],
@@ -195,9 +181,10 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     if (_emailcontroller.text == 'admin@gmail.com' &&
         _passwordcontroller.text == 'admin123') {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (ctx) => AdminHome()));
-    } else
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (ctx) => const AdminHome()));
+    } else {
       signInWithEmailAndPassword();
+    }
   }
 }

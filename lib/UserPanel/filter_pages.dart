@@ -186,16 +186,17 @@ class _FilterPageState extends State<FilterPage> {
                           menuHeight: 250,
                           textStyle: GoogleFonts.gowunBatang(
                               fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 134, 134, 134)),
+                              color: const Color.fromARGB(255, 134, 134, 134)),
                           width: MediaQuery.of(context).size.width * .7,
                           initialSelection: filterdropdown.first,
                           inputDecorationTheme: InputDecorationTheme(
                               contentPadding: const EdgeInsets.all(15),
                               border: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.white),
+                                  borderSide: BorderSide(
+                                      width: 2,
+                                      color: ProjectColors.primarycolor1),
                                   borderRadius: BorderRadius.circular(100)),
-                              fillColor: Color.fromARGB(255, 255, 255, 255),
+                              fillColor: const Color.fromARGB(255, 255, 255, 255),
                               filled: true),
                           onSelected: (String? value) {
                             setState(() {

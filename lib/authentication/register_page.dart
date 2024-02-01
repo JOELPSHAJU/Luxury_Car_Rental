@@ -49,7 +49,7 @@ class _RegisterscreenState extends State<Registerscreen> {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/bg/null.jpg'),
+                image: AssetImage('assets/bg/savereg.jpg'),
                 fit: BoxFit.cover,
               )),
               child: Padding(
@@ -63,7 +63,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                         context: context, text: 'SIGN UP', color: Colors.white),
                     ProjectUtils().sizedbox10,
                     Form(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        
                         key: formkey,
                         child: Column(
                           children: [
@@ -77,6 +77,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                               ],
                             ),
                             ProjectUtils().textformfield(
+                              
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
                                 iconcolor: Colors.white,
@@ -94,6 +95,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                               ],
                             ),
                             ProjectUtils().textformfield(
+                         
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
                                 iconcolor: Colors.white,
@@ -111,6 +113,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                               ],
                             ),
                             ProjectUtils().textformfield(
+                             
                                 enabled: Colors.white,
                                 focusedcolor: ProjectUtils().textformfieldcolor,
                                 iconcolor: Colors.white,
@@ -150,7 +153,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: const Color.fromARGB(136, 0, 0, 0),
                                 borderRadius: BorderRadius.circular(10)),
                             height: MediaQuery.of(context).size.height * .03,
                             width: MediaQuery.of(context).size.width * .9,
@@ -167,7 +169,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                                   },
                                   child: ProjectUtils().headingsmall(
                                       context: context,
-                                      color: Colors.white,
+                                      color: ProjectUtils().textformfieldcolor,
                                       text: 'Login'),
                                 )
                               ],
