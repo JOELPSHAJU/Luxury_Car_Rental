@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -58,26 +59,20 @@ class _BookingsPageState extends State<BookingsPage> {
 
                 if (documents.isEmpty) {
                   return Center(
-                    child: Stack(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Lottie.asset(
                           'assets/animations/Animation - 1706182910823.json',
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width * 5,
                         ),
-                        Positioned(
-                          bottom: 30.0,
-                          left: MediaQuery.of(context).size.width * .35,
-                          child: Center(
-                            child: Text(
-                              'No Bookings Yet!',
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * .04,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 81, 81, 81),
-                              ),
-                            ),
+                        Text(
+                          'No Bookings Yet!',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * .04,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 81, 81, 81),
                           ),
                         ),
                       ],
@@ -100,18 +95,28 @@ class _BookingsPageState extends State<BookingsPage> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width: 130,
-                                  height: 120,
-                                  decoration: BoxDecoration(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: 130,
+                                    height: 120,
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image:
-                                              NetworkImage('${data['Image']}'),
-                                          fit: BoxFit.cover)),
-                                ),
-                              ),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: '${data['Image']}',
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(
+                                        Icons.error,
+                                        color: Colors.grey,
+                                        size: 30,
+                                      ),
+                                      placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(
+                                          color: ProjectColors.primarycolor1,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(

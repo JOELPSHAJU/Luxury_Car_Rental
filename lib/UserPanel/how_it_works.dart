@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 class HowitWorks extends StatelessWidget {
   const HowitWorks({super.key});
-  Widget howitworks({required textdata, required heading, required Context}) {
+  Widget howitworks({required textdata, required heading, required context}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -14,15 +15,15 @@ class HowitWorks extends StatelessWidget {
             heading,
             style: GoogleFonts.gowunBatang(
                 fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(Context).size.width * .04,
+                fontSize: MediaQuery.of(context).size.width * .037,
                 color: ProjectColors.primarycolor1),
           ),
           Text(
             textdata,
             style: GoogleFonts.gowunBatang(
                 fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(Context).size.width * .035,
-                color: Color.fromARGB(255, 34, 34, 34)),
+                fontSize: MediaQuery.of(context).size.width * .037,
+                color: const Color.fromARGB(255, 34, 34, 34)),
           ),
         ],
       ),
@@ -50,9 +51,9 @@ class HowitWorks extends StatelessWidget {
                 child: Text(
               'You are important to us\nWe belive in a personalised experience \nfor your ride.\nYou can always Contact Us if you need any help',
               style: GoogleFonts.gowunBatang(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: ProjectColors.black,
-                  fontSize: MediaQuery.of(context).size.width * .04),
+                  fontSize: MediaQuery.of(context).size.width * .037),
               textAlign: TextAlign.center,
             )),
             const Divider(
@@ -85,23 +86,23 @@ class HowitWorks extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             howitworks(
                                 textdata:
                                     'Search and find the suitable inventory for you',
                                 heading: '1. Find Your Inventory',
-                                Context: context),
+                                context: context),
                             howitworks(
                                 textdata:
                                     'Once you find it ,You can initiate the booking request by filling the necessary documents and send',
                                 heading: '2. Initiate Booking Request',
-                                Context: context),
+                                context: context),
                             howitworks(
                                 textdata:
                                     'You will recieve the confirmation once they accept the request',
                                 heading: '3. Confirm Booking',
-                                Context: context),
+                                context: context),
                           ],
                         ),
                       ),

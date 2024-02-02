@@ -15,11 +15,11 @@ class AddInventory extends StatefulWidget {
   State<AddInventory> createState() => _AddInventoryState();
 }
 
-Widget text({required text}) {
+Widget text({required text, required context}) {
   return Text(
     text,
     style: TextStyle(
-        fontSize: 14,
+        fontSize: MediaQuery.of(context).size.width * .037,
         fontWeight: FontWeight.bold,
         color: ProjectColors.primarycolor1),
   );
@@ -142,8 +142,8 @@ class _AddInventoryState extends State<AddInventory> {
       setState(() {});
       if (MainImage.isEmpty) {
         // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: text(context: context, text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');
@@ -277,7 +277,7 @@ class _AddInventoryState extends State<AddInventory> {
                       )
                     : Container(),
                 sizedBox,
-                text(text: 'SELECT CATEGORY'),
+                text(context: context, text: 'SELECT CATEGORY'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -305,7 +305,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(text: 'SELECT COMPANY'),
+                text(context: context, text: 'SELECT COMPANY'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -334,7 +334,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(text: 'SELECT FUEL TYPE'),
+                text(context: context, text: 'SELECT FUEL TYPE'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -361,7 +361,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(text: 'SELECT TRANSMISSION TYPE'),
+                text(context: context, text: 'SELECT TRANSMISSION TYPE'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(

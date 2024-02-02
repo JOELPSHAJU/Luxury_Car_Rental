@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -109,18 +110,22 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                           Container(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             height: MediaQuery.of(context).size.height * 0.25,
-                            width: double.infinity,
+                            width: MediaQuery.of(context).size.width,
                             child: FractionallySizedBox(
                               heightFactor: 95.0,
                               child: CarouselSlider(
                                 items: images.map((url) {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(0),
-                                    child: Image.network(
-                                      url,
+                                  return SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    child: CachedNetworkImage(
+                                      imageUrl: url,
                                       fit: BoxFit.cover,
-                                      width: double.infinity,
-                                      height: double.infinity,
+                                      placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(
+                                          color: ProjectColors.primarycolor1,
+                                        ),
+                                      ),
                                     ),
                                   );
                                 }).toList(),

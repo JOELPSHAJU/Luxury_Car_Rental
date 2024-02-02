@@ -96,6 +96,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
         children: [
           Container(
             decoration: const BoxDecoration(
+              color: Colors.black,
               image: DecorationImage(
                 image: AssetImage(
                   'assets/new/cover.jpg',
@@ -110,7 +111,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
               height: 140,
               width: 140,
               decoration: BoxDecoration(
-                border: Border.all(width: 3, color: Colors.white),
+                color: Colors.black,
+                border: Border.all(
+                    width: 3, color: Color.fromARGB(255, 255, 255, 255)),
                 borderRadius: BorderRadius.circular(100),
                 image: const DecorationImage(
                     image: AssetImage(

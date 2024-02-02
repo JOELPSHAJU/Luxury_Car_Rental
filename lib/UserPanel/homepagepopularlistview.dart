@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,12 +26,12 @@ class _popularinventoriesState extends State<popularinventories> {
     return GoogleFonts.gowunBatang(
         fontSize: MediaQuery.of(context).size.width * .04,
         fontWeight: FontWeight.bold,
-        color: const Color.fromARGB(255, 84, 84, 84));
+        color: ProjectColors.primarycolor1);
   }
 
   text({required context}) {
     return GoogleFonts.gowunBatang(
-        fontSize: MediaQuery.of(context).size.width * .04,
+        fontSize: MediaQuery.of(context).size.width * .037,
         fontWeight: FontWeight.bold,
         color: const Color.fromARGB(255, 84, 84, 84));
   }
@@ -55,19 +56,27 @@ class _popularinventoriesState extends State<popularinventories> {
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) =>
-                                      ParticularInventory(id: doc['Id'])));
-                            },
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15)),
-                                height:
-                                    MediaQuery.of(context).size.height * .25,
-                                width: MediaQuery.of(context).size.width * .8,
-                                child: Image.network(doc['Image'])),
-                          ),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) =>
+                                        ParticularInventory(id: doc['Id'])));
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  height:
+                                      MediaQuery.of(context).size.height * .25,
+                                  width: MediaQuery.of(context).size.width * .8,
+                                  child: Center(
+                                    child: CachedNetworkImage(
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(
+                                              color:
+                                                  ProjectColors.primarycolor1,
+                                            ),
+                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                        imageUrl: doc['Image']),
+                                  ))),
                           Padding(
                             padding: const EdgeInsets.all(9.0),
                             child: Column(

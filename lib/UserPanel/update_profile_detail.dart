@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/UserHomePage.dart';
 import 'package:luxurycars/UserPanel/profile_page.dart';
 
 import 'package:luxurycars/main.dart';
@@ -26,7 +27,7 @@ Widget text({required text, required context}) {
     style: GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .018,
         fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 0, 0, 0)),
+        color: const Color.fromARGB(255, 0, 0, 0)),
   );
 }
 
@@ -49,7 +50,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   late String? email = user?.email;
   String pofileImageUrl = '';
+
   String coverImageUrl = '';
+  String newProfile = '';
+  String newCover = '';
   @override
   Widget build(BuildContext context) {
     _name.text = widget.details['name'].toString();
@@ -68,37 +72,30 @@ class _UpdateProfileState extends State<UpdateProfile> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  Text(
-                    'ENTER PROFILE DETAILS',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.height * .02,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  text(text: 'SELECT PROFILE PICTURE', context: context),
-                  IconButton(
-                      onPressed: () {
-                        imagepicker();
-                        setState(() {});
-                      },
-                      icon: Icon(
-                        Icons.add_a_photo_rounded,
-                        color: ProjectColors.primarycolor1,
+                      icon: const Icon(
+                        Icons.close,
                         size: 25,
+                        color: Colors.red,
                       )),
                 ],
               ),
+              Text(
+                'UPDATE PROFILE DETAILS',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: MediaQuery.of(context).size.width * .05,
+                ),
+              ),
+              const Divider(
+                thickness: 2,
+              ),
+              text(text: 'CURRENT PROFILE PICTURE', context: context),
               pofileImageUrl.isNotEmpty
                   ? Container(
                       width: 100,
@@ -120,20 +117,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               image: const AssetImage('assets/new/avatar.png'),
                               fit: BoxFit.cover)),
                     ),
-              Row(
-                children: [
-                  text(text: 'SELECT COVER PICTURE', context: context),
-                  IconButton(
-                      onPressed: () {
-                        coverimagepicker();
-                      },
-                      icon: Icon(
-                        Icons.add_a_photo_rounded,
-                        color: ProjectColors.primarycolor1,
-                        size: 25,
-                      )),
-                ],
-              ),
+              sizedboc,
+              text(text: 'CURRENT COVER PICTURE', context: context),
               coverImageUrl.isNotEmpty
                   ? Container(
                       width: 100,
@@ -153,6 +138,84 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               image: const AssetImage('assets/new/cover.jpg'),
                               fit: BoxFit.cover)),
                     ),
+              sizedboc,
+              Divider(
+                thickness: 2,
+              ),
+              Row(
+                children: [
+                  text(text: 'SELECT NEW PROFILE PIC', context: context),
+                  IconButton(
+                      onPressed: () {
+                        imagepicker();
+                        setState(() {});
+                      },
+                      icon: Icon(
+                        Icons.add_a_photo_rounded,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
+                      )),
+                ],
+              ),
+              newProfile.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(newProfile),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: const AssetImage('assets/new/avatar.png'),
+                              fit: BoxFit.cover)),
+                    ),
+              sizedboc,
+              Row(
+                children: [
+                  text(text: 'SELECT NEW COVER PIC', context: context),
+                  IconButton(
+                      onPressed: () {
+                        coverimagepicker();
+                        setState(() {});
+                      },
+                      icon: Icon(
+                        Icons.add_a_photo_rounded,
+                        color: ProjectColors.primarycolor1,
+                        size: 25,
+                      )),
+                ],
+              ),
+              newCover.isNotEmpty
+                  ? Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: DecorationImage(
+                              image: NetworkImage(newCover),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          image: const DecorationImage(
+                              image: const AssetImage('assets/new/cover.jpg'),
+                              fit: BoxFit.cover)),
+                    ),
+              sizedboc,
+              Divider(
+                thickness: 2,
+              ),
+              sizedboc,
               Form(
                 key: _formKey,
                 child: Column(
@@ -239,8 +302,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     _phonenumber.clear();
                     _pincode.clear();
 
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (ctx) => ProfiePage()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (ctx) => const ProfiePage()));
                     setState(() {});
                   }
                 },
@@ -290,8 +353,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
       'id': id,
       'phonenumber': phoneNumber,
       'pincode': pincode,
-      'Cover': cover,
-      'profile': profile
+      'Cover': newCover,
+      'profile': newProfile
     });
   }
 
@@ -306,8 +369,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
     Reference referenceDirImagtoupload = referenceDirImage.child(filename);
     try {
       await referenceDirImagtoupload.putFile(File(file.path));
-      pofileImageUrl = await referenceDirImagtoupload.getDownloadURL();
-      if (pofileImageUrl.isEmpty) {
+      newProfile = await referenceDirImagtoupload.getDownloadURL();
+      setState(() {});
+      if (newProfile.isEmpty) {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context)
             // ignore: use_build_context_synchronously
@@ -331,8 +395,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
     Reference referenceDirImagtoupload = referenceDirImage.child(filename);
     try {
       await referenceDirImagtoupload.putFile(File(file.path));
-      coverImageUrl = await referenceDirImagtoupload.getDownloadURL();
-      if (coverImageUrl.isEmpty) {
+      newCover = await referenceDirImagtoupload.getDownloadURL();
+      setState(() {});
+      if (newCover.isEmpty) {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             // ignore: use_build_context_synchronously

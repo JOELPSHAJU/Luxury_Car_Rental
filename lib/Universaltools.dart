@@ -106,7 +106,7 @@ class ProjectUtils {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 16),
+          contentPadding: EdgeInsets.symmetric(vertical: 18),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 3,
@@ -130,6 +130,67 @@ class ProjectUtils {
                 color: focusedcolor,
               ),
               borderRadius: BorderRadius.circular(100)),
+          prefixIcon: Icon(
+            icon,
+            size: 23,
+            color: iconcolor,
+          ),
+        ),
+        obscureText: obsecure,
+      ),
+    );
+  }
+
+  textformfieldaddnotification(
+      {required icon,
+      required controller,
+      required obsecure,
+      required focusedcolor,
+      required enabled,
+      required iconcolor}) {
+    return SizedBox(
+      child: TextFormField(
+        maxLines: 10,
+        minLines: 1,
+        cursorColor: Colors.black,
+        cursorWidth: 3,
+        style: GoogleFonts.signikaNegative(
+          fontWeight: FontWeight.w500,
+          color: const Color.fromARGB(255, 0, 0, 0),
+        ),
+        controller: controller,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please Fill This Field !';
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 18),
+          disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3,
+                color: ProjectUtils().textformfieldcolor,
+              ),
+              borderRadius: BorderRadius.circular(0)),
+          enabledBorder: OutlineInputBorder(
+              gapPadding: 5,
+              borderSide: BorderSide(width: 3, color: enabled),
+              borderRadius: BorderRadius.circular(0)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 2,
+                color: Color.fromARGB(255, 255, 58, 44),
+              ),
+              borderRadius: BorderRadius.circular(0)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3,
+                color: focusedcolor,
+              ),
+              borderRadius: BorderRadius.circular(0)),
           prefixIcon: Icon(
             icon,
             size: 23,
@@ -166,7 +227,13 @@ class ProjectUtils {
             }
           },
           decoration: InputDecoration(
-            label: Text(hint),
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 16,
+            ),
+            label: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(hint),
+            ),
             labelStyle: GoogleFonts.signikaNegative(
                 color: Color.fromARGB(159, 0, 0, 0),
                 fontWeight: FontWeight.bold),

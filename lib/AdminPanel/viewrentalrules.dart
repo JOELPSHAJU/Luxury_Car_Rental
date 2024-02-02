@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 
@@ -29,6 +30,7 @@ class ViewRental extends StatelessWidget {
       body: Container(
         color: const Color.fromARGB(255, 235, 235, 235),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -37,6 +39,29 @@ class ViewRental extends StatelessWidget {
                 builder: (context, snapshot) {
                   List<Row> clientwidgets = [];
                   if (snapshot.hasData) {
+                    if (snapshot.data!.docs.isEmpty) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height * .1,
+                                width: MediaQuery.of(context).size.width * .5,
+                                child: Image.asset(
+                                  'assets/carTypes/placeholder6.png',
+                                  fit: BoxFit.cover,
+                                )),
+                            Text(
+                              'No Popular Inventories Found!',
+                              style: GoogleFonts.signikaNegative(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * .04,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                     final clients = snapshot.data?.docs.reversed.toList();
                     for (var client in clients!) {
                       final clientwidget = Row(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,19 @@ import 'package:luxurycars/Universaltools.dart';
 
 import 'package:luxurycars/UserPanel/booking_page.dart';
 import 'package:luxurycars/UserPanel/ontapdetails.dart';
-import 'package:luxurycars/UserPanel/rentalrulesuser.dart';
 
 // ignore: must_be_immutable
-class ParticularInventory extends StatelessWidget {
+class ParticularInventory extends StatefulWidget {
   String id;
   ParticularInventory({super.key, required this.id, cart});
 
+  @override
+  State<ParticularInventory> createState() => _ParticularInventoryState();
+}
+
+class _ParticularInventoryState extends State<ParticularInventory> {
   final String collectionName = 'cardetails';
+
   Widget details({required label, required data, required addons}) {
     return Row(
       children: [
@@ -31,14 +37,14 @@ class ParticularInventory extends StatelessWidget {
           '  $label : ',
           style: const TextStyle(
               fontSize: 15,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Color.fromARGB(255, 94, 94, 94)),
         ),
         Text(
           '$data $addons',
           style: const TextStyle(
               fontSize: 15,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w600,
               color: Color.fromARGB(255, 0, 0, 0)),
         )
       ],
@@ -48,6 +54,11 @@ class ParticularInventory extends StatelessWidget {
   User? user = FirebaseAuth.instance.currentUser;
 
   late String? email = user?.email;
+
+  final onpresscolor = ProjectColors.primarycolor1;
+
+  bool onpress = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +82,7 @@ class ParticularInventory extends StatelessWidget {
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
                 .collection(collectionName)
-                .doc(id)
+                .doc(widget.id)
                 .get(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
@@ -83,7 +94,7 @@ class ParticularInventory extends StatelessWidget {
                     snapshot.data!;
                 if (docSnapshot.exists) {
                   Map<String, dynamic> data = docSnapshot.data()!;
-                  String docsid = id;
+                  String docsid = widget.id;
                   String company = data['Company'];
                   String category = data['Category'];
                   String modelname = data['Model Name'];
@@ -108,24 +119,32 @@ class ParticularInventory extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              image: DecorationImage(
-                                  image: NetworkImage(images[0].toString()),
-                                  fit: BoxFit.cover)),
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                           height: MediaQuery.of(context).size.height * 0.29,
                           width: double.infinity,
                           child: FractionallySizedBox(
                             heightFactor: 95.0,
                             child: CarouselSlider(
                               items: images.map((url) {
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(0),
-                                  child: Image.network(
-                                    url,
+                                return SizedBox(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: CachedNetworkImage(
+                                    imageUrl: url,
                                     fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: double.infinity,
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
+                                      Icons.error,
+                                      color: Colors.grey,
+                                      size: 30,
+                                    ),
+                                    placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator(
+                                        color: ProjectColors.primarycolor1,
+                                      ),
+                                    ),
                                   ),
                                 );
                               }).toList(),
@@ -139,7 +158,7 @@ class ParticularInventory extends StatelessWidget {
                           ),
                         ),
                         const Divider(),
-                        Container(
+                        SizedBox(
                           height: 62,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -149,10 +168,10 @@ class ParticularInventory extends StatelessWidget {
                                 Text('$company \n$modelname',
                                     style: GoogleFonts.signikaNegative(
                                         fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                .026,
+                                            MediaQuery.of(context).size.width *
+                                                .045,
                                         color: ProjectColors.secondarycolor2,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.w600)),
                                 IconButton(
                                     onPressed: () {
                                       Map<String, dynamic> car = {
@@ -162,18 +181,19 @@ class ParticularInventory extends StatelessWidget {
                                         "Category": category,
                                         "Model Name": modelname,
                                         "Priceperday": price,
-                                        "email": email
+                                        "email": email,
                                       };
                                       DatabaseMethods().addtocart(car);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
-                                              duration: Duration(seconds: 2),
+                                              duration:
+                                                  const Duration(seconds: 2),
                                               backgroundColor:
                                                   const Color.fromARGB(
                                                       255, 255, 255, 255),
                                               behavior:
                                                   SnackBarBehavior.floating,
-                                              content: Container(
+                                              content: SizedBox(
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height *
@@ -185,11 +205,16 @@ class ParticularInventory extends StatelessWidget {
                                                   ),
                                                 ),
                                               )));
+                                      onpress = !onpress;
+                                      setState(() {});
                                     },
                                     icon: Icon(
                                       Icons.shopping_cart,
                                       size: 30,
-                                      color: ProjectColors.secondarycolor2,
+                                      color: onpress == true
+                                          ? onpresscolor
+                                          : const Color.fromARGB(
+                                              255, 117, 117, 117),
                                     ))
                               ],
                             ),
@@ -200,7 +225,7 @@ class ParticularInventory extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.of(context).size.width * .99,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,116 +233,39 @@ class ParticularInventory extends StatelessWidget {
                                 Text('Overview',
                                     style: GoogleFonts.signikaNegative(
                                         fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                .023,
-                                        fontWeight: FontWeight.bold,
+                                            MediaQuery.of(context).size.width *
+                                                .045,
+                                        fontWeight: FontWeight.w600,
                                         color: ProjectColors.secondarycolor2)),
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.of(context).size.width * .9,
                                   child: Text(overview,
                                       style: GoogleFonts.gowunBatang(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold)),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .037,
+                                          fontWeight: FontWeight.w600)),
                                 )
                               ],
                             ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                           child: Container(
-                            height: 70,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: const Color.fromARGB(255, 211, 211, 211),
-                            ),
-                            width: MediaQuery.of(context).size.width * .99,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 5.0, left: 5, bottom: 5),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                          image: const DecorationImage(
-                                              image: AssetImage(
-                                                'assets/max/logo.png',
-                                              ),
-                                              fit: BoxFit.cover)),
-                                      child: const Center(),
-                                      height: 55,
-                                      width: MediaQuery.of(context).size.width *
-                                          .42),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Container(
-                                    height: 70,
-                                    width:
-                                        MediaQuery.of(context).size.width * .5,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text('GO DRIVE LUXURY RENTALS',
-                                            style: GoogleFonts.signika(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    .015,
-                                                fontWeight: FontWeight.bold)),
-                                        Row(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.star,
-                                                  color: ProjectColors
-                                                      .secondarycolor2,
-                                                ),
-                                                Text('5.0',
-                                                    style: TextStyle(
-                                                        fontSize: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            .016,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                              ],
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (ctx) =>
-                                                            ViewRentalUser()));
-                                              },
-                                              child: Text('Rental Rules',
-                                                  style: GoogleFonts.outfit(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255,
-                                                              255,
-                                                              17,
-                                                              0))),
-                                            ),
-                                          ],
-                                        )
-                                      ],
+                                borderRadius: BorderRadius.circular(10),
+                                image: const DecorationImage(
+                                    image: AssetImage(
+                                      'assets/new/company ad.jpg',
                                     ),
-                                  ),
-                                )
-                              ],
-                            ),
+                                    fit: BoxFit.cover)),
+                            height: MediaQuery.of(context).size.height * .1,
+                            width: MediaQuery.of(context).size.width,
                           ),
                         ),
                         const SizedBox(
@@ -331,9 +279,9 @@ class ParticularInventory extends StatelessWidget {
                               Text('Technical Specification',
                                   style: GoogleFonts.signikaNegative(
                                       fontSize:
-                                          MediaQuery.of(context).size.height *
-                                              .023,
-                                      fontWeight: FontWeight.bold,
+                                          MediaQuery.of(context).size.width *
+                                              .045,
+                                      fontWeight: FontWeight.w600,
                                       color: ProjectColors.secondarycolor2)),
                             ],
                           ),
@@ -357,7 +305,7 @@ class ParticularInventory extends StatelessWidget {
                           thickness: 3,
                         ),
                         Center(
-                          child: Container(
+                          child: SizedBox(
                               height: 130,
                               width: MediaQuery.of(context).size.width * .99,
                               child: Padding(
@@ -368,7 +316,7 @@ class ParticularInventory extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 .4,
@@ -382,32 +330,33 @@ class ParticularInventory extends StatelessWidget {
                                                   fontSize:
                                                       MediaQuery.of(context)
                                                               .size
-                                                              .height *
-                                                          .018,
-                                                  fontWeight: FontWeight.bold,
+                                                              .width *
+                                                          .037,
+                                                  fontWeight: FontWeight.w600,
                                                   color: Colors.grey),
                                             ),
                                             Row(
                                               children: [
+                                                // ignore: prefer_adjacent_string_concatenation, unnecessary_string_interpolations
                                                 Text('₹' + '$price',
                                                     style: GoogleFonts.outfit(
                                                         fontSize: MediaQuery.of(
                                                                     context)
                                                                 .size
-                                                                .height *
-                                                            .03,
+                                                                .width *
+                                                            .06,
                                                         fontWeight:
-                                                            FontWeight.bold)),
+                                                            FontWeight.w600)),
                                                 Text(
                                                   ' / day',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                          FontWeight.w600,
                                                       fontSize:
                                                           MediaQuery.of(context)
                                                                   .size
-                                                                  .height *
-                                                              .018,
+                                                                  .width *
+                                                              .037,
                                                       color: Colors.grey),
                                                 ),
                                               ],
@@ -443,7 +392,7 @@ class ParticularInventory extends StatelessWidget {
                                                 'image': mainimage,
                                                 'model': modelname,
                                                 'numberplate': numberplate,
-                                                'docsid': id
+                                                'docsid': widget.id
                                               };
                                               Navigator.of(context)
                                                   .pushReplacement(
@@ -460,12 +409,12 @@ class ParticularInventory extends StatelessWidget {
                                                 style:
                                                     GoogleFonts.signikaNegative(
                                                         fontWeight:
-                                                            FontWeight.bold,
+                                                            FontWeight.w600,
                                                         fontSize: MediaQuery.of(
                                                                     context)
                                                                 .size
-                                                                .height *
-                                                            .027,
+                                                                .width *
+                                                            .037,
                                                         color: Colors.white)),
                                           ),
                                         ),
@@ -481,7 +430,12 @@ class ParticularInventory extends StatelessWidget {
                 }
               }
 
-              return const CircularProgressIndicator();
+              return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ));
             },
           ),
         ),

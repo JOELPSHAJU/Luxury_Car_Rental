@@ -29,6 +29,23 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await pickImage();
+          final Map<String, dynamic> image = {"image": imageurl};
+          if (imageurl.isNotEmpty) {
+            DatabaseMethods().addAdvertismentforuser(image);
+          }
+
+          imageurl = '';
+        },
+        shape: CircleBorder(),
+        backgroundColor: ProjectColors.primarycolor1,
+        child: Icon(
+          Icons.add_a_photo,
+          color: Colors.white,
+        ),
+      ),
       backgroundColor: ProjectColors.lightgrey,
       appBar: AppBar(
         toolbarHeight: 40,
@@ -54,55 +71,32 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
         width: double.infinity,
         child: Column(
           children: [
-            SizedBox(
+            Container(
+              color: ProjectColors.primarycolor1,
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .15,
+              height: MediaQuery.of(context).size.height * .08,
               child: Column(
                 children: [
-                  sizedboc,
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        await pickImage();
-                        final Map<String, dynamic> image = {"image": imageurl};
-                        if (imageurl.isNotEmpty) {
-                          DatabaseMethods().addAdvertismentforuser(image);
-                        }
-
-                        imageurl = '';
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'SELECT IMAGE  ',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.bold,
-                                color: ProjectColors.primarycolor1),
-                          ),
-                          Icon(
-                            Icons.add_photo_alternate_outlined,
-                            color: ProjectColors.white,
-                            weight: 3.4,
-                            size: 30,
-                          )
-                        ],
-                      ),
-                    ),
+                  Divider(
+                    color: Colors.white,
+                    thickness: 1,
                   ),
+                  sizedboc,
                   Text(
                     'It May Take Some Time To Upload The Image.',
                     style: TextStyle(
                         fontSize: MediaQuery.of(context).size.height * .015,
-                        color: ProjectColors.primarycolor1,
+                        color: ProjectColors.white,
                         fontWeight: FontWeight.w400),
                   ),
+                  Divider(
+                    thickness: 2,
+                    color: ProjectColors.primarycolor1,
+                  )
                 ],
               ),
             ),
+            sizedboc,
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: advertisementsReference.snapshots(),
@@ -148,7 +142,9 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  text(text: 'Delete Advertisement'),
+                                  text(
+                                      context: context,
+                                      text: 'Delete Advertisement'),
                                   IconButton(
                                       onPressed: () {
                                         deleteAdvertisement(docId);

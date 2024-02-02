@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,29 +62,45 @@ class _UserNavigationState extends State<UserNavigation> {
         children: [
           UserAccountsDrawerHeader(
             accountName: docData?['fullname'] != null
-                ? Text('${docData?['fullname']}',
-                    style: GoogleFonts.signikaNegative(
-                        fontWeight: FontWeight.w600,
-                        color: ProjectColors.white,
-                        fontSize: MediaQuery.of(context).size.height * .02))
+                ? Container(
+                    child: Text('${docData?['fullname']}',
+                        style: GoogleFonts.signikaNegative(
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize:
+                                MediaQuery.of(context).size.height * .02)),
+                  )
                 : const Text('Guest0123'),
             accountEmail: docData?['email'] != null
-                ? Text('${docData?['email']}',
-                    style: GoogleFonts.signikaNegative(
-                        fontWeight: FontWeight.w600,
-                        color: ProjectColors.white,
-                        fontSize: MediaQuery.of(context).size.height * .02))
+                ? Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Text('${docData?['email']}',
+                        style: GoogleFonts.signikaNegative(
+                            fontWeight: FontWeight.w600,
+                            color: ProjectColors.black,
+                            fontSize:
+                                MediaQuery.of(context).size.height * .02)),
+                  )
                 : const Text('Guest0123@gmail.com'),
             currentAccountPicture: CircleAvatar(
               radius: 55,
               backgroundColor: Colors.black,
               child: ClipOval(
                 child: docData?['profile'] != null
-                    ? Image.network(
-                        "${docData?['profile']}",
-                        fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
+                    ? CachedNetworkImage(
                         height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        imageUrl: "${docData?['profile']}",
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(
+                          color: ProjectColors.primarycolor1,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.error,
+                          color: Colors.grey,
+                          size: 30,
+                        ),
                       )
                     : Image.asset(
                         'assets/new/avatar.png',
@@ -152,9 +169,6 @@ class _UserNavigationState extends State<UserNavigation> {
                   MaterialPageRoute(builder: (ctx2) => const Notifications()));
             },
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .39,
-          ),
           const Divider(
             thickness: 2,
           ),
@@ -210,7 +224,7 @@ class _UserNavigationState extends State<UserNavigation> {
                 onPressed: () => Navigator.pop(context, 'Cancel'),
                 child: Text('Cancel',
                     style: GoogleFonts.signikaNegative(
-                        color: Color.fromARGB(255, 109, 109, 109),
+                        color: const Color.fromARGB(255, 109, 109, 109),
                         fontWeight: FontWeight.w600))),
             OutlinedButton(
               onPressed: () async {

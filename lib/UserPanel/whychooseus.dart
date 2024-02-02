@@ -15,17 +15,17 @@ class Whychooseus extends StatelessWidget {
         children: [
           Text('Why choose our service ?',
               style: GoogleFonts.poppins(
-                  fontSize: MediaQuery.of(context).size.width * .05,
-                  fontWeight: FontWeight.bold)),
+                  fontSize: MediaQuery.of(context).size.width * .04,
+                  fontWeight: FontWeight.w700)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
                 "At Go Drive, our expert staff offers lots of benefits and advantages to our clients.With us, you'll recieve a class-leading car rental service from local experts.",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.gowunBatang(
-                    fontSize: MediaQuery.of(context).size.width * .04,
+                    fontSize: MediaQuery.of(context).size.width * .037,
                     color: const Color.fromARGB(255, 73, 73, 73),
-                    fontWeight: FontWeight.w700)),
+                    fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
             height: 10,
@@ -41,18 +41,18 @@ class Whychooseus extends StatelessWidget {
               textAlign: TextAlign.center,
               'Low Prices',
               style: GoogleFonts.signikaNegative(
-                  fontSize: MediaQuery.of(context).size.width * .05,
+                  fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.w700)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
                 textAlign: TextAlign.center,
                 'Go Drive provides top-class services at an affordable price.',
                 style: GoogleFonts.gowunBatang(
-                    fontSize: MediaQuery.of(context).size.width * .04,
+                    fontSize: MediaQuery.of(context).size.width * .037,
                     color: const Color.fromARGB(255, 73, 73, 73),
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
             height: 10,
@@ -68,18 +68,18 @@ class Whychooseus extends StatelessWidget {
               textAlign: TextAlign.center,
               'Experienced Staff',
               style: GoogleFonts.signikaNegative(
-                  fontSize: MediaQuery.of(context).size.width * .05,
+                  fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.w700)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
                 textAlign: TextAlign.center,
                 'We hire best experts in everything\n concerning car rental.',
                 style: GoogleFonts.gowunBatang(
-                    fontSize: MediaQuery.of(context).size.width * .04,
+                    fontSize: MediaQuery.of(context).size.width * .037,
                     color: const Color.fromARGB(255, 73, 73, 73),
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
             height: 10,
@@ -95,18 +95,18 @@ class Whychooseus extends StatelessWidget {
               textAlign: TextAlign.center,
               'Reliable support',
               style: GoogleFonts.signikaNegative(
-                  fontSize: MediaQuery.of(context).size.width * .05,
+                  fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.w700)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
                 textAlign: TextAlign.center,
                 'Our team guarantee reliable support in addition\n to the offered services.',
                 style: GoogleFonts.gowunBatang(
-                    fontSize: MediaQuery.of(context).size.width * .04,
+                    fontSize: MediaQuery.of(context).size.width * .037,
                     color: const Color.fromARGB(255, 73, 73, 73),
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
             height: 10,
@@ -122,18 +122,18 @@ class Whychooseus extends StatelessWidget {
               textAlign: TextAlign.center,
               'Convienient Location',
               style: GoogleFonts.signikaNegative(
-                  fontSize: MediaQuery.of(context).size.width * .05,
+                  fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.w700)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
                 textAlign: TextAlign.center,
                 'You can find our car rental officess throughout kerala',
                 style: GoogleFonts.gowunBatang(
-                    fontSize: MediaQuery.of(context).size.width * .04,
+                    fontSize: MediaQuery.of(context).size.width * .037,
                     color: const Color.fromARGB(255, 73, 73, 73),
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.w600)),
           ),
         ],
       ),

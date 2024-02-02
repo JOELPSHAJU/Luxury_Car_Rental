@@ -134,7 +134,11 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                     children: [
                                       Text(carcategory[index],
                                           style: GoogleFonts.gowunBatang(
-                                              fontWeight: FontWeight.bold)),
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .037,
+                                              fontWeight: FontWeight.w600)),
                                     ],
                                   )
                                 ],
@@ -171,7 +175,10 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
             ),
             sizedboc,
             const Whychooseus(),
-            const Findus()
+            const Findus(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .05,
+            )
           ],
         ),
       )),

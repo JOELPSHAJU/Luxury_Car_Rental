@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -52,25 +53,20 @@ class SpecificBrand extends StatelessWidget {
             List<DocumentSnapshot> documents = snapshot.data!;
             if (documents.isEmpty) {
               return Center(
-                child: Stack(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Lottie.asset(
                       'assets/animations/Animation - 1706182910823.json',
                       fit: BoxFit.cover,
                       width: MediaQuery.of(context).size.width,
                     ),
-                    Positioned(
-                      bottom: 30.0,
-                      left: 70.0,
-                      child: Center(
-                        child: Text(
-                          'Oops,No Car Found For This Brand',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * .04,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 81, 81, 81),
-                          ),
-                        ),
+                    Text(
+                      'Oops,No Car Found For This Brand',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * .04,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 81, 81, 81),
                       ),
                     ),
                   ],
@@ -113,11 +109,20 @@ class SpecificBrand extends StatelessWidget {
                                       MediaQuery.of(context).size.width * .44,
                                   height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image:
-                                              NetworkImage(data['MainImage']),
-                                          fit: BoxFit.contain)),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: data['MainImage'],
+                                    placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(
+                                      color: ProjectColors.primarycolor1,
+                                    )),
+                                    errorWidget: (context, url, error) => Icon(
+                                      Icons.error,
+                                      color: Colors.grey,
+                                      size: 30,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Expanded(

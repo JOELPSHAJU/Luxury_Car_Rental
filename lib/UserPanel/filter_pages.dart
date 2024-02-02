@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -196,7 +197,8 @@ class _FilterPageState extends State<FilterPage> {
                                       width: 2,
                                       color: ProjectColors.primarycolor1),
                                   borderRadius: BorderRadius.circular(100)),
-                              fillColor: const Color.fromARGB(255, 255, 255, 255),
+                              fillColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
                               filled: true),
                           onSelected: (String? value) {
                             setState(() {
@@ -222,25 +224,21 @@ class _FilterPageState extends State<FilterPage> {
                       List<DocumentSnapshot> documents = snapshot.data!;
                       if (documents.isEmpty) {
                         return Center(
-                          child: Stack(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Lottie.asset(
                                 'assets/animations/Animation - 1706182910823.json',
                                 fit: BoxFit.cover,
                                 width: MediaQuery.of(context).size.width,
                               ),
-                              Positioned(
-                                bottom: 30.0,
-                                left: 50.0,
-                                child: Text(
-                                  'Oops,No Inventory Found In This Spec!',
-                                  style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width * .04,
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        const Color.fromARGB(255, 81, 81, 81),
-                                  ),
+                              Text(
+                                'Oops,No Inventory Found In This Spec!',
+                                style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * .04,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(255, 81, 81, 81),
                                 ),
                               ),
                             ],
@@ -290,12 +288,25 @@ class _FilterPageState extends State<FilterPage> {
                                                 .size
                                                 .height,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        data['MainImage']),
-                                                    fit: BoxFit.contain)),
+                                              color: Color.fromARGB(
+                                                  255, 230, 230, 230),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: CachedNetworkImage(
+                                              imageUrl: data['MainImage'],
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(
+                                                color:
+                                                    ProjectColors.primarycolor1,
+                                              ),
+                                              errorListener: (value) =>
+                                                  const Icon(
+                                                Icons.error,
+                                                color: Colors.grey,
+                                                size: 30,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         Expanded(

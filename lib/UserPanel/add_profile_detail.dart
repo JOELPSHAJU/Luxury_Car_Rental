@@ -1,12 +1,16 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 import 'package:luxurycars/UserPanel/profile_page.dart';
 
@@ -41,29 +45,38 @@ class _AddprofileState extends State<Addprofile> {
     return SingleChildScrollView(
       child: AlertDialog(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        content: Container(
+        content: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: const Icon(Icons.arrow_back_ios)),
-                  Text(
-                    'ADD PROFILE DETAILS',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: MediaQuery.of(context).size.height * .02),
-                  ),
+                      icon: const Icon(
+                        Icons.close,
+                        size: 30,
+                        color: Colors.red,
+                        weight: 3.3,
+                      ))
                 ],
+              ),
+              Text(
+                'ADD PROFILE DETAILS',
+                style: GoogleFonts.signikaNegative(
+                    fontWeight: FontWeight.w500,
+                    fontSize: MediaQuery.of(context).size.width * .05),
+              ),
+              const Divider(
+                thickness: 2,
               ),
               Row(
                 children: [
-                  text(text: 'SELECT PROFILE PICTURE'),
+                  text(context: context, text: 'SELECT PROFILE PICTURE'),
                   IconButton(
                       onPressed: () {
                         imagepicker();
@@ -96,7 +109,7 @@ class _AddprofileState extends State<Addprofile> {
                     ),
               Row(
                 children: [
-                  text(text: 'SELECT COVER PICTURE'),
+                  text(context: context, text: 'SELECT COVER PICTURE'),
                   IconButton(
                       onPressed: () {
                         coverimagepicker();
@@ -127,6 +140,7 @@ class _AddprofileState extends State<Addprofile> {
                               image: AssetImage('assets/new/cover.jpg'),
                               fit: BoxFit.cover)),
                     ),
+              sizedboc,
               Form(
                 key: _formKey,
                 child: Column(
@@ -164,7 +178,6 @@ class _AddprofileState extends State<Addprofile> {
                         enabled: Colors.grey,
                         hint: 'Email Address'),
                     ProjectUtils().sizedbox10,
-                   
                     ProjectUtils().textformfieldaddinventory(
                         context: context,
                         controller: _phonenumber,
@@ -209,10 +222,10 @@ class _AddprofileState extends State<Addprofile> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(100),
                     color: ProjectColors.primarycolor1,
                   ),
-                  width: MediaQuery.of(context).size.width * .5,
+                  width: MediaQuery.of(context).size.width * .7,
                   height: MediaQuery.of(context).size.height * .07,
                   child: Center(
                     child: Text(
@@ -261,9 +274,8 @@ class _AddprofileState extends State<Addprofile> {
       ProfileImageUrl = await referenceDirImagtoupload.getDownloadURL();
       setState(() {});
       if (ProfileImageUrl.isEmpty) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: text(context: context, text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');
@@ -283,8 +295,8 @@ class _AddprofileState extends State<Addprofile> {
       await referenceDirImagtoupload.putFile(File(file.path));
       CoverImageUrl = await referenceDirImagtoupload.getDownloadURL();
       if (CoverImageUrl.isEmpty) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: text(context: context, text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');

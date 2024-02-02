@@ -64,12 +64,14 @@ class _SplashScreenState extends State<SplashScreen> {
                         Text('G O   D R I V E',
                             style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width * .09,
-                                fontWeight: FontWeight.bold,
+                                    MediaQuery.of(context).size.width * .07,
+                                fontWeight: FontWeight.w700,
                                 color: Colors.white)),
                         const SizedBox(height: 10),
                         Text('Your Ultimate Travel Companion',
                             style: GoogleFonts.poppins(
+                              fontSize:  MediaQuery.of(context).size.width *
+                                                .03,
                               color: const Color.fromARGB(150, 255, 255, 255),
                             )),
                       ],

@@ -32,8 +32,8 @@ class Findus extends StatelessWidget {
           Text(
             'Find Us',
             style: GoogleFonts.signikaNegative(
-                fontSize: MediaQuery.of(context).size.height * .02,
-                fontWeight: FontWeight.bold,
+                fontSize: MediaQuery.of(context).size.width * .04,
+                fontWeight: FontWeight.w700,
                 color: const Color.fromARGB(255, 140, 140, 140)),
           ),
           const SizedBox(
@@ -43,9 +43,9 @@ class Findus extends StatelessWidget {
             textAlign: TextAlign.center,
             'Ettumanoor-Ernakulam Road,Vyttila\nErnakulam - Kerala\nNear Tony&Guy\nKerala 682019',
             style: GoogleFonts.gowunBatang(
-                fontSize: MediaQuery.of(context).size.height * .018,
-                fontWeight: FontWeight.w400,
-                color: Colors.white),
+                fontSize: MediaQuery.of(context).size.width * .037,
+                fontWeight: FontWeight.w600,
+                color: const Color.fromARGB(255, 197, 197, 197)),
           ),
           const SizedBox(
             height: 10,
@@ -53,8 +53,8 @@ class Findus extends StatelessWidget {
           Text(
             'Contact Us',
             style: GoogleFonts.signikaNegative(
-                fontSize: MediaQuery.of(context).size.height * .018,
-                fontWeight: FontWeight.bold,
+                fontSize: MediaQuery.of(context).size.width * .04,
+                fontWeight: FontWeight.w700,
                 color: const Color.fromARGB(255, 140, 140, 140)),
           ),
           const SizedBox(
@@ -64,11 +64,11 @@ class Findus extends StatelessWidget {
             textAlign: TextAlign.center,
             '+91 8590182737\n+91 9281965899',
             style: GoogleFonts.gowunBatang(
-                fontSize: MediaQuery.of(context).size.height * .018,
-                fontWeight: FontWeight.w400,
-                color: Colors.white),
+                fontSize: MediaQuery.of(context).size.width * .037,
+                fontWeight: FontWeight.w600,
+                color: const Color.fromARGB(255, 197, 197, 197)),
           ),
-          sizedboc, sizedboc
+          sizedboc,
         ],
       ),
     );

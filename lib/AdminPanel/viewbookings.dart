@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:luxurycars/Universaltools.dart';
 
@@ -56,7 +57,28 @@ class _ViewBookingsState extends State<ViewBookings> {
             if (snapshot.hasError) {
               return const Center(child: Text('Something went wrong'));
             }
-
+            if (snapshot.data!.docs.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .5,
+                        child: Image.asset(
+                          'assets/carTypes/placeholder4.png',
+                          fit: BoxFit.cover,
+                        )),
+                    Text(
+                      'No Bookings Found!',
+                      style: GoogleFonts.signikaNegative(
+                          fontSize: MediaQuery.of(context).size.width * .04,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              );
+            }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }

@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 
 class OntapDetails extends StatelessWidget {
@@ -32,21 +34,23 @@ class OntapDetails extends StatelessWidget {
 
   textstyle2({required context}) {
     return GoogleFonts.signikaNegative(
-        fontSize: MediaQuery.of(context).size.height * .02,
-        fontWeight: FontWeight.bold,
+        fontSize: MediaQuery.of(context).size.width * .037,
+        fontWeight: FontWeight.w600,
         color: ProjectColors.primarycolor1);
   }
 
   textstyle1({required context}) {
     return GoogleFonts.signikaNegative(
-        fontSize: MediaQuery.of(context).size.height * .02,
-        fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 143, 143, 143));
+        fontSize: MediaQuery.of(context).size.width * .045,
+        fontWeight: FontWeight.w600,
+        color: const Color.fromARGB(255, 143, 143, 143));
   }
+
+
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * .23,
       width: MediaQuery.of(context).size.width,
       child: SingleChildScrollView(

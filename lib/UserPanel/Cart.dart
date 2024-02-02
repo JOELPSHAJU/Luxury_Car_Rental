@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,26 +64,20 @@ class _AddtoCartState extends State<AddtoCart> {
 
                 if (documents.isEmpty) {
                   return Center(
-                    child: Stack(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Lottie.asset(
                           'assets/animations/Animation - 1706182910823.json',
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),
-                        Positioned(
-                          bottom: 30.0,
-                          left: 100.0,
-                          child: Center(
-                            child: Text(
-                              'Oops,Your Cart Is Empty!',
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * .04,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 81, 81, 81),
-                              ),
-                            ),
+                        Text(
+                          'Oops,Your Cart Is Empty!',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * .04,
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 81, 81, 81),
                           ),
                         ),
                       ],
@@ -119,12 +114,16 @@ class _AddtoCartState extends State<AddtoCart> {
                                         MediaQuery.of(context).size.width * .44,
                                     height:
                                         MediaQuery.of(context).size.height * .1,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                '${data['Image']}'),
-                                            fit: BoxFit.cover)),
+                                    child: CachedNetworkImage(
+                                      imageUrl: "${data['Image']}",
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                              child:
+                                                  CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error,
+                                              color: Colors.grey, size: 30),
+                                    ),
                                   ),
                                 ),
                                 Padding(

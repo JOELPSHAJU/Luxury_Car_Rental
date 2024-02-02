@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 class UpdatecarData extends StatelessWidget {
@@ -27,63 +29,72 @@ class UpdatecarData extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * .27,
-                        height: MediaQuery.of(context).size.width * .27,
+                        width: MediaQuery.of(context).size.width * .4,
+                        height: MediaQuery.of(context).size.height * .15,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: NetworkImage('${cardata['MainImage']}'),
-                                fit: BoxFit.cover)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: '${cardata['MainImage']}',
+                          fit: BoxFit.contain,
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: ProjectColors.primarycolor1,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${cardata['Company']}',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.w500,
-                                color: ProjectColors.primarycolor1),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            '${cardata['Model Name']}',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.w500,
-                                color: ProjectColors.primarycolor1),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Category : ${cardata['Category']}',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.w500,
-                                color: ProjectColors.primarycolor1),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Price : ${cardata['Price Per Day'].toString()}',
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * .02,
-                                fontWeight: FontWeight.w500,
-                                color: ProjectColors.primarycolor1),
-                          ),
-                        ],
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${cardata['Company']}',
+                              style: GoogleFonts.signikaNegative(
+                                  fontSize:
+                                      MediaQuery.of(context).size.height * .02,
+                                  fontWeight: FontWeight.w500,
+                                  color: ProjectColors.primarycolor1),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              '${cardata['Model Name']}',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.height * .02,
+                                  fontWeight: FontWeight.w500,
+                                  color: ProjectColors.black),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Category : ${cardata['Category']}',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.height * .02,
+                                  fontWeight: FontWeight.w500,
+                                  color: ProjectColors.black),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Price : ${cardata['Price Per Day'].toString()}',
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.height * .02,
+                                  fontWeight: FontWeight.w500,
+                                  color: ProjectColors.black),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],

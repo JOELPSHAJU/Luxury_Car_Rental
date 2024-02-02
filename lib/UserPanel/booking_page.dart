@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -75,14 +76,14 @@ class _BookingPageState extends State<BookingPage> {
             ),
             Text(label,
                 style: GoogleFonts.poppins(
-                    fontSize: MediaQuery.of(context).size.width * .038,
+                    fontSize: MediaQuery.of(context).size.width * .035,
                     fontWeight: FontWeight.w500,
                     color: const Color.fromARGB(255, 132, 132, 132))),
           ],
         ),
         Text(details,
             style: GoogleFonts.poppins(
-                fontSize: MediaQuery.of(context).size.width * .038,
+                fontSize: MediaQuery.of(context).size.width * .035,
                 fontWeight: FontWeight.w500,
                 color: ProjectColors.primarycolor1)),
       ],
@@ -165,16 +166,19 @@ class _BookingPageState extends State<BookingPage> {
                                   style: GoogleFonts.poppins(
                                       fontSize:
                                           MediaQuery.of(context).size.width *
-                                              .03,
+                                              .037,
                                       fontWeight: FontWeight.w600,
-                                      color: Color.fromARGB(255, 82, 82, 82))),
+                                      color: const Color.fromARGB(
+                                          255, 127, 127, 127))),
                               Text(
                                 category,
                                 style: GoogleFonts.poppins(
                                     fontSize:
-                                        MediaQuery.of(context).size.width * .03,
+                                        MediaQuery.of(context).size.width *
+                                            .037,
                                     fontWeight: FontWeight.w600,
-                                    color: Color.fromARGB(255, 82, 82, 82)),
+                                    color: const Color.fromARGB(
+                                        255, 127, 127, 127)),
                               ),
                             ],
                           )
@@ -182,12 +186,18 @@ class _BookingPageState extends State<BookingPage> {
                       ),
                     ),
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * .1,
-                        width: MediaQuery.of(context).size.width * .43,
-                        child: Image.network(
-                          mainimage,
-                          fit: BoxFit.cover,
-                        ))
+                      height: MediaQuery.of(context).size.height * .1,
+                      width: MediaQuery.of(context).size.width * .43,
+                      child: CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                                child: CircularProgressIndicator(
+                                  color: ProjectColors.primarycolor1,
+                                ),
+                              ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          imageUrl: mainimage),
+                    )
                   ],
                 ),
               ),
@@ -411,7 +421,7 @@ class _BookingPageState extends State<BookingPage> {
                 children: [
                   Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
                       style: GoogleFonts.signikaNegative(
-                          fontSize: MediaQuery.of(context).size.width * .038,
+                          fontSize: MediaQuery.of(context).size.width * .045,
                           fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -443,7 +453,7 @@ class _BookingPageState extends State<BookingPage> {
                     },
                     child: Text('Request Rental',
                         style: GoogleFonts.signikaNegative(
-                            fontSize: MediaQuery.of(context).size.width * .06,
+                            fontSize: MediaQuery.of(context).size.width * .05,
                             fontWeight: FontWeight.w700,
                             color: Colors.white))),
               ))

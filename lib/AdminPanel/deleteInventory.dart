@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/AdminPanel/homepage_admin.dart';
 
@@ -82,10 +84,17 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                   height:
                                       MediaQuery.of(context).size.width * .27,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image: NetworkImage(doc['MainImage']),
-                                          fit: BoxFit.cover)),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: doc['MainImage'],
+                                    fit: BoxFit.contain,
+                                    placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator(
+                                        color: ProjectColors.primarycolor1,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                               GestureDetector(
@@ -152,11 +161,14 @@ class _DeleteInventoryState extends State<DeleteInventory> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(3),
       ),
-      title: const Text("Are You Sure ?"),
-      content: const Text(
-          "Do you really want to delete this Inventory? This process cannot be undone."),
+      title: Text("Are You Sure ?", style: GoogleFonts.signikaNegative()),
+      content: Text(
+        "Do you really want to delete this Inventory? This process cannot be undone.",
+        style: GoogleFonts.signikaNegative(),
+      ),
       actions: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               height: 50,
@@ -197,10 +209,9 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                         },
                         child: Text(
                           "DELETE".toUpperCase(),
-                          style: const TextStyle(
+                          style: GoogleFonts.signikaNegative(
                             color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'fonts/Righteous-Regular.ttf',
+                            fontSize: MediaQuery.of(context).size.width * .03,
                           ),
                         )),
                   ),
@@ -228,10 +239,9 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                         },
                         child: Text(
                           "CANCEL".toUpperCase(),
-                          style: const TextStyle(
+                          style: GoogleFonts.signikaNegative(
                             color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 14,
-                            fontFamily: 'fonts/Righteous-Regular.ttf',
+                            fontSize: MediaQuery.of(context).size.width * .03,
                           ),
                         )),
                   ),

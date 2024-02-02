@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _AdvertisementState extends State<Advertisement> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image:
               DecorationImage(image: AssetImage('assets/bg/placeholder.jpg'))),
       child: StreamBuilder<QuerySnapshot>(
@@ -32,11 +33,19 @@ class _AdvertisementState extends State<Advertisement> {
           if (snapshot.hasData) {
             return CarouselSlider(
               items: snapshot.data!.docs
-                  .map((doc) => Container(
+                  .map((doc) => SizedBox(
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
-                        child: Image.network(
-                          doc.get(
+                        child: CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                              child: CircularProgressIndicator(
+                            color: ProjectColors.primarycolor1,
+                          )),
+                          errorWidget: (context, url, error) => const Icon(
+                              Icons.error,
+                              color: Colors.grey,
+                              size: 30),
+                          imageUrl: doc.get(
                             'image',
                           ) as String,
                           fit: BoxFit.cover,
@@ -46,7 +55,7 @@ class _AdvertisementState extends State<Advertisement> {
               options: CarouselOptions(
                 viewportFraction: 1,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 5),
+                autoPlayInterval: const Duration(seconds: 5),
               ),
             );
           } else {
