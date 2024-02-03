@@ -170,12 +170,12 @@ class _DeleteInventoryState extends State<DeleteInventory> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
+            SizedBox(
               height: 50,
               child: Row(children: [
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Container(
+                  child: SizedBox(
                     width: MediaQuery.of(context).size.width * .29,
                     height: 35,
                     child: ElevatedButton(
@@ -218,7 +218,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Container(
+                  child: SizedBox(
                     width: MediaQuery.of(context).size.width * .29,
                     height: 33,
                     child: ElevatedButton(

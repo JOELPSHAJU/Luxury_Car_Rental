@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ProjectColors {
   static Color get primarycolor1 => Color.fromARGB(255, 11, 137, 183);
-  static Color get primarycolor2 => const Color.fromARGB(255, 40, 0, 66);
+  static Color get primarycolor2 => Color.fromARGB(255, 57, 84, 188);
 
   static Color get secondarycolor1 => const Color.fromARGB(255, 54, 0, 101);
   static Color get secondarycolor2 => const Color.fromARGB(255, 65, 65, 65);
@@ -59,23 +59,38 @@ class ProjectUtils {
     ));
   }
 
+  warningMessage({required context, required text}) {
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: ProjectColors.primarycolor2,
+      content: Text(
+        text,
+        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+      ),
+      duration: const Duration(seconds: 3),
+    ));
+  }
+
   button({
     required context,
     required text,
     required Color,
   }) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration:
-          BoxDecoration(color: Color, borderRadius: BorderRadius.circular(100)),
-      height: MediaQuery.of(context).size.height * .07,
-      child: Center(
-        child: Text(
-          text,
-          style: GoogleFonts.signikaNegative(
-              fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.height * 0.03,
-              color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 8),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: Color, borderRadius: BorderRadius.circular(10)),
+        height: MediaQuery.of(context).size.height * .07,
+        child: Center(
+          child: Text(
+            text,
+            style: GoogleFonts.signikaNegative(
+                fontWeight: FontWeight.w500,
+                fontSize: MediaQuery.of(context).size.height * 0.03,
+                color: Colors.white),
+          ),
         ),
       ),
     );
@@ -88,55 +103,62 @@ class ProjectUtils {
       required obsecure,
       required focusedcolor,
       required enabled,
+      required label,
       required iconcolor}) {
     return SizedBox(
-      child: TextFormField(
-        cursorColor: Colors.black,
-        cursorWidth: 3,
-        style: GoogleFonts.signikaNegative(
-          fontWeight: FontWeight.w500,
-          color: Colors.white,
-        ),
-        controller: controller,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please Fill This Field !';
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 18),
-          disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 3,
-                color: ProjectUtils().textformfieldcolor,
-              ),
-              borderRadius: BorderRadius.circular(100)),
-          enabledBorder: OutlineInputBorder(
-              gapPadding: 5,
-              borderSide: BorderSide(width: 3, color: enabled),
-              borderRadius: BorderRadius.circular(100)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-          errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                width: 2,
-                color: Color.fromARGB(255, 255, 58, 44),
-              ),
-              borderRadius: BorderRadius.circular(100)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 3,
-                color: focusedcolor,
-              ),
-              borderRadius: BorderRadius.circular(100)),
-          prefixIcon: Icon(
-            icon,
-            size: 23,
-            color: iconcolor,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8),
+        child: TextFormField(
+          cursorColor: Colors.black,
+          cursorWidth: 3,
+          style: GoogleFonts.signikaNegative(
+            fontWeight: FontWeight.w500,
+            color: ProjectColors.primarycolor2,
           ),
+          controller: controller,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please Fill This Field !';
+            } else {
+              return null;
+            }
+          },
+          decoration: InputDecoration(
+            hintText: label,
+            hintStyle: GoogleFonts.signikaNegative(
+                color: Color.fromARGB(255, 208, 208, 208)),
+            contentPadding: EdgeInsets.symmetric(vertical: 18),
+            disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 2,
+                  color: ProjectColors.primarycolor2,
+                ),
+                borderRadius: BorderRadius.circular(10)),
+            enabledBorder: OutlineInputBorder(
+                gapPadding: 3,
+                borderSide: BorderSide(width: 2, color: enabled),
+                borderRadius: BorderRadius.circular(10)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            errorBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  width: 2,
+                  color: Color.fromARGB(255, 255, 58, 44),
+                ),
+                borderRadius: BorderRadius.circular(10)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 2,
+                  color: focusedcolor,
+                ),
+                borderRadius: BorderRadius.circular(10)),
+            prefixIcon: Icon(
+              icon,
+              size: 23,
+              color: iconcolor,
+            ),
+          ),
+          obscureText: obsecure,
         ),
-        obscureText: obsecure,
       ),
     );
   }
@@ -170,13 +192,13 @@ class ProjectUtils {
           contentPadding: EdgeInsets.symmetric(vertical: 18),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 3,
+                width: 2,
                 color: ProjectUtils().textformfieldcolor,
               ),
               borderRadius: BorderRadius.circular(0)),
           enabledBorder: OutlineInputBorder(
               gapPadding: 5,
-              borderSide: BorderSide(width: 3, color: enabled),
+              borderSide: BorderSide(width: 2, color: enabled),
               borderRadius: BorderRadius.circular(0)),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
           errorBorder: OutlineInputBorder(
@@ -187,7 +209,7 @@ class ProjectUtils {
               borderRadius: BorderRadius.circular(0)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 3,
+                width: 2,
                 color: focusedcolor,
               ),
               borderRadius: BorderRadius.circular(0)),
@@ -227,9 +249,7 @@ class ProjectUtils {
             }
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 16,
-            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
             label: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(hint),
@@ -268,8 +288,8 @@ class ProjectUtils {
       text,
       style: GoogleFonts.signikaNegative(
         color: color,
-        fontWeight: FontWeight.bold,
-        fontSize: MediaQuery.of(context).size.height * 0.019,
+        fontWeight: FontWeight.w600,
+        fontSize: MediaQuery.of(context).size.width * 0.035,
       ),
     );
   }
@@ -280,7 +300,7 @@ class ProjectUtils {
       text,
       style: TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: MediaQuery.of(context).size.height * 0.039,
+          fontSize: MediaQuery.of(context).size.height * 0.035,
           fontFamily: 'fonts/Righteous-Regular.ttf',
           color: color),
     );

@@ -284,6 +284,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
               GestureDetector(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
+                    if (newCover.isEmpty) {
+                      newCover = coverImageUrl;
+                    }
+                    if (newProfile.isEmpty) {
+                      newProfile = pofileImageUrl;
+                    }
                     updateprofile(
                         _name.text,
                         _age.text,

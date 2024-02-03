@@ -62,7 +62,7 @@ class Findus extends StatelessWidget {
           ),
           Text(
             textAlign: TextAlign.center,
-            '+91 8590182737\n+91 9281965899',
+            '+91 8590182736\njoelpshaju@gmail.com',
             style: GoogleFonts.gowunBatang(
                 fontSize: MediaQuery.of(context).size.width * .037,
                 fontWeight: FontWeight.w600,

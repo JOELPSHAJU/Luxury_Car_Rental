@@ -62,6 +62,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 247, 247, 247),
       appBar: AppBar(
         backgroundColor: ProjectColors.primarycolor1,
         leading: Center(
@@ -172,56 +173,83 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                                 .045,
                                         color: ProjectColors.secondarycolor2,
                                         fontWeight: FontWeight.w600)),
-                                IconButton(
-                                    onPressed: () {
-                                      Map<String, dynamic> car = {
-                                        "Id": docsid,
-                                        "Image": mainimage,
-                                        "Company": company,
-                                        "Category": category,
-                                        "Model Name": modelname,
-                                        "Priceperday": price,
-                                        "email": email,
-                                      };
-                                      DatabaseMethods().addtocart(car);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              duration:
-                                                  const Duration(seconds: 2),
-                                              backgroundColor:
-                                                  const Color.fromARGB(
-                                                      255, 255, 255, 255),
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              content: SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    .13,
-                                                child: Center(
-                                                  child: LottieBuilder.asset(
-                                                    'assets/animations/cartadded.json',
-                                                    fit: BoxFit.fitHeight,
-                                                  ),
-                                                ),
-                                              )));
-                                      onpress = !onpress;
-                                      setState(() {});
-                                    },
-                                    icon: Icon(
-                                      Icons.shopping_cart,
-                                      size: 30,
-                                      color: onpress == true
-                                          ? onpresscolor
-                                          : const Color.fromARGB(
-                                              255, 117, 117, 117),
-                                    ))
                               ],
                             ),
                           ),
                         ),
                         const Divider(
-                          thickness: 3,
+                          thickness: 2,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'from',
+                                          style: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .037,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        // ignore: prefer_adjacent_string_concatenation, unnecessary_string_interpolations
+                                        Text('₹' + '$price',
+                                            style: GoogleFonts.outfit(
+                                                color:
+                                                    ProjectColors.primarycolor1,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .06,
+                                                fontWeight: FontWeight.w600)),
+                                        Text(
+                                          ' / day',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .037,
+                                              color: Colors.grey),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * .2,
+                              height: MediaQuery.of(context).size.height * .1,
+                              child: Image.asset(
+                                'assets/new/images.png',
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          ],
+                        ),
+                        const Divider(
+                          thickness: 1,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -301,127 +329,100 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Divider(
-                          thickness: 3,
-                        ),
-                        Center(
-                          child: SizedBox(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * .99,
-                              child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .4,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'from',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .037,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Colors.grey),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .08,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Map<String, dynamic> car = {
+                                    "Id": docsid,
+                                    "Image": mainimage,
+                                    "Company": company,
+                                    "Category": category,
+                                    "Model Name": modelname,
+                                    "Priceperday": price,
+                                    "email": email,
+                                  };
+                                  DatabaseMethods().addtocart(car);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          duration: const Duration(seconds: 2),
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          behavior: SnackBarBehavior.floating,
+                                          content: SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .1,
+                                            child: Center(
+                                              child: LottieBuilder.asset(
+                                                'assets/animations/cartadded.json',
+                                                fit: BoxFit.fitHeight,
+                                              ),
                                             ),
-                                            Row(
-                                              children: [
-                                                // ignore: prefer_adjacent_string_concatenation, unnecessary_string_interpolations
-                                                Text('₹' + '$price',
-                                                    style: GoogleFonts.outfit(
-                                                        fontSize: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            .06,
-                                                        fontWeight:
-                                                            FontWeight.w600)),
-                                                Text(
-                                                  ' / day',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .037,
-                                                      color: Colors.grey),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: SizedBox(
-                                          height: 50,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .49,
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              Map<String, dynamic> car = {
-                                                'Company': company,
-                                                'Category': category,
-                                                'PricePerDay': price,
-                                                'Gearbox': gearbox,
-                                                'Engine': engine,
-                                                'Transmission': transmission,
-                                                'Fuel Type': fueltype,
-                                                'Fuel Tank': fueltank,
-                                                'Ground Clearence':
-                                                    groundclearence,
-                                                'MaxTorque': maxtorque,
-                                                'MaxPower': maxpower,
-                                                'Seating': seatingcapacity,
-                                                'Zero': zerotohundred,
-                                                'image': mainimage,
-                                                'model': modelname,
-                                                'numberplate': numberplate,
-                                                'docsid': widget.id
-                                              };
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                      MaterialPageRoute(
-                                                          builder: (ctx) =>
-                                                              BookingPage(
-                                                                data: car,
-                                                              )));
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: ProjectColors
-                                                    .primarycolor1),
-                                            child: Text('Book Now',
-                                                style:
-                                                    GoogleFonts.signikaNegative(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            .037,
-                                                        color: Colors.white)),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ))),
-                        )
+                                          )));
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  height:
+                                      MediaQuery.of(context).size.height * .1,
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  child: Center(
+                                    child: ProjectUtils().headingsmall(
+                                        context: context,
+                                        color: ProjectColors.primarycolor1,
+                                        text: 'Add to Cart'),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Map<String, dynamic> car = {
+                                    'Company': company,
+                                    'Category': category,
+                                    'PricePerDay': price,
+                                    'Gearbox': gearbox,
+                                    'Engine': engine,
+                                    'Transmission': transmission,
+                                    'Fuel Type': fueltype,
+                                    'Fuel Tank': fueltank,
+                                    'Ground Clearence': groundclearence,
+                                    'MaxTorque': maxtorque,
+                                    'MaxPower': maxpower,
+                                    'Seating': seatingcapacity,
+                                    'Zero': zerotohundred,
+                                    'image': mainimage,
+                                    'model': modelname,
+                                    'numberplate': numberplate,
+                                    'docsid': widget.id
+                                  };
+                                  Navigator.of(context)
+                                      .pushReplacement(MaterialPageRoute(
+                                          builder: (ctx) => BookingPage(
+                                                data: car,
+                                              )));
+                                },
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .08,
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  color: ProjectColors.primarycolor1,
+                                  child: Center(
+                                    child: ProjectUtils().headingsmall(
+                                        context: context,
+                                        color: Colors.white,
+                                        text: 'Book Now'),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   );

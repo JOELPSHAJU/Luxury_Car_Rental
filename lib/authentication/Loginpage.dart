@@ -8,6 +8,7 @@ import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
 
 import 'package:luxurycars/authentication/Auth.dart';
+import 'package:luxurycars/authentication/forget_password.dart';
 import 'package:luxurycars/authentication/register_main.dart';
 
 import 'package:luxurycars/main.dart';
@@ -59,120 +60,179 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Colors.black,
-          body: SingleChildScrollView(
-              child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 0, 0, 0),
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/bg/bmw.png',
-                  ),
-                  opacity: .9,
-                  fit: BoxFit.cover,
-                )),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (isLoading)
-                    const Center(
-                        child: CircularProgressIndicator(
-                      color: Colors.white,
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: SingleChildScrollView(
+            child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/max/loginbg.png',
+                      ),
+                      opacity: .9,
+                      fit: BoxFit.cover,
                     )),
-                  ProjectUtils().sizedbox20,
-                  ProjectUtils().sizedbox20,
-                  ProjectUtils().headingbig(
-                      context: context, text: 'LOGIN', color: maincolor),
-                  ProjectUtils().sizedbox20,
-                  Form(
-                      key: formkey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * .73,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25))),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ProjectUtils().headingsmall(
-                                  context: context,
-                                  color: Colors.white,
-                                  text: 'Email')
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                if (isLoading)
+                                  const Center(
+                                      child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )),
+                                ProjectUtils().sizedbox20,
+                                ProjectUtils().sizedbox20,
+                                ProjectUtils().headingbig(
+                                    context: context,
+                                    text: 'Welcome Back',
+                                    color: ProjectColors.primarycolor2),
+                                ProjectUtils().sizedbox20,
+                                Form(
+                                    key: formkey,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ProjectUtils().headingsmall(
+                                                  context: context,
+                                                  color: ProjectColors
+                                                      .primarycolor2,
+                                                  text: 'Email')
+                                            ],
+                                          ),
+                                        ),
+                                        ProjectUtils().sizedbox10,
+                                        ProjectUtils().textformfield(
+                                            label: 'Email Address',
+                                            enabled: const Color.fromARGB(
+                                                255, 208, 208, 208),
+                                            focusedcolor:
+                                                ProjectColors.primarycolor2,
+                                            iconcolor:
+                                                ProjectColors.primarycolor2,
+                                            icon: Icons.person,
+                                            controller: _emailcontroller,
+                                            obsecure: false),
+                                        ProjectUtils().sizedbox10,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ProjectUtils().headingsmall(
+                                                  context: context,
+                                                  color: ProjectColors
+                                                      .primarycolor2,
+                                                  text: 'Password')
+                                            ],
+                                          ),
+                                        ),
+                                        ProjectUtils().sizedbox10,
+                                        ProjectUtils().textformfield(
+                                            label: 'Password',
+                                            enabled: const Color.fromARGB(
+                                                255, 208, 208, 208),
+                                            focusedcolor:
+                                                ProjectColors.primarycolor2,
+                                            iconcolor:
+                                                ProjectColors.primarycolor2,
+                                            icon: Icons.security,
+                                            controller: _passwordcontroller,
+                                            obsecure: true),
+                                      ],
+                                    )),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (c) =>
+                                                      ForgetPassword()));
+                                        },
+                                        child: ProjectUtils().headingsmall(
+                                            context: context,
+                                            color: ProjectColors.primarycolor2,
+                                            text: 'Forget Password?'))
+                                  ],
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (formkey.currentState!.validate()) {
+                                      signin();
+                                    } else {
+                                      ProjectUtils().errormessage(
+                                          context: context,
+                                          text: 'Please Fill This Fields!');
+                                    }
+                                  },
+                                  child: ProjectUtils().button(
+                                      context: context,
+                                      text: 'Login',
+                                      Color: ProjectColors.primarycolor2),
+                                ),
+                                ProjectUtils().sizedbox20,
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                ProjectUtils().sizedbox20,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ProjectUtils().headingsmall(
+                                        context: context,
+                                        color: const Color.fromARGB(
+                                            255, 194, 194, 194),
+                                        text: "Don't Have An Account?   "),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (c) =>
+                                                    const RegisterMain()));
+                                      },
+                                      child: ProjectUtils().headingsmall(
+                                          context: context,
+                                          color: ProjectColors.primarycolor2,
+                                          text: 'Sign Up'),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          ProjectUtils().sizedbox10,
-                          ProjectUtils().textformfield(
-                              enabled: maincolor,
-                              focusedcolor: ProjectUtils().textformfieldcolor,
-                              iconcolor: maincolor,
-                              icon: Icons.person,
-                              controller: _emailcontroller,
-                              obsecure: false),
-                          ProjectUtils().sizedbox10,
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ProjectUtils().headingsmall(
-                                  context: context,
-                                  color: Colors.white,
-                                  text: 'Password')
-                            ],
-                          ),
-                          ProjectUtils().sizedbox10,
-                          ProjectUtils().textformfield(
-                              enabled: maincolor,
-                              focusedcolor: ProjectUtils().textformfieldcolor,
-                              iconcolor: maincolor,
-                              icon: Icons.security,
-                              controller: _passwordcontroller,
-                              obsecure: true),
                         ],
-                      )),
-                  ProjectUtils().sizedbox20,
-                  ProjectUtils().sizedbox20,
-                  GestureDetector(
-                    onTap: () {
-                      if (formkey.currentState!.validate()) {
-                        signin();
-                      } else {
-                        ProjectUtils().errormessage(
-                            context: context, text: 'Please Fill This Fields!');
-                      }
-                    },
-                    child: ProjectUtils().button(
-                        context: context,
-                        text: 'LOGIN',
-                        Color: ProjectUtils().textformfieldcolor),
-                  ),
-                  ProjectUtils().sizedbox20,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProjectUtils().headingsmall(
-                          context: context,
-                          color: Colors.white,
-                          text: "Don't Have An Account? "),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (c) => const RegisterMain()));
-                        },
-                        child: ProjectUtils().headingsmall(
-                            context: context,
-                            color: ProjectUtils().textformfieldcolor,
-                            text: 'Sign Up'),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ))),
-    );
+                      ),
+                    )
+                  ],
+                ))));
   }
 
   signin() {

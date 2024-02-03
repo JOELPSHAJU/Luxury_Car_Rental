@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * .48,
+                    height: MediaQuery.of(context).size.height * .45,
                     width: MediaQuery.of(context).size.width,
                   ),
                   SizedBox(
@@ -64,14 +64,14 @@ class _SplashScreenState extends State<SplashScreen> {
                         Text('G O   D R I V E',
                             style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width * .07,
-                                fontWeight: FontWeight.w700,
+                                    MediaQuery.of(context).size.width * .09,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white)),
                         const SizedBox(height: 10),
                         Text('Your Ultimate Travel Companion',
                             style: GoogleFonts.poppins(
                               fontSize:  MediaQuery.of(context).size.width *
-                                                .03,
+                                                .04,
                               color: const Color.fromARGB(150, 255, 255, 255),
                             )),
                       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
@@ -17,16 +18,16 @@ Widget item({required headingtext, required context, required bodytext}) {
     children: [
       Text(
         headingtext,
-        style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * .022,
+        style: GoogleFonts.signikaNegative(
+            fontSize: MediaQuery.of(context).size.width * .042,
             fontWeight: FontWeight.w500,
             color: ProjectColors.secondarycolor1),
       ),
       sizedboc,
       Text(
         bodytext,
-        style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * .02,
+        style: GoogleFonts.signikaNegative(
+            fontSize: MediaQuery.of(context).size.width * .038,
             fontWeight: FontWeight.w400),
       )
     ],
@@ -37,9 +38,9 @@ heading({required headingtext, required context}) {
   return Text(
     headingtext,
     style: TextStyle(
-        fontSize: MediaQuery.of(context).size.height * .022,
+        fontSize: MediaQuery.of(context).size.width * .042,
         fontWeight: FontWeight.w600,
-        color: ProjectColors.primarycolor2),
+        color: ProjectColors.primarycolor1),
   );
 }
 
@@ -148,6 +149,10 @@ class _PrivacyPoliciesState extends State<PrivacyPolicies> {
                     context: context,
                     bodytext:
                         'If you have any questions or concerns about this Privacy Policy, please contact us at on any of the below details\nBy using our car rental application, you agree to the terms outlined in this Privacy Policy.'),
+                
+                const Divider(
+                  thickness: 1,
+                ),
                 const Center(
                   child: SelectableText(
                     'joelpshaju@gmail.com',

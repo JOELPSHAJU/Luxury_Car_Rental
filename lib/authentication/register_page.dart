@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/privacy_policies.dart';
 
 import 'package:luxurycars/authentication/Auth.dart';
 import 'package:luxurycars/authentication/login.dart';
@@ -29,7 +31,7 @@ class _RegisterscreenState extends State<Registerscreen> {
       // ignore: use_build_context_synchronously
       ProjectUtils().sucessmessage(context: context, text: 'Account Created');
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (d) => RegisterRedirect()));
+          MaterialPageRoute(builder: (d) => const RegisterRedirect()));
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -39,149 +41,238 @@ class _RegisterscreenState extends State<Registerscreen> {
     }
   }
 
+  bool _isChecked = false;
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: SingleChildScrollView(
-          child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/bg/savereg.jpg'),
-                fit: BoxFit.cover,
-              )),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ProjectUtils().sizedbox20,
-                    ProjectUtils().headingbig(
-                        context: context, text: 'SIGN UP', color: Colors.white),
-                    ProjectUtils().sizedbox10,
-                    Form(
-                        
-                        key: formkey,
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('assets/max/loginbg.png'),
+              fit: BoxFit.cover,
+            )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25))),
+                  height: MediaQuery.of(context).size.height * .75,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ProjectUtils().headingsmall(
-                                    context: context,
-                                    color: Colors.white,
-                                    text: 'Email')
-                              ],
-                            ),
-                            ProjectUtils().textformfield(
-                              
-                                enabled: Colors.white,
-                                focusedcolor: ProjectUtils().textformfieldcolor,
-                                iconcolor: Colors.white,
-                                icon: Icons.person,
-                                controller: _emailcontroller,
-                                obsecure: false),
-                            ProjectUtils().sizedbox10,
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ProjectUtils().headingsmall(
-                                    context: context,
-                                    color: Colors.white,
-                                    text: 'Password')
-                              ],
-                            ),
-                            ProjectUtils().textformfield(
-                         
-                                enabled: Colors.white,
-                                focusedcolor: ProjectUtils().textformfieldcolor,
-                                iconcolor: Colors.white,
-                                icon: Icons.security,
-                                controller: _passwordcontroller,
-                                obsecure: true),
-                            ProjectUtils().sizedbox10,
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ProjectUtils().headingsmall(
-                                    context: context,
-                                    color: Colors.white,
-                                    text: 'Confirm Password')
-                              ],
-                            ),
-                            ProjectUtils().textformfield(
-                             
-                                enabled: Colors.white,
-                                focusedcolor: ProjectUtils().textformfieldcolor,
-                                iconcolor: Colors.white,
-                                icon: Icons.security,
-                                controller: _confirmpassword,
-                                obsecure: true),
-                          ],
-                        )),
-                    ProjectUtils().sizedbox20,
-                    GestureDetector(
-                      onTap: () {
-                        if (formkey.currentState!.validate()) {
-                          if (_passwordcontroller.text ==
-                              _confirmpassword.text) {
-                            createUserWithEmailAndPassword();
-                          } else {
-                            ProjectUtils().errormessage(
+                            ProjectUtils().sizedbox20,
+                            ProjectUtils().headingbig(
                                 context: context,
-                                text: 'Password does not match!');
-                          }
-                        } else {
-                          ProjectUtils().errormessage(
-                              context: context,
-                              text: 'Please Fill This Fields!');
-                        }
-                      },
-                      child: ProjectUtils().button(
-                          context: context,
-                          text: 'SIGN UP',
-                          Color: ProjectUtils().textformfieldcolor),
-                    ),
-                    ProjectUtils().sizedbox20,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
-                            height: MediaQuery.of(context).size.height * .03,
-                            width: MediaQuery.of(context).size.width * .9,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                                text: 'Get Started',
+                                color: ProjectColors.primarycolor2),
+                            ProjectUtils().sizedbox10,
+                            Form(
+                                key: formkey,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ProjectUtils().headingsmall(
+                                              context: context,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                              text: 'Email')
+                                        ],
+                                      ),
+                                    ),
+                                    ProjectUtils().textformfield(
+                                        label: 'Enter A Valid Email Address',
+                                        enabled: const Color.fromARGB(
+                                            255, 202, 202, 202),
+                                        focusedcolor:
+                                            ProjectColors.primarycolor2,
+                                        iconcolor: ProjectColors.primarycolor2,
+                                        icon: Icons.person,
+                                        controller: _emailcontroller,
+                                        obsecure: false),
+                                    ProjectUtils().sizedbox10,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ProjectUtils().headingsmall(
+                                              context: context,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                              text: 'Password')
+                                        ],
+                                      ),
+                                    ),
+                                    ProjectUtils().textformfield(
+                                        label: 'Password',
+                                        enabled: const Color.fromARGB(
+                                            255, 202, 202, 202),
+                                        focusedcolor:
+                                            ProjectColors.primarycolor2,
+                                        iconcolor: ProjectColors.primarycolor2,
+                                        icon: Icons.security,
+                                        controller: _passwordcontroller,
+                                        obsecure: true),
+                                    ProjectUtils().sizedbox10,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ProjectUtils().headingsmall(
+                                              context: context,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                              text: 'Confirm Password')
+                                        ],
+                                      ),
+                                    ),
+                                    ProjectUtils().textformfield(
+                                        label: 'Confirm Password',
+                                        enabled: const Color.fromARGB(
+                                            255, 202, 202, 202),
+                                        focusedcolor:
+                                            ProjectColors.primarycolor2,
+                                        iconcolor: ProjectColors.primarycolor2,
+                                        icon: Icons.security,
+                                        controller: _confirmpassword,
+                                        obsecure: true),
+                                  ],
+                                )),
+                            ProjectUtils().sizedbox20,
+                            GestureDetector(
+                              onTap: () {
+                                if (formkey.currentState!.validate()) {
+                                  if (_passwordcontroller.text ==
+                                      _confirmpassword.text) {
+                                    if (_isChecked == true) {
+                                      createUserWithEmailAndPassword();
+                                    } else {
+                                      ProjectUtils().warningMessage(
+                                          context: context,
+                                          text:
+                                              'To Proceed, You Need To Accept The Privacy Policies!');
+                                    }
+                                  } else {
+                                    ProjectUtils().errormessage(
+                                        context: context,
+                                        text: 'Password does not match!');
+                                  }
+                                } else {
+                                  ProjectUtils().errormessage(
+                                      context: context,
+                                      text: 'Please Fill This Fields!');
+                                }
+                              },
+                              child: ProjectUtils().button(
+                                  context: context,
+                                  text: 'Sign Up',
+                                  Color: ProjectColors.primarycolor2),
+                            ),
+                            Row(
                               children: [
-                                ProjectUtils().headingsmall(
-                                    context: context,
-                                    color: Colors.white,
-                                    text: 'Already Have An Account? '),
+                                Checkbox(
+                                  checkColor: Colors.white,
+                                  activeColor: ProjectColors.primarycolor2,
+                                  value: _isChecked,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _isChecked = !_isChecked;
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  'By Signing Up, I Accept the',
+                                  style: GoogleFonts.signikaNegative(
+                                    color: const Color.fromARGB(
+                                        255, 202, 202, 202),
+                                  ),
+                                ),
                                 GestureDetector(
                                   onTap: () {
-                                    gotoLogin(context);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (c) => PrivacyPolicies()));
                                   },
-                                  child: ProjectUtils().headingsmall(
-                                      context: context,
-                                      color: ProjectUtils().textformfieldcolor,
-                                      text: 'Login'),
-                                )
+                                  child: Text(
+                                    ' Privacy Policies',
+                                    style: GoogleFonts.signikaNegative(
+                                      color: ProjectColors.primarycolor2,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
+                            Divider(
+                              thickness: 1,
+                            ),
+                            ProjectUtils().sizedbox20,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    height: MediaQuery.of(context).size.height *
+                                        .03,
+                                    width:
+                                        MediaQuery.of(context).size.width * .9,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        ProjectUtils().headingsmall(
+                                            context: context,
+                                            color: const Color.fromARGB(
+                                                255, 202, 202, 202),
+                                            text: 'Already Have An Account? '),
+                                        GestureDetector(
+                                          onTap: () {
+                                            gotoLogin(context);
+                                          },
+                                          child: ProjectUtils().headingsmall(
+                                              context: context,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                              text: 'Login'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              )),
-        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            )),
       ),
     );
   }
