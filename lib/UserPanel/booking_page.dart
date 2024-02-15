@@ -139,150 +139,157 @@ class _BookingPageState extends State<BookingPage> {
               color: Colors.white,
             )),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 100,
-                width: MediaQuery.of(context).size.width * .9,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 90,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$company\n$modelname',
-                            style: textstyle(context: context),
-                          ),
-                          Row(
-                            children: [
-                              Text('Category : ',
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                      'assets/max/istockphoto-1298602716-612x612.jpg'),
+                  fit: BoxFit.fitHeight,
+                  opacity: .2)),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width * .9,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 90,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '$company\n$modelname',
+                              style: textstyle(context: context),
+                            ),
+                            Row(
+                              children: [
+                                Text('Category : ',
+                                    style: GoogleFonts.poppins(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                .037,
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color.fromARGB(
+                                            255, 127, 127, 127))),
+                                Text(
+                                  category,
                                   style: GoogleFonts.poppins(
                                       fontSize:
                                           MediaQuery.of(context).size.width *
                                               .037,
                                       fontWeight: FontWeight.w600,
                                       color: const Color.fromARGB(
-                                          255, 127, 127, 127))),
-                              Text(
-                                category,
-                                style: GoogleFonts.poppins(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            .037,
-                                    fontWeight: FontWeight.w600,
-                                    color: const Color.fromARGB(
-                                        255, 127, 127, 127)),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .43,
-                      child: CachedNetworkImage(
-                          placeholder: (context, url) => Center(
-                                child: CircularProgressIndicator(
-                                  color: ProjectColors.primarycolor1,
+                                          255, 127, 127, 127)),
                                 ),
-                              ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          imageUrl: mainimage),
-                    )
-                  ],
-                ),
-              ),
-              const Divider(
-                thickness: 2,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * .9,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .8,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Inventory Details',
-                            style: topicstyle(context: context),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(
-                              details: '₹ $priceperday/-',
-                              label: ' Price Per Day : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(
-                              details: '$maxpower hp',
-                              label: ' Maximum Power : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(
-                              details: '$maxtorque nm',
-                              label: ' Maximum Torque : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(
-                              details: '$fueltank ltrs',
-                              label: ' Fuel Tank Capacity : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(details: '$fueltype ', label: ' Fuel Type : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(
-                              details: '$transmission ',
-                              label: ' Transmission : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          row(details: '$gearbox speed', label: ' Gearbox : '),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .43,
+                        child: CachedNetworkImage(
+                            placeholder: (context, url) => Center(
+                                  child: CircularProgressIndicator(
+                                    color: ProjectColors.primarycolor1,
+                                  ),
+                                ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            imageUrl: mainimage),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const Divider(
-                thickness: 2,
-              ),
-              Text(
-                'Booking Details',
-                style: topicstyle(context: context),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Form(
-                  key: formkeycheck,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                const Divider(
+                  thickness: 2,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .9,
+                  child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .07,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .8,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Inventory Details',
+                              style: topicstyle(context: context),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '₹ $priceperday/-',
+                                label: ' Price Per Day : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '$maxpower hp',
+                                label: ' Maximum Power : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '$maxtorque nm',
+                                label: ' Maximum Torque : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '$fueltank ltrs',
+                                label: ' Fuel Tank Capacity : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(details: '$fueltype ', label: ' Fuel Type : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '$transmission ',
+                                label: ' Transmission : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            row(
+                                details: '$gearbox speed',
+                                label: ' Gearbox : '),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                Text(
+                  'Booking Details',
+                  style: topicstyle(context: context),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Form(
+                    key: formkeycheck,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
                           child: TextFormField(
                             keyboardType: TextInputType.none,
                             validator: validator,
@@ -307,12 +314,9 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .07,
+                        const SizedBox(height: 16.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
                           child: TextFormField(
                             keyboardType: TextInputType.none,
                             validator: validator,
@@ -337,27 +341,24 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Divider(
-                        thickness: 2,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Personal Details',
-                        style: topicstyle(context: context),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .07,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Divider(
+                          thickness: 2,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Personal Details',
+                          style: topicstyle(context: context),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
                           child: TextFormField(
                             validator: validator,
                             controller: _namecontroller,
@@ -372,12 +373,9 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .07,
+                        const SizedBox(height: 16.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
                           child: TextFormField(
                             validator: validator,
                             controller: _phonenumbercontroller,
@@ -390,12 +388,9 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * .07,
+                        const SizedBox(height: 16.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
                           child: TextFormField(
                             controller: _emailcontroller,
                             validator: validator,
@@ -408,56 +403,57 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  )),
-              const SizedBox(height: 10),
-              const Divider(
-                thickness: 2,
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
-                      style: GoogleFonts.signikaNegative(
-                          fontSize: MediaQuery.of(context).size.width * .045,
-                          fontWeight: FontWeight.bold)),
-                ],
-              ),
-              const SizedBox(height: 10),
-              const Divider(
-                thickness: 2,
-              ),
-              const SizedBox(height: 10),
-              const SizedBox(height: 10),
-              Center(
-                  child: SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width * .8,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: ProjectColors.primarycolor1),
-                    onPressed: () {
-                      if (formkeycheck.currentState!.validate()) {
-                        uploadbookingdata();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (ctx) => ParticularInventory(
-                                  id: docsid,
-                                )));
-                        snackbar();
-                      } else {
-                        ProjectUtils().errormessage(
-                            context: context, text: 'Please Fill The Fields');
-                      }
-                    },
-                    child: Text('Request Rental',
+                      ],
+                    )),
+                const SizedBox(height: 10),
+                const Divider(
+                  thickness: 2,
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
                         style: GoogleFonts.signikaNegative(
-                            fontSize: MediaQuery.of(context).size.width * .05,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white))),
-              ))
-            ],
+                            fontSize: MediaQuery.of(context).size.width * .045,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                const Divider(
+                  thickness: 2,
+                ),
+                const SizedBox(height: 10),
+                const SizedBox(height: 10),
+                Center(
+                    child: SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: ProjectColors.primarycolor1),
+                      onPressed: () {
+                        if (formkeycheck.currentState!.validate()) {
+                          uploadbookingdata();
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (ctx) => ParticularInventory(
+                                        id: docsid,
+                                      )));
+                          snackbar();
+                        } else {
+                          ProjectUtils().errormessage(
+                              context: context, text: 'Please Fill The Fields');
+                        }
+                      },
+                      child: Text('Request Rental',
+                          style: GoogleFonts.signikaNegative(
+                              fontSize: MediaQuery.of(context).size.width * .05,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white))),
+                ))
+              ],
+            ),
           ),
         ),
       ),

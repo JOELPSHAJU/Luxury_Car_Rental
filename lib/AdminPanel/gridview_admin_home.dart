@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -85,9 +86,16 @@ class _Gridview_adminState extends State<Gridview_admin> {
                                         .15,
                                     width:
                                         MediaQuery.of(context).size.width * .47,
-                                    child: Image.network(
-                                      doc['Image'],
+                                    child: CachedNetworkImage(
+                                      imageUrl: doc['Image'],
                                       fit: BoxFit.contain,
+                                      placeholder: (context, url) {
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            color: ProjectColors.primarycolor1,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),

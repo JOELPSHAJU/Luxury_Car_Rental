@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/add_advertisement.dart';
+import 'package:luxurycars/Universaltools.dart';
 
 class AdvertisementGome extends StatefulWidget {
   const AdvertisementGome({super.key});
@@ -67,7 +69,7 @@ class AdvertisementGomeState extends State<AdvertisementGome> {
                                 builder: ((context) => AddAdvertisement())));
                           },
                           child: Card(
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -75,17 +77,23 @@ class AdvertisementGomeState extends State<AdvertisementGome> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            doc['image'],
-                                          ),
-                                          fit: BoxFit.cover,
-                                        )),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     height: MediaQuery.of(context).size.height *
                                         .16,
                                     width:
                                         MediaQuery.of(context).size.width * .7,
+                                    child: CachedNetworkImage(
+                                      imageUrl: doc['image'],
+                                      fit: BoxFit.contain,
+                                      placeholder: (context, url) {
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            color: ProjectColors.primarycolor1,
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ],

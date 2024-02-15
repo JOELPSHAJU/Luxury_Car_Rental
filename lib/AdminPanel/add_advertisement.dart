@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, sized_box_for_whitespace
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +12,7 @@ import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 class AddAdvertisement extends StatefulWidget {
-  AddAdvertisement({super.key});
+  const AddAdvertisement({super.key});
 
   @override
   State<AddAdvertisement> createState() => _AddAdvertisementState();
@@ -39,9 +41,9 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
 
           imageurl = '';
         },
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         backgroundColor: ProjectColors.primarycolor1,
-        child: Icon(
+        child: const Icon(
           Icons.add_a_photo,
           color: Colors.white,
         ),
@@ -77,7 +79,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
               height: MediaQuery.of(context).size.height * .08,
               child: Column(
                 children: [
-                  Divider(
+                  const Divider(
                     color: Colors.white,
                     thickness: 1,
                   ),
@@ -102,11 +104,11 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                 stream: advertisementsReference.snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(child: Text('Something went wrong'));
+                    return const Center(child: Text('Something went wrong'));
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
 
                   final imagePaths = snapshot.data!.docs
@@ -126,7 +128,7 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Color.fromARGB(255, 255, 255, 255)),
+                              color: const Color.fromARGB(255, 255, 255, 255)),
                           child: Column(
                             children: [
                               Container(
@@ -174,7 +176,10 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
   Future<void> deleteAdvertisement(String docId) async {
     try {
       await advertisementsReference.doc(docId).delete();
-    } catch (error) {}
+    } catch (error) {
+      // ignore: avoid_print
+      print(error);
+    }
   }
 
   late String imageurl = '';

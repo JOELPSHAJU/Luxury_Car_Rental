@@ -72,7 +72,7 @@ class addnotification extends StatelessWidget {
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return CircularProgressIndicator(); // or any loading indicator
+                    return Center(child: CircularProgressIndicator()); // or any loading indicator
                   }
 
                   final clients = snapshot.data?.docs.reversed.toList();

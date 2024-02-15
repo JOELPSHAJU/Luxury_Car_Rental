@@ -116,10 +116,9 @@ class _SearchInventoryState extends State<SearchInventory> {
 
   @override
   void dispose() {
-  
-  _searchcontroller.removeListener(_onSearchChanged);
-  _searchcontroller.dispose();
-  super.dispose();
+    _searchcontroller.removeListener(_onSearchChanged);
+    _searchcontroller.dispose();
+    super.dispose();
   }
 
   final filternames = [
@@ -157,7 +156,13 @@ class _SearchInventoryState extends State<SearchInventory> {
           ),
         ),
         body: Container(
-          color: const Color.fromARGB(255, 239, 239, 239),
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 239, 239, 239),
+              image: DecorationImage(
+                  image: AssetImage(
+                    'assets/new/kfv.jpg',
+                  ),
+                  opacity: _resultlist.isEmpty ? 0 : .25)),
           child: Column(
             children: [
               Expanded(
@@ -166,13 +171,12 @@ class _SearchInventoryState extends State<SearchInventory> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                          
                             Lottie.asset(
                               'assets/animations/Animation - 1706182910823.json',
                               fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.width,
                             ),
-                              Text(
+                            Text(
                               'Oops,No Inventory Found!',
                               style: TextStyle(
                                 fontSize:

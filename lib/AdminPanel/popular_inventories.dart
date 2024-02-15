@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -105,34 +106,40 @@ class _PopularInventoriesState extends State<PopularInventories> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: ListTile(
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                text(
-                                    context: context,
-                                    text: 'Category : ' + doc['Category']),
-                                text(
-                                    context: context,
-                                    text: 'Price ₹' + doc['Price'] + '/-'),
-                              ],
-                            ),
-                            leading: SizedBox(
-                              height: MediaQuery.of(context).size.height,
-                              width: MediaQuery.of(context).size.width * .2,
-                              child: Image.network(
-                                doc['Image'],
-                                fit: BoxFit.contain,
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * .25,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child:
+                                    CachedNetworkImage(imageUrl: doc['Image']),
+                                width: MediaQuery.of(context).size.width,
+                                height:
+                                    MediaQuery.of(context).size.height * .15,
                               ),
-                            ),
-                            title: text(context: context, text: doc['Company']),
-                            tileColor: Color.fromARGB(255, 155, 60, 60),
-                            trailing:
-                                text(text: '<- Delete->', context: context)),
-                      ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  text(
+                                      context: context,
+                                      text: 'Category : ' + doc['Category']),
+                                  text(
+                                      context: context,
+                                      text: 'Price ₹' + doc['Price'] + '/-'),
+                                ],
+                              ),
+                              Divider(),
+                              text(
+                                  text: 'Swipe To Any Side Delete',
+                                  context: context)
+                            ],
+                          )),
                     ),
                   );
                 },

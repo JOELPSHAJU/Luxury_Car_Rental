@@ -66,7 +66,7 @@ class _UserNavigationState extends State<UserNavigation> {
                     child: Text('${docData?['fullname']}',
                         style: GoogleFonts.signikaNegative(
                             fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             fontSize:
                                 MediaQuery.of(context).size.height * .02)),
                   )
@@ -77,7 +77,7 @@ class _UserNavigationState extends State<UserNavigation> {
                     child: Text('${docData?['email']}',
                         style: GoogleFonts.signikaNegative(
                             fontWeight: FontWeight.w600,
-                            color: ProjectColors.black,
+                            color: ProjectColors.white,
                             fontSize:
                                 MediaQuery.of(context).size.height * .02)),
                   )

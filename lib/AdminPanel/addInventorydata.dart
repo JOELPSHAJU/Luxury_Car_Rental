@@ -19,7 +19,7 @@ Widget text({required text, required context}) {
   return Text(
     text,
     style: TextStyle(
-        fontSize: MediaQuery.of(context).size.width * .037,
+        fontSize: MediaQuery.of(context).size.width * .04,
         fontWeight: FontWeight.bold,
         color: ProjectColors.primarycolor1),
   );
