@@ -2,11 +2,13 @@
 
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
@@ -132,21 +134,24 @@ class _AddAdvertisementState extends State<AddAdvertisement> {
                           child: Column(
                             children: [
                               Container(
-                                height: MediaQuery.of(context).size.height * .2,
-                                width: MediaQuery.of(context).size.width *
-                                    double.infinity,
-                                child: Image.network(
-                                  imagePath,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                                  height:
+                                      MediaQuery.of(context).size.height * .2,
+                                  width: MediaQuery.of(context).size.width *
+                                      double.infinity,
+                                  child: CachedNetworkImage(
+                                    imageUrl: imagePath,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    },
+                                  )),
                               sizedboc,
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  text(
-                                      context: context,
-                                      text: 'Delete Advertisement'),
+                                 text(text: 'Delete Advertisement'),
                                   IconButton(
                                       onPressed: () {
                                         deleteAdvertisement(docId);

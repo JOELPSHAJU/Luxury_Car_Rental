@@ -50,7 +50,13 @@ class _BookingsPageState extends State<BookingsPage> {
     return Scaffold(
         extendBody: true,
         body: Container(
-          color: const Color.fromARGB(255, 239, 239, 239),
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 239, 239, 239),
+              image: DecorationImage(
+                  image: AssetImage(
+                    'assets/new/kfv.jpg',
+                  ),
+                  opacity: .3)),
           child: FutureBuilder<List<DocumentSnapshot>>(
             future: _getDocuments(email.toString()),
             builder: (context, snapshot) {
@@ -147,7 +153,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                                   .size
                                                   .height *
                                               .019,
-                                          color: ProjectColors.primarycolor1,
+                                          color: ProjectColors.black,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(
@@ -184,7 +190,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                     const SizedBox(
                                       height: 8,
@@ -196,7 +202,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                                   .size
                                                   .height *
                                               .017,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ],
                                 ),

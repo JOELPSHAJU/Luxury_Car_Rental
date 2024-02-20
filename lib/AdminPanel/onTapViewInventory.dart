@@ -34,7 +34,7 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
             style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 40, 40, 40)),
+                color: Color.fromARGB(255, 122, 122, 122)),
           ),
           Text(
             '$data $addons',
@@ -189,105 +189,10 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 80,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: const Color.fromARGB(255, 211, 211, 211),
-                              ),
-                              width: MediaQuery.of(context).size.width,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5.0, left: 5, bottom: 5),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: const Color.fromARGB(
-                                                255, 158, 74, 74),
-                                            image: const DecorationImage(
-                                                image: AssetImage(
-                                                  'assets/max/logo.png',
-                                                ),
-                                                fit: BoxFit.cover)),
-                                        child: const Center(),
-                                        height: 56,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .4),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: SizedBox(
-                                      height: MediaQuery.of(context).size.width,
-                                      width: MediaQuery.of(context).size.width *
-                                          .5,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'GO DRIVE LUXURY RENTALS',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    .017,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Icon(Icons.star),
-                                                  Text('5.0',
-                                                      style: TextStyle(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              .016,
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ],
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (ctx) =>
-                                                              ViewRental()));
-                                                },
-                                                child: const Text(
-                                                  'Rental Rules',
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.red),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
                           const SizedBox(
                             height: 10,
                           ),
+                          Divider(),
                           Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Row(
@@ -485,7 +390,8 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                               snackbar();
                                             },
                                             style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.black),
+                                                backgroundColor: ProjectColors
+                                                    .primarycolor1),
                                             child: Text(
                                               'Add to Popular',
                                               style: TextStyle(

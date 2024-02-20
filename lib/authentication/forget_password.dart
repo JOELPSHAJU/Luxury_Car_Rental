@@ -18,7 +18,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: email.text.trim());
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (c) => LoginPage()));
+          .pushReplacement(MaterialPageRoute(builder: (c) => const LoginPage()));
       // ignore: use_build_context_synchronously
       ProjectUtils().sucessmessage(
           context: context,
@@ -58,13 +58,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     context: context,
                     text: 'Forget Password',
                     color: ProjectColors.primarycolor2),
-                Divider(),
+                const Divider(),
                 ProjectUtils().sizedbox10,
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: ProjectUtils().headingsmall(
                       context: context,
-                      color: Color.fromARGB(255, 147, 147, 147),
+                      color: const Color.fromARGB(255, 147, 147, 147),
                       text:
                           'Step 1 : Enter The Registered Email Address,\nStep 2 : Submit The Email,\nStep 3 : A Link Will Be Sent Your Email,\nStep 4 : Open That Link And Update Your Password,\nStep 5 : Now, You Can Login With The Updated Password.'),
                 ),
@@ -76,7 +76,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       controller: email,
                       obsecure: false,
                       focusedcolor: ProjectColors.primarycolor2,
-                      enabled: const Color.fromARGB(255, 215, 215, 215),
+                      enabled: const Color.fromARGB(255, 117, 117, 117),
                       label: 'Email Address',
                       iconcolor: ProjectColors.primarycolor2),
                 ),
@@ -100,7 +100,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (c) => LoginPage()));
+                        MaterialPageRoute(builder: (c) => const LoginPage()));
                   },
                   child: ProjectUtils().headingsmall(
                       context: context,

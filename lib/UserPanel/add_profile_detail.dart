@@ -7,7 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
+
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
@@ -16,6 +17,10 @@ import 'package:luxurycars/UserPanel/profile_page.dart';
 
 class Addprofile extends StatefulWidget {
   Addprofile({super.key});
+
+  text(context, text) {
+    Text(text);
+  }
 
   @override
   State<Addprofile> createState() => _AddprofileState();
@@ -76,7 +81,7 @@ class _AddprofileState extends State<Addprofile> {
               ),
               Row(
                 children: [
-                  text(context: context, text: 'SELECT PROFILE PICTURE'),
+                  text(text: 'SELECT PROFILE PICTURE'),
                   IconButton(
                       onPressed: () {
                         imagepicker();
@@ -109,7 +114,7 @@ class _AddprofileState extends State<Addprofile> {
                     ),
               Row(
                 children: [
-                  text(context: context, text: 'SELECT COVER PICTURE'),
+                  text(text: 'SELECT COVER PICTURE'),
                   IconButton(
                       onPressed: () {
                         coverimagepicker();
@@ -274,8 +279,8 @@ class _AddprofileState extends State<Addprofile> {
       ProfileImageUrl = await referenceDirImagtoupload.getDownloadURL();
       setState(() {});
       if (ProfileImageUrl.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: text(context: context, text: 'No Image Selected')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');
@@ -295,8 +300,8 @@ class _AddprofileState extends State<Addprofile> {
       await referenceDirImagtoupload.putFile(File(file.path));
       CoverImageUrl = await referenceDirImagtoupload.getDownloadURL();
       if (CoverImageUrl.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: text(context: context, text: 'No Image Selected')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');

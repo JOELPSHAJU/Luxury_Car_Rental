@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Universaltools.dart';
@@ -88,7 +89,7 @@ class SpecificBrand extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      Navigator.of(context).push(MaterialPageRoute(
                           builder: (ctx) => ParticularInventory(
                                 id: documentId,
                               )));
@@ -135,16 +136,16 @@ class SpecificBrand extends StatelessWidget {
                                     children: [
                                       Text(
                                         '${data['Company']}\n${data['Model Name']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                .017,
+                                                .018,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         'Category : ${data['Category']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -153,7 +154,7 @@ class SpecificBrand extends StatelessWidget {
                                       ),
                                       Text(
                                         'Price : ${data['Price Per Day']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -162,7 +163,7 @@ class SpecificBrand extends StatelessWidget {
                                       ),
                                       Text(
                                         'Fuel Type : ${data['Fuel Type']}',
-                                        style: TextStyle(
+                                        style: GoogleFonts.signikaNegative(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *

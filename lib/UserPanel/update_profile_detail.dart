@@ -26,7 +26,7 @@ Widget text({required text, required context}) {
     text,
     style: GoogleFonts.signikaNegative(
         fontSize: MediaQuery.of(context).size.height * .018,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         color: const Color.fromARGB(255, 0, 0, 0)),
   );
 }
@@ -315,16 +315,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(8),
                     color: ProjectColors.primarycolor1,
                   ),
-                  width: MediaQuery.of(context).size.width * .5,
-                  height: MediaQuery.of(context).size.height * .07,
+                  width: MediaQuery.of(context).size.width * .4,
+                  height: MediaQuery.of(context).size.height * .05,
                   child: Center(
                     child: Text(
                       'UPDATE DETAILS',
                       style: GoogleFonts.signikaNegative(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w400,
                           color: ProjectColors.white,
                           fontSize: MediaQuery.of(context).size.height * .02),
                     ),

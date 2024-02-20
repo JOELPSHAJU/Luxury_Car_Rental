@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_declarations, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_declarations, no_leading_underscores_for_local_identifiers, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/homepage_admin.dart';
 import 'package:luxurycars/Universaltools.dart';
 
@@ -21,6 +22,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+bool obsecure = true;
 final maincolor = Colors.white;
 bool isLoading = false;
 
@@ -38,11 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await Auth().signInWithEmailandPassword(
           email: _emailcontroller.text, password: _passwordcontroller.text);
-      ProjectUtils().sucessmessage(context: context, text: 'Login Sucessful');
+
       const Center(child: CircularProgressIndicator());
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (ctx) => const HomePage()));
+      goToUserHome();
+      ProjectUtils().sucessmessage(context: context, text: 'Login Sucessful');
       final _sharedpref = await SharedPreferences.getInstance();
       _sharedpref.setBool(SAVE_KEY_NAME, true);
     } on FirebaseAuthException catch (e) {
@@ -129,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ProjectUtils().textformfield(
                                             label: 'Email Address',
                                             enabled: const Color.fromARGB(
-                                                255, 208, 208, 208),
+                                                255, 117, 117, 117),
                                             focusedcolor:
                                                 ProjectColors.primarycolor2,
                                             iconcolor:
@@ -154,17 +155,113 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                         ),
                                         ProjectUtils().sizedbox10,
-                                        ProjectUtils().textformfield(
-                                            label: 'Password',
-                                            enabled: const Color.fromARGB(
-                                                255, 208, 208, 208),
-                                            focusedcolor:
-                                                ProjectColors.primarycolor2,
-                                            iconcolor:
-                                                ProjectColors.primarycolor2,
-                                            icon: Icons.security,
-                                            controller: _passwordcontroller,
-                                            obsecure: true),
+                                        SizedBox(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0, right: 8),
+                                            child: TextFormField(
+                                              cursorColor: Colors.black,
+                                              cursorWidth: 3,
+                                              style:
+                                                  GoogleFonts.signikaNegative(
+                                                fontWeight: FontWeight.w500,
+                                                color:
+                                                    ProjectColors.primarycolor2,
+                                              ),
+                                              controller: _passwordcontroller,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please Fill This Field !';
+                                                } else {
+                                                  return null;
+                                                }
+                                              },
+                                              decoration: InputDecoration(
+                                                  hintText: 'Password',
+                                                  hintStyle:
+                                                      GoogleFonts.signikaNegative(
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                          color: const Color.fromARGB(
+                                                              255, 208, 208, 208)),
+                                                  contentPadding:
+                                                      const EdgeInsets.symmetric(
+                                                          vertical: 18),
+                                                  disabledBorder:
+                                                      OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            width: 2,
+                                                            color: ProjectColors
+                                                                .primarycolor2,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                          gapPadding: 3,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            width: 1,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    117,
+                                                                    117,
+                                                                    117),
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  10)),
+                                                  border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  errorBorder: OutlineInputBorder(
+                                                      borderSide: const BorderSide(
+                                                        width: 1,
+                                                        color: Color.fromARGB(
+                                                            255, 255, 58, 44),
+                                                      ),
+                                                      borderRadius: BorderRadius.circular(10)),
+                                                  focusedBorder: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        width: 1,
+                                                        color: ProjectColors
+                                                            .primarycolor2,
+                                                      ),
+                                                      borderRadius: BorderRadius.circular(10)),
+                                                  prefixIcon: Icon(
+                                                    Icons.security_outlined,
+                                                    size: 23,
+                                                    color: ProjectColors
+                                                        .primarycolor2,
+                                                  ),
+                                                  suffixIcon: IconButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          obsecure = !obsecure;
+                                                        });
+                                                      },
+                                                      icon: obsecure == true
+                                                          ? Icon(
+                                                              Icons
+                                                                  .visibility_off,
+                                                              color: ProjectColors
+                                                                  .primarycolor2,
+                                                            )
+                                                          : Icon(
+                                                              Icons.visibility,
+                                                              color: ProjectColors
+                                                                  .primarycolor2,
+                                                            ))),
+                                              obscureText: obsecure,
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     )),
                                 Row(
@@ -175,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (c) =>
-                                                      ForgetPassword()));
+                                                      const ForgetPassword()));
                                         },
                                         child: ProjectUtils().headingsmall(
                                             context: context,
@@ -209,7 +306,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ProjectUtils().headingsmall(
                                         context: context,
                                         color: const Color.fromARGB(
-                                            255, 194, 194, 194),
+                                            255, 117, 117, 117),
                                         text: "Don't Have An Account?   "),
                                     GestureDetector(
                                       onTap: () {
@@ -241,10 +338,50 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     if (_emailcontroller.text == 'admin@gmail.com' &&
         _passwordcontroller.text == 'admin123') {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (ctx) => const AdminHome()));
+      gotoadminhome();
     } else {
       signInWithEmailAndPassword();
     }
+  }
+
+  Future<void> gotoadminhome() async {
+    showDialog(
+      barrierColor: const Color.fromARGB(65, 0, 0, 0),
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.pop(context);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (ctx) => const AdminHome()),
+    );
+  }
+
+  Future goToUserHome() async {
+    showDialog(
+      barrierColor: const Color.fromARGB(65, 0, 0, 0),
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        );
+      },
+    );
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    Navigator.pop(context);
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => const HomePage()));
   }
 }

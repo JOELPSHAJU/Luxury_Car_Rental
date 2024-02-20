@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -113,9 +114,13 @@ class _ViewBookingsState extends State<ViewBookings> {
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height * .4,
                             width: MediaQuery.of(context).size.width * .3,
-                            child: Image.network(
-                              image,
-                              fit: BoxFit.cover,
+                            child: CachedNetworkImage(
+                              imageUrl: image,
+                              placeholder: (context, url) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
                             ),
                           ),
                         ),

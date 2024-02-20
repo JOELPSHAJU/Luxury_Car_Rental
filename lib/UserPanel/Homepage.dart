@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
           extendBody: true,
           appBar: AppBar(
             bottomOpacity: 2,
+            surfaceTintColor: Colors.white,
             iconTheme: IconThemeData(color: ProjectColors.primarycolor1),
             backgroundColor: Colors.white,
             centerTitle: true,

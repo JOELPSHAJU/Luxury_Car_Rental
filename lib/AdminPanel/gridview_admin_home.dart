@@ -67,65 +67,54 @@ class _Gridview_adminState extends State<Gridview_admin> {
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * .48,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: ((context) =>
-                                    const PopularInventories())));
-                          },
-                          child: Card(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            // Use a Card for better visual separation
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        .15,
-                                    width:
-                                        MediaQuery.of(context).size.width * .47,
-                                    child: CachedNetworkImage(
-                                      imageUrl: doc['Image'],
-                                      fit: BoxFit.contain,
-                                      placeholder: (context, url) {
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: ProjectColors.primarycolor1,
-                                          ),
-                                        );
-                                      },
-                                    ),
+                        child: Card(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * .15,
+                                  width:
+                                      MediaQuery.of(context).size.width * .47,
+                                  child: CachedNetworkImage(
+                                    imageUrl: doc['Image'],
+                                    fit: BoxFit.contain,
+                                    placeholder: (context, url) {
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: ProjectColors.primarycolor1,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
-                                const SizedBox(
-                                    height:
-                                        8), // Add spacing between image and text
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ProjectUtils().headingsmall(
-                                          context: context,
-                                          color: ProjectColors.primarycolor1,
-                                          text: '${doc['Company']}'),
-                                      Text(
-                                        'Category: ' + doc['Category'],
-                                        style: textst,
-                                      ),
-                                      Text(
-                                        'Price ₹' + doc['Price'] + '/-',
-                                        style: textst,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 8),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    ProjectUtils().headingsmall(
+                                        context: context,
+                                        color: ProjectColors.primarycolor1,
+                                        text: '${doc['Company']}'),
+                                    Text(
+                                      'Category: ' + doc['Category'],
+                                      style: textst,
+                                    ),
+                                    Text(
+                                      'Price ₹' + doc['Price'] + '/-',
+                                      style: textst,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),

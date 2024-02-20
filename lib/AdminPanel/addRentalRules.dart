@@ -192,62 +192,66 @@ class AddRentalRules extends StatelessWidget {
       child: SingleChildScrollView(
         child: AlertDialog(
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-          content: Column(
-            children: [
-              ProjectUtils().headingsmall(
-                  context: context,
-                  color: ProjectColors.primarycolor1,
-                  text: 'ADD RENTAL RULE'),
-              const SizedBox(
-                height: 10,
-              ),
-              Form(
-                  key: formkeys,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(1),
-                        child: ProjectUtils().textformfieldaddnotification(
-                            icon: Icons.notification_add,
-                            controller: rental,
-                            obsecure: false,
-                            focusedcolor: Colors.black,
-                            enabled: ProjectColors.primarycolor1,
-                            iconcolor: ProjectColors.primarycolor1),
-                      ),
-                    ],
-                  )),
-              const SizedBox(
-                height: 7,
-              ),
-              InkWell(
-                onTap: () {
-                  if (formkeys.currentState!.validate()) {
-                    uploaddata();
-                    Navigator.of(context).pop();
-                  } else {}
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: ProjectColors.primarycolor1),
-                    width: MediaQuery.of(context).size.width * .5,
-                    height: MediaQuery.of(context).size.height * .07,
-                    child: Center(
-                      child: Text(
-                        'ADD RENTAL RULE'.toUpperCase(),
-                        style: TextStyle(
-                            color: ProjectColors.white,
-                            fontSize: MediaQuery.of(context).size.height * .02,
-                            fontWeight: FontWeight.bold),
+          content: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                ProjectUtils().headingsmall(
+                    context: context,
+                    color: ProjectColors.primarycolor1,
+                    text: 'ADD RENTAL RULE'),
+                const SizedBox(
+                  height: 10,
+                ),
+                Form(
+                    key: formkeys,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(1),
+                          child: ProjectUtils().textformfieldaddnotification(
+                              icon: Icons.notification_add,
+                              controller: rental,
+                              obsecure: false,
+                              focusedcolor: Colors.black,
+                              enabled: ProjectColors.primarycolor1,
+                              iconcolor: ProjectColors.primarycolor1),
+                        ),
+                      ],
+                    )),
+                const SizedBox(
+                  height: 7,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (formkeys.currentState!.validate()) {
+                      uploaddata();
+                      Navigator.of(context).pop();
+                    } else {}
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: ProjectColors.primarycolor1),
+                      width: MediaQuery.of(context).size.width * .5,
+                      height: MediaQuery.of(context).size.height * .07,
+                      child: Center(
+                        child: Text(
+                          'ADD RENTAL RULE'.toUpperCase(),
+                          style: TextStyle(
+                              color: ProjectColors.white,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * .02,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

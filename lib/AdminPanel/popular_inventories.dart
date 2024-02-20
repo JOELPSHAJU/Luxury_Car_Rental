@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/addInventorydata.dart';
 
 import 'package:luxurycars/AdminPanel/homepage_admin.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 
@@ -95,11 +96,11 @@ class _PopularInventoriesState extends State<PopularInventories> {
                         children: [
                           Text(
                             'Deleting ${doc['Company']}',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Icon(Icons.delete, color: Colors.white),
+                          const Icon(Icons.delete, color: Colors.white),
                         ],
                       ),
                     ),
@@ -109,7 +110,7 @@ class _PopularInventoriesState extends State<PopularInventories> {
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * .25,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
@@ -126,18 +127,12 @@ class _PopularInventoriesState extends State<PopularInventories> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  text(
-                                      context: context,
-                                      text: 'Category : ' + doc['Category']),
-                                  text(
-                                      context: context,
-                                      text: 'Price ₹' + doc['Price'] + '/-'),
+                                  text(text: " Category : ${doc['Category']}"),
+                                  text(text: "Price: ₹ ${doc['Price']}/-"),
                                 ],
                               ),
-                              Divider(),
-                              text(
-                                  text: 'Swipe To Any Side Delete',
-                                  context: context)
+                              const Divider(),
+                              Text('Swipe To Any Side Delete')
                             ],
                           )),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class ProjectColors {
   static Color get primarycolor1 => Color.fromARGB(255, 11, 137, 183);
   static Color get primarycolor2 => Color.fromARGB(255, 57, 84, 188);
@@ -110,7 +111,7 @@ class ProjectUtils {
         padding: const EdgeInsets.only(left: 8.0, right: 8),
         child: TextFormField(
           cursorColor: Colors.black,
-          cursorWidth: 3,
+          cursorWidth: 1,
           style: GoogleFonts.signikaNegative(
             fontWeight: FontWeight.w500,
             color: ProjectColors.primarycolor2,
@@ -126,28 +127,29 @@ class ProjectUtils {
           decoration: InputDecoration(
             hintText: label,
             hintStyle: GoogleFonts.signikaNegative(
+                fontWeight: FontWeight.w300,
                 color: Color.fromARGB(255, 208, 208, 208)),
             contentPadding: EdgeInsets.symmetric(vertical: 18),
             disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 2,
+                  width: 1,
                   color: ProjectColors.primarycolor2,
                 ),
                 borderRadius: BorderRadius.circular(10)),
             enabledBorder: OutlineInputBorder(
                 gapPadding: 3,
-                borderSide: BorderSide(width: 2, color: enabled),
+                borderSide: BorderSide(width: 1, color: enabled),
                 borderRadius: BorderRadius.circular(10)),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 2,
+                  width: 1,
                   color: Color.fromARGB(255, 255, 58, 44),
                 ),
                 borderRadius: BorderRadius.circular(10)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 2,
+                  width: 1,
                   color: focusedcolor,
                 ),
                 borderRadius: BorderRadius.circular(10)),
@@ -175,7 +177,7 @@ class ProjectUtils {
         maxLines: 10,
         minLines: 1,
         cursorColor: Colors.black,
-        cursorWidth: 3,
+        cursorWidth: 1,
         style: GoogleFonts.signikaNegative(
           fontWeight: FontWeight.w500,
           color: const Color.fromARGB(255, 0, 0, 0),
@@ -192,24 +194,24 @@ class ProjectUtils {
           contentPadding: EdgeInsets.symmetric(vertical: 18),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 2,
+                width: 1,
                 color: ProjectUtils().textformfieldcolor,
               ),
               borderRadius: BorderRadius.circular(0)),
           enabledBorder: OutlineInputBorder(
-              gapPadding: 5,
-              borderSide: BorderSide(width: 2, color: enabled),
+              gapPadding: 4,
+              borderSide: BorderSide(width: 1, color: enabled),
               borderRadius: BorderRadius.circular(0)),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                width: 2,
+                width: 1,
                 color: Color.fromARGB(255, 255, 58, 44),
               ),
               borderRadius: BorderRadius.circular(0)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 2,
+                width: 1,
                 color: focusedcolor,
               ),
               borderRadius: BorderRadius.circular(0)),
@@ -218,6 +220,65 @@ class ProjectUtils {
             size: 23,
             color: iconcolor,
           ),
+        ),
+        obscureText: obsecure,
+      ),
+    );
+  }
+
+  textformfieldaddoverview({
+    required hint,
+    required controller,
+    required obsecure,
+    required focusedcolor,
+    required enabled,
+  }) {
+    return SizedBox(
+      child: TextFormField(
+        maxLines: 10,
+        minLines: 1,
+        cursorColor: Colors.black,
+        cursorWidth: 1,
+        style: GoogleFonts.signikaNegative(
+          fontWeight: FontWeight.w500,
+          color: const Color.fromARGB(255, 0, 0, 0),
+        ),
+        controller: controller,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please Fill This Field !';
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+          label: Text(hint),
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey),
+          disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: ProjectUtils().textformfieldcolor,
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          enabledBorder: OutlineInputBorder(
+              gapPadding: 4,
+              borderSide: BorderSide(width: 1, color: enabled),
+              borderRadius: BorderRadius.circular(10)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 1,
+                color: Color.fromARGB(255, 255, 58, 44),
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 1,
+                color: focusedcolor,
+              ),
+              borderRadius: BorderRadius.circular(10)),
         ),
         obscureText: obsecure,
       ),
@@ -235,9 +296,9 @@ class ProjectUtils {
       height: MediaQuery.of(context).size.height * .1,
       child: TextFormField(
           cursorColor: ProjectUtils().textformfieldcolor,
-          cursorWidth: 3,
+          cursorWidth: 1,
           style: GoogleFonts.signikaNegative(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w400,
             color: ProjectUtils().textformfieldcolor,
           ),
           controller: controller,
@@ -256,24 +317,24 @@ class ProjectUtils {
             ),
             labelStyle: GoogleFonts.signikaNegative(
                 color: Color.fromARGB(159, 0, 0, 0),
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.w400),
             filled: true,
             fillColor: const Color.fromARGB(255, 255, 255, 255),
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 2,
+                  width: 1,
                   color: Colors.grey,
                 ),
                 borderRadius: BorderRadius.circular(100)),
             errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 2,
+                  width: 1,
                   color: Color.fromARGB(255, 225, 15, 0),
                 ),
                 borderRadius: BorderRadius.circular(100)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 2,
+                  width: 1,
                   color: ProjectColors.primarycolor1,
                 ),
                 borderRadius: BorderRadius.circular(100)),

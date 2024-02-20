@@ -6,6 +6,7 @@ import 'package:luxurycars/firebase_options.dart';
 // ignore: constant_identifier_names
 const SAVE_KEY_NAME = 'IsUserLoggedIn';
 late String usercurrent;
+const SAVE_KEY_ADMIN = 'IsAdminLoggedIn';
 
 late String updateuseridprofile;
 void main() async {

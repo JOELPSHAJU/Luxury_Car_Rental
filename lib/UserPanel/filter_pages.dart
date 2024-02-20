@@ -27,7 +27,7 @@ class _FilterPageState extends State<FilterPage> {
   final sizedb = const SizedBox(
     height: 10,
   );
-  //transmission dropdownbutton data
+
   static const List<String> filterdropdown = <String>[
     'Manual Transmission',
     'Automatic Transmission',
@@ -46,10 +46,8 @@ class _FilterPageState extends State<FilterPage> {
 
     if (name == filterdropdown[0]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Transmission', isEqualTo: 'Manual')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Transmission', isEqualTo: 'Manual').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -59,7 +57,6 @@ class _FilterPageState extends State<FilterPage> {
       try {
         QuerySnapshot querySnapshot = await usersRef
             .where('Transmission', isEqualTo: 'Full Automatic')
-            // Add this line to filter by Transmission
             .get();
         return querySnapshot.docs;
       } catch (e) {
@@ -70,7 +67,6 @@ class _FilterPageState extends State<FilterPage> {
       try {
         QuerySnapshot querySnapshot = await usersRef
             .where('Transmission', isEqualTo: 'Automatic + Manual')
-            // Add this line to filter by Transmission
             .get();
         return querySnapshot.docs;
       } catch (e) {
@@ -79,10 +75,8 @@ class _FilterPageState extends State<FilterPage> {
       }
     } else if (name == filterdropdown[3]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Price Per Day', isLessThan: '50000')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Price Per Day', isLessThan: '50000').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -90,10 +84,8 @@ class _FilterPageState extends State<FilterPage> {
       }
     } else if (name == filterdropdown[4]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Price Per Day', isLessThan: '30000')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Price Per Day', isLessThan: '30000').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -101,10 +93,8 @@ class _FilterPageState extends State<FilterPage> {
       }
     } else if (name == filterdropdown[5]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Fuel Type', isEqualTo: 'Diesel')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Fuel Type', isEqualTo: 'Diesel').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -112,10 +102,8 @@ class _FilterPageState extends State<FilterPage> {
       }
     } else if (name == filterdropdown[6]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Fuel Type', isEqualTo: 'Petrol')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Fuel Type', isEqualTo: 'Petrol').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -123,10 +111,8 @@ class _FilterPageState extends State<FilterPage> {
       }
     } else if (name == filterdropdown[7]) {
       try {
-        QuerySnapshot querySnapshot = await usersRef
-            .where('Fuel Type', isEqualTo: 'Electric')
-            // Add this line to filter by Transmission
-            .get();
+        QuerySnapshot querySnapshot =
+            await usersRef.where('Fuel Type', isEqualTo: 'Electric').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -151,10 +137,12 @@ class _FilterPageState extends State<FilterPage> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: ProjectColors.primarycolor1,
-          title: ProjectUtils().headingsmall(
-              context: context,
-              color: Colors.white,
-              text: 'Find Your Specifications'),
+          title: Text(
+            'Find Your Specifications',
+            style: GoogleFonts.gideonRoman(
+                fontSize: MediaQuery.of(context).size.width * .05,
+                color: Colors.white),
+          ),
           leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -164,7 +152,14 @@ class _FilterPageState extends State<FilterPage> {
                 color: Colors.white,
               )),
         ),
-        body: SizedBox(
+        body: Container(
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 239, 239, 239),
+              image: DecorationImage(
+                  image: AssetImage(
+                    'assets/new/kfv.jpg',
+                  ),
+                  opacity: .3)),
           width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -186,7 +181,8 @@ class _FilterPageState extends State<FilterPage> {
                         child: DropdownMenu<String>(
                           menuHeight: 250,
                           textStyle: GoogleFonts.gowunBatang(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context).size.width * .04,
                               color: const Color.fromARGB(255, 134, 134, 134)),
                           width: MediaQuery.of(context).size.width * .7,
                           initialSelection: filterdropdown.first,
@@ -247,7 +243,13 @@ class _FilterPageState extends State<FilterPage> {
                       }
 
                       return Container(
-                        color: const Color.fromARGB(255, 222, 222, 222),
+                        decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 239, 239, 239),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/new/kfv.jpg',
+                                ),
+                                opacity: .3)),
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
                         height: MediaQuery.of(context).size.height * .99,
@@ -270,7 +272,7 @@ class _FilterPageState extends State<FilterPage> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Container(
                                     height:
-                                        MediaQuery.of(context).size.width * .45,
+                                        MediaQuery.of(context).size.width * .38,
                                     decoration: BoxDecoration(
                                         color: ProjectUtils().listcolor,
                                         borderRadius:
@@ -283,12 +285,12 @@ class _FilterPageState extends State<FilterPage> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .4,
+                                                .35,
                                             height: MediaQuery.of(context)
                                                 .size
                                                 .height,
                                             decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 230, 230, 230),
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -316,7 +318,7 @@ class _FilterPageState extends State<FilterPage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Text(
                                                   '${data['Company']}\n${data['Model Name']}',
@@ -330,9 +332,6 @@ class _FilterPageState extends State<FilterPage> {
                                                           fontWeight:
                                                               FontWeight.bold),
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
                                                 Text(
                                                   'Category : ${data['Category']}',
                                                   style: GoogleFonts
@@ -345,9 +344,6 @@ class _FilterPageState extends State<FilterPage> {
                                                           fontWeight:
                                                               FontWeight.w500),
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
                                                 Text(
                                                   'Price : ${data['Price Per Day']}',
                                                   style: GoogleFonts
@@ -359,9 +355,6 @@ class _FilterPageState extends State<FilterPage> {
                                                               .017,
                                                           fontWeight:
                                                               FontWeight.w500),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
                                                 ),
                                                 Text(
                                                   'Fuel Type : ${data['Fuel Type']}',

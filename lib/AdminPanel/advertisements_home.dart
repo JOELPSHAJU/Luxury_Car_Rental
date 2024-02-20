@@ -63,41 +63,34 @@ class AdvertisementGomeState extends State<AdvertisementGome> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width * .7,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: ((context) => AddAdvertisement())));
-                          },
-                          child: Card(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    height: MediaQuery.of(context).size.height *
-                                        .16,
-                                    width:
-                                        MediaQuery.of(context).size.width * .7,
-                                    child: CachedNetworkImage(
-                                      imageUrl: doc['image'],
-                                      fit: BoxFit.contain,
-                                      placeholder: (context, url) {
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: ProjectColors.primarycolor1,
-                                          ),
-                                        );
-                                      },
-                                    ),
+                        child: Card(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  height:
+                                      MediaQuery.of(context).size.height * .16,
+                                  width: MediaQuery.of(context).size.width * .7,
+                                  child: CachedNetworkImage(
+                                    imageUrl: doc['image'],
+                                    fit: BoxFit.contain,
+                                    placeholder: (context, url) {
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: ProjectColors.primarycolor1,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:luxurycars/AdminPanel/AdminNavigationBar.dart';
+import 'package:luxurycars/AdminPanel/add_advertisement.dart';
 import 'package:luxurycars/AdminPanel/advertisements_home.dart';
 
 import 'package:luxurycars/AdminPanel/gridview_admin_home.dart';
+import 'package:luxurycars/AdminPanel/popular_inventories.dart';
 
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/advertisement.dart';
+import 'package:luxurycars/UserPanel/homepagepopularlistview.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -114,23 +118,63 @@ class _AdminHomeState extends State<AdminHome> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20, top: 20),
-                    child: ProjectUtils().headingsmall(
-                        context: context,
-                        text: 'Popular Inventories',
-                        color: ProjectColors.primarycolor1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(left: 20, top: 20),
+                          child: Text(
+                            'Popular Inventories',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * .05,
+                                fontWeight: FontWeight.w500),
+                          )),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (s) => PopularInventories()));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 20, top: 20),
+                          child: ProjectUtils().headingsmall(
+                              context: context,
+                              text: 'View More',
+                              color: ProjectColors.primarycolor1),
+                        ),
+                      ),
+                    ],
                   ),
                   Container(
                       height: MediaQuery.of(context).size.height * .3,
                       width: MediaQuery.of(context).size.width,
                       child: const Gridview_admin()),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20, top: 20),
-                    child: ProjectUtils().headingsmall(
-                        context: context,
-                        text: 'Advertisements',
-                        color: ProjectColors.primarycolor1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(left: 20, top: 20),
+                          child: Text(
+                            'Advertisements',
+                            style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * .05,
+                                fontWeight: FontWeight.w500),
+                          )),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (s) => AddAdvertisement()));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 20, top: 20),
+                          child: ProjectUtils().headingsmall(
+                              context: context,
+                              text: 'View More',
+                              color: ProjectColors.primarycolor1),
+                        ),
+                      ),
+                    ],
                   ),
                   Expanded(child: AdvertisementGome()),
                   ProjectUtils().sizedbox20,

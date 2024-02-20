@@ -66,16 +66,16 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       extendBody: true,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  'assets/new/white.jpg',
+                  'assets/new/mea.png',
                 ),
                 fit: BoxFit.cover,
-                opacity: .2)),
+                opacity: .4)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -92,13 +92,16 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                     Center(
                       child: Image.asset(
                         'assets/bg/brands.png',
-                        width: MediaQuery.of(context).size.height * .16,
+                        width: MediaQuery.of(context).size.height * .17,
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .2,
+                          height: MediaQuery.of(context).size.height * .16,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(0, 208, 208, 208),
                           ),
@@ -125,16 +128,23 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                                         )));
                                           },
                                           child: Container(
-                                            height: 80,
-                                            width: 80,
+                                            height: 70,
+                                            width: 70,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                      carimg[index],
-                                                    ),
-                                                    fit: BoxFit.contain)),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Image(
+                                              image: AssetImage(carimg[index]),
+                                              fit: BoxFit.contain,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              },
+                                            ),
                                           ),
                                         )),
                                     Row(

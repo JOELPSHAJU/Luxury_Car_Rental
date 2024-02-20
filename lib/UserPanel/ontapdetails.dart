@@ -46,8 +46,6 @@ class OntapDetails extends StatelessWidget {
         color: const Color.fromARGB(255, 143, 143, 143));
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -178,7 +176,7 @@ class OntapDetails extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * .1,
                       width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/gearbox.png'),
+                      child: Image.asset('assets/new/gear.png'),
                     ),
                     Text(
                       'Gearbox',
@@ -206,7 +204,7 @@ class OntapDetails extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * .1,
                       width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/speed.png'),
+                      child: Image.asset('assets/new/speedometer.png'),
                     ),
                     Text(
                       '0 - 100',
@@ -341,7 +339,9 @@ class OntapDetails extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * .1,
                       width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/lstride.png'),
+                      child: Image.asset(
+                        'assets/latest/category.png',
+                      ),
                     ),
                     Text(
                       'Category',

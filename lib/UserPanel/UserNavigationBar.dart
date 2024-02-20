@@ -212,6 +212,7 @@ class _UserNavigationState extends State<UserNavigation> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: Text(
             'Do you really want to sign out?',
             style: GoogleFonts.signikaNegative(

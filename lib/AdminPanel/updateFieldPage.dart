@@ -767,14 +767,13 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
                                         enabled: Colors.grey,
                                         hint: 'Ground Clearence'),
                                     ProjectUtils().sizedbox10,
-                                    ProjectUtils().textformfieldaddinventory(
-                                        context: context,
-                                        controller: overview,
-                                        keyboardtype: TextInputType.name,
-                                        focusedcolor:
-                                            ProjectColors.primarycolor1,
-                                        enabled: Colors.grey,
-                                        hint: 'Overview'),
+                                    ProjectUtils().textformfieldaddoverview(
+                                      hint: 'Overview',
+                                      controller: overview,
+                                      obsecure: false,
+                                      focusedcolor: ProjectColors.primarycolor1,
+                                      enabled: Colors.grey,
+                                    ),
                                     ProjectUtils().sizedbox10,
                                     ProjectUtils().textformfieldaddinventory(
                                         context: context,

@@ -68,7 +68,7 @@ class HowitWorks extends StatelessWidget {
                 bottom: 8.0,
               ),
               child: Container(
-                color: const Color.fromARGB(255, 212, 217, 217),
+                color: Color.fromARGB(31, 36, 36, 36),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .50,
                 child: Row(

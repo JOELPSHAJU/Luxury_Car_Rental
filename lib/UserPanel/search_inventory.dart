@@ -254,15 +254,16 @@ class _SearchInventoryState extends State<SearchInventory> {
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               Text(
-                                                '${_resultlist[index]['Company']} ${_resultlist[index]['Model Name']}',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
+                                                '${_resultlist[index]['Company']}\n${_resultlist[index]['Model Name']}',
+                                                style:
+                                                    GoogleFonts.signikaNegative(
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
                                                                 .size
-                                                                .width *
-                                                            .037,
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                                                .height *
+                                                            .018,
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                               ),
                                               Text(
                                                   'Price : ₹ ${_resultlist[index]['Price Per Day']}/-',
@@ -275,9 +276,6 @@ class _SearchInventoryState extends State<SearchInventory> {
                                                               .037,
                                                           fontWeight:
                                                               FontWeight.w500)),
-                                              const SizedBox(
-                                                height: 1,
-                                              ),
                                               Text(
                                                   'Fuel Type : ${_resultlist[index]['Fuel Type']}',
                                                   style: GoogleFonts

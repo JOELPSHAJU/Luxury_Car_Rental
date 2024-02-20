@@ -72,15 +72,15 @@ class _ProfileDetailsState extends State<ProfileDetails> {
 
   fontstyle({required context}) {
     return GoogleFonts.signikaNegative(
-        fontSize: MediaQuery.of(context).size.height * .02,
+        fontSize: MediaQuery.of(context).size.height * .018,
         color: Colors.grey,
         fontWeight: FontWeight.w500);
   }
 
   fontdatastyle({required context}) {
     return GoogleFonts.signikaNegative(
-        fontSize: MediaQuery.of(context).size.height * .02,
-        color: ProjectColors.primarycolor1,
+        fontSize: MediaQuery.of(context).size.height * .018,
+        color: ProjectColors.black,
         fontWeight: FontWeight.w500);
   }
 
@@ -92,76 +92,81 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     if (docData == null) {
       return const Center(child: CircularProgressIndicator());
     } else if (docData!.isEmpty) {
-      return Column(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.black,
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/new/cover.jpg',
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * .3,
-            child: Center(
-                child: Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
                 color: Colors.black,
-                border: Border.all(
-                    width: 3, color: Color.fromARGB(255, 255, 255, 255)),
-                borderRadius: BorderRadius.circular(100),
-                image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/new/avatar.png',
-                    ),
-                    fit: BoxFit.cover),
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/new/cover.jpg',
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
-            )),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .09,
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                          height: MediaQuery.of(context).size.height * .6,
-                          child: Addprofile());
-                    });
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: ProjectColors.primarycolor1,
-                      borderRadius: BorderRadius.circular(15)),
-                  width: MediaQuery.of(context).size.width * .5,
-                  height: MediaQuery.of(context).size.height * .07,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      sizedboc,
-                      sizedboc,
-                      Text(
-                        'ADD PROFILE DETAILS',
-                        style: GoogleFonts.signikaNegative(
-                            fontWeight: FontWeight.bold,
-                            color: ProjectColors.white,
-                            fontSize: MediaQuery.of(context).size.height * .02),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * .3,
+              child: Center(
+                  child: Container(
+                height: 140,
+                width: 140,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(
+                      width: 3, color: Color.fromARGB(255, 255, 255, 255)),
+                  borderRadius: BorderRadius.circular(100),
+                  image: const DecorationImage(
+                      image: AssetImage(
+                        'assets/new/avatar.png',
                       ),
-                    ],
+                      fit: BoxFit.cover),
+                ),
+              )),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .09,
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                            height: MediaQuery.of(context).size.height * .6,
+                            child: Addprofile());
+                      });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: ProjectColors.primarycolor1,
+                        borderRadius: BorderRadius.circular(15)),
+                    width: MediaQuery.of(context).size.width * .5,
+                    height: MediaQuery.of(context).size.height * .07,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        sizedboc,
+                        sizedboc,
+                        Text(
+                          'ADD PROFILE DETAILS',
+                          style: GoogleFonts.signikaNegative(
+                              fontWeight: FontWeight.w500,
+                              color: ProjectColors.white,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * .02),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     } else {
       name = docData!['fullname'];
@@ -173,6 +178,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       profile = docData!['profile'];
       Cover = docData!['Cover'];
       return Container(
+        color: const Color.fromARGB(255, 244, 244, 244),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -217,161 +223,168 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             sizedb,
             sizedb,
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Personal details  ',
-                      style: GoogleFonts.signikaNegative(
-                          fontSize: MediaQuery.of(context).size.height * .023,
-                          fontWeight: FontWeight.bold,
-                          color: ProjectColors.primarycolor1),
-                    ),
-                  ],
-                )),
-            const Divider(
-              thickness: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Full Name : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['fullname']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    ' Age : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['age']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    ' Email : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['email']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    ' Phone Number : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['phonenumber']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    ' Address : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['address']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(
-                    ' Zip Code : ',
-                    style: fontstyle(context: context),
-                  ),
-                  Text(
-                    '${docData!['pincode']}',
-                    style: fontdatastyle(context: context),
-                  ),
-                ],
-              ),
-            ),
-            sizedb,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Map<String, String> data = {
-                      "name": name,
-                      "age": age,
-                      "email": emails,
-                      "phone": phone,
-                      "address": address,
-                      "pincode": pincode,
-                      "cover": Cover,
-                      "profile": profile
-                    };
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return SizedBox(
-                              height: MediaQuery.of(context).size.height * .6,
-                              child: UpdateProfile(
-                                details: data,
-                              ));
-                        });
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * .5,
-                    height: MediaQuery.of(context).size.height * .07,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: ProjectColors.primarycolor1,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'EDIT PROFILE',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: ProjectColors.white,
-                            fontSize: MediaQuery.of(context).size.height * .02),
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * .55,
+                color: Color.fromARGB(255, 255, 255, 255),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Full Name : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['fullname']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Age : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['age']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Email : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['email']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Phone Number : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['phonenumber']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Address : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['address']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Zip Code : ',
+                              style: fontstyle(context: context),
+                            ),
+                            Text(
+                              '${docData!['pincode']}',
+                              style: fontdatastyle(context: context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Map<String, String> data = {
+                                  "name": name,
+                                  "age": age,
+                                  "email": emails,
+                                  "phone": phone,
+                                  "address": address,
+                                  "pincode": pincode,
+                                  "cover": Cover,
+                                  "profile": profile
+                                };
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .6,
+                                          child: UpdateProfile(
+                                            details: data,
+                                          ));
+                                    });
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * .3,
+                                height:
+                                    MediaQuery.of(context).size.height * .05,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: ProjectColors.primarycolor1,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'EDIT PROFILE',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: ProjectColors.white,
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                .02),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ],
         ),

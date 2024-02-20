@@ -20,7 +20,7 @@ textstyles({
 }) {
   return TextStyle(
       fontWeight: FontWeight.w500,
-      color: ProjectColors.primarycolor1,
+      color: Colors.grey,
       fontSize: MediaQuery.of(context).size.height * .017);
 }
 
@@ -115,10 +115,13 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          doc['Company'] +
-                                              ' ' +
-                                              doc['Model Name'],
-                                          style: textstyles(context: context),
+                                          '${doc['Company']}\n${doc['Model Name']}',
+                                          style: GoogleFonts.signikaNegative(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .018,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           'Category : ' + ' ' + doc['Category'],

@@ -145,8 +145,8 @@ class _BookingPageState extends State<BookingPage> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                      'assets/max/istockphoto-1298602716-612x612.jpg'),
-                  fit: BoxFit.fitHeight,
+                      'assets/new/fa9a2abfad578ca9b66fb2841a675270.jpg'),
+                  fit: BoxFit.cover,
                   opacity: .2)),
           child: SingleChildScrollView(
             child: Column(

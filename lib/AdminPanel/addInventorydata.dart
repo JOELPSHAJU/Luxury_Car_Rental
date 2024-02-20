@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:luxurycars/AdminPanel/homepage_admin.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 class AddInventory extends StatefulWidget {
@@ -15,7 +16,7 @@ class AddInventory extends StatefulWidget {
   State<AddInventory> createState() => _AddInventoryState();
 }
 
-Widget text({required text, required context}) {
+Widgettext({required text, required context}) {
   return Text(
     text,
     style: TextStyle(
@@ -142,8 +143,8 @@ class _AddInventoryState extends State<AddInventory> {
       setState(() {});
       if (MainImage.isEmpty) {
         // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: text(context: context, text: 'No Image Selected')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
       }
     } catch (e) {
       print('Some Error Happened ?');
@@ -277,7 +278,7 @@ class _AddInventoryState extends State<AddInventory> {
                       )
                     : Container(),
                 sizedBox,
-                text(context: context, text: 'SELECT CATEGORY'),
+                text(text: 'SELECT CATEGORY'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -305,7 +306,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(context: context, text: 'SELECT COMPANY'),
+                text(text: 'SELECT COMPANY'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -334,7 +335,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(context: context, text: 'SELECT FUEL TYPE'),
+                text(text: 'SELECT FUEL TYPE'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -361,7 +362,7 @@ class _AddInventoryState extends State<AddInventory> {
                   ),
                 ),
                 sizedBox,
-                text(context: context, text: 'SELECT TRANSMISSION TYPE'),
+                text(text: 'SELECT TRANSMISSION TYPE'),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: DropdownMenu<String>(
@@ -480,14 +481,13 @@ class _AddInventoryState extends State<AddInventory> {
                               enabled: Colors.grey,
                               hint: 'Gearbox'),
                           ProjectUtils().sizedbox10,
-                          ProjectUtils().textformfieldaddinventory(
-                              context: context,
+                          ProjectUtils().textformfieldaddoverview(
+                              hint: 'Overview',
                               controller: overview,
-                              keyboardtype: TextInputType.name,
+                              obsecure: false,
                               focusedcolor: ProjectColors.primarycolor1,
-                              enabled: Colors.grey,
-                              hint: 'Overview'),
-                          ProjectUtils().sizedbox10,
+                              enabled: Colors.grey),
+                          ProjectUtils().sizedbox20,
                           ProjectUtils().textformfieldaddinventory(
                               context: context,
                               controller: priceperday,

@@ -31,8 +31,7 @@ class _UpdateInventoryState extends State<UpdateInventory> {
         toolbarHeight: 40,
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (ctx) => AdminHome()));
+              Navigator.of(context).pop();
             },
             icon: const Icon(
               Icons.arrow_back,
