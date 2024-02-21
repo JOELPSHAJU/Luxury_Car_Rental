@@ -40,9 +40,8 @@ class HowitWorks extends StatelessWidget {
               height: 5,
             ),
             Image.asset(
-              'assets/bg/howitworks.png',
-              fit: BoxFit.contain,
-              height: MediaQuery.of(context).size.height * .02,
+              'assets/latest/howitworks.png',
+              width: MediaQuery.of(context).size.width * .3,
             ),
             const SizedBox(
               height: 10,

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, sized_box_for_whitespace, prefer_const_constructors
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

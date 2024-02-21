@@ -139,7 +139,7 @@ class _FilterPageState extends State<FilterPage> {
           backgroundColor: ProjectColors.primarycolor1,
           title: Text(
             'Find Your Specifications',
-            style: GoogleFonts.gideonRoman(
+            style: GoogleFonts.oswald(
                 fontSize: MediaQuery.of(context).size.width * .05,
                 color: Colors.white),
           ),
@@ -154,12 +154,8 @@ class _FilterPageState extends State<FilterPage> {
         ),
         body: Container(
           decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 239, 239, 239),
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/new/kfv.jpg',
-                  ),
-                  opacity: .3)),
+            color: Color.fromARGB(255, 239, 239, 239),
+          ),
           width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -244,12 +240,8 @@ class _FilterPageState extends State<FilterPage> {
 
                       return Container(
                         decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 239, 239, 239),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                  'assets/new/kfv.jpg',
-                                ),
-                                opacity: .3)),
+                          color: Color.fromARGB(255, 239, 239, 239),
+                        ),
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
                         height: MediaQuery.of(context).size.height * .99,
@@ -322,51 +314,50 @@ class _FilterPageState extends State<FilterPage> {
                                               children: [
                                                 Text(
                                                   '${data['Company']}\n${data['Model Name']}',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
+                                                  style: GoogleFonts.oswald(
+                                                      fontSize:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               .017,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                                 Text(
                                                   'Category : ${data['Category']}',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
+                                                  style: GoogleFonts.oswald(
+                                                      color: Colors.grey,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               .017,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 Text(
                                                   'Price : ${data['Price Per Day']}',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
+                                                  style: GoogleFonts.oswald(
+                                                      color: ProjectColors
+                                                          .primarycolor1,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               .017,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                                 Text(
                                                   'Fuel Type : ${data['Fuel Type']}',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
+                                                  style: GoogleFonts.oswald(
+                                                      fontSize:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               .017,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                                 ),
                                               ],
                                             ),

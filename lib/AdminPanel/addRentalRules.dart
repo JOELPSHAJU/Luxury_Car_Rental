@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, sort_child_properties_last
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

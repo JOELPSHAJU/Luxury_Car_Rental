@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_declarations, camel_case_types
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
-import 'package:luxurycars/AdminPanel/popular_inventories.dart';
+
 
 import 'package:luxurycars/Universaltools.dart';
 

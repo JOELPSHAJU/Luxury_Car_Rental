@@ -39,7 +39,7 @@ decorationTextFormField({context}) {
     hintStyle: GoogleFonts.gowunBatang(
         fontWeight: FontWeight.w400,
         fontSize: 14,
-        color: Color.fromARGB(255, 99, 99, 99)),
+        color: const Color.fromARGB(255, 99, 99, 99)),
     filled: true,
     enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(
@@ -156,13 +156,9 @@ class _SearchInventoryState extends State<SearchInventory> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 239, 239, 239),
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/new/kfv.jpg',
-                  ),
-                  opacity: _resultlist.isEmpty ? 0 : .25)),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 239, 239, 239),
+          ),
           child: Column(
             children: [
               Expanded(
@@ -190,6 +186,9 @@ class _SearchInventoryState extends State<SearchInventory> {
                       )
                     : ListView.builder(
                         itemBuilder: (context, index) {
+                          final price = _resultlist[index]['Price Per Day']
+                              .toString()
+                              .toUpperCase();
                           return GestureDetector(
                             onTap: () {
                               final selectedDocument = _resultlist[index];
@@ -200,111 +199,110 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       ParticularInventory(id: documentID)));
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.only(
+                                  top: 10, left: 10, right: 10),
                               child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .18,
-                                  decoration: BoxDecoration(
-                                      color: ProjectUtils().listcolor,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .4,
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height,
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromARGB(
-                                                255, 224, 224, 224),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                height:
+                                    MediaQuery.of(context).size.height * .15,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      width: MediaQuery.of(context).size.width *
+                                          .5,
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            '${_resultlist[index]['MainImage']}',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .5,
+                                        placeholder: (context, url) => Center(
+                                          child: CircularProgressIndicator(
+                                            color: ProjectColors.primarycolor1,
                                           ),
-                                          child: CachedNetworkImage(
-                                            imageUrl:
-                                                '${_resultlist[index]['MainImage']}',
-                                            placeholder: (context, url) =>
-                                                Center(
-                                              child: CircularProgressIndicator(
-                                                color:
-                                                    ProjectColors.primarycolor1,
-                                              ),
-                                            ),
-                                            errorListener: (value) =>
-                                                const Icon(
-                                              Icons.error,
-                                              color: Colors.grey,
-                                              size: 30,
-                                            ),
-                                          ),
+                                        ),
+                                        errorListener: (value) => const Icon(
+                                          Icons.error,
+                                          color: Colors.grey,
+                                          size: 30,
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                '${_resultlist[index]['Company']}\n${_resultlist[index]['Model Name']}',
-                                                style:
-                                                    GoogleFonts.signikaNegative(
-                                                        fontSize: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            .018,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                              ),
-                                              Text(
-                                                  'Price : ₹ ${_resultlist[index]['Price Per Day']}/-',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              .037,
-                                                          fontWeight:
-                                                              FontWeight.w500)),
-                                              Text(
-                                                  'Fuel Type : ${_resultlist[index]['Fuel Type']}',
-                                                  style: GoogleFonts
-                                                      .signikaNegative(
-                                                          fontSize: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              .037,
-                                                          fontWeight:
-                                                              FontWeight.w500)),
-                                              Text(
-                                                'Category : ${_resultlist[index]['Category']}',
-                                                style:
-                                                    GoogleFonts.signikaNegative(
-                                                        fontSize: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            .037,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              _resultlist[index]['Model Name']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.oswald(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .045,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              _resultlist[index]['Company']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.oswald(
+                                                  color: Colors.grey,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .045,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              _resultlist[index]['Category']
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.oswald(
+                                                  color: const Color.fromARGB(
+                                                      255, 203, 203, 203),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .04,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              '₹ $price/-',
+                                              style: GoogleFonts.oswald(
+                                                  color: ProjectColors
+                                                      .primarycolor1,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .045,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
                                         ),
-                                      )
-                                    ],
-                                  )),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           );
                         },

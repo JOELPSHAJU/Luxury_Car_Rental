@@ -16,48 +16,37 @@ class UserHomePageNew extends StatefulWidget {
 
 int _currentindex = 0;
 
-List<String> carcategorye = [
-  'Buggatti',
-  'BMw M3',
-  'BMW M4',
+List<String> category = [
+  'Sports',
+  'Luxury',
+  'Hybrid',
+  'Fully Electric',
+  'Coupe',
+  'Convertible',
+  'Sedan',
+  'Hatchback',
+  'SUV',
+  'Crossover',
+  'Pickup Truck',
+  'Minivan',
+  'Special'
+];
+List<String> categoryimages = [
+  'assets/brands/sports.jpg',
+  'assets/brands/luxury.jpg',
+  'assets/brands/hybrid.jpg',
+  'assets/brands/electric.jpg',
+  'assets/brands/coupe.jpg',
+  'assets/brands/Convertible.jpg',
+  'assets/brands/sedan.jpg',
+  'assets/brands/hatchback.jpg',
+  'assets/brands/suv.jpeg',
+  'assets/brands/crossover.jpg',
+  'assets/brands/pickuptruck.jpg',
+  'assets/brands/minivan.jpg',
+  'assets/brands/special.jpg',
 ];
 
-List<String> carimg = [
-  'assets/brands/astonmartin (3).png',
-  'assets/brands/audi (2).png',
-  'assets/brands/brntly.png',
-  'assets/brands/buggatti (2).png',
-  'assets/brands/bmv.png',
-  'assets/brands/ferrari (2).png',
-  'assets/brands/ford (2).png',
-  'assets/brands/lambo.png',
-  'assets/brands/landrover (2).png',
-  'assets/brands/mazda (2).png',
-  'assets/brands/mclarenn.png',
-  'assets/brands/merc.png',
-  'assets/brands/posrshe.png',
-  'assets/brands/rolls.png',
-  'assets/brands/teslaa.png',
-  'assets/brands/toyota (2).png'
-];
-List<String> carcategory = [
-  'Aston Martin',
-  'Audi',
-  'Bently',
-  'Buggatti',
-  'BMW',
-  'Ferrari',
-  'Ford',
-  'Lamborghini',
-  'Land Rover',
-  'Mazda',
-  'Mclaren',
-  'Mercedes-Benz',
-  'Porshe',
-  'RollsRoyce',
-  'Tesla',
-  'Toyota'
-];
 final sizedboc = const SizedBox(
   height: 10,
 );
@@ -69,19 +58,14 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       extendBody: true,
       body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/new/mea.png',
-                ),
-                fit: BoxFit.cover,
-                opacity: .4)),
+        decoration:
+            const BoxDecoration(color: Color.fromARGB(255, 255, 255, 255)),
         child: SingleChildScrollView(
           child: Column(
             children: [
               //MAIN CONTAINER STARTS HERE
               Container(
-                width: MediaQuery.of(context).size.width * double.infinity,
+                width: MediaQuery.of(context).size.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,17 +75,17 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                     //FIRST CARDS FOR THE BRANDS
                     Center(
                       child: Image.asset(
-                        'assets/bg/brands.png',
-                        width: MediaQuery.of(context).size.height * .17,
+                        'assets/latest/categories.png',
+                        width: MediaQuery.of(context).size.width * .3,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .16,
+                          height: MediaQuery.of(context).size.height * .3,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(0, 208, 208, 208),
                           ),
@@ -109,60 +93,74 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    sizedboc,
-                                    Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (ctx) =>
-                                                        SpecificBrand(
-                                                          name: carcategory[
-                                                              index],
-                                                        )));
-                                          },
-                                          child: Container(
-                                            height: 70,
-                                            width: 70,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Image(
-                                              image: AssetImage(carimg[index]),
-                                              fit: BoxFit.contain,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        )),
-                                    Row(
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (c) => SpecificBrand(
+                                          name: category[index])));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            86, 180, 180, 180),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    height: MediaQuery.of(context).size.height *
+                                        .27,
+                                    width:
+                                        MediaQuery.of(context).size.width * .42,
+                                    child: Column(
                                       children: [
-                                        Text(carcategory[index],
-                                            style: GoogleFonts.gowunBatang(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .037,
-                                                fontWeight: FontWeight.w600)),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                    categoryimages[index],
+                                                  ),
+                                                  fit: BoxFit.cover),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(15),
+                                                      topRight:
+                                                          Radius.circular(15))),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .22,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                        ),
+                                        sizedboc,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              category[index]
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              style: GoogleFonts.oswald(
+                                                  color: const Color.fromARGB(
+                                                      255, 0, 0, 0),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .045,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
+                                        )
                                       ],
-                                    )
-                                  ],
+                                    ),
+                                  ),
                                 ),
                               );
                             },
-                            itemCount: carcategory.length,
+                            itemCount: category.length,
                           ),
                         ),
                       ],
@@ -179,13 +177,20 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                 thickness: 2,
                 color: Colors.grey,
               ),
-              sizedboc,
-              Image.asset(
-                'assets/bg/popular.png',
-                width: MediaQuery.of(context).size.height * .18,
+              Container(
+                child: Column(
+                  children: [
+                    sizedboc,
+                    Image.asset(
+                      'assets/latest/popular.png',
+                      width: MediaQuery.of(context).size.width * .3,
+                    ),
+                    sizedboc,
+                    sizedboc,
+                    popularinventories(),
+                  ],
+                ),
               ),
-              sizedboc, sizedboc,
-              popularinventories(),
               const Divider(
                 color: Colors.grey,
                 thickness: 2,

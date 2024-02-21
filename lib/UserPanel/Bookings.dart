@@ -51,12 +51,8 @@ class _BookingsPageState extends State<BookingsPage> {
         extendBody: true,
         body: Container(
           decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 239, 239, 239),
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/new/kfv.jpg',
-                  ),
-                  opacity: .3)),
+            color: Color.fromARGB(255, 239, 239, 239),
+          ),
           child: FutureBuilder<List<DocumentSnapshot>>(
             future: _getDocuments(email.toString()),
             builder: (context, snapshot) {
@@ -132,7 +128,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                     Text(
                                       // ignore: prefer_adjacent_string_concatenation
                                       'Status : ' + '${data['Confirmation']}',
-                                      style: GoogleFonts.signikaNegative(
+                                      style: GoogleFonts.oswald(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
@@ -148,7 +144,7 @@ class _BookingsPageState extends State<BookingsPage> {
                                     ),
                                     Text(
                                       '${data['company']}',
-                                      style: GoogleFonts.signikaNegative(
+                                      style: GoogleFonts.carlito(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
@@ -156,32 +152,25 @@ class _BookingsPageState extends State<BookingsPage> {
                                           color: ProjectColors.black,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
                                     Text(
                                       'Category : ${data['category']}',
-                                      style: GoogleFonts.signikaNegative(
+                                      style: GoogleFonts.carlito(
+                                          color: Colors.grey,
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .017,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
+                                              .019,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     Text(
                                       'Total Amount : ${data['Totalamount']}',
-                                      style: GoogleFonts.signikaNegative(
+                                      style: GoogleFonts.carlito(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .017,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
+                                              .019,
+                                          fontWeight: FontWeight.w600,
+                                          color: ProjectColors.primarycolor1),
                                     ),
                                     Text(
                                       'Pickup Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Pickupdate']))}',
@@ -191,9 +180,6 @@ class _BookingsPageState extends State<BookingsPage> {
                                                   .height *
                                               .017,
                                           fontWeight: FontWeight.w700),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
                                     ),
                                     Text(
                                       'Dropoff Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Dropoffdate']))}',

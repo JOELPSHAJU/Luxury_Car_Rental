@@ -56,12 +56,8 @@ class _AddtoCartState extends State<AddtoCart> {
         extendBody: true,
         body: Container(
           decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 239, 239, 239),
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/new/kfv.jpg',
-                  ),
-                  opacity: .3)),
+            color: Color.fromARGB(255, 239, 239, 239),
+          ),
           child: FutureBuilder<List<DocumentSnapshot>>(
             future: _getDocuments(email.toString()),
             builder: (context, snapshot) {
@@ -117,11 +113,12 @@ class _AddtoCartState extends State<AddtoCart> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * .44,
-                                    height:
-                                        MediaQuery.of(context).size.height * .1,
+                                        MediaQuery.of(context).size.width * .5,
+                                    height: MediaQuery.of(context).size.height *
+                                        .13,
                                     child: CachedNetworkImage(
                                       imageUrl: "${data['Image']}",
+                                      fit: BoxFit.cover,
                                       placeholder: (context, url) =>
                                           const Center(
                                               child:
@@ -140,31 +137,44 @@ class _AddtoCartState extends State<AddtoCart> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${data['Company']}\n${data['Model Name']}',
-                                        style: GoogleFonts.signikaNegative(
+                                        data['Model Name']
+                                            .toString()
+                                            .toUpperCase(),
+                                        style: GoogleFonts.oswald(
+                                            color: const Color.fromARGB(
+                                                255, 0, 0, 0),
                                             fontSize: MediaQuery.of(context)
                                                     .size
-                                                    .height *
-                                                .018,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Category : ${data['Category']}',
-                                        style: GoogleFonts.signikaNegative(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016,
+                                                    .width *
+                                                .035,
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
-                                        'Price : ₹${data['Priceperday']}/-',
-                                        style: GoogleFonts.signikaNegative(
+                                        data['Company']
+                                            .toString()
+                                            .toUpperCase(),
+                                        style: GoogleFonts.oswald(
+                                            color: Colors.grey,
                                             fontSize: MediaQuery.of(context)
                                                     .size
-                                                    .height *
-                                                .016,
+                                                    .width *
+                                                .04,
                                             fontWeight: FontWeight.w500),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 3.0, bottom: 3),
+                                        child: Text(
+                                          'Price : ₹${data['Priceperday']}/-',
+                                          style: GoogleFonts.oswald(
+                                              color:
+                                                  ProjectColors.primarycolor1,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .034,
+                                              fontWeight: FontWeight.w500),
+                                        ),
                                       ),
                                       SizedBox(
                                         height:

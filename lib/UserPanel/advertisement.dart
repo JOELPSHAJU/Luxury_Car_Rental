@@ -25,9 +25,6 @@ class _AdvertisementState extends State<Advertisement> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage('assets/bg/placeholder.jpg'))),
       child: StreamBuilder<QuerySnapshot>(
         builder: (context, snapshot) {
           if (snapshot.hasData) {

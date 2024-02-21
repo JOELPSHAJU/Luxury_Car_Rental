@@ -18,7 +18,7 @@ class SpecificBrand extends StatelessWidget {
 
     try {
       QuerySnapshot querySnapshot =
-          await usersRef.where('Company', isEqualTo: name).get();
+          await usersRef.where('Category', isEqualTo: name).get();
       return querySnapshot.docs;
     } catch (e) {
       print(e);
@@ -33,8 +33,8 @@ class SpecificBrand extends StatelessWidget {
         centerTitle: true,
         backgroundColor: ProjectColors.primarycolor1,
         title: Text(
-          name,
-          style: TextStyle(
+          name.toUpperCase(),
+          style: GoogleFonts.oswald(
               fontWeight: FontWeight.bold,
               fontSize: MediaQuery.of(context).size.height * .023,
               color: Colors.white),
@@ -63,7 +63,7 @@ class SpecificBrand extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                     ),
                     Text(
-                      'Oops,No Car Found For This Brand',
+                      'Oops,No Car Found In This Category!',
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * .04,
                         fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class SpecificBrand extends StatelessWidget {
             }
 
             return Container(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 236, 236, 236),
               width: MediaQuery.of(context).size.width * double.infinity,
               height: MediaQuery.of(context).size.height * .99,
               child: ListView.builder(
@@ -99,7 +99,7 @@ class SpecificBrand extends StatelessWidget {
                       child: Container(
                           height: MediaQuery.of(context).size.width * .37,
                           decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 225, 225, 225),
+                              color: Color.fromARGB(255, 255, 255, 255),
                               borderRadius: BorderRadius.circular(10)),
                           child: Row(
                             children: [
@@ -132,11 +132,11 @@ class SpecificBrand extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         '${data['Company']}\n${data['Model Name']}',
-                                        style: GoogleFonts.signikaNegative(
+                                        style: GoogleFonts.oswald(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -145,7 +145,8 @@ class SpecificBrand extends StatelessWidget {
                                       ),
                                       Text(
                                         'Category : ${data['Category']}',
-                                        style: GoogleFonts.signikaNegative(
+                                        style: GoogleFonts.oswald(
+                                            color: Colors.grey,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -154,7 +155,8 @@ class SpecificBrand extends StatelessWidget {
                                       ),
                                       Text(
                                         'Price : ${data['Price Per Day']}',
-                                        style: GoogleFonts.signikaNegative(
+                                        style: GoogleFonts.oswald(
+                                            color: ProjectColors.primarycolor1,
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -163,7 +165,7 @@ class SpecificBrand extends StatelessWidget {
                                       ),
                                       Text(
                                         'Fuel Type : ${data['Fuel Type']}',
-                                        style: GoogleFonts.signikaNegative(
+                                        style: GoogleFonts.oswald(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .height *

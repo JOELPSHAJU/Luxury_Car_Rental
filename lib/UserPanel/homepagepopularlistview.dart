@@ -47,110 +47,98 @@ class _popularinventoriesState extends State<popularinventories> {
             return ListView(
               scrollDirection: Axis.horizontal,
               children: snapshot.data!.docs.map((doc) {
-                return Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Center(
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 4,
-                      width: MediaQuery.of(context).size.width * .96,
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) =>
-                                        ParticularInventory(id: doc['Id'])));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  height:
-                                      MediaQuery.of(context).size.height * .25,
-                                  width: MediaQuery.of(context).size.width * .8,
-                                  child: Center(
-                                    child: CachedNetworkImage(
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(
-                                              color:
-                                                  ProjectColors.primarycolor1,
-                                            ),
-                                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                                        imageUrl: doc['Image']),
-                                  ))),
-                          Padding(
-                            padding: const EdgeInsets.all(9.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${doc['Company']}  ${doc['Model Name']}",
-                                  style: title(context: context),
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Color.fromARGB(255, 84, 84, 84),
-                                    ),
-                                    Text(
-                                      '  ₹' + doc['Price'] + '/day',
-                                      style: text(context: context),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Color.fromARGB(255, 84, 84, 84),
-                                    ),
-                                    Text(
-                                      '  Category : ' + doc['Category'],
-                                      style: text(context: context),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * .04,
-                                  width: MediaQuery.of(context).size.width * .9,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (ctx) =>
-                                                  ParticularInventory(
-                                                      id: doc['Id'])));
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(3),
-                                            side: BorderSide(
-                                                color: ProjectColors
-                                                    .primarycolor1) // <-- Radius
-                                            ),
-                                        backgroundColor: Colors.transparent,
-                                        elevation: 0),
-                                    child: const Text(
-                                      'Book Now',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color:
-                                              Color.fromARGB(255, 12, 12, 12)),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
+                return Stack(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Positioned(
+                      left: MediaQuery.of(context).size.width * .1,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .4,
+                        width: MediaQuery.of(context).size.width * .74,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 237, 237, 237),
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                     ),
-                  ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * .05,
+                      left: MediaQuery.of(context).size.width * .05,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .2,
+                        width: MediaQuery.of(context).size.width * .85,
+                        child: CachedNetworkImage(
+                          imageUrl: doc['Image'],
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * .25,
+                      left: MediaQuery.of(context).size.width * .15,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .12,
+                        width: MediaQuery.of(context).size.width * .63,
+                        child: Column(
+                          children: [
+                            Text(
+                              doc['Company'].toString().toUpperCase(),
+                              style: GoogleFonts.oswald(),
+                            ),
+                            Text(
+                              doc['Model Name'].toString().toUpperCase(),
+                              style: GoogleFonts.oswald(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * .05,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .04,
+                              width: MediaQuery.of(context).size.width * .7,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) =>
+                                          ParticularInventory(id: doc['Id'])));
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                    ),
+                                    backgroundColor:
+                                        ProjectColors.primarycolor1,
+                                    elevation: 0),
+                                child: Text(
+                                  'BOOK NOW',
+                                  style: GoogleFonts.oswald(
+                                      fontWeight: FontWeight.w500,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * .012,
+                      left: MediaQuery.of(context).size.width * .59,
+                      child: Text(
+                        ' ₹ ${doc['Price']}/day',
+                        style: GoogleFonts.oswald(
+                            fontWeight: FontWeight.w500,
+                            color: ProjectColors.primarycolor1),
+                      ),
+                    ),
+                  ],
                 );
               }).toList(),
             );
