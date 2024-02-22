@@ -48,6 +48,7 @@ dependencies:
   image_network: ^2.5.6
   image_picker: ^1.0.7
   image_picker_android: ^0.8.9+3
+  insta_image_viewer: ^1.0.2
   intl: ^0.18.0
   lottie: ^3.0.0
   path_provider: ^2.1.2

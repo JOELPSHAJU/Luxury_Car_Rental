@@ -199,7 +199,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                                   Colors.transparent,
                                               elevation: 0),
                                           child: const Text(
-                                            'Remove',
+                                            'Removed',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Color.fromARGB(

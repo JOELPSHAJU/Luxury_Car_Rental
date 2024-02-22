@@ -142,12 +142,6 @@ class _BookingPageState extends State<BookingPage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                      'assets/new/fa9a2abfad578ca9b66fb2841a675270.jpg'),
-                  fit: BoxFit.cover,
-                  opacity: .2)),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,19 +186,15 @@ class _BookingPageState extends State<BookingPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .1,
-                        width: MediaQuery.of(context).size.width * .43,
-                        child: CachedNetworkImage(
-                            placeholder: (context, url) => Center(
-                                  child: CircularProgressIndicator(
-                                    color: ProjectColors.primarycolor1,
-                                  ),
+                      CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                                child: CircularProgressIndicator(
+                                  color: ProjectColors.primarycolor1,
                                 ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            imageUrl: mainimage),
-                      )
+                              ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          imageUrl: mainimage)
                     ],
                   ),
                 ),

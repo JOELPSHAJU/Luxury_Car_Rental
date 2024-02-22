@@ -11,6 +11,7 @@ import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 import 'package:luxurycars/UserPanel/booking_page.dart';
+import 'package:luxurycars/UserPanel/ontap_view_images.dart';
 import 'package:luxurycars/UserPanel/ontapdetails.dart';
 
 // ignore: must_be_immutable
@@ -58,7 +59,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
   final onpresscolor = ProjectColors.primarycolor1;
 
   bool onpress = false;
-
+  int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,11 +81,6 @@ class _ParticularInventoryState extends State<ParticularInventory> {
           toolbarHeight: 39,
         ),
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                      'assets/new/fa9a2abfad578ca9b66fb2841a675270.jpg'),
-                  opacity: .1)),
           child: Center(
             child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
               future: FirebaseFirestore.instance
@@ -126,46 +122,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255),
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.29,
-                              width: double.infinity,
-                              child: FractionallySizedBox(
-                                heightFactor: 95.0,
-                                child: CarouselSlider(
-                                  items: images.map((url) {
-                                    return SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: CachedNetworkImage(
-                                        imageUrl: url,
-                                        fit: BoxFit.cover,
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(
-                                          Icons.error,
-                                          color: Colors.grey,
-                                          size: 30,
-                                        ),
-                                        placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator(
-                                            color: ProjectColors.primarycolor1,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  options: CarouselOptions(
-                                    viewportFraction: 1,
-                                    autoPlay: true,
-                                    aspectRatio: 19 / 12,
-                                    enableInfiniteScroll: true,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            View_Ontap_Images(images: images),
                             const Divider(),
                             SizedBox(
                               height: 62,
@@ -176,11 +133,11 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text('$company \n$modelname',
-                                        style: GoogleFonts.signikaNegative(
+                                        style: GoogleFonts.oswald(
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .045,
+                                                .047,
                                             color:
                                                 ProjectColors.secondarycolor2,
                                             fontWeight: FontWeight.w600)),
@@ -193,6 +150,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
                                   child: Column(
@@ -200,7 +158,8 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, top: 8),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
@@ -246,7 +205,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                                       MediaQuery.of(context)
                                                               .size
                                                               .width *
-                                                          .037,
+                                                          .039,
                                                   color: Colors.grey),
                                             ),
                                           ],
@@ -258,7 +217,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * .2,
                                   height:
-                                      MediaQuery.of(context).size.height * .1,
+                                      MediaQuery.of(context).size.height * .08,
                                   child: Image.asset(
                                     'assets/new/images.png',
                                     fit: BoxFit.cover,

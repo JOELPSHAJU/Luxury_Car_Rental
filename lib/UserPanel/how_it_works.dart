@@ -41,7 +41,7 @@ class HowitWorks extends StatelessWidget {
             ),
             Image.asset(
               'assets/latest/howitworks.png',
-              width: MediaQuery.of(context).size.width * .3,
+              width: MediaQuery.of(context).size.width * .34,
             ),
             const SizedBox(
               height: 10,

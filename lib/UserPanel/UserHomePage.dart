@@ -85,7 +85,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .3,
+                          height: MediaQuery.of(context).size.height * .25,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(0, 208, 208, 208),
                           ),
@@ -108,7 +108,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                     height: MediaQuery.of(context).size.height *
-                                        .27,
+                                        .22,
                                     width:
                                         MediaQuery.of(context).size.width * .42,
                                     child: Column(
@@ -129,7 +129,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              .22,
+                                              .17,
                                           width:
                                               MediaQuery.of(context).size.width,
                                         ),
@@ -183,7 +183,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                     sizedboc,
                     Image.asset(
                       'assets/latest/popular.png',
-                      width: MediaQuery.of(context).size.width * .3,
+                      width: MediaQuery.of(context).size.width * .26,
                     ),
                     sizedboc,
                     sizedboc,
