@@ -161,6 +161,9 @@ class _SearchInventoryState extends State<SearchInventory> {
           ),
           child: Column(
             children: [
+              SizedBox(
+                height: 10,
+              ),
               Expanded(
                 child: _resultlist.isEmpty
                     ? Center(
@@ -206,8 +209,19 @@ class _SearchInventoryState extends State<SearchInventory> {
                                     MediaQuery.of(context).size.height * .15,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey
+                                          .withOpacity(0.4), 
+                                      spreadRadius: 4, 
+                                      blurRadius: 5,
+                                      offset: Offset(0,
+                                          3), 
+                                    ),
+                                  ],
+                                ),
                                 child: Row(
                                   children: [
                                     SizedBox(
@@ -234,7 +248,7 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       ),
                                     ),
                                     Expanded(
-                                      child: Container(
+                                      child: SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height,
                                         width:
@@ -250,51 +264,51 @@ class _SearchInventoryState extends State<SearchInventory> {
                                                   .toString()
                                                   .toUpperCase(),
                                               style: GoogleFonts.oswald(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .045,
-                                                  fontWeight: FontWeight.w500),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .045,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                             Text(
                                               _resultlist[index]['Company']
                                                   .toString()
                                                   .toUpperCase(),
                                               style: GoogleFonts.oswald(
-                                                  color: Colors.grey,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .045,
-                                                  fontWeight: FontWeight.w500),
+                                                color: Colors.grey,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .045,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                             Text(
                                               _resultlist[index]['Category']
                                                   .toString()
                                                   .toUpperCase(),
                                               style: GoogleFonts.oswald(
-                                                  color: const Color.fromARGB(
-                                                      255, 203, 203, 203),
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .04,
-                                                  fontWeight: FontWeight.w500),
+                                                color: const Color.fromARGB(
+                                                    255, 203, 203, 203),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .04,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                             Text(
                                               '₹ $price/-',
                                               style: GoogleFonts.oswald(
-                                                  color: ProjectColors
-                                                      .primarycolor1,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .045,
-                                                  fontWeight: FontWeight.w500),
+                                                color:
+                                                    ProjectColors.primarycolor1,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .045,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                           ],
                                         ),

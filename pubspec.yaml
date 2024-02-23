@@ -48,11 +48,12 @@ dependencies:
   image_network: ^2.5.6
   image_picker: ^1.0.7
   image_picker_android: ^0.8.9+3
-  insta_image_viewer: ^1.0.2
+  
   intl: ^0.18.0
   lottie: ^3.0.0
   path_provider: ^2.1.2
   path_provider_foundation: ^2.3.2
+  photo_view: ^0.14.0
   shared_preferences: ^2.2.2
   shared_preferences_android: ^2.2.1
   shared_preferences_foundation: ^2.3.5

@@ -62,6 +62,8 @@ class _ParticularInventoryState extends State<ParticularInventory> {
   int currentindex = 0;
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> BookingPageDetails = {};
+    Map<String, dynamic> addToCartDetails = {};
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 247, 247, 247),
@@ -116,6 +118,38 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                     String seatingcapacity = data['Seating Capacity'];
                     String transmission = data['Transmission'];
                     String zerotohundred = data['Zero To Hundred'];
+
+                    addToCartDetails = {
+                      "Id": docsid,
+                      "Image": mainimage,
+                      "Company": company,
+                      "Category": category,
+                      "Model Name": modelname,
+                      "Priceperday": price,
+                      "email": email,
+                    };
+
+                    //acess the data to a map to forward it to booking page
+
+                    BookingPageDetails = {
+                      'Company': company,
+                      'Category': category,
+                      'PricePerDay': price,
+                      'Gearbox': gearbox,
+                      'Engine': engine,
+                      'Transmission': transmission,
+                      'Fuel Type': fueltype,
+                      'Fuel Tank': fueltank,
+                      'Ground Clearence': groundclearence,
+                      'MaxTorque': maxtorque,
+                      'MaxPower': maxpower,
+                      'Seating': seatingcapacity,
+                      'Zero': zerotohundred,
+                      'image': mainimage,
+                      'model': modelname,
+                      'numberplate': numberplate,
+                      'docsid': widget.id
+                    };
                     return SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: SingleChildScrollView(
@@ -297,6 +331,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                 ],
                               ),
                             ),
+                            Divider(),
                             OntapDetails(
                                 engine: engine,
                                 power: maxpower,
@@ -311,105 +346,6 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                 category: category),
                             const SizedBox(
                               height: 10,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * .08,
-                              width: MediaQuery.of(context).size.width,
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Map<String, dynamic> car = {
-                                        "Id": docsid,
-                                        "Image": mainimage,
-                                        "Company": company,
-                                        "Category": category,
-                                        "Model Name": modelname,
-                                        "Priceperday": price,
-                                        "email": email,
-                                      };
-                                      DatabaseMethods().addtocart(car);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              duration:
-                                                  const Duration(seconds: 2),
-                                              backgroundColor: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              content: SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    .1,
-                                                child: Center(
-                                                  child: LottieBuilder.asset(
-                                                    'assets/animations/cartadded.json',
-                                                    fit: BoxFit.fitHeight,
-                                                  ),
-                                                ),
-                                              )));
-                                    },
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                          color: Colors.white),
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .1,
-                                      width: MediaQuery.of(context).size.width *
-                                          .5,
-                                      child: Center(
-                                        child: ProjectUtils().headingsmall(
-                                            context: context,
-                                            color: ProjectColors.primarycolor1,
-                                            text: 'Add to Cart'),
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Map<String, dynamic> car = {
-                                        'Company': company,
-                                        'Category': category,
-                                        'PricePerDay': price,
-                                        'Gearbox': gearbox,
-                                        'Engine': engine,
-                                        'Transmission': transmission,
-                                        'Fuel Type': fueltype,
-                                        'Fuel Tank': fueltank,
-                                        'Ground Clearence': groundclearence,
-                                        'MaxTorque': maxtorque,
-                                        'MaxPower': maxpower,
-                                        'Seating': seatingcapacity,
-                                        'Zero': zerotohundred,
-                                        'image': mainimage,
-                                        'model': modelname,
-                                        'numberplate': numberplate,
-                                        'docsid': widget.id
-                                      };
-                                      Navigator.of(context)
-                                          .pushReplacement(MaterialPageRoute(
-                                              builder: (ctx) => BookingPage(
-                                                    data: car,
-                                                  )));
-                                    },
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .08,
-                                      width: MediaQuery.of(context).size.width *
-                                          .5,
-                                      color: ProjectColors.primarycolor1,
-                                      child: Center(
-                                        child: ProjectUtils().headingsmall(
-                                            context: context,
-                                            color: Colors.white,
-                                            text: 'Book Now'),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
                             ),
                           ],
                         ),
@@ -428,6 +364,62 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                     ));
               },
             ),
+          ),
+        ),
+        bottomNavigationBar: SizedBox(
+          height: MediaQuery.of(context).size.height * .08,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  DatabaseMethods().addtocart(addToCartDetails);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      behavior: SnackBarBehavior.floating,
+                      content: SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                        child: Center(
+                          child: LottieBuilder.asset(
+                            'assets/animations/cartadded.json',
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      )));
+                },
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  height: MediaQuery.of(context).size.height * .1,
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: Center(
+                    child: ProjectUtils().headingsmall(
+                        context: context,
+                        color: ProjectColors.primarycolor1,
+                        text: 'Add to Cart'),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (ctx) => BookingPage(
+                            data: BookingPageDetails,
+                          )));
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .08,
+                  width: MediaQuery.of(context).size.width * .5,
+                  color: ProjectColors.primarycolor1,
+                  child: Center(
+                    child: ProjectUtils().headingsmall(
+                        context: context,
+                        color: Colors.white,
+                        text: 'Book Now'),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

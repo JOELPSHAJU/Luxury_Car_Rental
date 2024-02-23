@@ -9,6 +9,7 @@ import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
 
@@ -102,11 +103,25 @@ class _AddtoCartState extends State<AddtoCart> {
                                 )));
                       },
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8,
+                          top: 10,
+                        ),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ProjectUtils().listcolor,
-                                borderRadius: BorderRadius.circular(10)),
+                              color: ProjectUtils().listcolor,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 154, 154, 154)
+                                      .withOpacity(0.4),
+                                  spreadRadius: 4,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             child: Row(
                               children: [
                                 Padding(
@@ -193,8 +208,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                                       BorderRadius.circular(3),
                                                   side: BorderSide(
                                                       color: ProjectColors
-                                                          .primarycolor1) // <-- Radius
-                                                  ),
+                                                          .primarycolor1)),
                                               backgroundColor:
                                                   Colors.transparent,
                                               elevation: 0),

@@ -73,6 +73,16 @@ class Notifications extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                                 decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromARGB(255, 154, 154, 154)
+                                                .withOpacity(0.4),
+                                        spreadRadius: 4,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
                                     borderRadius: BorderRadius.circular(10),
                                     color: ProjectUtils().listcolor),
                                 width: MediaQuery.of(context).size.width * .93,

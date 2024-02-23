@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:insta_image_viewer/insta_image_viewer.dart';
+
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/ontap_image_select.dart';
+import 'package:photo_view/photo_view.dart';
 
 class View_Ontap_Images extends StatefulWidget {
   final List<dynamic> images;
@@ -11,9 +13,15 @@ class View_Ontap_Images extends StatefulWidget {
   State<View_Ontap_Images> createState() => _View_Ontap_ImagesState();
 }
 
-int currentindex = 0;
+late int currentindex;
 
 class _View_Ontap_ImagesState extends State<View_Ontap_Images> {
+  @override
+  void initState() {
+    currentindex = 0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,7 +33,12 @@ class _View_Ontap_ImagesState extends State<View_Ontap_Images> {
             decoration: const BoxDecoration(),
             height: MediaQuery.of(context).size.height * .29,
             width: double.infinity,
-            child: InstaImageViewer(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) =>
+                        OntapImageViewer(image: widget.images[currentindex])));
+              },
               child: CachedNetworkImage(
                 imageUrl: widget.images[currentindex].toString(),
                 fit: BoxFit.cover,
@@ -61,11 +74,13 @@ class _View_Ontap_ImagesState extends State<View_Ontap_Images> {
                         height: MediaQuery.of(context).size.height * .0,
                         width: MediaQuery.of(context).size.width * .23,
                         decoration: BoxDecoration(
-                            border: Border.all(
-                                color: currentindex == widget.images[index]
-                                    ? ProjectColors.primarycolor1
-                                    : Colors.black,
-                                width: 2)),
+                          border: Border.all(
+                            color: currentindex == index
+                                ? ProjectColors.primarycolor1
+                                : Colors.black,
+                            width: 2,
+                          ),
+                        ),
                         child: CachedNetworkImage(
                           imageUrl: widget.images[index].toString(),
                           fit: BoxFit.cover,
@@ -84,7 +99,7 @@ class _View_Ontap_ImagesState extends State<View_Ontap_Images> {
                     ),
                   );
                 }),
-          ),
+          )
         ],
       ),
     );
