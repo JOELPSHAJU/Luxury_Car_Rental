@@ -217,12 +217,15 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
 //drop down button fuel type
   static const List<String> FuelType = <String>['Petrol', 'Diesel', 'Electric'];
 //drop down button company data
+  // ignore: unused_field
   static const List<String> companylist = <String>[
     'Aston Martin',
     'Audi',
     'Bently',
     'Buggatti',
     'BMW',
+    'Chevorlet',
+    'Dodge',
     'Ferrari',
     'Ford',
     'Lamborghini',
@@ -230,6 +233,7 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
     'Mazda',
     'Mclaren',
     'Mercedes-Benz',
+    'Nissan',
     'Porshe',
     'RollsRoyce',
     'Tesla',

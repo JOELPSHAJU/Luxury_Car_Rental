@@ -142,7 +142,7 @@ class _AddInventoryState extends State<AddInventory> {
       MainImage = await referenceDirImagtoupload.getDownloadURL();
       setState(() {});
       if (MainImage.isEmpty) {
-        // ignore: use_build_context_synchronously
+       
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
       }

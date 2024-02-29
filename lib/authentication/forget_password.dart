@@ -19,12 +19,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           .sendPasswordResetEmail(email: email.text.trim());
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (c) => const LoginPage()));
-      // ignore: use_build_context_synchronously
+     
       ProjectUtils().sucessmessage(
           context: context,
           text: 'Password reset Link send ! Check your Email');
     } on FirebaseAuthException catch (ex) {
-      // ignore: use_build_context_synchronously
+     
       ProjectUtils()
           .errormessage(context: context, text: 'Some Error Happened $ex');
     }

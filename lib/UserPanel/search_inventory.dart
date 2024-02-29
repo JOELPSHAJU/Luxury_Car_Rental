@@ -81,8 +81,15 @@ class _SearchInventoryState extends State<SearchInventory> {
     var showresult = [];
     if (_searchcontroller.text != '') {
       for (var clientSnapShot in _allresults) {
+        var modelname = clientSnapShot['Model Name'].toString().toLowerCase();
         var companyname = clientSnapShot['Company'].toString().toLowerCase();
+        var categoryname = clientSnapShot['Category'].toString().toLowerCase();
         if (companyname.contains(_searchcontroller.text.toLowerCase())) {
+          showresult.add(clientSnapShot);
+        } else if (modelname.contains(_searchcontroller.text.toLowerCase())) {
+          showresult.add(clientSnapShot);
+        } else if (categoryname
+            .contains(_searchcontroller.text.toLowerCase())) {
           showresult.add(clientSnapShot);
         } else {}
       }
@@ -135,6 +142,7 @@ class _SearchInventoryState extends State<SearchInventory> {
     return Scaffold(
         extendBody: true,
         appBar: AppBar(
+          surfaceTintColor: Colors.white,
           leading: IconButton(
             icon: Icon(
               Icons.filter_list,
@@ -157,34 +165,36 @@ class _SearchInventoryState extends State<SearchInventory> {
         ),
         body: Container(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 239, 239, 239),
+            color: Color.fromARGB(255, 250, 250, 250),
           ),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Expanded(
                 child: _resultlist.isEmpty
                     ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Lottie.asset(
-                              'assets/animations/Animation - 1706182910823.json',
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width,
-                            ),
-                            Text(
-                              'Oops,No Inventory Found!',
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * .04,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 81, 81, 81),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset(
+                                'assets/animations/Animation - 1706182910823.json',
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
                               ),
-                            ),
-                          ],
+                              Text(
+                                'Oops,No Inventory Found!',
+                                style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * .04,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(255, 81, 81, 81),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     : ListView.builder(
@@ -202,122 +212,151 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       ParticularInventory(id: documentID)));
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10, left: 10, right: 10),
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .15,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey
-                                          .withOpacity(0.4), 
-                                      spreadRadius: 4, 
-                                      blurRadius: 5,
-                                      offset: Offset(0,
-                                          3), 
-                                    ),
-                                  ],
-                                ),
-                                child: Row(
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 10, right: 10),
+                                child: Stack(
                                   children: [
-                                    SizedBox(
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
                                       height:
-                                          MediaQuery.of(context).size.height,
-                                      width: MediaQuery.of(context).size.width *
-                                          .5,
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            '${_resultlist[index]['MainImage']}',
+                                          MediaQuery.of(context).size.height *
+                                              .18,
+                                      decoration: BoxDecoration(
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color.fromARGB(
+                                                  255, 229, 229, 229),
+                                              spreadRadius: 2,
+                                              blurRadius: 3,
+                                              offset: Offset(2, 2),
+                                            ),
+                                          ],
+                                          border: Border.all(
+                                              color: const Color.fromARGB(
+                                                  255, 190, 216, 218)),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                    ),
+                                    Positioned(
+                                      left: MediaQuery.of(context).size.width *
+                                          .592,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .35,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .18,
+                                        decoration: const BoxDecoration(
+                                            color: Color.fromARGB(
+                                                255, 190, 216, 218),
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(15),
+                                                bottomLeft: Radius.circular(20),
+                                                bottomRight:
+                                                    Radius.circular(15))),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: MediaQuery.of(context).size.width *
+                                          .43,
+                                      child: Container(
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 .5,
-                                        placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator(
-                                            color: ProjectColors.primarycolor1,
-                                          ),
-                                        ),
-                                        errorListener: (value) => const Icon(
-                                          Icons.error,
-                                          color: Colors.grey,
-                                          size: 30,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .18,
+                                        child: CachedNetworkImage(
+                                          imageUrl: _resultlist[index]
+                                              ['MainImage'],
+                                          placeholder: (context, url) {
+                                            return const Center(
+                                              child: CircularProgressIndicator(
+                                                color: Colors.black,
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              _resultlist[index]['Model Name']
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              style: GoogleFonts.oswald(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .045,
-                                                fontWeight: FontWeight.w500,
+                                    Positioned(
+                                      left: MediaQuery.of(context).size.width *
+                                          .02,
+                                      child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .5,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .18,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                _resultlist[index]['Model Name']
+                                                    .toString()
+                                                    .toUpperCase(),
+                                                style: GoogleFonts.poppins(
+                                                  color: ProjectColors.black,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .045,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              _resultlist[index]['Company']
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              style: GoogleFonts.oswald(
-                                                color: Colors.grey,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .045,
-                                                fontWeight: FontWeight.w500,
+                                              Text(
+                                                _resultlist[index]['Company'],
+                                                style: GoogleFonts.poppins(
+                                                  color: const Color.fromARGB(
+                                                      255, 0, 0, 0),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .032,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              _resultlist[index]['Category']
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              style: GoogleFonts.oswald(
-                                                color: const Color.fromARGB(
-                                                    255, 203, 203, 203),
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .04,
-                                                fontWeight: FontWeight.w500,
+                                              Text(
+                                                'Category : ${_resultlist[index]['Category']}',
+                                                style: GoogleFonts.poppins(
+                                                  color: const Color.fromARGB(
+                                                      255, 132, 132, 132),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .032,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              '₹ $price/-',
-                                              style: GoogleFonts.oswald(
-                                                color:
-                                                    ProjectColors.primarycolor1,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .045,
-                                                fontWeight: FontWeight.w500,
+                                              Text(
+                                                '₹ ${_resultlist[index]['Price Per Day']}/day',
+                                                style: GoogleFonts.poppins(
+                                                  color: const Color.fromARGB(
+                                                      255, 80, 169, 174),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .035,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                            ],
+                                          )),
                                     )
                                   ],
-                                ),
-                              ),
-                            ),
+                                )),
                           );
                         },
                         itemCount: _resultlist.length,

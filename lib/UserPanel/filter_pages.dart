@@ -32,8 +32,8 @@ class _FilterPageState extends State<FilterPage> {
     'Manual Transmission',
     'Automatic Transmission',
     'Automatic+Manual',
-    'Price<50000',
-    'Price<30000',
+    'Price < ₹250000/-',
+    'Price < ₹320000/-',
     'Fuel : Diesel',
     'Fuel : Petrol',
     'Fuel : Electric'
@@ -76,7 +76,7 @@ class _FilterPageState extends State<FilterPage> {
     } else if (name == filterdropdown[3]) {
       try {
         QuerySnapshot querySnapshot =
-            await usersRef.where('Price Per Day', isLessThan: '50000').get();
+            await usersRef.where('Price Per Day', isLessThan: '250000').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -85,7 +85,7 @@ class _FilterPageState extends State<FilterPage> {
     } else if (name == filterdropdown[4]) {
       try {
         QuerySnapshot querySnapshot =
-            await usersRef.where('Price Per Day', isLessThan: '30000').get();
+            await usersRef.where('Price Per Day', isLessThan: '320000').get();
         return querySnapshot.docs;
       } catch (e) {
         print(e);
@@ -135,13 +135,14 @@ class _FilterPageState extends State<FilterPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          surfaceTintColor: ProjectColors.white,
           centerTitle: true,
-          backgroundColor: ProjectColors.primarycolor1,
+          backgroundColor: ProjectColors.white,
           title: Text(
             'Find Your Specifications',
-            style: GoogleFonts.oswald(
+            style: GoogleFonts.poppins(
                 fontSize: MediaQuery.of(context).size.width * .05,
-                color: Colors.white),
+                color: const Color.fromARGB(255, 0, 0, 0)),
           ),
           leading: IconButton(
               onPressed: () {
@@ -149,12 +150,12 @@ class _FilterPageState extends State<FilterPage> {
               },
               icon: const Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: Color.fromARGB(255, 0, 0, 0),
               )),
         ),
         body: Container(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 239, 239, 239),
+            color: Color.fromARGB(255, 243, 243, 243),
           ),
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -162,47 +163,64 @@ class _FilterPageState extends State<FilterPage> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 76,
-                color: ProjectColors.primarycolor1,
+                height: MediaQuery.of(context).size.height * .091,
+                color: ProjectColors.white,
                 child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
                     children: [
-                      const Icon(
-                        Icons.filter_list,
-                        color: Colors.white,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: DropdownMenu<String>(
-                          menuHeight: 250,
-                          textStyle: GoogleFonts.gowunBatang(
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context).size.width * .04,
-                              color: const Color.fromARGB(255, 134, 134, 134)),
-                          width: MediaQuery.of(context).size.width * .7,
-                          initialSelection: filterdropdown.first,
-                          inputDecorationTheme: InputDecorationTheme(
-                              contentPadding: const EdgeInsets.all(15),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 2,
-                                      color: ProjectColors.primarycolor1),
-                                  borderRadius: BorderRadius.circular(100)),
-                              fillColor:
-                                  const Color.fromARGB(255, 255, 255, 255),
-                              filled: true),
-                          onSelected: (String? value) {
-                            setState(() {
-                              transmissiondropdownvalue = value!;
-                            });
-                          },
-                          dropdownMenuEntries: filterdropdown
-                              .map<DropdownMenuEntry<String>>((String value) {
-                            return DropdownMenuEntry<String>(
-                                value: value, label: value);
-                          }).toList(),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Filter',
+                            style: GoogleFonts.poppins(),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height * .07,
+                            width: MediaQuery.of(context).size.width * .6,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: DropdownButton<String>(
+                                dropdownColor: Colors.white,
+                                menuMaxHeight: 250,
+                                style: GoogleFonts.oswald(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * .04,
+                                  color: const Color.fromARGB(255, 0, 0, 0),
+                                ),
+                                icon: const Icon(Icons.arrow_drop_down),
+                                iconSize: 24,
+                                elevation: 19,
+                                value: transmissiondropdownvalue,
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    transmissiondropdownvalue = newValue!;
+                                  });
+                                },
+                                items: filterdropdown
+                                    .map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  },
+                                ).toList(),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -240,7 +258,7 @@ class _FilterPageState extends State<FilterPage> {
 
                       return Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 239, 239, 239),
+                          color: Color.fromARGB(255, 252, 252, 252),
                         ),
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
@@ -254,119 +272,184 @@ class _FilterPageState extends State<FilterPage> {
                                 documents[index].data() as Map<String, dynamic>;
 
                             return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) => ParticularInventory(
-                                          id: documentId,
-                                        )));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.width * .38,
-                                    decoration: BoxDecoration(
-                                        color: ProjectUtils().listcolor,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .35,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .height,
-                                            decoration: BoxDecoration(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) => ParticularInventory(
+                                            id: documentId,
+                                          )));
+                                },
+                                child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 229, 229, 229),
+                                                spreadRadius: 2,
+                                                blurRadius: 3,
+                                                offset: Offset(2, 2),
+                                              ),
+                                            ],
+                                            border: Border.all(
                                               color: const Color.fromARGB(
-                                                  255, 230, 230, 230),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  88, 163, 214, 232),
                                             ),
-                                            child: CachedNetworkImage(
-                                              imageUrl: data['MainImage'],
-                                              placeholder: (context, url) =>
-                                                  CircularProgressIndicator(
-                                                color:
-                                                    ProjectColors.primarycolor1,
+                                            color: const Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .18,
+                                        child: Stack(
+                                          children: [
+                                            Positioned(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .545,
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .4,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .18,
+                                                decoration: const BoxDecoration(
+                                                    color: Color.fromARGB(
+                                                        88, 163, 214, 232),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight: Radius
+                                                                .circular(15),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    15))),
                                               ),
-                                              errorListener: (value) =>
-                                                  const Icon(
-                                                Icons.error,
-                                                color: Colors.grey,
-                                                size: 30,
+                                            ),
+                                            Positioned(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .4,
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .5,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .18,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: data['MainImage'],
+                                                  placeholder: (context, url) {
+                                                    return Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color: Colors.black,
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Text(
-                                                  '${data['Company']}\n${data['Model Name']}',
-                                                  style: GoogleFonts.oswald(
-                                                      fontSize:
-                                                          MediaQuery.of(context)
+                                            Positioned(
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .02,
+                                              child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      .45,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      .18,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        data['Model Name']
+                                                            .toString()
+                                                            .toUpperCase(),
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color: ProjectColors
+                                                              .black,
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
                                                                   .size
-                                                                  .height *
-                                                              .017,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  'Category : ${data['Category']}',
-                                                  style: GoogleFonts.oswald(
-                                                      color: Colors.grey,
-                                                      fontSize:
-                                                          MediaQuery.of(context)
+                                                                  .width *
+                                                              .045,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        data['Company'],
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color: const Color
+                                                              .fromARGB(
+                                                              255, 0, 0, 0),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
                                                                   .size
-                                                                  .height *
-                                                              .017,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                                Text(
-                                                  'Price : ${data['Price Per Day']}',
-                                                  style: GoogleFonts.oswald(
-                                                      color: ProjectColors
-                                                          .primarycolor1,
-                                                      fontSize:
-                                                          MediaQuery.of(context)
+                                                                  .width *
+                                                              .032,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Category : ${data['Category']}',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color: const Color
+                                                              .fromARGB(255,
+                                                              132, 132, 132),
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
                                                                   .size
-                                                                  .height *
-                                                              .017,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                                Text(
-                                                  'Fuel Type : ${data['Fuel Type']}',
-                                                  style: GoogleFonts.oswald(
-                                                      fontSize:
-                                                          MediaQuery.of(context)
+                                                                  .width *
+                                                              .032,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '₹ ${data['Price Per Day']}/day',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          color: ProjectColors
+                                                              .primarycolor1,
+                                                          fontSize: MediaQuery.of(
+                                                                      context)
                                                                   .size
-                                                                  .height *
-                                                              .017,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    )),
-                              ),
-                            );
+                                                                  .width *
+                                                              .035,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        ))));
                           },
                         ),
                       );

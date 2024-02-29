@@ -72,20 +72,20 @@ class _BookingPageState extends State<BookingPage> {
           children: [
             const Icon(
               Icons.car_rental_outlined,
-              color: Color.fromARGB(255, 132, 132, 132),
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
             Text(label,
                 style: GoogleFonts.poppins(
                     fontSize: MediaQuery.of(context).size.width * .035,
                     fontWeight: FontWeight.w500,
-                    color: const Color.fromARGB(255, 132, 132, 132))),
+                    color: Color.fromARGB(255, 0, 0, 0))),
           ],
         ),
         Text(details,
             style: GoogleFonts.poppins(
                 fontSize: MediaQuery.of(context).size.width * .035,
-                fontWeight: FontWeight.w500,
-                color: ProjectColors.primarycolor1)),
+                fontWeight: FontWeight.w300,
+                color: ProjectColors.black)),
       ],
     );
   }
@@ -122,8 +122,8 @@ class _BookingPageState extends State<BookingPage> {
         title: Text(
           'Book Your Inventory',
           style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-              fontSize: MediaQuery.of(context).size.width * .04,
+              fontWeight: FontWeight.w500,
+              fontSize: MediaQuery.of(context).size.width * .045,
               color: Colors.white),
         ),
         centerTitle: true,
@@ -168,16 +168,15 @@ class _BookingPageState extends State<BookingPage> {
                                         fontSize:
                                             MediaQuery.of(context).size.width *
                                                 .037,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color.fromARGB(
-                                            255, 127, 127, 127))),
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromARGB(255, 0, 0, 0))),
                                 Text(
                                   category,
                                   style: GoogleFonts.poppins(
                                       fontSize:
                                           MediaQuery.of(context).size.width *
                                               .037,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w500,
                                       color: const Color.fromARGB(
                                           255, 127, 127, 127)),
                                 ),
@@ -437,9 +436,9 @@ class _BookingPageState extends State<BookingPage> {
                         }
                       },
                       child: Text('Request Rental',
-                          style: GoogleFonts.signikaNegative(
+                          style: GoogleFonts.poppins(
                               fontSize: MediaQuery.of(context).size.width * .05,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w500,
                               color: Colors.white))),
                 ))
               ],

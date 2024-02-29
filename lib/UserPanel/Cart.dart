@@ -161,7 +161,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .035,
+                                                .04,
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
@@ -173,7 +173,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                             fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .04,
+                                                .033,
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Padding(
@@ -213,7 +213,7 @@ class _AddtoCartState extends State<AddtoCart> {
                                                   Colors.transparent,
                                               elevation: 0),
                                           child: const Text(
-                                            'Removed',
+                                            'Remove',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Color.fromARGB(

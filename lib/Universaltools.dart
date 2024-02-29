@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class ProjectColors {
   static Color get primarycolor1 => Color.fromARGB(255, 11, 137, 183);
   static Color get primarycolor2 => Color.fromARGB(255, 57, 84, 188);
@@ -379,6 +378,8 @@ class ProjectUtils {
     'Bently',
     'Buggatti',
     'BMW',
+    'Chevorlet',
+    'Dodge',
     'Ferrari',
     'Ford',
     'Lamborghini',
@@ -386,6 +387,7 @@ class ProjectUtils {
     'Mazda',
     'Mclaren',
     'Mercedes-Benz',
+    'Nissan',
     'Porshe',
     'RollsRoyce',
     'Tesla',

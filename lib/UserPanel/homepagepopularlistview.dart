@@ -59,7 +59,7 @@ class _popularinventoriesState extends State<popularinventories> {
                         height: MediaQuery.of(context).size.height * .4,
                         width: MediaQuery.of(context).size.width * .74,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 237, 237, 237),
+                            color: const Color.fromARGB(255, 237, 237, 237),
                             borderRadius: BorderRadius.circular(10)),
                       ),
                     ),
@@ -73,7 +73,7 @@ class _popularinventoriesState extends State<popularinventories> {
                           imageUrl: doc['Image'],
                           fit: BoxFit.cover,
                           placeholder: (context, url) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator(),
                             );
                           },
@@ -99,6 +99,9 @@ class _popularinventoriesState extends State<popularinventories> {
                                       MediaQuery.of(context).size.width * .05,
                                   fontWeight: FontWeight.w500),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * .04,
                               width: MediaQuery.of(context).size.width * .7,
@@ -120,7 +123,7 @@ class _popularinventoriesState extends State<popularinventories> {
                                   style: GoogleFonts.oswald(
                                       fontWeight: FontWeight.w500,
                                       color:
-                                          Color.fromARGB(255, 255, 255, 255)),
+                                          const Color.fromARGB(255, 255, 255, 255)),
                                 ),
                               ),
                             )

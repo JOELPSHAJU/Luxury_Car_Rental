@@ -30,7 +30,6 @@ class _RegisterscreenState extends State<Registerscreen> {
     try {
       await Auth().createUserWithEmailandPassword(
           email: _emailcontroller.text, password: _passwordcontroller.text);
-      // ignore: use_build_context_synchronously
       ProjectUtils().sucessmessage(context: context, text: 'Account Created');
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (d) => const RegisterRedirect()));

@@ -31,17 +31,18 @@ class SpecificBrand extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: ProjectColors.primarycolor1,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Text(
           name.toUpperCase(),
           style: GoogleFonts.oswald(
-              fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.height * .023,
-              color: Colors.white),
+            fontWeight: FontWeight.w600,
+            fontSize: MediaQuery.of(context).size.height * .023,
+            color: Color.fromARGB(255, 150, 94, 94),
+          ),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.white,
+          color: Color.fromARGB(255, 150, 94, 94),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -76,7 +77,7 @@ class SpecificBrand extends StatelessWidget {
             }
 
             return Container(
-              color: const Color.fromARGB(255, 236, 236, 236),
+              color: Color.fromARGB(255, 245, 245, 245),
               width: MediaQuery.of(context).size.width * double.infinity,
               height: MediaQuery.of(context).size.height * .99,
               child: ListView.builder(
@@ -95,90 +96,124 @@ class SpecificBrand extends StatelessWidget {
                               )));
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                          height: MediaQuery.of(context).size.width * .37,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * .44,
-                                  height: MediaQuery.of(context).size.height,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: CachedNetworkImage(
-                                    imageUrl: data['MainImage'],
-                                    placeholder: (context, url) => Center(
-                                        child: CircularProgressIndicator(
-                                      color: ProjectColors.primarycolor1,
-                                    )),
-                                    errorWidget: (context, url, error) => Icon(
-                                      Icons.error,
-                                      color: Colors.grey,
-                                      size: 30,
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * .18,
+                              decoration: BoxDecoration(
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color.fromARGB(255, 229, 229, 229),
+                                      spreadRadius: 2,
+                                      blurRadius: 3,
+                                      offset: Offset(2, 2),
                                     ),
+                                  ],
+                                  border: Border.all(
+                                    color: Color.fromARGB(255, 209, 185, 185),
                                   ),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                            Positioned(
+                              left: MediaQuery.of(context).size.width * .61,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * .35,
+                                height:
+                                    MediaQuery.of(context).size.height * .18,
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 209, 185, 185),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(15),
+                                        bottomRight: Radius.circular(15))),
+                              ),
+                            ),
+                            Positioned(
+                              left: MediaQuery.of(context).size.width * .43,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * .5,
+                                height:
+                                    MediaQuery.of(context).size.height * .18,
+                                child: CachedNetworkImage(
+                                  imageUrl: data['MainImage'],
+                                  placeholder: (context, url) {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.black,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                            ),
+                            Positioned(
+                              left: MediaQuery.of(context).size.width * .02,
+                              child: Container(
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  height:
+                                      MediaQuery.of(context).size.height * .18,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        '${data['Company']}\n${data['Model Name']}',
-                                        style: GoogleFonts.oswald(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .018,
-                                            fontWeight: FontWeight.bold),
+                                        data['Model Name']
+                                            .toString()
+                                            .toUpperCase(),
+                                        style: GoogleFonts.poppins(
+                                          color: ProjectColors.black,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .045,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        data['Company'],
+                                        style: GoogleFonts.poppins(
+                                          color: const Color.fromARGB(
+                                              255, 0, 0, 0),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .032,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                       Text(
                                         'Category : ${data['Category']}',
-                                        style: GoogleFonts.oswald(
-                                            color: Colors.grey,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016,
-                                            fontWeight: FontWeight.w500),
+                                        style: GoogleFonts.poppins(
+                                          color: const Color.fromARGB(
+                                              255, 132, 132, 132),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .032,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                       Text(
-                                        'Price : ${data['Price Per Day']}',
-                                        style: GoogleFonts.oswald(
-                                            color: ProjectColors.primarycolor1,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        'Fuel Type : ${data['Fuel Type']}',
-                                        style: GoogleFonts.oswald(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016,
-                                            fontWeight: FontWeight.w500),
+                                        '₹ ${data['Price Per Day']}/day',
+                                        style: GoogleFonts.poppins(
+                                          color:
+                                              Color.fromARGB(255, 142, 82, 82),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .035,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          )),
-                    ),
+                                  )),
+                            )
+                          ],
+                        )),
                   );
                 },
               ),

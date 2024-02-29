@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 
-class OntapDetails extends StatelessWidget {
+class OntapDetails extends StatefulWidget {
   final String engine;
   final String power;
   final String torque;
@@ -32,331 +33,309 @@ class OntapDetails extends StatelessWidget {
       required this.ground,
       required this.category});
 
+  @override
+  State<OntapDetails> createState() => _OntapDetailsState();
+}
+
+class _OntapDetailsState extends State<OntapDetails> {
+  late List<String> infodetails = [
+    widget.category,
+    widget.engine,
+    widget.power + 'hp',
+    widget.torque + ' nm',
+    widget.transmission,
+    widget.gearbox + ' speed',
+    widget.zero + ' seconds',
+    widget.fuelty,
+    widget.fueltank + ' ltrs',
+    widget.seating,
+    widget.ground + ' mm'
+  ];
+
+  List<String> infotitle = [
+    'Category : ',
+    'Engine Capacity : ',
+    'Maximum Power : ',
+    'Maximum Torque : ',
+    'Transmission Type : ',
+    'Gearbox : ',
+    'Zero To Hundred : ',
+    'Fuel Type : ',
+    'Fuel Tank Capacity : ',
+    'Seating Capacity : ',
+    'Ground Clearence : ',
+  ];
+  List<String> infoleadImages = [
+    "assets/latest/category.png",
+    'assets/bg/engine.png',
+    'assets/bg/power.png',
+    'assets/bg/torque.png',
+    'assets/bg/transmission.png',
+    'assets/new/gear.png',
+    'assets/new/speedometer.png',
+    'assets/bg/PUMP.png',
+    'assets/bg/fueltank.png',
+    'assets/bg/sea.png',
+    'assets/bg/ground.png',
+  ];
   textstyle2({required context}) {
-    return GoogleFonts.signikaNegative(
+    return GoogleFonts.poppins(
+        fontSize: MediaQuery.of(context).size.width * .04,
+        fontWeight: FontWeight.w300,
+        color: ProjectColors.black);
+  }
+
+  textstyle3({required context}) {
+    return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.width * .037,
-        fontWeight: FontWeight.w600,
-        color: ProjectColors.primarycolor1);
+        fontWeight: FontWeight.w500,
+        color: ProjectColors.black);
   }
 
   textstyle1({required context}) {
-    return GoogleFonts.signikaNegative(
-        fontSize: MediaQuery.of(context).size.width * .045,
-        fontWeight: FontWeight.w600,
-        color: const Color.fromARGB(255, 143, 143, 143));
+    return GoogleFonts.poppins(
+        fontSize: MediaQuery.of(context).size.width * .04,
+        fontWeight: FontWeight.w500,
+        color: Color.fromARGB(255, 0, 0, 0));
   }
+
+  bool isexpanded = true;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .23,
       width: MediaQuery.of(context).size.width,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
+      child: Column(
+        children: [
+          isexpanded == false
+              ? Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/engine.png'),
+                    Container(
+                      height: MediaQuery.of(context).size.height * .66,
+                      width: MediaQuery.of(context).size.width,
+                      child: ListView.separated(
+                          physics: NeverScrollableScrollPhysics(),
+                          separatorBuilder: (context, index) {
+                            return Divider();
+                          },
+                          itemCount: infoleadImages.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 8.0, top: 10),
+                                  child: Text(infotitle[index],
+                                      style: textstyle1(context: context)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    infodetails[index],
+                                    style: textstyle2(context: context),
+                                  ),
+                                )
+                              ],
+                            );
+                          }),
                     ),
-                    Text(
-                      'Engine',
-                      style: textstyle1(context: context),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isexpanded = !isexpanded;
+                            });
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .07,
+                            width: MediaQuery.of(context).size.width * .6,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: ProjectColors.black),
+                              color: ProjectColors.white,
+                            ),
+                            child: Center(
+                                child: Text(
+                              'View Less',
+                              style: textstyle3(context: context),
+                            )),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      engine + ' hp',
-                      style: textstyle2(context: context),
-                    )
                   ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/power.png'),
-                    ),
-                    Text(
-                      'Maximum Power',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      power + ' cc',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/torque.png'),
-                    ),
-                    Text(
-                      'Maximum Torque ',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      torque + ' nm',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/transmission.png'),
-                    ),
-                    Text(
-                      'Transmission',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      transmission,
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/new/gear.png'),
-                    ),
-                    Text(
-                      'Gearbox',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      gearbox + ' speed',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(width: 1.6, color: Colors.grey),
-                ),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/new/speedometer.png'),
-                    ),
-                    Text(
-                      '0 - 100',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      zero + ' sec',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/fueltank.png'),
-                    ),
-                    Text(
-                      'Fuel Tank',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      fueltank + ' ltrs',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/PUMP.png'),
-                    ),
-                    Text(
-                      'Fuel Type',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      fuelty,
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/sea.png'),
-                    ),
-                    Text(
-                      'Seating Capacity',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      seating,
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset('assets/bg/ground.png'),
-                    ),
-                    Text(
-                      'Ground Clearence',
-                      style: textstyle1(context: context),
-                    ),
-                    Text(
-                      ground + ' mm',
-                      style: textstyle2(context: context),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(width: 1.6, color: Colors.grey)),
-                height: MediaQuery.of(context).size.height * .18,
-                width: MediaQuery.of(context).size.width * .6,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset(
-                        'assets/latest/category.png',
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .23,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromARGB(255, 154, 154, 154)
+                                                .withOpacity(0.3),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height * .18,
+                                width: MediaQuery.of(context).size.width * .6,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .1,
+                                      width: MediaQuery.of(context).size.width *
+                                          .4,
+                                      child:
+                                          Image.asset('assets/bg/engine.png'),
+                                    ),
+                                    Text(
+                                      'Engine',
+                                      style: textstyle1(context: context),
+                                    ),
+                                    Text(
+                                      widget.engine,
+                                      style: textstyle2(context: context),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromARGB(255, 154, 154, 154)
+                                                .withOpacity(0.3),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height * .18,
+                                width: MediaQuery.of(context).size.width * .6,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .1,
+                                      width: MediaQuery.of(context).size.width *
+                                          .4,
+                                      child: Image.asset('assets/bg/power.png'),
+                                    ),
+                                    Text(
+                                      'Maximum Power',
+                                      style: textstyle1(context: context),
+                                    ),
+                                    Text(
+                                      widget.power + ' hp',
+                                      style: textstyle2(context: context),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromARGB(255, 154, 154, 154)
+                                                .withOpacity(0.3),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Colors.white),
+                                height:
+                                    MediaQuery.of(context).size.height * .18,
+                                width: MediaQuery.of(context).size.width * .6,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .1,
+                                      width: MediaQuery.of(context).size.width *
+                                          .4,
+                                      child:
+                                          Image.asset('assets/bg/torque.png'),
+                                    ),
+                                    Text(
+                                      'Maximum Torque ',
+                                      style: textstyle1(context: context),
+                                    ),
+                                    Text(
+                                      widget.torque + ' nm',
+                                      style: textstyle2(context: context),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Text(
-                      'Category',
-                      style: textstyle1(context: context),
+                    SizedBox(
+                      height: 10,
                     ),
-                    Text(
-                      category,
-                      style: textstyle2(context: context),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isexpanded = !isexpanded;
+                            });
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .07,
+                            width: MediaQuery.of(context).size.width * .6,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              color: ProjectColors.white,
+                            ),
+                            child: Center(
+                                child: Text(
+                              'View All Specifications',
+                              style: textstyle3(context: context),
+                            )),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-            )
-          ],
-        ),
+        ],
       ),
     );
   }
