@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
 import 'package:luxurycars/authentication/loginpage.dart';
 import 'package:luxurycars/authentication/login.dart';
+import 'package:luxurycars/authentication/onboardingScreen.dart';
 import 'package:luxurycars/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,8 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         const SizedBox(height: 10),
                         Text('Your Ultimate Travel Companion',
                             style: GoogleFonts.poppins(
-                              fontSize:  MediaQuery.of(context).size.width *
-                                                .04,
+                              fontSize: MediaQuery.of(context).size.width * .04,
                               color: const Color.fromARGB(150, 255, 255, 255),
                             )),
                       ],
@@ -107,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> gotoLogin() async {
     await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => const LoginPage()));
+        MaterialPageRoute(builder: (ctx) => const OnboardingScreen()));
   }
 
   Future<void> checkUserLoggedIn() async {

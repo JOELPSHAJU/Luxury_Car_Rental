@@ -127,7 +127,8 @@ class SpecificBrand extends StatelessWidget {
                                     color: Color.fromARGB(255, 209, 185, 185),
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(15),
-                                        bottomRight: Radius.circular(15))),
+                                        bottomRight: Radius.circular(15),
+                                        bottomLeft: Radius.circular(15))),
                               ),
                             ),
                             Positioned(

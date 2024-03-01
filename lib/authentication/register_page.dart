@@ -82,263 +82,284 @@ class _RegisterscreenState extends State<Registerscreen> {
                             ProjectUtils().sizedbox10,
                             Form(
                                 key: formkey,
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ProjectUtils().headingsmall(
-                                              context: context,
-                                              color:
-                                                  ProjectColors.primarycolor2,
-                                              text: 'Email')
-                                        ],
-                                      ),
-                                    ),
-                                    ProjectUtils().textformfield(
-                                        label: 'Enter A Valid Email Address',
-                                        enabled: const Color.fromARGB(
-                                            255, 117, 117, 117),
-                                        focusedcolor:
-                                            ProjectColors.primarycolor2,
-                                        iconcolor: ProjectColors.primarycolor2,
-                                        icon: Icons.person,
-                                        controller: _emailcontroller,
-                                        obsecure: false),
-                                    ProjectUtils().sizedbox10,
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ProjectUtils().headingsmall(
-                                              context: context,
-                                              color:
-                                                  ProjectColors.primarycolor2,
-                                              text: 'Password')
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, right: 8),
-                                        child: TextFormField(
-                                          cursorColor: Colors.black,
-                                          cursorWidth: 1,
-                                          style: GoogleFonts.signikaNegative(
-                                            fontWeight: FontWeight.w500,
-                                            color: ProjectColors.primarycolor2,
-                                          ),
-                                          controller: _passwordcontroller,
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Please Fill This Field !';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          decoration: InputDecoration(
-                                              hintText: 'Password',
-                                              hintStyle:
-                                                  GoogleFonts.signikaNegative(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255,
-                                                              208,
-                                                              208,
-                                                              208)),
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 18),
-                                              disabledBorder:
-                                                  OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        width: 1,
-                                                        color: ProjectColors
-                                                            .primarycolor2,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                              enabledBorder: OutlineInputBorder(
-                                                  gapPadding: 3,
-                                                  borderSide: const BorderSide(
-                                                    width: 1,
-                                                    color: Color.fromARGB(
-                                                        255, 117, 117, 117),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10)),
-                                              errorBorder: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    width: 1,
-                                                    color: Color.fromARGB(
-                                                        255, 255, 58, 44),
-                                                  ),
-                                                  borderRadius: BorderRadius.circular(10)),
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    width: 1,
-                                                    color: ProjectColors
-                                                        .primarycolor2,
-                                                  ),
-                                                  borderRadius: BorderRadius.circular(10)),
-                                              prefixIcon: Icon(
-                                                Icons.security_outlined,
-                                                size: 23,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ProjectUtils().headingsmall(
+                                                context: context,
                                                 color:
                                                     ProjectColors.primarycolor2,
-                                              ),
-                                              suffixIcon: IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      passwordobsecure =
-                                                          !passwordobsecure;
-                                                    });
-                                                  },
-                                                  icon: passwordobsecure == true
-                                                      ? Icon(
-                                                          Icons.visibility_off,
-                                                          color: ProjectColors
-                                                              .primarycolor2,
-                                                        )
-                                                      : Icon(
-                                                          Icons.visibility,
-                                                          color: ProjectColors
-                                                              .primarycolor2,
-                                                        ))),
-                                          obscureText: passwordobsecure,
+                                                text: 'Email')
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    ProjectUtils().sizedbox10,
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ProjectUtils().headingsmall(
-                                              context: context,
-                                              color:
-                                                  ProjectColors.primarycolor2,
-                                              text: 'Confirm Password')
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, right: 8),
-                                        child: TextFormField(
-                                          cursorColor: Colors.black,
-                                          cursorWidth: 1,
-                                          style: GoogleFonts.signikaNegative(
-                                            fontWeight: FontWeight.w500,
-                                            color: ProjectColors.primarycolor2,
-                                          ),
-                                          controller: _confirmpassword,
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Please Fill This Field !';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          decoration: InputDecoration(
-                                              hintText: 'Confirm Password',
-                                              hintStyle:
-                                                  GoogleFonts.signikaNegative(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255,
-                                                              208,
-                                                              208,
-                                                              208)),
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 18),
-                                              disabledBorder:
-                                                  OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        width: 1,
-                                                        color: ProjectColors
-                                                            .primarycolor2,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                              enabledBorder: OutlineInputBorder(
-                                                  gapPadding: 3,
-                                                  borderSide: const BorderSide(
-                                                    width: 1,
-                                                    color: Color.fromARGB(
-                                                        255, 117, 117, 117),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10)),
-                                              errorBorder: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    width: 1,
-                                                    color: Color.fromARGB(
-                                                        255, 255, 58, 44),
-                                                  ),
-                                                  borderRadius: BorderRadius.circular(10)),
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    width: 1,
-                                                    color: ProjectColors
-                                                        .primarycolor2,
-                                                  ),
-                                                  borderRadius: BorderRadius.circular(10)),
-                                              prefixIcon: Icon(
-                                                Icons.security_outlined,
-                                                size: 23,
+                                      ProjectUtils().textformfield(
+                                          label: 'Enter A Valid Email Address',
+                                          enabled: const Color.fromARGB(
+                                              255, 117, 117, 117),
+                                          focusedcolor:
+                                              ProjectColors.primarycolor2,
+                                          iconcolor:
+                                              ProjectColors.primarycolor2,
+                                          icon: Icons.person,
+                                          controller: _emailcontroller,
+                                          obsecure: false),
+                                      ProjectUtils().sizedbox10,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ProjectUtils().headingsmall(
+                                                context: context,
                                                 color:
                                                     ProjectColors.primarycolor2,
-                                              ),
-                                              suffixIcon: IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      confirmpasswordobsecure =
-                                                          !confirmpasswordobsecure;
-                                                    });
-                                                  },
-                                                  icon: confirmpasswordobsecure == true
-                                                      ? Icon(
-                                                          Icons.visibility_off,
-                                                          color: ProjectColors
-                                                              .primarycolor2,
-                                                        )
-                                                      : Icon(
-                                                          Icons.visibility,
-                                                          color: ProjectColors
-                                                              .primarycolor2,
-                                                        ))),
-                                          obscureText: confirmpasswordobsecure,
+                                                text: 'Password')
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, right: 8),
+                                          child: TextFormField(
+                                            cursorColor: Colors.black,
+                                            cursorWidth: 1,
+                                            style: GoogleFonts.signikaNegative(
+                                              fontWeight: FontWeight.w500,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                            ),
+                                            controller: _passwordcontroller,
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Please Fill This Field !';
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                            decoration: InputDecoration(
+                                                hintText: 'Password',
+                                                hintStyle:
+                                                    GoogleFonts.signikaNegative(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        color:
+                                                            const Color.fromARGB(
+                                                                255,
+                                                                208,
+                                                                208,
+                                                                208)),
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 18),
+                                                disabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 1,
+                                                          color: ProjectColors
+                                                              .primarycolor2,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10)),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        gapPadding: 3,
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          width: 1,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              117,
+                                                              117,
+                                                              117),
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(10)),
+                                                errorBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                      width: 1,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 58, 44),
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                      color: ProjectColors
+                                                          .primarycolor2,
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                prefixIcon: Icon(
+                                                  Icons.security_outlined,
+                                                  size: 23,
+                                                  color: ProjectColors
+                                                      .primarycolor2,
+                                                ),
+                                                suffixIcon: IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        passwordobsecure =
+                                                            !passwordobsecure;
+                                                      });
+                                                    },
+                                                    icon: passwordobsecure == true
+                                                        ? Icon(
+                                                            Icons
+                                                                .visibility_off,
+                                                            color: ProjectColors
+                                                                .primarycolor2,
+                                                          )
+                                                        : Icon(
+                                                            Icons.visibility,
+                                                            color: ProjectColors
+                                                                .primarycolor2,
+                                                          ))),
+                                            obscureText: passwordobsecure,
+                                          ),
+                                        ),
+                                      ),
+                                      ProjectUtils().sizedbox10,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ProjectUtils().headingsmall(
+                                                context: context,
+                                                color:
+                                                    ProjectColors.primarycolor2,
+                                                text: 'Confirm Password')
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, right: 8),
+                                          child: TextFormField(
+                                            cursorColor: Colors.black,
+                                            cursorWidth: 1,
+                                            style: GoogleFonts.signikaNegative(
+                                              fontWeight: FontWeight.w500,
+                                              color:
+                                                  ProjectColors.primarycolor2,
+                                            ),
+                                            controller: _confirmpassword,
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Please Fill This Field !';
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                            decoration: InputDecoration(
+                                                hintText: 'Confirm Password',
+                                                hintStyle:
+                                                    GoogleFonts.signikaNegative(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        color:
+                                                            const Color.fromARGB(
+                                                                255,
+                                                                208,
+                                                                208,
+                                                                208)),
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 18),
+                                                disabledBorder:
+                                                    OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          width: 1,
+                                                          color: ProjectColors
+                                                              .primarycolor2,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10)),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                        gapPadding: 3,
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          width: 1,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              117,
+                                                              117,
+                                                              117),
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(10)),
+                                                errorBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                      width: 1,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 58, 44),
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      width: 1,
+                                                      color: ProjectColors
+                                                          .primarycolor2,
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(10)),
+                                                prefixIcon: Icon(
+                                                  Icons.security_outlined,
+                                                  size: 23,
+                                                  color: ProjectColors
+                                                      .primarycolor2,
+                                                ),
+                                                suffixIcon: IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        confirmpasswordobsecure =
+                                                            !confirmpasswordobsecure;
+                                                      });
+                                                    },
+                                                    icon: confirmpasswordobsecure == true
+                                                        ? Icon(
+                                                            Icons
+                                                                .visibility_off,
+                                                            color: ProjectColors
+                                                                .primarycolor2,
+                                                          )
+                                                        : Icon(
+                                                            Icons.visibility,
+                                                            color: ProjectColors
+                                                                .primarycolor2,
+                                                          ))),
+                                            obscureText:
+                                                confirmpasswordobsecure,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 )),
                             ProjectUtils().sizedbox20,
                             GestureDetector(
@@ -384,7 +405,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                                 ),
                                 Text(
                                   'By Signing Up, I Accept the',
-                                  style: GoogleFonts.signikaNegative(
+                                  style: GoogleFonts.sansita(
                                     color: const Color.fromARGB(
                                         255, 117, 117, 117),
                                   ),
@@ -398,7 +419,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                                   },
                                   child: Text(
                                     ' Privacy Policies',
-                                    style: GoogleFonts.signikaNegative(
+                                    style: GoogleFonts.sansita(
                                       color: ProjectColors.primarycolor2,
                                     ),
                                   ),

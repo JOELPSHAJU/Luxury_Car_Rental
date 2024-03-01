@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 
-
 // ignore: must_be_immutable, camel_case_types
 class addnotification extends StatelessWidget {
   addnotification({super.key});
@@ -63,7 +62,7 @@ class addnotification extends StatelessWidget {
             ProjectUtils().headingsmall(
                 context: context,
                 color: ProjectColors.primarycolor1,
-                text: '<- Swipe To Delete ->'),
+                text: '<------- Swipe To Delete ------->'),
             const SizedBox(
               height: 20,
             ),
@@ -74,7 +73,9 @@ class addnotification extends StatelessWidget {
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator()); // or any loading indicator
+                    return Center(
+                        child:
+                            CircularProgressIndicator()); // or any loading indicator
                   }
 
                   final clients = snapshot.data?.docs.reversed.toList();

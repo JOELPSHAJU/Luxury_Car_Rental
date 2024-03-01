@@ -110,6 +110,9 @@ class _AddtoCartState extends State<AddtoCart> {
                         ),
                         child: Container(
                             decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 204, 204, 204)),
                               color: ProjectUtils().listcolor,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
@@ -124,13 +127,12 @@ class _AddtoCartState extends State<AddtoCart> {
                             ),
                             child: Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * .5,
-                                    height: MediaQuery.of(context).size.height *
-                                        .13,
+                                Container(
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  height:
+                                      MediaQuery.of(context).size.height * .13,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: CachedNetworkImage(
                                       imageUrl: "${data['Image']}",
                                       fit: BoxFit.cover,
@@ -144,84 +146,99 @@ class _AddtoCartState extends State<AddtoCart> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(3),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data['Model Name']
-                                            .toString()
-                                            .toUpperCase(),
-                                        style: GoogleFonts.oswald(
-                                            color: const Color.fromARGB(
-                                                255, 0, 0, 0),
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .04,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        data['Company']
-                                            .toString()
-                                            .toUpperCase(),
-                                        style: GoogleFonts.oswald(
-                                            color: Colors.grey,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .033,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 3.0, bottom: 3),
-                                        child: Text(
-                                          'Price : ₹${data['Priceperday']}/-',
-                                          style: GoogleFonts.oswald(
-                                              color:
-                                                  ProjectColors.primarycolor1,
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .034,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .04,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            DatabaseMethods()
-                                                .deletecartitem(docid);
-
-                                            setState(() {});
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(3),
-                                                  side: BorderSide(
-                                                      color: ProjectColors
-                                                          .primarycolor1)),
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              elevation: 0),
-                                          child: const Text(
-                                            'Remove',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Color.fromARGB(
-                                                    255, 12, 12, 12)),
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(15),
+                                            bottomRight: Radius.circular(15),
+                                            topRight: Radius.circular(15))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data['Model Name']
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: GoogleFonts.poppins(
+                                                color: const Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .04,
+                                                fontWeight: FontWeight.w500),
                                           ),
-                                        ),
-                                      )
-                                    ],
+                                          Text(
+                                            data['Company']
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: GoogleFonts.poppins(
+                                                color: Colors.grey,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .033,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 3.0, bottom: 3),
+                                            child: Text(
+                                              'Price : ₹${data['Priceperday']}/-',
+                                              style: GoogleFonts.poppins(
+                                                  color: Color.fromARGB(
+                                                      255, 39, 92, 172),
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          .034,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .04,
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                DatabaseMethods()
+                                                    .deletecartitem(docid);
+
+                                                setState(() {});
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              3),
+                                                      side: BorderSide(
+                                                          color: ProjectColors
+                                                              .primarycolor1)),
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  elevation: 0),
+                                              child: const Text(
+                                                'Remove',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color.fromARGB(
+                                                        255, 12, 12, 12)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 )
                               ],

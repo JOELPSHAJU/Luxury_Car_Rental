@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -46,6 +47,10 @@ class _BookingPageState extends State<BookingPage> {
   DateTime? _dropoffDate;
   late final double _dailyRate = priceperday;
   double _totalCost = 0.0;
+
+  User? user = FirebaseAuth.instance.currentUser;
+
+  late String? email = user?.email;
 
   void _calculateTotalCost() {
     if (_pickupDate != null && _dropoffDate != null) {
@@ -377,24 +382,9 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 16.0),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: TextFormField(
-                            controller: _emailcontroller,
-                            validator: validator,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.gowunBatang(),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
-                              labelText: 'Email',
-                            ),
-                          ),
-                        ),
                       ],
                     )),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const Divider(
                   thickness: 2,
                 ),
@@ -424,11 +414,7 @@ class _BookingPageState extends State<BookingPage> {
                       onPressed: () {
                         if (formkeycheck.currentState!.validate()) {
                           uploadbookingdata();
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                                  builder: (ctx) => ParticularInventory(
-                                        id: docsid,
-                                      )));
+
                           snackbar();
                         } else {
                           ProjectUtils().errormessage(
@@ -481,19 +467,24 @@ class _BookingPageState extends State<BookingPage> {
 
   uploadbookingdata() async {
     Map<String, dynamic> bookingdetails = {
+      "Confirmation": 'Pending',
       "Totalprice": _totalCost.toString(),
       "FullName": _namecontroller.text,
-      "Email": _emailcontroller.text,
+      "Email": email,
       "PhoneNumber": _phonenumbercontroller.text,
       "Image": mainimage,
       "Company": company,
       "Category": category,
       "ModelName": modelname,
-      "emailuser": usercurrent,
       "NumberPlate": number,
       "pickupdate": _pickupDate.toString(),
       "dropoffdate": _dropoffDate.toString()
     };
     DatabaseMethods().Addbookingdetails(bookingdetails);
+    _dropoffDate = null;
+    _pickupDate = null;
+    _emailcontroller.clear();
+    _namecontroller.clear();
+    _phonenumbercontroller.clear();
   }
 }

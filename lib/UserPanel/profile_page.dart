@@ -28,7 +28,7 @@ class _ProfiePageState extends State<ProfiePage> {
           centerTitle: true,
           title: Text(
             'Profile',
-            style: GoogleFonts.signikaNegative(
+            style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w500, color: ProjectColors.white),
           ),
           leading: IconButton(
@@ -44,7 +44,6 @@ class _ProfiePageState extends State<ProfiePage> {
         body: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width * double.infinity,
-            height: MediaQuery.of(context).size.height * .99,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

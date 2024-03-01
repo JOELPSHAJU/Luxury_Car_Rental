@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
@@ -160,7 +161,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                         children: [
                           View_Ontap_Images(images: images),
                           const Divider(
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 220, 220, 220),
                           ),
                           SizedBox(
                             height: 50,
@@ -170,93 +171,66 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('$company $modelname',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .047,
-                                          color: ProjectColors.secondarycolor2,
-                                          fontWeight: FontWeight.w600)),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('$company $modelname',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .047,
+                                              color:
+                                                  ProjectColors.secondarycolor2,
+                                              fontWeight: FontWeight.w600)),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 2.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text('from ',
+                                                style: GoogleFonts.oswald(
+                                                    color: Colors.grey)),
+                                            Text('₹ ${data['Price Per Day']}',
+                                                style: GoogleFonts.oswald(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: ProjectColors
+                                                        .primarycolor1,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .05)),
+                                            Text(
+                                              ' /day',
+                                              style: GoogleFonts.oswald(
+                                                  color: Colors.grey),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * .2,
+                                    height: MediaQuery.of(context).size.height *
+                                        .08,
+                                    child: Image.asset(
+                                      'assets/new/images.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
                           ),
                           const Divider(
                             thickness: 1,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, top: 3),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'from',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .037,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          // ignore: prefer_adjacent_string_concatenation, unnecessary_string_interpolations
-                                          Text('₹' + '$price',
-                                              style: GoogleFonts.outfit(
-                                                  color: ProjectColors
-                                                      .primarycolor1,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .06,
-                                                  fontWeight: FontWeight.w600)),
-                                          Text(
-                                            ' / day',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .039,
-                                                color: Colors.grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * .2,
-                                height:
-                                    MediaQuery.of(context).size.height * .08,
-                                child: Image.asset(
-                                  'assets/new/images.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            ],
+                            color: Color.fromARGB(255, 209, 209, 209),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

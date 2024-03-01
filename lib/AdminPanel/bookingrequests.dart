@@ -184,7 +184,7 @@ class _BookingRequestState extends State<BookingRequest> {
                                                 "Image": client['Image'],
                                                 "company": client['Company'],
                                                 "category": client['Category'],
-                                                "email": client['emailuser'],
+                                                "email": client['Email'],
                                                 "model": client['ModelName'],
                                                 "phonenumber":
                                                     client['PhoneNumber']
@@ -217,7 +217,7 @@ class _BookingRequestState extends State<BookingRequest> {
                                                 "Totalamount":
                                                     client['Totalprice'],
                                                 "fullname": client['FullName'],
-                                                "email": client['emailuser'],
+                                                "email": client['Email'],
                                                 "Phoneno":
                                                     client['PhoneNumber'],
                                                 "Image": client['Image'],

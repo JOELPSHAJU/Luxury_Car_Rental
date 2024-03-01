@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
 
@@ -325,8 +325,12 @@ class _FilterPageState extends State<FilterPage> {
                                                         88, 163, 214, 232),
                                                     borderRadius:
                                                         BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(15),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    15),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    15),
                                                             bottomRight:
                                                                 Radius.circular(
                                                                     15))),

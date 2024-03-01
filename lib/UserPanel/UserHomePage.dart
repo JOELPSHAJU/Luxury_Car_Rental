@@ -107,8 +107,6 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                             86, 180, 180, 180),
                                         borderRadius:
                                             BorderRadius.circular(15)),
-                                    height: MediaQuery.of(context).size.height *
-                                        .22,
                                     width:
                                         MediaQuery.of(context).size.width * .42,
                                     child: Column(
@@ -149,7 +147,7 @@ class _UserHomePageNewState extends State<UserHomePageNew> {
                                                       MediaQuery.of(context)
                                                               .size
                                                               .width *
-                                                          .045,
+                                                          .042,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ],

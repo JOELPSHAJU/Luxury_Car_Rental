@@ -53,21 +53,21 @@ class UpdatecarData extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '${cardata['Company']}',
-                              style: GoogleFonts.signikaNegative(
+                              '${cardata['Model Name']}',
+                              style: GoogleFonts.oswald(
                                   fontSize:
-                                      MediaQuery.of(context).size.height * .02,
+                                      MediaQuery.of(context).size.width * .045,
                                   fontWeight: FontWeight.w500,
-                                  color: ProjectColors.primarycolor1),
+                                  color: ProjectColors.black),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             Text(
-                              '${cardata['Model Name']}',
-                              style: TextStyle(
+                              '${cardata['Company']}',
+                              style: GoogleFonts.oswald(
                                   fontSize:
-                                      MediaQuery.of(context).size.height * .02,
+                                      MediaQuery.of(context).size.width * .037,
                                   fontWeight: FontWeight.w500,
                                   color: ProjectColors.black),
                             ),
@@ -76,9 +76,9 @@ class UpdatecarData extends StatelessWidget {
                             ),
                             Text(
                               'Category : ${cardata['Category']}',
-                              style: TextStyle(
+                              style: GoogleFonts.oswald(
                                   fontSize:
-                                      MediaQuery.of(context).size.height * .02,
+                                      MediaQuery.of(context).size.width * .034,
                                   fontWeight: FontWeight.w500,
                                   color: ProjectColors.black),
                             ),
@@ -86,12 +86,12 @@ class UpdatecarData extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              'Price : ${cardata['Price Per Day'].toString()}',
-                              style: TextStyle(
+                              'Price : ₹${cardata['Price Per Day'].toString()}/-',
+                              style: GoogleFonts.oswald(
                                   fontSize:
-                                      MediaQuery.of(context).size.height * .02,
+                                      MediaQuery.of(context).size.width * .04,
                                   fontWeight: FontWeight.w500,
-                                  color: ProjectColors.black),
+                                  color: ProjectColors.primarycolor1),
                             ),
                           ],
                         ),

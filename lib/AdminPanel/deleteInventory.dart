@@ -20,7 +20,7 @@ class DeleteInventory extends StatefulWidget {
 textstyles({
   required context,
 }) {
-  return TextStyle(
+  return GoogleFonts.oswald(
       fontWeight: FontWeight.w500,
       color: Colors.grey,
       fontSize: MediaQuery.of(context).size.height * .017);
@@ -82,9 +82,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                 padding: const EdgeInsets.all(5.0),
                                 child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width * .27,
-                                  height:
-                                      MediaQuery.of(context).size.width * .27,
+                                      MediaQuery.of(context).size.width * .45,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -107,7 +105,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: SizedBox(
                                     width:
-                                        MediaQuery.of(context).size.width * .53,
+                                        MediaQuery.of(context).size.width * .4,
                                     height:
                                         MediaQuery.of(context).size.height * .9,
                                     child: Column(
@@ -118,7 +116,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                                       children: [
                                         Text(
                                           '${doc['Company']}\n${doc['Model Name']}',
-                                          style: GoogleFonts.signikaNegative(
+                                          style: GoogleFonts.oswald(
                                               fontSize: MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -166,10 +164,10 @@ class _DeleteInventoryState extends State<DeleteInventory> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(3),
       ),
-      title: Text("Are You Sure ?", style: GoogleFonts.signikaNegative()),
+      title: Text("Are You Sure ?", style: GoogleFonts.oswald()),
       content: Text(
         "Do you really want to delete this Inventory? This process cannot be undone.",
-        style: GoogleFonts.signikaNegative(),
+        style: GoogleFonts.oswald(),
       ),
       actions: [
         Row(
@@ -214,7 +212,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                         },
                         child: Text(
                           "DELETE".toUpperCase(),
-                          style: GoogleFonts.signikaNegative(
+                          style: GoogleFonts.oswald(
                             color: Colors.white,
                             fontSize: MediaQuery.of(context).size.width * .03,
                           ),
@@ -244,7 +242,7 @@ class _DeleteInventoryState extends State<DeleteInventory> {
                         },
                         child: Text(
                           "CANCEL".toUpperCase(),
-                          style: GoogleFonts.signikaNegative(
+                          style: GoogleFonts.oswald(
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: MediaQuery.of(context).size.width * .03,
                           ),

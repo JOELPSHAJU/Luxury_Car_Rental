@@ -13,10 +13,10 @@ class Whychooseus extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Why choose our service ?',
-              style: GoogleFonts.poppins(
-                  fontSize: MediaQuery.of(context).size.width * .04,
-                  fontWeight: FontWeight.w700)),
+          Text('Why choose our service ?'.toUpperCase(),
+              style: GoogleFonts.oswald(
+                  fontSize: MediaQuery.of(context).size.width * .05,
+                  fontWeight: FontWeight.w600)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -40,10 +40,10 @@ class Whychooseus extends StatelessWidget {
           Text(
               textAlign: TextAlign.center,
               'Low Prices',
-              style: GoogleFonts.signikaNegative(
+              style: GoogleFonts.poppins(
                   fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w600)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -67,10 +67,10 @@ class Whychooseus extends StatelessWidget {
           Text(
               textAlign: TextAlign.center,
               'Experienced Staff',
-              style: GoogleFonts.signikaNegative(
+              style: GoogleFonts.poppins(
                   fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w600)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -94,10 +94,10 @@ class Whychooseus extends StatelessWidget {
           Text(
               textAlign: TextAlign.center,
               'Reliable support',
-              style: GoogleFonts.signikaNegative(
+              style: GoogleFonts.poppins(
                   fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w600)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -121,10 +121,10 @@ class Whychooseus extends StatelessWidget {
           Text(
               textAlign: TextAlign.center,
               'Convienient Location',
-              style: GoogleFonts.signikaNegative(
+              style: GoogleFonts.poppins(
                   fontSize: MediaQuery.of(context).size.width * .04,
                   color: ProjectColors.primarycolor1,
-                  fontWeight: FontWeight.w700)),
+                  fontWeight: FontWeight.w600)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(

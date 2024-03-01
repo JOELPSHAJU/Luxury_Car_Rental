@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
             child: Container(
@@ -180,12 +180,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                               },
                                               decoration: InputDecoration(
                                                   hintText: 'Password',
-                                                  hintStyle:
-                                                      GoogleFonts.signikaNegative(
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          color: const Color.fromARGB(
-                                                              255, 208, 208, 208)),
+                                                  hintStyle: GoogleFonts.signikaNegative(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      color: const Color.fromARGB(
+                                                          255, 208, 208, 208)),
                                                   contentPadding:
                                                       const EdgeInsets.symmetric(
                                                           vertical: 18),

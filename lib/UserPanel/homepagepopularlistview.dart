@@ -122,8 +122,8 @@ class _popularinventoriesState extends State<popularinventories> {
                                   'BOOK NOW',
                                   style: GoogleFonts.oswald(
                                       fontWeight: FontWeight.w500,
-                                      color:
-                                          const Color.fromARGB(255, 255, 255, 255)),
+                                      color: const Color.fromARGB(
+                                          255, 255, 255, 255)),
                                 ),
                               ),
                             )

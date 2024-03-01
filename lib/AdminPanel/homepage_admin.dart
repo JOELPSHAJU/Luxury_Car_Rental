@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/AdminPanel/AdminNavigationBar.dart';
 import 'package:luxurycars/AdminPanel/add_advertisement.dart';
 import 'package:luxurycars/AdminPanel/advertisements_home.dart';
@@ -125,7 +126,7 @@ class _AdminHomeState extends State<AdminHome> {
                           padding: EdgeInsets.only(left: 20, top: 20),
                           child: Text(
                             'Popular Inventories',
-                            style: TextStyle(
+                            style: GoogleFonts.oswald(
                                 fontSize:
                                     MediaQuery.of(context).size.width * .05,
                                 fontWeight: FontWeight.w500),
@@ -156,7 +157,7 @@ class _AdminHomeState extends State<AdminHome> {
                           padding: EdgeInsets.only(left: 20, top: 20),
                           child: Text(
                             'Advertisements',
-                            style: TextStyle(
+                            style: GoogleFonts.oswald(
                                 fontSize:
                                     MediaQuery.of(context).size.width * .05,
                                 fontWeight: FontWeight.w500),

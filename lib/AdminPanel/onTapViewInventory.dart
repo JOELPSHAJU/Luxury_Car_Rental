@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luxurycars/AdminPanel/viewrentalrules.dart';
 
@@ -52,6 +53,7 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           elevation: 0,
@@ -138,7 +140,8 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          Container(
+                            color: Colors.white,
                             height: 64,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -147,12 +150,12 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      '$company\n$modelname',
-                                      style: TextStyle(
+                                      '$company $modelname',
+                                      style: GoogleFonts.poppins(
                                           fontSize: MediaQuery.of(context)
                                                   .size
-                                                  .height *
-                                              .023,
+                                                  .width *
+                                              .045,
                                           fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -171,11 +174,11 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('Overview',
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                           fontSize: MediaQuery.of(context)
                                                   .size
-                                                  .height *
-                                              .023,
+                                                  .width *
+                                              .045,
                                           fontWeight: FontWeight.w500)),
                                   SizedBox(
                                     width:
@@ -200,10 +203,10 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                               children: [
                                 Text(
                                   'Technical Specification',
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       fontSize:
-                                          MediaQuery.of(context).size.height *
-                                              .023,
+                                          MediaQuery.of(context).size.width *
+                                              .045,
                                       fontWeight: FontWeight.w500),
                                 ),
                               ],

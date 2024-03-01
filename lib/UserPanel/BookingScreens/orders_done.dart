@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Universaltools.dart';
-import 'package:luxurycars/UserPanel/BookingScreens/order_status.dart';
 
 class OrdersDone extends StatefulWidget {
   const OrdersDone({super.key});
@@ -15,6 +14,10 @@ class OrdersDone extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _OrdersDoneState createState() => _OrdersDoneState();
 }
+
+User? user = FirebaseAuth.instance.currentUser;
+
+late String? email = user?.email;
 
 class _OrdersDoneState extends State<OrdersDone> {
   Future<List<DocumentSnapshot>> _getDocuments(String email) async {
@@ -42,6 +45,7 @@ class _OrdersDoneState extends State<OrdersDone> {
     }
   }
 
+  Color status = Colors.grey;
   User? user = FirebaseAuth.instance.currentUser;
 
   late String? email = user?.email;
@@ -88,134 +92,139 @@ class _OrdersDoneState extends State<OrdersDone> {
                     Map<String, dynamic> data =
                         documents[index].data() as Map<String, dynamic>;
                     final docid = (documents[index].id);
-
+                    if (data['Confirmation'] == 'Sucessful') {
+                      status = Colors.green;
+                    }
+                    if (data['Confirmation'] == 'Failed') {
+                      status = Colors.red;
+                    }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Map<String, dynamic> adata = {
-                            'Image': data['Image'],
-                            'Company': data['Company'],
-                            
-                          };
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (crs) => OrderStatus(
-                                    data: adata,
-                                  )));
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color.fromARGB(255, 154, 154, 154)
-                                        .withOpacity(0.4),
-                                    spreadRadius: 4,
-                                    blurRadius: 5,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-                                color: ProjectUtils().listcolor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              children: [
-                                Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: 130,
-                                      height: 120,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: CachedNetworkImage(
-                                        imageUrl: '${data['Image']}',
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(
-                                          Icons.error,
-                                          color: Colors.grey,
-                                          size: 30,
-                                        ),
-                                        placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator(
-                                            color: ProjectColors.primarycolor1,
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        'Status : Pending',
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .019,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        '${data['Company']}',
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .019,
-                                            color: ProjectColors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Category : ${data['Category']}',
-                                        style: GoogleFonts.gowunBatang(
-                                            color: const Color.fromARGB(
-                                                255, 71, 71, 71),
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .019,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Text(
-                                        'Total Amount : ${data['Totalprice']}',
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .019,
-                                            fontWeight: FontWeight.w600,
-                                            color: ProjectColors.primarycolor1),
-                                      ),
-                                      Text(
-                                        'Pickup Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['pickupdate']))}',
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .017,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      Text(
-                                        'Dropoff Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['dropoffdate']))}',
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .017,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ],
-                                  ),
-                                )
+                      child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 154, 154, 154)
+                                      .withOpacity(0.4),
+                                  spreadRadius: 4,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
                               ],
-                            )),
-                      ),
+                              color: ProjectUtils().listcolor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: 130,
+                                    height: 120,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: '${data['Image']}',
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(
+                                        Icons.error,
+                                        color: Colors.grey,
+                                        size: 30,
+                                      ),
+                                      placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(
+                                          color: ProjectColors.primarycolor1,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Status : ',
+                                          style: GoogleFonts.gowunBatang(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .019,
+                                              color: Colors.grey,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          '${data['Confirmation']}',
+                                          style: GoogleFonts.gowunBatang(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .019,
+                                              color: status,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '${data['Company']}',
+                                      style: GoogleFonts.gowunBatang(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .019,
+                                          color: ProjectColors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Category : ${data['Category']}',
+                                      style: GoogleFonts.gowunBatang(
+                                          color: const Color.fromARGB(
+                                              255, 71, 71, 71),
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .019,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    Text(
+                                      'Total Amount : ₹${data['Totalprice']}',
+                                      style: GoogleFonts.gowunBatang(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .017,
+                                          fontWeight: FontWeight.w600,
+                                          color: ProjectColors.primarycolor1),
+                                    ),
+                                    Text(
+                                      'Pickup Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['pickupdate']))}',
+                                      style: GoogleFonts.gowunBatang(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .017,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Dropoff Date : ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['dropoffdate']))}',
+                                      style: GoogleFonts.gowunBatang(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .017,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )),
                     );
                   },
                 );

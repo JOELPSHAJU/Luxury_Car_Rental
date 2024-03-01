@@ -71,14 +71,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   }
 
   fontstyle({required context}) {
-    return GoogleFonts.signikaNegative(
+    return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.height * .018,
         color: Colors.grey,
         fontWeight: FontWeight.w500);
   }
 
   fontdatastyle({required context}) {
-    return GoogleFonts.signikaNegative(
+    return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.height * .018,
         color: ProjectColors.black,
         fontWeight: FontWeight.w500);
@@ -94,7 +94,6 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     } else if (docData!.isEmpty) {
       return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Container(
@@ -153,7 +152,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         sizedboc,
                         Text(
                           'ADD PROFILE DETAILS',
-                          style: GoogleFonts.signikaNegative(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w500,
                               color: ProjectColors.white,
                               fontSize:
@@ -231,6 +230,23 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Personal Details',
+                        style: GoogleFonts.poppins(
+                            fontSize: MediaQuery.of(context).size.width * .05),
+                      ),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * .3,
+                          child: Divider(
+                            thickness: 2,
+                            color: Colors.black,
+                          )),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(

@@ -144,7 +144,7 @@ class _BookingsDoneState extends State<BookingsDone> {
                                             // ignore: prefer_adjacent_string_concatenation
                                             'Status : ' +
                                                 '${data['Confirmation']}',
-                                            style: GoogleFonts.oswald(
+                                            style: GoogleFonts.poppins(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
                                                         .height *
@@ -483,7 +483,7 @@ class _BookingsDoneState extends State<BookingsDone> {
                                             // ignore: prefer_adjacent_string_concatenation
                                             'Status : ' +
                                                 '${data['Confirmation']}',
-                                            style: GoogleFonts.oswald(
+                                            style: GoogleFonts.poppins(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
                                                         .height *

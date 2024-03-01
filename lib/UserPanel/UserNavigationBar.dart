@@ -64,8 +64,8 @@ class _UserNavigationState extends State<UserNavigation> {
             accountName: docData?['fullname'] != null
                 ? Container(
                     child: Text('${docData?['fullname']}',
-                        style: GoogleFonts.signikaNegative(
-                            fontWeight: FontWeight.w600,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontSize:
                                 MediaQuery.of(context).size.height * .02)),
@@ -75,8 +75,8 @@ class _UserNavigationState extends State<UserNavigation> {
                 ? Container(
                     width: MediaQuery.of(context).size.width,
                     child: Text('${docData?['email']}',
-                        style: GoogleFonts.signikaNegative(
-                            fontWeight: FontWeight.w600,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
                             color: ProjectColors.white,
                             fontSize:
                                 MediaQuery.of(context).size.height * .02)),
@@ -94,7 +94,7 @@ class _UserNavigationState extends State<UserNavigation> {
                         fit: BoxFit.cover,
                         placeholder: (context, url) =>
                             CircularProgressIndicator(
-                          color: ProjectColors.primarycolor1,
+                          color: Colors.black,
                         ),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.error,
@@ -126,11 +126,11 @@ class _UserNavigationState extends State<UserNavigation> {
             leading: Icon(
               Icons.person,
               size: 30,
-              color: ProjectColors.primarycolor1,
+              color: Colors.black,
             ),
             title: Text('Profile',
-                style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.w600,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -142,11 +142,11 @@ class _UserNavigationState extends State<UserNavigation> {
             leading: Icon(
               Icons.list_alt_rounded,
               size: 30,
-              color: ProjectColors.primarycolor1,
+              color: Colors.black,
             ),
             title: Text('Rental Rules',
-                style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.w600,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -156,11 +156,11 @@ class _UserNavigationState extends State<UserNavigation> {
           ),
           ListTile(
             leading: Icon(Icons.notification_important,
-                size: 30, color: ProjectColors.primarycolor1),
+                size: 30, color: Colors.black),
             title: Text(
               'Notifications',
-              style: GoogleFonts.signikaNegative(
-                  fontWeight: FontWeight.w600,
+              style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
                   color: ProjectColors.black,
                   fontSize: MediaQuery.of(context).size.height * .02),
             ),
@@ -175,12 +175,12 @@ class _UserNavigationState extends State<UserNavigation> {
           ListTile(
             leading: Icon(
               Icons.privacy_tip,
-              color: ProjectColors.primarycolor1,
+              color: Colors.black,
               size: 30,
             ),
             title: Text('Privacy Policies',
-                style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.w600,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -191,11 +191,10 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app,
-                size: 30, color: ProjectColors.primarycolor1),
+            leading: Icon(Icons.exit_to_app, size: 30, color: Colors.black),
             title: Text('Sign out',
-                style: GoogleFonts.signikaNegative(
-                    fontWeight: FontWeight.w600,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
                     color: ProjectColors.black,
                     fontSize: MediaQuery.of(context).size.height * .02)),
             onTap: () {
@@ -215,18 +214,18 @@ class _UserNavigationState extends State<UserNavigation> {
           backgroundColor: Colors.white,
           title: Text(
             'Do you really want to sign out?',
-            style: GoogleFonts.signikaNegative(
-                fontWeight: FontWeight.w600,
-                color: ProjectColors.primarycolor1,
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
                 fontSize: MediaQuery.of(context).size.height * .02),
           ),
           actions: [
             OutlinedButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
                 child: Text('Cancel',
-                    style: GoogleFonts.signikaNegative(
+                    style: GoogleFonts.poppins(
                         color: const Color.fromARGB(255, 109, 109, 109),
-                        fontWeight: FontWeight.w600))),
+                        fontWeight: FontWeight.w500))),
             OutlinedButton(
               onPressed: () async {
                 final sharedprefs = await SharedPreferences.getInstance();
@@ -238,9 +237,8 @@ class _UserNavigationState extends State<UserNavigation> {
               },
               child: Text(
                 'Sign Out',
-                style: GoogleFonts.signikaNegative(
-                    color: ProjectColors.primarycolor1,
-                    fontWeight: FontWeight.w600),
+                style: GoogleFonts.poppins(
+                    color: Colors.black, fontWeight: FontWeight.w500),
               ),
             ),
           ],
