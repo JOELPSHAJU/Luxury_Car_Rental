@@ -262,7 +262,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -278,7 +280,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -294,7 +298,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -310,7 +316,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -326,7 +334,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -342,7 +352,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ],
                         ),
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.grey[100],
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -374,7 +386,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                                     });
                               },
                               child: Container(
-                                width: MediaQuery.of(context).size.width * .3,
+                                width: MediaQuery.of(context).size.width * .4,
                                 height:
                                     MediaQuery.of(context).size.height * .05,
                                 decoration: BoxDecoration(

@@ -480,7 +480,10 @@ class _BookingPageState extends State<BookingPage> {
       "pickupdate": _pickupDate.toString(),
       "dropoffdate": _dropoffDate.toString()
     };
-    DatabaseMethods().Addbookingdetails(bookingdetails);
+    DatabaseMethods().Addbookingdetails(bookingdetails).then((value) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (ctx) => ParticularInventory(id: docsid)));
+    });
     _dropoffDate = null;
     _pickupDate = null;
     _emailcontroller.clear();

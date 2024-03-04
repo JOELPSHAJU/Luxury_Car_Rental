@@ -164,7 +164,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                             color: Color.fromARGB(255, 220, 220, 220),
                           ),
                           SizedBox(
-                            height: 50,
+                            height: 55,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 3.0),
                               child: Row(

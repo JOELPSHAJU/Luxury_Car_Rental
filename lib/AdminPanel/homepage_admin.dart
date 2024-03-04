@@ -84,7 +84,7 @@ class _AdminHomeState extends State<AdminHome> {
       body: SingleChildScrollView(
           child: Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .99,
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

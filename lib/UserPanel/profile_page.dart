@@ -29,7 +29,7 @@ class _ProfiePageState extends State<ProfiePage> {
           title: Text(
             'Profile',
             style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500, color: ProjectColors.white),
+                fontWeight: FontWeight.w400, color: ProjectColors.white),
           ),
           leading: IconButton(
               onPressed: () {

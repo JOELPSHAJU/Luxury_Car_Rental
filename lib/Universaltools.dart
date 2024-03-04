@@ -41,7 +41,8 @@ class ProjectUtils {
       backgroundColor: const Color.fromARGB(255, 0, 189, 6),
       content: Text(
         text,
-        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        style: GoogleFonts.poppins(
+            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -53,7 +54,8 @@ class ProjectUtils {
       backgroundColor: const Color.fromARGB(255, 189, 0, 0),
       content: Text(
         text,
-        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        style: GoogleFonts.poppins(
+            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -62,10 +64,11 @@ class ProjectUtils {
   warningMessage({required context, required text}) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: ProjectColors.primarycolor2,
+      backgroundColor: Color.fromARGB(255, 59, 167, 255),
       content: Text(
         text,
-        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+        style: GoogleFonts.poppins(
+            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -76,23 +79,28 @@ class ProjectUtils {
     required text,
     required Color,
   }) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            color: Color, borderRadius: BorderRadius.circular(10)),
-        height: MediaQuery.of(context).size.height * .07,
-        child: Center(
-          child: Text(
-            text,
-            style: GoogleFonts.signikaNegative(
-                fontWeight: FontWeight.w500,
-                fontSize: MediaQuery.of(context).size.height * 0.03,
-                color: Colors.white),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            width: MediaQuery.of(context).size.width * .85,
+            decoration: BoxDecoration(
+                color: Color, borderRadius: BorderRadius.circular(5)),
+            height: MediaQuery.of(context).size.height * .07,
+            child: Center(
+              child: Text(
+                text,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
+                    fontSize: MediaQuery.of(context).size.height * 0.025,
+                    color: Colors.white),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -251,6 +259,8 @@ class ProjectUtils {
           }
         },
         decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
           contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
           label: Text(hint),
           hintText: hint,
@@ -261,11 +271,7 @@ class ProjectUtils {
                 color: ProjectUtils().textformfieldcolor,
               ),
               borderRadius: BorderRadius.circular(10)),
-          enabledBorder: OutlineInputBorder(
-              gapPadding: 4,
-              borderSide: BorderSide(width: 1, color: enabled),
-              borderRadius: BorderRadius.circular(10)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          border: InputBorder.none,
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 width: 1,
@@ -277,7 +283,7 @@ class ProjectUtils {
                 width: 1,
                 color: focusedcolor,
               ),
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(5)),
         ),
         obscureText: obsecure,
       ),
@@ -309,36 +315,24 @@ class ProjectUtils {
             }
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-            label: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(hint),
-            ),
-            labelStyle: GoogleFonts.signikaNegative(
-                color: Color.fromARGB(159, 0, 0, 0),
-                fontWeight: FontWeight.w400),
+            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            hintText: hint,
+            labelText: hint,
             filled: true,
             fillColor: const Color.fromARGB(255, 255, 255, 255),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                  width: 1,
-                  color: Colors.grey,
-                ),
-                borderRadius: BorderRadius.circular(100)),
             errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 1,
                   color: Color.fromARGB(255, 225, 15, 0),
                 ),
-                borderRadius: BorderRadius.circular(100)),
+                borderRadius: BorderRadius.circular(5)),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
                   color: ProjectColors.primarycolor1,
                 ),
-                borderRadius: BorderRadius.circular(100)),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
+                borderRadius: BorderRadius.circular(5)),
+            border: InputBorder.none,
           )),
     );
   }
@@ -346,9 +340,9 @@ class ProjectUtils {
   headingsmall({required context, required color, required text}) {
     return Text(
       text,
-      style: GoogleFonts.signikaNegative(
+      style: GoogleFonts.poppins(
         color: color,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: MediaQuery.of(context).size.width * 0.035,
       ),
     );

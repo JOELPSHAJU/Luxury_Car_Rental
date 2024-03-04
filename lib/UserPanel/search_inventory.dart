@@ -19,48 +19,6 @@ class SearchInventory extends StatefulWidget {
   State<SearchInventory> createState() => _SearchInventoryState();
 }
 
-decorationTextFormField({context}) {
-  return InputDecoration(
-    fillColor: Colors.white,
-    label: Row(
-      children: [
-        Icon(
-          Icons.search,
-          color: ProjectColors.primarycolor1,
-        ),
-        Text(
-          'Search Your Inventory....',
-          style: GoogleFonts.gowunBatang(
-              fontSize: MediaQuery.of(context).size.width * .037,
-              fontWeight: FontWeight.w400),
-        )
-      ],
-    ),
-    hintStyle: GoogleFonts.gowunBatang(
-        fontWeight: FontWeight.w400,
-        fontSize: 14,
-        color: const Color.fromARGB(255, 99, 99, 99)),
-    filled: true,
-    enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-            width: 1, color: Color.fromARGB(255, 204, 204, 204)),
-        borderRadius: BorderRadius.circular(100)),
-    focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: ProjectColors.primarycolor1,
-        ),
-        borderRadius: BorderRadius.circular(100)),
-    errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(100),
-        borderSide: const BorderSide(
-          color: Colors.redAccent,
-          width: 2,
-        )),
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-  );
-}
-
 const String type = 'Category';
 
 class _SearchInventoryState extends State<SearchInventory> {
@@ -156,10 +114,46 @@ class _SearchInventoryState extends State<SearchInventory> {
           toolbarHeight: 70,
           backgroundColor: Colors.white,
           title: SizedBox(
-            height: 50,
-            child: TextFormField(
-              decoration: decorationTextFormField(context: context),
-              controller: _searchcontroller,
+            width: MediaQuery.of(context).size.width * .9,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8),
+              child: TextFormField(
+                  cursorColor: Colors.black,
+                  cursorWidth: 1,
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                  controller: _searchcontroller,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please Fill This Field !';
+                    } else {
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    hintText: 'Search your inventory',
+                    hintStyle: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w300, color: Colors.grey),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 18, horizontal: 10),
+                    border: InputBorder.none,
+                    errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          width: 1,
+                          color: Colors.red,
+                        ),
+                        borderRadius: BorderRadius.circular(5)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          width: 1,
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(5)),
+                  )),
             ),
           ),
         ),

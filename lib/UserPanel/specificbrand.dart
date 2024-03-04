@@ -77,7 +77,7 @@ class SpecificBrand extends StatelessWidget {
             }
 
             return Container(
-              color: Color.fromARGB(255, 245, 245, 245),
+              color: Colors.grey[100],
               width: MediaQuery.of(context).size.width * double.infinity,
               height: MediaQuery.of(context).size.height * .99,
               child: ListView.builder(

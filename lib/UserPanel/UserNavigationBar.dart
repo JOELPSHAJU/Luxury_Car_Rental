@@ -201,6 +201,17 @@ class _UserNavigationState extends State<UserNavigation> {
               showSignOutAlert(context);
             },
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .3,
+          ),
+          ListTile(
+            titleAlignment: ListTileTitleAlignment.center,
+            title: Text('Ver 2.0',
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    color: ProjectColors.gray,
+                    fontSize: MediaQuery.of(context).size.height * .02)),
+          ),
         ],
       ),
     );

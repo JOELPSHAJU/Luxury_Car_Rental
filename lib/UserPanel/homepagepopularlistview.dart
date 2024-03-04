@@ -56,7 +56,7 @@ class _popularinventoriesState extends State<popularinventories> {
                     Positioned(
                       left: MediaQuery.of(context).size.width * .1,
                       child: Container(
-                        height: MediaQuery.of(context).size.height * .4,
+                        height: MediaQuery.of(context).size.height * .42,
                         width: MediaQuery.of(context).size.width * .74,
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 237, 237, 237),
@@ -133,7 +133,7 @@ class _popularinventoriesState extends State<popularinventories> {
                     ),
                     Positioned(
                       top: MediaQuery.of(context).size.height * .012,
-                      left: MediaQuery.of(context).size.width * .59,
+                      left: MediaQuery.of(context).size.width * .55,
                       child: Text(
                         ' ₹ ${doc['Price']}/day',
                         style: GoogleFonts.oswald(

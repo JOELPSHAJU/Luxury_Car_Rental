@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
-import 'package:luxurycars/authentication/loginpage.dart';
+
 import 'package:luxurycars/authentication/login.dart';
-import 'package:luxurycars/authentication/onboardingScreen.dart';
+
 import 'package:luxurycars/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -107,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> gotoLogin() async {
     await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => const OnboardingScreen()));
+        MaterialPageRoute(builder: (ctx) => const LoginPage()));
   }
 
   Future<void> checkUserLoggedIn() async {

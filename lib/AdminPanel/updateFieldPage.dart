@@ -267,6 +267,7 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
   String companyinitialvalue = '';
   String fueltypeinitialvalue = '';
   String transmissioninitialvalue = '';
+  final maincolorf = Color.fromARGB(255, 46, 70, 90);
 
   @override
   void initState() {
@@ -290,6 +291,7 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[100],
         appBar: AppBar(
           toolbarHeight: 40,
           leading: IconButton(
@@ -314,9 +316,7 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
+            decoration: const BoxDecoration(),
             child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 future: FirebaseFirestore.instance
                     .collection('cardetails')
@@ -816,8 +816,8 @@ class _UpdateInventoryFieldsState extends State<UpdateInventoryFields> {
                               padding: const EdgeInsets.only(left: 13),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: ProjectColors.primarycolor1),
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: maincolorf),
                                 width: MediaQuery.of(context).size.width,
                                 height: 55,
                                 child: Center(

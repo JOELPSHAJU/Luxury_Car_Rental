@@ -128,6 +128,8 @@ class _AddInventoryState extends State<AddInventory> {
     MainImage = '';
   }
 
+  final maincolorf = Color.fromARGB(255, 46, 70, 90);
+
   imagepicker() async {
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (file == null) {
@@ -142,7 +144,6 @@ class _AddInventoryState extends State<AddInventory> {
       MainImage = await referenceDirImagtoupload.getDownloadURL();
       setState(() {});
       if (MainImage.isEmpty) {
-       
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: text(text: 'No Image Selected')));
       }
@@ -175,8 +176,8 @@ class _AddInventoryState extends State<AddInventory> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -509,8 +510,8 @@ class _AddInventoryState extends State<AddInventory> {
                     padding: const EdgeInsets.only(left: 10),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: ProjectColors.primarycolor1,
-                          borderRadius: BorderRadius.circular(100)),
+                          color: maincolorf,
+                          borderRadius: BorderRadius.circular(5)),
                       width: MediaQuery.of(context).size.width * .9,
                       height: 55,
                       child: Center(

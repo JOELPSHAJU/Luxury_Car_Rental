@@ -180,13 +180,10 @@ class _FilterPageState extends State<FilterPage> {
                           ),
                           Container(
                             height: MediaQuery.of(context).size.height * .07,
-                            width: MediaQuery.of(context).size.width * .6,
+                            width: MediaQuery.of(context).size.width * .5,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.black,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(10),

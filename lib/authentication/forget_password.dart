@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/authentication/login.dart';
 
@@ -11,20 +12,20 @@ class ForgetPassword extends StatefulWidget {
 }
 
 final email = TextEditingController();
+final maincolor = Color.fromARGB(255, 46, 70, 90);
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   Future resetPassword() async {
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: email.text.trim());
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (c) => const LoginPage()));
-     
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (c) => const LoginPage()));
+
       ProjectUtils().sucessmessage(
           context: context,
           text: 'Password reset Link send ! Check your Email');
     } on FirebaseAuthException catch (ex) {
-     
       ProjectUtils()
           .errormessage(context: context, text: 'Some Error Happened $ex');
     }
@@ -38,17 +39,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             child: Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage('assets/max/loginbg.png'),
-        fit: BoxFit.cover,
-      )),
+      decoration: BoxDecoration(color: Colors.grey[100]),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                color: Colors.white, borderRadius: BorderRadius.circular(5)),
             height: MediaQuery.of(context).size.height * .6,
             width: MediaQuery.of(context).size.width * .9,
             child: Column(
@@ -57,7 +54,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ProjectUtils().headingbig(
                     context: context,
                     text: 'Forget Password',
-                    color: ProjectColors.primarycolor2),
+                    color: maincolor),
                 const Divider(),
                 ProjectUtils().sizedbox10,
                 Padding(
@@ -71,14 +68,50 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ProjectUtils().sizedbox10,
                 Form(
                   key: formkeyfrgt,
-                  child: ProjectUtils().textformfield(
-                      icon: Icons.email,
-                      controller: email,
-                      obsecure: false,
-                      focusedcolor: ProjectColors.primarycolor2,
-                      enabled: const Color.fromARGB(255, 117, 117, 117),
-                      label: 'Email Address',
-                      iconcolor: ProjectColors.primarycolor2),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * .9,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: TextFormField(
+                          cursorColor: Colors.black,
+                          cursorWidth: 1,
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                          controller: email,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Fill This Field !';
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            hintText: 'Enter your registered email',
+                            hintStyle: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.grey),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 18, horizontal: 10),
+                            border: InputBorder.none,
+                            errorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  width: 1,
+                                  color: Colors.red,
+                                ),
+                                borderRadius: BorderRadius.circular(5)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  width: 1,
+                                  color: Colors.grey,
+                                ),
+                                borderRadius: BorderRadius.circular(5)),
+                          )),
+                    ),
+                  ),
                 ),
                 ProjectUtils().sizedbox20,
                 GestureDetector(
@@ -92,9 +125,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     }
                   },
                   child: ProjectUtils().button(
-                      context: context,
-                      text: 'Submit',
-                      Color: ProjectColors.primarycolor2),
+                      context: context, text: 'Send Mail', Color: maincolor),
                 ),
                 ProjectUtils().sizedbox20,
                 GestureDetector(
@@ -104,7 +135,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   },
                   child: ProjectUtils().headingsmall(
                       context: context,
-                      color: ProjectColors.primarycolor2,
+                      color: maincolor,
                       text: ' Go Back To Login Page'),
                 )
               ],

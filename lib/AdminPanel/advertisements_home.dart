@@ -39,7 +39,7 @@ class AdvertisementGomeState extends State<AdvertisementGome> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * .1,
+                          height: MediaQuery.of(context).size.height * .2,
                           width: MediaQuery.of(context).size.width * .5,
                           child: Image.asset(
                             'assets/carTypes/placeholder6.png',

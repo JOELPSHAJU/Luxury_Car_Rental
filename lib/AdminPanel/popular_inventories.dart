@@ -22,6 +22,19 @@ class _PopularInventoriesState extends State<PopularInventories> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40,
+        actions: [
+          IconButton(
+              onPressed: () {
+                ProjectUtils().warningMessage(
+                    context: context,
+                    text:
+                        'If you want to add inventories to Popular, You can add it from view inventory session and Individualy add it');
+              },
+              icon: Icon(
+                Icons.info,
+                color: Colors.white,
+              ))
+        ],
         title: Text(
           'Popular Inventories',
           style: TextStyle(
