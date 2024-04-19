@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
-import 'package:luxurycars/main.dart';
+
 
 class BookingPage extends StatefulWidget {
   final Map<String, dynamic> data;

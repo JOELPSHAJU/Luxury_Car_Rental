@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  bordered_text:
+    dependency: "direct main"
+    description:
+      name: bordered_text
+      sha256: e52c549c9d01fdf6359eee7220900eb5a5853b08aa862c8c604442918ca6b4c4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   build:
     dependency: transitive
     description:
@@ -257,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  curved_carousel:
+    dependency: "direct main"
+    description:
+      name: curved_carousel
+      sha256: "35e797a207657bb15cf109708f13e6590ce9ee20ceaf881c70c3ebfc8eb99369"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.8"
   curved_navigation_bar:
     dependency: "direct main"
     description:

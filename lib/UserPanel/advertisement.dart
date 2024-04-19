@@ -52,7 +52,8 @@ class _AdvertisementState extends State<Advertisement> {
               options: CarouselOptions(
                 viewportFraction: 1,
                 autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 5),
+                reverse: true,
+                autoPlayInterval: const Duration(seconds: 7),
               ),
             );
           } else {

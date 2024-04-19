@@ -10,6 +10,7 @@ import 'package:luxurycars/UserPanel/privacy_policies.dart';
 
 import 'package:luxurycars/UserPanel/profile_page.dart';
 import 'package:luxurycars/UserPanel/rentalrulesuser.dart';
+import 'package:luxurycars/authentication/Auth.dart';
 
 import 'package:luxurycars/authentication/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -99,7 +100,7 @@ class _UserNavigationState extends State<UserNavigation> {
                         errorWidget: (context, url, error) => const Icon(
                           Icons.error,
                           color: Colors.grey,
-                          size: 30,
+                          size: 27,
                         ),
                       )
                     : Image.asset(
@@ -125,7 +126,7 @@ class _UserNavigationState extends State<UserNavigation> {
           ListTile(
             leading: Icon(
               Icons.person,
-              size: 30,
+              size: 27,
               color: Colors.black,
             ),
             title: Text('Profile',
@@ -141,7 +142,7 @@ class _UserNavigationState extends State<UserNavigation> {
           ListTile(
             leading: Icon(
               Icons.list_alt_rounded,
-              size: 30,
+              size: 27,
               color: Colors.black,
             ),
             title: Text('Rental Rules',
@@ -156,7 +157,7 @@ class _UserNavigationState extends State<UserNavigation> {
           ),
           ListTile(
             leading: Icon(Icons.notification_important,
-                size: 30, color: Colors.black),
+                size: 27, color: Colors.black),
             title: Text(
               'Notifications',
               style: GoogleFonts.poppins(
@@ -170,13 +171,13 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           const Divider(
-            thickness: 2,
+            thickness: 1,
           ),
           ListTile(
             leading: Icon(
               Icons.privacy_tip,
               color: Colors.black,
-              size: 30,
+              size: 27,
             ),
             title: Text('Privacy Policies',
                 style: GoogleFonts.poppins(
@@ -191,7 +192,7 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app, size: 30, color: Colors.black),
+            leading: Icon(Icons.exit_to_app, size: 27, color: Colors.black),
             title: Text('Sign out',
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
@@ -239,8 +240,9 @@ class _UserNavigationState extends State<UserNavigation> {
                         fontWeight: FontWeight.w500))),
             OutlinedButton(
               onPressed: () async {
-                final sharedprefs = await SharedPreferences.getInstance();
-                await sharedprefs.clear();
+               
+                Auth().signout();
+
                 // ignore: use_build_context_synchronously
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (ctx2) => const LoginPage()),

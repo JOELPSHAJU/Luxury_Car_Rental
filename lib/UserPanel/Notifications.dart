@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/AdminPanel/addInventorydata.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 
 class Notifications extends StatelessWidget {
@@ -11,6 +11,7 @@ class Notifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: ProjectColors.primarycolor1,
@@ -32,7 +33,6 @@ class Notifications extends StatelessWidget {
             )),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 239, 239, 239),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -73,28 +73,19 @@ class Notifications extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                                 decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                            Color.fromARGB(255, 154, 154, 154)
-                                                .withOpacity(0.4),
-                                        spreadRadius: 4,
-                                        blurRadius: 5,
-                                        offset: Offset(0, 3),
-                                      ),
-                                    ],
                                     borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(color: Colors.grey),
                                     color: ProjectUtils().listcolor),
                                 width: MediaQuery.of(context).size.width * .93,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     client['note'],
-                                    style: GoogleFonts.signikaNegative(
+                                    style: GoogleFonts.gowunBatang(
                                         fontSize:
                                             MediaQuery.of(context).size.height *
                                                 .02,
-                                        fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 )),
                           ),

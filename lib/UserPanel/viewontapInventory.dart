@@ -1,18 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
-
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/BookingScreens/booking_page.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
-
+import 'package:luxurycars/UserPanel/comparison_cars.dart';
 import 'package:luxurycars/UserPanel/ontap_view_images.dart';
 import 'package:luxurycars/UserPanel/ontapdetails.dart';
 
@@ -65,28 +60,60 @@ class _ParticularInventoryState extends State<ParticularInventory> {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> BookingPageDetails = {};
+    print(email);
     Map<String, dynamic> addToCartDetails = {};
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 247, 247, 247),
-      appBar: AppBar(
-        elevation: 9,
-        surfaceTintColor: ProjectColors.primarycolor1,
-        backgroundColor: ProjectColors.primarycolor1,
-        leading: Center(
-          child: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: ProjectColors.white,
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: const Color.fromARGB(255, 247, 247, 247),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Color.fromARGB(255, 42, 42, 42)),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: ProjectColors.white,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
           ),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                DatabaseMethods().addtocart(addToCartDetails);
+                setState(() {});
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Color.fromARGB(255, 42, 42, 42),
+                    ),
+                    height: 40,
+                    width: 40,
+                    child: Center(
+                        child: Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ))),
+              ),
+            )
+          ],
+          toolbarHeight: 55,
         ),
-        toolbarHeight: 39,
-      ),
-      body: Container(
-        child: Center(
+        body: Center(
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
                 .collection(collectionName)
@@ -130,6 +157,9 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                     "Model Name": modelname,
                     "Priceperday": price,
                     "email": email,
+                    "Maxpower": maxpower,
+                    "FuelType": fueltype,
+                    "SeatingCapacity": seatingcapacity
                   };
 
                   //acess the data to a map to forward it to booking page
@@ -164,7 +194,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                             color: Color.fromARGB(255, 220, 220, 220),
                           ),
                           SizedBox(
-                            height: 55,
+                            height: MediaQuery.of(context).size.height * .08,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 3.0),
                               child: Row(
@@ -239,20 +269,73 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Overview',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: MediaQuery.of(context)
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Overview',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .045,
+                                              fontWeight: FontWeight.w600,
+                                              color: ProjectColors
+                                                  .secondarycolor2)),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (comparison) =>
+                                                      ComparisonCars(
+                                                          image1: mainimage,
+                                                          company1: company,
+                                                          modelname1: modelname,
+                                                          category1: category,
+                                                          engine1: engine,
+                                                          maxpower1: maxpower,
+                                                          maxtorque1: maxtorque,
+                                                          transmission1:
+                                                              transmission,
+                                                          gearbox1: gearbox,
+                                                          zerotohndrd1:
+                                                              zerotohundred,
+                                                          fueltype1: fueltype,
+                                                          fuelcapacity1:
+                                                              fueltank,
+                                                          seatingCapacity1:
+                                                              seatingcapacity,
+                                                          groundclearence1:
+                                                              groundclearence,
+                                                          id1: docsid)));
+                                        },
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .05,
+                                          width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              .045,
-                                          fontWeight: FontWeight.w600,
-                                          color:
-                                              ProjectColors.secondarycolor2)),
+                                              .3,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  color: ProjectColors
+                                                      .primarycolor1,
+                                                  width: 2)),
+                                          child: const Center(
+                                            child: Text('Compare'),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                   sizedboc,
-                                  Divider(
+                                  const Divider(
                                     thickness: 1,
-                                    color: const Color.fromARGB(
-                                        255, 141, 141, 141),
+                                    color: Color.fromARGB(255, 141, 141, 141),
                                   ),
                                   sizedboc,
                                   SizedBox(
@@ -306,7 +389,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                               ],
                             ),
                           ),
-                          Divider(),
+                          const Divider(),
                           OntapDetails(
                               engine: engine,
                               power: maxpower,
@@ -340,59 +423,60 @@ class _ParticularInventoryState extends State<ParticularInventory> {
             },
           ),
         ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).size.height * .08,
-        width: MediaQuery.of(context).size.width,
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                DatabaseMethods().addtocart(addToCartDetails);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    duration: const Duration(seconds: 2),
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                    behavior: SnackBarBehavior.floating,
-                    content: SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                      child: Center(
-                        child: LottieBuilder.asset(
-                          'assets/animations/cartadded.json',
-                          fit: BoxFit.fitHeight,
+        bottomNavigationBar: SizedBox(
+          height: MediaQuery.of(context).size.height * .08,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                      behavior: SnackBarBehavior.floating,
+                      content: SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                        child: Center(
+                          child: LottieBuilder.asset(
+                            'assets/animations/cartadded.json',
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
-                      ),
-                    )));
-              },
-              child: Container(
-                decoration: const BoxDecoration(color: Colors.white),
-                height: MediaQuery.of(context).size.height * .1,
-                width: MediaQuery.of(context).size.width * .5,
-                child: Center(
-                  child: ProjectUtils().headingsmall(
-                      context: context,
-                      color: ProjectColors.primarycolor1,
-                      text: 'Add to Cart'),
+                      )));
+                },
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.white),
+                  height: MediaQuery.of(context).size.height * .1,
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: Center(
+                    child: ProjectUtils().headingsmall(
+                        context: context,
+                        color: ProjectColors.primarycolor1,
+                        text: 'Add to Favourites'),
+                  ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (ctx) => BookingPage(
-                          data: BookingPageDetails,
-                        )));
-              },
-              child: Container(
-                height: MediaQuery.of(context).size.height * .08,
-                width: MediaQuery.of(context).size.width * .5,
-                color: ProjectColors.primarycolor1,
-                child: Center(
-                  child: ProjectUtils().headingsmall(
-                      context: context, color: Colors.white, text: 'Book Now'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (ctx) => BookingPage(
+                            data: BookingPageDetails,
+                          )));
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .08,
+                  width: MediaQuery.of(context).size.width * .5,
+                  color: ProjectColors.primarycolor1,
+                  child: Center(
+                    child: ProjectUtils().headingsmall(
+                        context: context,
+                        color: Colors.white,
+                        text: 'Book Now'),
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

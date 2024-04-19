@@ -1,3 +1,4 @@
+import 'package:bordered_text/bordered_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,20 +30,21 @@ class SpecificBrand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Colors.black.withOpacity(.5),
         title: Text(
           name.toUpperCase(),
           style: GoogleFonts.oswald(
             fontWeight: FontWeight.w600,
             fontSize: MediaQuery.of(context).size.height * .023,
-            color: Color.fromARGB(255, 150, 94, 94),
+            color: Colors.black,
           ),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Color.fromARGB(255, 150, 94, 94),
+          color: Color.fromARGB(255, 0, 0, 0),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -89,133 +91,41 @@ class SpecificBrand extends StatelessWidget {
                       documents[index].data() as Map<String, dynamic>;
 
                   return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => ParticularInventory(
-                                id: documentId,
-                              )));
-                    },
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * .18,
-                              decoration: BoxDecoration(
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Color.fromARGB(255, 229, 229, 229),
-                                      spreadRadius: 2,
-                                      blurRadius: 3,
-                                      offset: Offset(2, 2),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => ParticularInventory(
+                                  id: documentId,
+                                )));
+                      },
+                      child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              width: double.infinity,
+                              height: 230,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BorderedText(
+                                    child: Text(
+                                      data['Model Name']
+                                          .toString()
+                                          .toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: 44, color: Colors.white),
                                     ),
-                                  ],
-                                  border: Border.all(
-                                    color: Color.fromARGB(255, 209, 185, 185),
+                                    strokeWidth: 3,
+                                    strokeColor: Colors.grey,
                                   ),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15)),
-                            ),
-                            Positioned(
-                              left: MediaQuery.of(context).size.width * .61,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * .35,
-                                height:
-                                    MediaQuery.of(context).size.height * .18,
-                                decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 209, 185, 185),
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(15),
-                                        bottomRight: Radius.circular(15),
-                                        bottomLeft: Radius.circular(15))),
-                              ),
-                            ),
-                            Positioned(
-                              left: MediaQuery.of(context).size.width * .43,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * .5,
-                                height:
-                                    MediaQuery.of(context).size.height * .18,
-                                child: CachedNetworkImage(
-                                  imageUrl: data['MainImage'],
-                                  placeholder: (context, url) {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.black,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: MediaQuery.of(context).size.width * .02,
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width * .5,
-                                  height:
-                                      MediaQuery.of(context).size.height * .18,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        data['Model Name']
-                                            .toString()
-                                            .toUpperCase(),
-                                        style: GoogleFonts.poppins(
-                                          color: ProjectColors.black,
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .045,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      Text(
-                                        data['Company'],
-                                        style: GoogleFonts.poppins(
-                                          color: const Color.fromARGB(
-                                              255, 0, 0, 0),
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .032,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Category : ${data['Category']}',
-                                        style: GoogleFonts.poppins(
-                                          color: const Color.fromARGB(
-                                              255, 132, 132, 132),
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .032,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      Text(
-                                        '₹ ${data['Price Per Day']}/day',
-                                        style: GoogleFonts.poppins(
-                                          color:
-                                              Color.fromARGB(255, 142, 82, 82),
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .035,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  )),
-                            )
-                          ],
-                        )),
-                  );
+                                  Container(
+                                    height: 150,
+                                    width: double.infinity,
+                                    child: Image.network(
+                                      'https://www.pngmart.com/files/22/Dodge-Challenger-PNG-HD-Isolated.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                ],
+                              ))));
                 },
               ),
             );
@@ -228,4 +138,9 @@ class SpecificBrand extends StatelessWidget {
       ),
     );
   }
+
+  List<String> imag = [
+    'https://www.pngmart.com/files/22/Dodge-Challenger-PNG-HD-Isolated.png',
+    'https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/98a1a282-0c8c-470b-aa27-12fd795953d3/a4c7a3ee-ea47-4ab9-958d-2cfdfa2e6953.png',
+  ];
 }

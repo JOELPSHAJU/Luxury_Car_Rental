@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/BookingScreens/Bookings.dart';
-import 'package:luxurycars/UserPanel/Cart.dart';
+import 'package:luxurycars/UserPanel/favourate.dart';
 import 'package:luxurycars/UserPanel/Notifications.dart';
 
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 border: Border.symmetric(
                     horizontal: BorderSide(width: 1, color: Colors.grey))),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: GNav(
                   gap: 8,
                   color: ProjectColors.primarycolor1,
@@ -86,8 +86,8 @@ class _HomePageState extends State<HomePage> {
                       text: 'Search',
                     ),
                     GButton(
-                      icon: Icons.shopping_cart_checkout_outlined,
-                      text: 'Cart',
+                      icon: Icons.favorite,
+                      text: 'Favourites',
                     ),
                     GButton(
                       icon: Icons.bookmark_add_outlined,

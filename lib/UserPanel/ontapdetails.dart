@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/AdminPanel/updateFieldPage.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 
@@ -111,57 +110,69 @@ class _OntapDetailsState extends State<OntapDetails> {
               ? Column(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height * .66,
+                      height: MediaQuery.of(context).size.height * .65,
                       width: MediaQuery.of(context).size.width,
                       child: ListView.separated(
-                          physics: NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) {
-                            return Divider();
-                          },
-                          itemCount: infoleadImages.length,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8.0, top: 10),
-                                  child: Text(infotitle[index],
-                                      style: textstyle1(context: context)),
+                        physics: NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index) {
+                          return Divider();
+                        },
+                        itemCount: infoleadImages.length,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                
+                                padding:
+                                    const EdgeInsets.only(left: 8.0, top: 10),
+                                child: Text(
+                                  infotitle[index],
+                                  style: textstyle1(context: context),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, left: 8.0),
                                   child: Text(
                                     infodetails[index],
                                     style: textstyle2(context: context),
                                   ),
-                                )
-                              ],
-                            );
-                          }),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isexpanded = !isexpanded;
-                            });
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * .07,
-                            width: MediaQuery.of(context).size.width * .6,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: ProjectColors.black),
-                              color: ProjectColors.white,
-                            ),
-                            child: Center(
-                                child: Text(
-                              'View Less',
-                              style: textstyle3(context: context),
-                            )),
-                          ),
-                        ),
+                            onTap: () {
+                              setState(() {
+                                isexpanded = !isexpanded;
+                              });
+                            },
+                            child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * .07,
+                                width: MediaQuery.of(context).size.width * .6,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: ProjectColors.black),
+                                  color: ProjectColors.white,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'View Less',
+                                    style: textstyle3(context: context),
+                                  ),
+                                ))),
                       ],
                     ),
                   ],

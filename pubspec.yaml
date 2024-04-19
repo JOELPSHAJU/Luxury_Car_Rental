@@ -28,10 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bordered_text: ^2.0.0
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.14.0
   cupertino_icons: ^1.0.2
+  curved_carousel: ^0.0.8
   curved_navigation_bar: ^1.0.3
   dots_indicator: ^3.0.0
   firebase_auth: ^4.15.3
@@ -89,6 +91,7 @@ flutter:
     - assets/carTypes/
     - assets/bg/
     - assets/animations/
+    - assets/categories/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

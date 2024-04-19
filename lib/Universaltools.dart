@@ -1,9 +1,10 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProjectColors {
-  static Color get primarycolor1 => Color.fromARGB(255, 11, 137, 183);
-  static Color get primarycolor2 => Color.fromARGB(255, 57, 84, 188);
+  static Color get primarycolor1 => const Color.fromARGB(255, 14, 122, 176);
+  static Color get primarycolor2 => const Color.fromARGB(255, 57, 84, 188);
 
   static Color get secondarycolor1 => const Color.fromARGB(255, 54, 0, 101);
   static Color get secondarycolor2 => const Color.fromARGB(255, 65, 65, 65);
@@ -32,7 +33,7 @@ class ProjectSnakbar {
 }
 
 class ProjectUtils {
-  final primarycolor = Color.fromARGB(255, 18, 41, 221);
+  final primarycolor = const Color.fromARGB(255, 18, 41, 221);
   final secondarycolor = const Color.fromARGB(255, 156, 120, 11);
 
   sucessmessage({required context, required text}) {
@@ -42,7 +43,7 @@ class ProjectUtils {
       content: Text(
         text,
         style: GoogleFonts.poppins(
-            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
+            fontSize: 12, color: const Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -55,7 +56,7 @@ class ProjectUtils {
       content: Text(
         text,
         style: GoogleFonts.poppins(
-            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
+            fontSize: 12, color: const Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -64,11 +65,11 @@ class ProjectUtils {
   warningMessage({required context, required text}) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: Color.fromARGB(255, 59, 167, 255),
+      backgroundColor: const Color.fromARGB(255, 59, 167, 255),
       content: Text(
         text,
         style: GoogleFonts.poppins(
-            fontSize: 12, color: Color.fromARGB(255, 255, 255, 255)),
+            fontSize: 15, color: const Color.fromARGB(255, 255, 255, 255)),
       ),
       duration: const Duration(seconds: 3),
     ));
@@ -88,7 +89,7 @@ class ProjectUtils {
             width: MediaQuery.of(context).size.width * .85,
             decoration: BoxDecoration(
                 color: Color, borderRadius: BorderRadius.circular(5)),
-            height: MediaQuery.of(context).size.height * .07,
+            height: 58,
             child: Center(
               child: Text(
                 text,
@@ -104,7 +105,7 @@ class ProjectUtils {
     );
   }
 
-  final textformfieldcolor = Color.fromARGB(255, 14, 42, 65);
+  final textformfieldcolor = const Color.fromARGB(255, 14, 42, 65);
   textformfield(
       {required icon,
       required controller,
@@ -135,8 +136,8 @@ class ProjectUtils {
             hintText: label,
             hintStyle: GoogleFonts.signikaNegative(
                 fontWeight: FontWeight.w300,
-                color: Color.fromARGB(255, 208, 208, 208)),
-            contentPadding: EdgeInsets.symmetric(vertical: 18),
+                color: const Color.fromARGB(255, 208, 208, 208)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 18),
             disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 1,
@@ -181,7 +182,7 @@ class ProjectUtils {
       required iconcolor}) {
     return SizedBox(
       child: TextFormField(
-        maxLines: 10,
+        maxLines: 4,
         minLines: 1,
         cursorColor: Colors.black,
         cursorWidth: 1,
@@ -198,30 +199,32 @@ class ProjectUtils {
           }
         },
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 18),
+          fillColor: Colors.white,
+          filled: true,
+          contentPadding: const EdgeInsets.symmetric(vertical: 18),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
                 color: ProjectUtils().textformfieldcolor,
               ),
-              borderRadius: BorderRadius.circular(0)),
+              borderRadius: BorderRadius.circular(20)),
           enabledBorder: OutlineInputBorder(
               gapPadding: 4,
               borderSide: BorderSide(width: 1, color: enabled),
-              borderRadius: BorderRadius.circular(0)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
+              borderRadius: BorderRadius.circular(20)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 width: 1,
                 color: Color.fromARGB(255, 255, 58, 44),
               ),
-              borderRadius: BorderRadius.circular(0)),
+              borderRadius: BorderRadius.circular(20)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
                 color: focusedcolor,
               ),
-              borderRadius: BorderRadius.circular(0)),
+              borderRadius: BorderRadius.circular(20)),
           prefixIcon: Icon(
             icon,
             size: 23,
@@ -261,26 +264,35 @@ class ProjectUtils {
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+          labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
           label: Text(hint),
           hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          disabledBorder: OutlineInputBorder(
+          hintStyle: const TextStyle(
+              color: Color.fromARGB(255, 65, 65, 65),
+              fontWeight: FontWeight.bold),
+          enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                width: 2,
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          border: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 1,
+                width: 2,
                 color: ProjectUtils().textformfieldcolor,
               ),
               borderRadius: BorderRadius.circular(10)),
-          border: InputBorder.none,
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                width: 1,
+                width: 2,
                 color: Color.fromARGB(255, 255, 58, 44),
               ),
               borderRadius: BorderRadius.circular(10)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                width: 1,
+                width: 2,
                 color: focusedcolor,
               ),
               borderRadius: BorderRadius.circular(5)),
@@ -300,11 +312,11 @@ class ProjectUtils {
     return SizedBox(
       height: MediaQuery.of(context).size.height * .1,
       child: TextFormField(
-          cursorColor: ProjectUtils().textformfieldcolor,
-          cursorWidth: 1,
+          cursorColor: const Color.fromARGB(255, 37, 37, 37),
+          cursorWidth: 2,
           style: GoogleFonts.signikaNegative(
-            fontWeight: FontWeight.w400,
-            color: ProjectUtils().textformfieldcolor,
+            fontWeight: FontWeight.w600,
+            color: const Color.fromARGB(255, 35, 35, 35),
           ),
           controller: controller,
           validator: (value) {
@@ -315,24 +327,33 @@ class ProjectUtils {
             }
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             hintText: hint,
             labelText: hint,
+            hintStyle: const TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+            labelStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 31, 51, 67)),
             filled: true,
             fillColor: const Color.fromARGB(255, 255, 255, 255),
             errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 1,
+                  width: 2,
                   color: Color.fromARGB(255, 225, 15, 0),
                 ),
                 borderRadius: BorderRadius.circular(5)),
-            focusedBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  width: 1,
-                  color: ProjectColors.primarycolor1,
+              width: 2,
+              color: Colors.grey,
+            )),
+            focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  width: 2,
+                  color: Colors.blue,
                 ),
                 borderRadius: BorderRadius.circular(5)),
-            border: InputBorder.none,
           )),
     );
   }
@@ -343,7 +364,7 @@ class ProjectUtils {
       style: GoogleFonts.poppins(
         color: color,
         fontWeight: FontWeight.w500,
-        fontSize: MediaQuery.of(context).size.width * 0.035,
+        fontSize: 16,
       ),
     );
   }

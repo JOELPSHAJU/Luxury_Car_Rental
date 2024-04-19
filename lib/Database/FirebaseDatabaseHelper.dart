@@ -32,6 +32,7 @@ class DatabaseMethods {
     String newzerotohundred,
     String newseatingcapacity,
     String mainimage,
+    String displayimage,
     String newnumberplate,
     List<String> newimages,
   ) {
@@ -56,6 +57,7 @@ class DatabaseMethods {
       'MainImage': mainimage,
       'Price Per Day': newprice,
       'Overview': newoverview,
+      'DisplayImage':displayimage,
       'Image Urls': newimages
     });
   }
@@ -107,13 +109,13 @@ class DatabaseMethods {
 
   Future addtocart(Map<String, dynamic> bookinginfomap) async {
     return await FirebaseFirestore.instance
-        .collection("addtocart")
+        .collection("favourites")
         .add(bookinginfomap);
   }
 
   Future deletecartitem(String ids) async {
     return await FirebaseFirestore.instance
-        .collection("addtocart")
+        .collection("favourites")
         .doc(ids)
         .delete();
   }
@@ -131,8 +133,8 @@ class DatabaseMethods {
         .delete();
   }
 
-  Future addprofiledetails(Map<String, dynamic> profile) async {
-    return await FirebaseFirestore.instance.collection("profile").add(profile);
+  Future addprofiledetails(Map<String, dynamic> profile,String docid) async {
+    return await FirebaseFirestore.instance.collection("profile").doc(docid).set(profile);
   }
 
   Future addAdvertismentforuser(Map<String, dynamic> add) async {

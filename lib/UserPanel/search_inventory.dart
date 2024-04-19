@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:bordered_text/bordered_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -104,7 +105,7 @@ class _SearchInventoryState extends State<SearchInventory> {
           leading: IconButton(
             icon: Icon(
               Icons.filter_list,
-              color: ProjectColors.primarycolor1,
+              color: ProjectColors.black,
             ),
             onPressed: () {
               Navigator.of(context).push(
@@ -114,52 +115,48 @@ class _SearchInventoryState extends State<SearchInventory> {
           toolbarHeight: 70,
           backgroundColor: Colors.white,
           title: SizedBox(
-            width: MediaQuery.of(context).size.width * .9,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8),
-              child: TextFormField(
-                  cursorColor: Colors.black,
-                  cursorWidth: 1,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ),
-                  controller: _searchcontroller,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please Fill This Field !';
-                    } else {
-                      return null;
-                    }
-                  },
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    hintText: 'Search your inventory',
-                    hintStyle: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w300, color: Colors.grey),
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 18, horizontal: 10),
-                    border: InputBorder.none,
-                    errorBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(5)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          width: 1,
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(5)),
-                  )),
-            ),
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: TextFormField(
+                cursorColor: Colors.black,
+                cursorWidth: 1,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+                controller: _searchcontroller,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please Fill This Field !';
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  hintText: 'Search your inventory',
+                  hintStyle: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w300, color: Colors.grey),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
+                  border: InputBorder.none,
+                  disabledBorder: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      borderRadius: BorderRadius.circular(15)),
+                )),
           ),
         ),
         body: Container(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 250, 250, 250),
+            color: Colors.white,
           ),
           child: Column(
             children: [
@@ -207,82 +204,97 @@ class _SearchInventoryState extends State<SearchInventory> {
                             },
                             child: Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 10, left: 10, right: 10),
+                                    top: 10, left: 10, right: 10, bottom: 10),
                                 child: Stack(
                                   children: [
                                     Container(
                                       width: MediaQuery.of(context).size.width,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .18,
-                                      decoration: BoxDecoration(
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Color.fromARGB(
-                                                  255, 229, 229, 229),
-                                              spreadRadius: 2,
-                                              blurRadius: 3,
-                                              offset: Offset(2, 2),
-                                            ),
-                                          ],
-                                          border: Border.all(
-                                              color: const Color.fromARGB(
-                                                  255, 190, 216, 218)),
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
+                                      height: 250,
+                                      decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.bottomCenter,
+                                              end: Alignment.topCenter,
+                                              colors: [
+                                            Color.fromARGB(31, 86, 86, 86),
+                                            Color.fromARGB(115, 255, 255, 255),
+                                            Colors.black12,
+                                          ])),
                                     ),
                                     Positioned(
-                                      left: MediaQuery.of(context).size.width *
-                                          .592,
-                                      child: Container(
+                                      top: 200,
+                                      left: 10,
+                                      child: SizedBox(
+                                        height: 40,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                .35,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .18,
-                                        decoration: const BoxDecoration(
-                                            color: Color.fromARGB(
-                                                255, 190, 216, 218),
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(15),
-                                                bottomLeft: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(15))),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: MediaQuery.of(context).size.width *
-                                          .43,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .5,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .18,
-                                        child: CachedNetworkImage(
-                                          imageUrl: _resultlist[index]
-                                              ['MainImage'],
-                                          placeholder: (context, url) {
-                                            return const Center(
-                                              child: CircularProgressIndicator(
-                                                color: Colors.black,
+                                                .9,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              height: 40,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255, 0, 0, 0))),
+                                              child: Center(
+                                                child: RowSearch(
+                                                  image:
+                                                      'assets/carTypes/engine.png',
+                                                  Texts:
+                                                      ' ${_resultlist[index]['Maximum Power']}',
+                                                  last: 'hp',
+                                                ),
                                               ),
-                                            );
-                                          },
+                                            ),
+                                            Container(
+                                                height: 40,
+                                                width: 110,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color
+                                                            .fromARGB(
+                                                            255, 0, 0, 0))),
+                                                child: Center(
+                                                    child: RowSearch(
+                                                        image:
+                                                            'assets/carTypes/seat.png',
+                                                        last: 'Person',
+                                                        Texts:
+                                                            '  ${_resultlist[index]['Seating Capacity']}'))),
+                                            Container(
+                                                height: 40,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color
+                                                            .fromARGB(
+                                                            255, 0, 0, 0))),
+                                                child: Center(
+                                                  child: RowSearch(
+                                                    last: '',
+                                                    image:
+                                                        'assets/carTypes/fuel.png',
+                                                    Texts:
+                                                        '${_resultlist[index]['Fuel Type']}',
+                                                  ),
+                                                ))
+                                          ],
                                         ),
                                       ),
                                     ),
                                     Positioned(
+                                      top: -45,
                                       left: MediaQuery.of(context).size.width *
-                                          .02,
+                                          .025,
                                       child: Container(
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              .5,
+                                              .9,
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
@@ -294,61 +306,99 @@ class _SearchInventoryState extends State<SearchInventory> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
-                                                _resultlist[index]['Model Name']
+                                                textAlign: TextAlign.center,
+                                                _resultlist[index]['Company']
                                                     .toString()
                                                     .toUpperCase(),
-                                                style: GoogleFonts.poppins(
-                                                  color: ProjectColors.black,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .045,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Text(
-                                                _resultlist[index]['Company'],
-                                                style: GoogleFonts.poppins(
-                                                  color: const Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .032,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              Text(
-                                                'Category : ${_resultlist[index]['Category']}',
-                                                style: GoogleFonts.poppins(
-                                                  color: const Color.fromARGB(
-                                                      255, 132, 132, 132),
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .032,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              Text(
-                                                '₹ ${_resultlist[index]['Price Per Day']}/day',
-                                                style: GoogleFonts.poppins(
-                                                  color: const Color.fromARGB(
-                                                      255, 80, 169, 174),
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          .035,
-                                                  fontWeight: FontWeight.w500,
+                                                style: GoogleFonts.robotoFlex(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ],
                                           )),
-                                    )
+                                    ),
+                                    Positioned(
+                                      top: -50,
+                                      left: MediaQuery.of(context).size.width *
+                                          .57,
+                                      child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .9,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .18,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                textAlign: TextAlign.center,
+                                                "₹ ${_resultlist[index]['Price Per Day']}/day",
+                                                style: GoogleFonts.robotoFlex(
+                                                  color: Color.fromARGB(
+                                                      255, 0, 0, 0),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                    Positioned(
+                                      top: -13,
+                                      left: MediaQuery.of(context).size.width *
+                                          .02,
+                                      child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .9,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .18,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              BorderedText(
+                                                strokeWidth: 2,
+                                                strokeColor:
+                                                    const Color.fromARGB(
+                                                        121, 88, 161, 216),
+                                                child: Text(
+                                                  textAlign: TextAlign.center,
+                                                  _resultlist[index]
+                                                          ['Model Name']
+                                                      .toString()
+                                                      .toUpperCase(),
+                                                  style: GoogleFonts.robotoFlex(
+                                                    color: Colors.transparent,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .08,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                    MainImage(
+                                      resultlist: _resultlist,
+                                      image: _resultlist[index]['MainImage'],
+                                    ),
                                   ],
                                 )),
                           );
@@ -359,5 +409,66 @@ class _SearchInventoryState extends State<SearchInventory> {
             ],
           ),
         ));
+  }
+}
+
+class MainImage extends StatelessWidget {
+  final String image;
+  const MainImage({
+    super.key,
+    required List resultlist,
+    required this.image,
+  }) : _resultlist = resultlist;
+
+  final List _resultlist;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: -10,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * .25,
+        child: CachedNetworkImage(
+          imageUrl: image,
+          placeholder: (context, url) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.black,
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class RowSearch extends StatelessWidget {
+  final String image;
+  final String last;
+  final String Texts;
+  const RowSearch(
+      {super.key,
+      required this.image,
+      required this.last,
+      required this.Texts});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          '$image',
+          color: Colors.black,
+          width: MediaQuery.of(context).size.width * .07,
+        ),
+        Text(
+          '${Texts.toString().toUpperCase()} $last',
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+        ),
+      ],
+    );
   }
 }

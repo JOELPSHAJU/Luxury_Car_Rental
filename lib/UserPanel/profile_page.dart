@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/Homepage.dart';
 
@@ -23,27 +23,35 @@ class _ProfiePageState extends State<ProfiePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: ProjectColors.primarycolor1,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           centerTitle: true,
-          title: Text(
-            'Profile',
-            style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w400, color: ProjectColors.white),
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100)),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (ctx) => const HomePage()));
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ProjectColors.black,
+                  )),
+            ),
           ),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (ctx) => const HomePage()));
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                color: ProjectColors.white,
-              )),
         ),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * double.infinity,
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width * double.infinity,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

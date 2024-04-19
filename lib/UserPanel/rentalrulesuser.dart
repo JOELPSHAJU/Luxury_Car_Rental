@@ -10,15 +10,16 @@ class ViewRentalUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: ProjectColors.primarycolor1,
         centerTitle: true,
         title: Text(
           'Rental Rules',
           style: GoogleFonts.signikaNegative(
-              fontSize: MediaQuery.of(context).size.height * .019,
+              fontSize: MediaQuery.of(context).size.height * .023,
               color: ProjectColors.white,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.w500),
         ),
         leading: IconButton(
             icon: Icon(
@@ -31,7 +32,6 @@ class ViewRentalUser extends StatelessWidget {
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        color: const Color.fromARGB(255, 239, 239, 239),
         child: Row(
           children: [
             StreamBuilder<QuerySnapshot>(
@@ -51,19 +51,8 @@ class ViewRentalUser extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                   decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                            Color.fromARGB(255, 154, 154, 154)
-                                                .withOpacity(0.4),
-                                        spreadRadius: 4,
-                                        blurRadius: 5,
-                                        offset: Offset(0, 3),
-                                      ),
-                                    ],
-                                    color: ProjectUtils().listcolor,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: Colors.grey)),
                                   width:
                                       MediaQuery.of(context).size.width * .93,
                                   child: Padding(
