@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
@@ -11,25 +12,13 @@ class addnotification extends StatelessWidget {
   addnotification({super.key});
   int b = 1;
   final rental = TextEditingController();
+  String date = '';
 
   final formkeys = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: ProjectColors.primarycolor1,
-        shape: const CircleBorder(),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => notificationAdd(context: context),
-          );
-        },
-        child: const Icon(
-          Icons.notification_add,
-          color: Colors.white,
-        ),
-      ),
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -56,15 +45,51 @@ class addnotification extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Row(
+              children: [
+                Form(
+                    key: formkeys,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * .75,
+                        child: ProjectUtils().textformfieldaddnotification(
+                            icon: Icons.notification_add,
+                            controller: rental,
+                            obsecure: false,
+                            focusedcolor: Colors.black,
+                            enabled: ProjectColors.primarycolor1,
+                            iconcolor: ProjectColors.primarycolor1),
+                      ),
+                    )),
+                InkWell(
+                  onTap: () {
+                    if (formkeys.currentState!.validate()) {
+                      date = DateTime.now().toString();
+                      uploaddata();
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: ProjectColors.primarycolor1),
+                      width: 60,
+                      height: 60,
+                      child: Center(
+                          child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 30,
+                      )),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 10,
-            ),
-            ProjectUtils().headingsmall(
-                context: context,
-                color: ProjectColors.primarycolor1,
-                text: '<------- Swipe To Delete ------->'),
-            const SizedBox(
-              height: 20,
             ),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
@@ -110,13 +135,31 @@ class addnotification extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                " ${client['note']}",
-                                style: TextStyle(
-                                  fontSize:
-                                      MediaQuery.of(context).size.height * .02,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    " ${client['note']}",
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              .02,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        '${DateFormat("dd/MM/yyyy hh:mm a").format(DateTime.parse(client['date']))}',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
                           ),
@@ -136,6 +179,7 @@ class addnotification extends StatelessWidget {
   uploaddata() async {
     Map<String, String> note = {
       "note": rental.text,
+      "date": date,
     };
     await DatabaseMethods().addnotification(note);
     rental.clear();
@@ -148,72 +192,5 @@ class addnotification extends StatelessWidget {
         duration: Duration(seconds: 3),
       ));
     }
-  }
-
-  notificationAdd({context}) {
-    return Center(
-      child: SingleChildScrollView(
-        child: AlertDialog(
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-          content: Column(
-            children: [
-              ProjectUtils().headingsmall(
-                  context: context,
-                  color: ProjectColors.primarycolor1,
-                  text: 'ADD NOTIFICATION'),
-              const SizedBox(
-                height: 10,
-              ),
-              Form(
-                  key: formkeys,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(1),
-                        child: ProjectUtils().textformfieldaddnotification(
-                            icon: Icons.notification_add,
-                            controller: rental,
-                            obsecure: false,
-                            focusedcolor: Colors.black,
-                            enabled: ProjectColors.primarycolor1,
-                            iconcolor: ProjectColors.primarycolor1),
-                      ),
-                    ],
-                  )),
-              const SizedBox(
-                height: 7,
-              ),
-              InkWell(
-                onTap: () {
-                  if (formkeys.currentState!.validate()) {
-                    uploaddata();
-                    Navigator.of(context).pop();
-                  } else {}
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: ProjectColors.primarycolor1),
-                    width: MediaQuery.of(context).size.width * .5,
-                    height: MediaQuery.of(context).size.height * .07,
-                    child: Center(
-                      child: Text(
-                        'ADD Notification'.toUpperCase(),
-                        style: TextStyle(
-                            color: ProjectColors.white,
-                            fontSize: MediaQuery.of(context).size.height * .02,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

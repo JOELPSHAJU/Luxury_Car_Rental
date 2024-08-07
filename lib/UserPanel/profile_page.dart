@@ -56,7 +56,7 @@ class _ProfiePageState extends State<ProfiePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProfileDetails(
-                  user: email.toString(),
+                
                 ),
               ],
             ),

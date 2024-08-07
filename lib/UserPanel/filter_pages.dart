@@ -123,7 +123,7 @@ class _FilterPageState extends State<FilterPage> {
     }
   }
 
-  String title = 'GO DRIVE';
+  String title = 'Manual Transmission';
   bool customExpanded = false;
   int selectedindex = 0;
   final selectedColor = const Color.fromARGB(255, 12, 160, 168);
@@ -529,7 +529,7 @@ class _FilterPageState extends State<FilterPage> {
 
                       return Container(
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 252, 252, 252),
+                          color: Color.fromARGB(255, 216, 216, 216),
                         ),
                         width:
                             MediaQuery.of(context).size.width * double.infinity,
@@ -550,112 +550,34 @@ class _FilterPageState extends State<FilterPage> {
                                         )));
                               },
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, left: 10, right: 10, bottom: 10),
-                                  child: Stack(
-                                    children: [
-                                      Container(
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 10, right: 10, bottom: 10),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                        height: 260,
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        height: 250,
-                                        decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                                colors: [
-                                              Color.fromARGB(31, 86, 86, 86),
-                                              Color.fromARGB(
-                                                  115, 255, 255, 255),
-                                              Colors.black12,
-                                            ])),
-                                      ),
-                                      Positioned(
-                                        top: 200,
-                                        left: 10,
-                                        child: SizedBox(
-                                          height: 40,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .9,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Container(
-                                                height: 40,
-                                                width: 100,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 0, 0, 0))),
-                                                child: Center(
-                                                  child: RowSearch(
-                                                    image:
-                                                        'assets/carTypes/engine.png',
-                                                    Texts:
-                                                        ' ${data['Maximum Power']}',
-                                                    last: 'hp',
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                  height: 40,
-                                                  width: 110,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color: const Color
-                                                              .fromARGB(
-                                                              255, 0, 0, 0))),
-                                                  child: Center(
-                                                      child: RowSearch(
-                                                          image:
-                                                              'assets/carTypes/seat.png',
-                                                          last: 'Person',
-                                                          Texts:
-                                                              '  ${data['Seating Capacity']}'))),
-                                              Container(
-                                                  height: 40,
-                                                  width: 100,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color: const Color
-                                                              .fromARGB(
-                                                              255, 0, 0, 0))),
-                                                  child: Center(
-                                                    child: RowSearch(
-                                                      last: '',
-                                                      image:
-                                                          'assets/carTypes/fuel.png',
-                                                      Texts:
-                                                          '${data['Fuel Type']}',
-                                                    ),
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        top: -45,
-                                        left:
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                    Positioned(
+                                      top: 10,
+                                      child: SizedBox(
+                                        height: 40,
+                                        width:
                                             MediaQuery.of(context).size.width *
-                                                .03,
-                                        child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
                                                 .9,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .18,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
                                               children: [
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
                                                 Text(
                                                   textAlign: TextAlign.center,
                                                   data['Company']
@@ -668,110 +590,131 @@ class _FilterPageState extends State<FilterPage> {
                                                   ),
                                                 ),
                                               ],
-                                            )),
-                                      ),
-                                      Positioned(
-                                        top: -48,
-                                        left:
-                                            MediaQuery.of(context).size.width *
-                                                .6,
-                                        child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .9,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .18,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                            ),
+                                            Row(
                                               children: [
                                                 Text(
                                                   textAlign: TextAlign.center,
-                                                  "₹ ${data['Price Per Day']}/day",
+                                                  '₹${data['Price Per Day'].toString().toUpperCase()}/day',
                                                   style: GoogleFonts.robotoFlex(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0),
-                                                    fontSize: 18,
+                                                    color: Colors.green,
+                                                    fontSize: 16,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
                                               ],
-                                            )),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      Positioned(
-                                        top: -19,
-                                        left:
-                                            MediaQuery.of(context).size.width *
-                                                .02,
-                                        child: SizedBox(
-                                            width: MediaQuery.of(context)
+                                    ),
+                                    Positioned(
+                                      top: 40,
+                                      left: 10,
+                                      child: BorderedText(
+                                        strokeWidth: 2,
+                                        strokeColor:
+                                            Color.fromARGB(154, 0, 0, 0),
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          data['Model Name']
+                                              .toString()
+                                              .toUpperCase(),
+                                          style: GoogleFonts.robotoFlex(
+                                            color: Colors.transparent,
+                                            fontSize: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .9,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .18,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                BorderedText(
-                                                  strokeWidth: 2,
-                                                  strokeColor: Color.fromARGB(
-                                                      154, 12, 160, 168),
-                                                  child: Text(
-                                                    textAlign: TextAlign.center,
-                                                    data['Model Name']
-                                                        .toString()
-                                                        .toUpperCase(),
-                                                    style:
-                                                        GoogleFonts.robotoFlex(
-                                                      color: Colors.transparent,
-                                                      fontSize:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .08,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )),
-                                      ),
-                                      Positioned(
-                                        top: -5,
-                                        child: SizedBox(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .25,
-                                          child: CachedNetworkImage(
-                                            imageUrl: '${data['MainImage']}',
-                                            placeholder: (context, url) {
-                                              return const Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: Colors.black,
-                                                ),
-                                              );
-                                            },
+                                                .08,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  )),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height: 200,
+                                        width: double.infinity,
+                                        child: CachedNetworkImage(
+                                          imageUrl: "${data['MainImage']}",
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) {
+                                            return const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          },
+                                        )),
+                                    Positioned(
+                                      bottom: 10,
+                                      child: SizedBox(
+                                        height: 40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .9,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              height: 40,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255, 0, 0, 0))),
+                                              child: Center(
+                                                child: RowSearch(
+                                                  image:
+                                                      'assets/carTypes/engine.png',
+                                                  Texts:
+                                                      ' ${data['Maximum Power']}',
+                                                  last: 'hp',
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                                height: 40,
+                                                width: 110,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color
+                                                            .fromARGB(
+                                                            255, 0, 0, 0))),
+                                                child: Center(
+                                                    child: RowSearch(
+                                                        image:
+                                                            'assets/carTypes/seat.png',
+                                                        last: 'Person',
+                                                        Texts:
+                                                            '  ${data['Seating Capacity']}'))),
+                                            Container(
+                                                height: 40,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: const Color
+                                                            .fromARGB(
+                                                            255, 0, 0, 0))),
+                                                child: Center(
+                                                  child: RowSearch(
+                                                    last: '',
+                                                    image:
+                                                        'assets/carTypes/fuel.png',
+                                                    Texts:
+                                                        '${data['Fuel Type']}',
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             );
                           },
                         ),

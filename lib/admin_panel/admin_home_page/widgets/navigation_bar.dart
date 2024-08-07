@@ -4,6 +4,7 @@ import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/admin_panel/add_advertisement/add_advertisement.dart';
 import 'package:luxurycars/admin_panel/add_inventory/addInventorydata.dart';
 import 'package:luxurycars/admin_panel/add_notification/add_notification.dart';
+
 import 'package:luxurycars/admin_panel/add_rental_rule/addRentalRules.dart';
 import 'package:luxurycars/admin_panel/booking_request/bookingrequests.dart';
 import 'package:luxurycars/admin_panel/delete_inventory/deleteInventory.dart';
@@ -96,8 +97,8 @@ class AdminNavigationBar extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => const ViewInventories()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const ViewInventories()));
             },
           ),
           const Divider(thickness: 2, color: Colors.black),
@@ -143,8 +144,8 @@ class AdminNavigationBar extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             onTap: () async {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => const BookingRequest()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const BookingRequest()));
             },
           ),
           ListTile(
@@ -157,8 +158,8 @@ class AdminNavigationBar extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             onTap: () async {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx2) => const ViewBookings()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx2) => const ViewBookings()));
             },
           ),
           const Divider(
@@ -175,8 +176,8 @@ class AdminNavigationBar extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             onTap: () async {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ctx) => const PopularInventories()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => const PopularInventories()));
             },
           ),
           ListTile(
@@ -203,8 +204,8 @@ class AdminNavigationBar extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             onTap: () async {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ctx2) => const AddAdvertisement()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx2) => const AddAdvertisement()));
             },
           ),
           SizedBox(

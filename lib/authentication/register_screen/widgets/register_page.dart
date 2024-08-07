@@ -66,7 +66,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                   style: GoogleFonts.raleway(
                       fontSize: MediaQuery.of(context).size.width * .08,
                       fontWeight: FontWeight.w600,
-                      color: maincolor),
+                      color: Colors.black),
                 ),
               ),
             ],
@@ -79,7 +79,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                 child: Text(
                   'started',
                   style: GoogleFonts.raleway(
-                      color: maincolor,
+                      color: Colors.black,
                       fontSize: MediaQuery.of(context).size.width * .099,
                       fontWeight: FontWeight.w600),
                 ),
@@ -336,14 +336,14 @@ class _RegisterscreenState extends State<Registerscreen> {
                   children: [
                     ProjectUtils().headingsmall(
                         context: context,
-                        color: const Color.fromARGB(255, 117, 117, 117),
+                        color: Color.fromARGB(255, 0, 0, 0),
                         text: 'Already Have An Account? '),
                     GestureDetector(
                       onTap: () {
                         gotoLogin(context);
                       },
                       child: ProjectUtils().headingsmall(
-                          context: context, color: maincolor, text: 'Login'),
+                          context: context, color: Colors.blue, text: 'Login'),
                     ),
                   ],
                 ),
@@ -360,3 +360,4 @@ void gotoLogin(context) {
   Navigator.of(context)
       .pushReplacement(MaterialPageRoute(builder: (ctx) => const LoginPage()));
 }
+

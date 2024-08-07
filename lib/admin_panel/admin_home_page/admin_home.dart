@@ -193,7 +193,7 @@ class _AdminHomeState extends State<AdminHome> {
                       Text(
                         'DRIVE',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),

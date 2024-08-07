@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/Universaltools.dart';
 
 class OurFleet extends StatelessWidget {
   const OurFleet({super.key});
@@ -8,7 +7,8 @@ class OurFleet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return SizedBox(
+    return Container(
+      color: Color.fromARGB(255, 198, 210, 215),
       height: 300,
       width: double.infinity,
       child: ListView(
@@ -62,7 +62,7 @@ class CarTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: size.width * .7,
+        width: size.width * .8,
         height: size.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,17 +73,24 @@ class CarTile extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold, fontSize: 20),
+                      color: Color.fromARGB(255, 35, 35, 34),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
                 Text(
                   subtitle,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 87, 87, 87)),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                      color: const Color.fromARGB(255, 74, 74, 74)),
                 ),
               ],
             ),
-            Image.asset(image)
+            Image.asset(
+              image,
+              fit: BoxFit.fitHeight,
+            )
           ],
         ),
       ),

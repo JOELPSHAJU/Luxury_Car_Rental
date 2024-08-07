@@ -14,15 +14,15 @@ import 'package:luxurycars/Universaltools.dart';
 
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
 
-class AddtoCart extends StatefulWidget {
-  const AddtoCart({super.key});
+class AddtoCartUser extends StatefulWidget {
+  const AddtoCartUser({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _AddtoCartState createState() => _AddtoCartState();
+  _AddtoCartUserState createState() => _AddtoCartUserState();
 }
 
-class _AddtoCartState extends State<AddtoCart> {
+class _AddtoCartUserState extends State<AddtoCartUser> {
   Future<List<DocumentSnapshot>> _getDocuments(String email) async {
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('favourites');
@@ -54,6 +54,22 @@ class _AddtoCartState extends State<AddtoCart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+          title: Text(
+            'Cart',
+            style: GoogleFonts.oswald(color: Colors.white),
+          ),
+        ),
         extendBody: true,
         body: Container(
           decoration:

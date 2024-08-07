@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luxurycars/Universaltools.dart';
 
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
@@ -9,22 +8,27 @@ class Whychooseus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: Color.fromARGB(255, 44, 60, 68),
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          sizedboc, sizedboc,
           Text('Why We Are Different',
               style: GoogleFonts.roboto(
-                  fontSize: 24, fontWeight: FontWeight.bold)),
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               "Unlock The Road To Adventure With Our Diverse Fleet Of Our Luxury Rental Cars.",
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                  color: const Color.fromARGB(255, 125, 125, 125),
+                  fontSize: 14,
+                  color: Color.fromARGB(255, 255, 255, 255),
                   fontWeight: FontWeight.w500),
             ),
           ),
@@ -35,6 +39,7 @@ class Whychooseus extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 230,
+            color: Color.fromARGB(255, 44, 60, 68),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -61,7 +66,9 @@ class Whychooseus extends StatelessWidget {
                     title: 'Convienient Location')
               ],
             ),
-          )
+          ),
+          sizedboc,
+          sizedboc
         ],
       ),
     );
@@ -91,11 +98,8 @@ class whychoose extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.fromARGB(255, 0, 0, 0),
-              Color.fromARGB(255, 72, 72, 72),
-              Color.fromARGB(255, 35, 35, 35),
-              Color.fromARGB(255, 44, 44, 44),
-              Color.fromARGB(255, 0, 0, 0),
+              Color.fromARGB(255, 151, 191, 212),
+              Color.fromARGB(255, 177, 235, 218)
             ],
           ),
         ),
@@ -109,7 +113,7 @@ class whychoose extends StatelessWidget {
               width: 70,
               child: Image.asset(
                 image,
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 1, 1, 1),
               ),
             ),
             Text(
@@ -117,7 +121,7 @@ class whychoose extends StatelessWidget {
               title,
               style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
-                  color: const Color.fromARGB(255, 255, 255, 255)),
+                  color: Color.fromARGB(255, 0, 0, 0)),
             ),
             sizedboc,
             Expanded(
@@ -127,8 +131,7 @@ class whychoose extends StatelessWidget {
                   textAlign: TextAlign.center,
                   subtitle,
                   style: GoogleFonts.poppins(
-                      fontSize: 13,
-                      color: const Color.fromARGB(255, 255, 255, 255)),
+                      fontSize: 13, color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
             )

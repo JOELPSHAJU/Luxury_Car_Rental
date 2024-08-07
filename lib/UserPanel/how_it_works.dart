@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,11 +37,21 @@ class HowitWorks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: Colors.white,
-      height: MediaQuery.of(context).size.height * .98,
+      color: Color.fromARGB(255, 23, 30, 33),
+      height: MediaQuery.of(context).size.height * 1.19,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          sizedboc,
+          sizedboc,
+          sizedboc,
+          sizedboc,
+          Text('How It Works ?',
+              style: GoogleFonts.roboto(
+                  color: Color.fromARGB(255, 196, 196, 196),
+                  fontSize: 23,
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.bold)),
           Expanded(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -52,7 +64,7 @@ class HowitWorks extends StatelessWidget {
                     Container(
                       height: MediaQuery.of(context).size.height * .25,
                       width: MediaQuery.of(context).size.width,
-                      color: Color.fromARGB(255, 231, 231, 231),
+                      color: Color.fromARGB(255, 49, 49, 49),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -85,7 +97,7 @@ class HowitWorks extends StatelessWidget {
                               textAlign: TextAlign.left,
                               'Choose your desired vehicle from our various available options.',
                               style: GoogleFonts.poppins(
-                                  color: Colors.black, fontSize: 13),
+                                  color: Colors.white, fontSize: 13),
                             )
                           ],
                         ),
@@ -105,7 +117,7 @@ class HowitWorks extends StatelessWidget {
                     Container(
                       height: MediaQuery.of(context).size.height * .25,
                       width: MediaQuery.of(context).size.width,
-                      color: Color.fromARGB(255, 231, 231, 231),
+                      color: Color.fromARGB(255, 49, 49, 49),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -138,7 +150,7 @@ class HowitWorks extends StatelessWidget {
                               textAlign: TextAlign.left,
                               'Take your car for a spin and start your road trip with your loved ones.',
                               style: GoogleFonts.poppins(
-                                  color: Colors.black, fontSize: 13),
+                                  color: Colors.white, fontSize: 13),
                             )
                           ],
                         ),
@@ -150,7 +162,7 @@ class HowitWorks extends StatelessWidget {
                       ),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
+                        color: Colors.white,
                         height: MediaQuery.of(context).size.height * .23,
                         child: Image.asset(
                           'assets/max/howitworks1.jpg',
@@ -170,7 +182,7 @@ class HowitWorks extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
+                        color: Colors.white,
                         height: MediaQuery.of(context).size.height * .23,
                         child: Image.asset(
                           'assets/max/howitworks4.jpg',
@@ -181,7 +193,7 @@ class HowitWorks extends StatelessWidget {
                     Container(
                       height: MediaQuery.of(context).size.height * .25,
                       width: MediaQuery.of(context).size.width,
-                      color: Color.fromARGB(255, 231, 231, 231),
+                      color: Color.fromARGB(255, 49, 49, 49),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -213,7 +225,7 @@ class HowitWorks extends StatelessWidget {
                               textAlign: TextAlign.left,
                               'Take delivery of your car from the pickup point speccified in the order details.',
                               style: GoogleFonts.poppins(
-                                  color: Colors.black, fontSize: 13),
+                                  color: Colors.white, fontSize: 13),
                             )
                           ],
                         ),
@@ -223,7 +235,7 @@ class HowitWorks extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
+                        color: Colors.white,
                         height: MediaQuery.of(context).size.height * .21,
                         child: Image.asset(
                           'assets/max/howitworks3.jpg',
@@ -234,7 +246,7 @@ class HowitWorks extends StatelessWidget {
                     Container(
                       height: MediaQuery.of(context).size.height * .25,
                       width: MediaQuery.of(context).size.width,
-                      color: Color.fromARGB(255, 231, 231, 231),
+                      color: Color.fromARGB(255, 49, 49, 49),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -266,7 +278,7 @@ class HowitWorks extends StatelessWidget {
                               textAlign: TextAlign.left,
                               'Get the vehicle to your prefered return location,and we will take it from there .',
                               style: GoogleFonts.poppins(
-                                  color: Colors.black, fontSize: 13),
+                                  color: Colors.white, fontSize: 13),
                             )
                           ],
                         ),

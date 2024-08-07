@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,14 +36,12 @@ class _UserNavigationState extends State<UserNavigation> {
   }
 
   Future<void> fetchData() async {
-    CollectionReference requestReplyCollection =
+    CollectionReference profileCollection =
         FirebaseFirestore.instance.collection('profile');
     try {
-      final querySnapshot =
-          await requestReplyCollection.where('id', isEqualTo: email).get();
-      if (querySnapshot.docs.isNotEmpty) {
-        final docSnapshot = querySnapshot.docs.first;
-
+      // Directly access the document by its ID
+      final docSnapshot = await profileCollection.doc(email).get();
+      if (docSnapshot.exists) {
         setState(() {
           docData = docSnapshot.data() as Map<String, dynamic>;
         });
@@ -63,14 +63,11 @@ class _UserNavigationState extends State<UserNavigation> {
         children: [
           UserAccountsDrawerHeader(
             accountName: docData?['fullname'] != null
-                ? Container(
-                    child: Text('${docData?['fullname']}',
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize:
-                                MediaQuery.of(context).size.height * .02)),
-                  )
+                ? Text('${docData?['fullname']}',
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        fontSize: MediaQuery.of(context).size.height * .02))
                 : const Text('Guest0123'),
             accountEmail: docData?['email'] != null
                 ? Container(
@@ -94,7 +91,7 @@ class _UserNavigationState extends State<UserNavigation> {
                         imageUrl: "${docData?['profile']}",
                         fit: BoxFit.cover,
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(
+                            const CircularProgressIndicator(
                           color: Colors.black,
                         ),
                         errorWidget: (context, url, error) => const Icon(
@@ -118,16 +115,16 @@ class _UserNavigationState extends State<UserNavigation> {
                       fit: BoxFit.cover,
                     )
                   : const DecorationImage(
-                      image: const AssetImage('assets/new/cover.jpg'),
+                      image: AssetImage('assets/new/cover.jpg'),
                       fit: BoxFit.cover,
                     ),
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.person,
               size: 27,
-              color: Colors.black,
+              color: Colors.grey,
             ),
             title: Text('Profile',
                 style: GoogleFonts.poppins(
@@ -140,10 +137,10 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.list_alt_rounded,
               size: 27,
-              color: Colors.black,
+              color: Colors.grey,
             ),
             title: Text('Rental Rules',
                 style: GoogleFonts.poppins(
@@ -156,8 +153,8 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.notification_important,
-                size: 27, color: Colors.black),
+            leading:
+                const Icon(Icons.notifications, size: 27, color: Colors.grey),
             title: Text(
               'Notifications',
               style: GoogleFonts.poppins(
@@ -174,9 +171,9 @@ class _UserNavigationState extends State<UserNavigation> {
             thickness: 1,
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.privacy_tip,
-              color: Colors.black,
+              color: Colors.grey,
               size: 27,
             ),
             title: Text('Privacy Policies',
@@ -192,7 +189,8 @@ class _UserNavigationState extends State<UserNavigation> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app, size: 27, color: Colors.black),
+            leading:
+                const Icon(Icons.exit_to_app, size: 27, color: Colors.grey),
             title: Text('Sign out',
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
@@ -224,13 +222,28 @@ class _UserNavigationState extends State<UserNavigation> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: Text(
-            'Do you really want to sign out?',
-            style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                fontSize: MediaQuery.of(context).size.height * .02),
+          title: Column(
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                'Sign Out',
+                style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
+              Text(
+                textAlign: TextAlign.center,
+                'Do you really want to sign out?',
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    fontSize: MediaQuery.of(context).size.height * .02),
+              ),
+            ],
           ),
+          titlePadding:
+              EdgeInsets.only(top: 40, bottom: 30, right: 10, left: 10),
           actions: [
             OutlinedButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -240,7 +253,8 @@ class _UserNavigationState extends State<UserNavigation> {
                         fontWeight: FontWeight.w500))),
             OutlinedButton(
               onPressed: () async {
-               
+                final sharedprefs = await SharedPreferences.getInstance();
+                await sharedprefs.clear();
                 Auth().signout();
 
                 // ignore: use_build_context_synchronously

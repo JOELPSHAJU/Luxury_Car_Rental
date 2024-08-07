@@ -1,7 +1,7 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:luxurycars/Universaltools.dart';
+
 import 'package:luxurycars/UserPanel/BookingScreens/Bookings.dart';
 import 'package:luxurycars/UserPanel/favourate.dart';
 import 'package:luxurycars/UserPanel/Notifications.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             bottomOpacity: 2,
             surfaceTintColor: Colors.white,
-            iconTheme: IconThemeData(color: ProjectColors.primarycolor1),
+            iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.white,
             centerTitle: true,
             title: Image.asset(
@@ -51,8 +51,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => const Notifications()));
                   },
-                  icon: Icon(Icons.notifications,
-                      color: ProjectColors.primarycolor1))
+                  icon: const Icon(Icons.notifications, color: Colors.black))
             ],
           ),
           drawer: const UserNavigation(),
@@ -67,8 +66,8 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: GNav(
                   gap: 8,
-                  color: ProjectColors.primarycolor1,
-                  tabBackgroundColor: ProjectColors.primarycolor1,
+                  color: Colors.black,
+                  tabBackgroundColor: Colors.black,
                   activeColor: Colors.white,
                   padding: const EdgeInsets.all(10),
                   onTabChange: (value) {

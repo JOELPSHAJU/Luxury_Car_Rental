@@ -1,15 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/BookingScreens/booking_page.dart';
-import 'package:luxurycars/UserPanel/UserHomePage.dart';
+import 'package:luxurycars/UserPanel/cartfromUser.dart';
 import 'package:luxurycars/UserPanel/comparison_cars.dart';
+import 'package:luxurycars/UserPanel/favourate.dart';
+
 import 'package:luxurycars/UserPanel/ontap_view_images.dart';
-import 'package:luxurycars/UserPanel/ontapdetails.dart';
+import 'package:luxurycars/UserPanel/view_inventory_tab.dart';
 
 // ignore: must_be_immutable
 class ParticularInventory extends StatefulWidget {
@@ -22,7 +25,7 @@ class ParticularInventory extends StatefulWidget {
 
 class _ParticularInventoryState extends State<ParticularInventory> {
   final String collectionName = 'cardetails';
-
+  bool favfound = false;
   Widget details({required label, required data, required addons}) {
     return Row(
       children: [
@@ -50,15 +53,62 @@ class _ParticularInventoryState extends State<ParticularInventory> {
   }
 
   User? user = FirebaseAuth.instance.currentUser;
-
+  Map<String, dynamic> datamap = {};
   late String? email = user?.email;
 
   final onpresscolor = ProjectColors.primarycolor1;
 
   bool onpress = false;
-  int currentindex = 0;
+
+  Future<void> checkIfDocumentExists(String docId, String email) async {
+    try {
+      // Get a reference to the "favourites" collection
+      CollectionReference favourites =
+          FirebaseFirestore.instance.collection('favourites');
+
+      // Query the collection for a document that matches both conditions
+      QuerySnapshot querySnapshot = await favourites
+          .where('Id', isEqualTo: docId)
+          .where('email', isEqualTo: email)
+          .get();
+
+      // Check if any documents were found
+      setState(() {
+        favfound = querySnapshot.docs.isNotEmpty;
+      });
+    } catch (e) {
+      print("Error checking document: $e");
+      setState(() {
+        favfound = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfDocumentExists(widget.id, email.toString());
+  }
+
+  bool dataUpdated = false;
+
+  void _navigateAndRefresh() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddtoCartUser()),
+    );
+
+    if (result != null && result == true) {
+      // Refresh the UI
+      setState(() {
+        dataUpdated = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(favfound);
     Map<String, dynamic> BookingPageDetails = {};
     print(email);
     Map<String, dynamic> addToCartDetails = {};
@@ -90,9 +140,13 @@ class _ParticularInventoryState extends State<ParticularInventory> {
           ),
           actions: [
             GestureDetector(
-              onTap: () {
-                DatabaseMethods().addtocart(addToCartDetails);
-                setState(() {});
+              onTap: () async {
+                if (favfound) {
+                  _navigateAndRefresh();
+                } else {
+                  await DatabaseMethods().addtocart(addToCartDetails);
+                }
+                checkIfDocumentExists(widget.id, email.toString());
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -104,10 +158,15 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                     height: 40,
                     width: 40,
                     child: Center(
-                        child: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    ))),
+                        child: favfound == true
+                            ? Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              )
+                            : Icon(
+                                Icons.favorite,
+                                color: const Color.fromARGB(255, 199, 199, 199),
+                              ))),
               ),
             )
           ],
@@ -143,6 +202,7 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                   String maxpower = data['Maximum Power'];
                   String maxtorque = data['Maximum Torque'];
                   String mainimage = data['MainImage'];
+                  String displayimage = data['DisplayImage'];
                   String overview = data['Overview'];
                   String price = data['Price Per Day'];
                   String seatingcapacity = data['Seating Capacity'];
@@ -170,6 +230,29 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                     'PricePerDay': price,
                     'Gearbox': gearbox,
                     'Engine': engine,
+                    'overview': overview,
+                    'id': widget.id,
+                    'Transmission': transmission,
+                    'Fuel Type': fueltype,
+                    'Fuel Tank': fueltank,
+                    'Ground Clearence': groundclearence,
+                    'MaxTorque': maxtorque,
+                    'MaxPower': maxpower,
+                    'Seating': seatingcapacity,
+                    'Zero': zerotohundred,
+                    'image': displayimage,
+                    'model': modelname,
+                    'numberplate': numberplate,
+                    'docsid': widget.id
+                  };
+                  datamap = {
+                    'Company': company,
+                    'Category': category,
+                    'PricePerDay': price,
+                    'Gearbox': gearbox,
+                    'Engine': engine,
+                    'overview': overview,
+                    'id': widget.id,
                     'Transmission': transmission,
                     'Fuel Type': fueltype,
                     'Fuel Tank': fueltank,
@@ -185,228 +268,17 @@ class _ParticularInventoryState extends State<ParticularInventory> {
                   };
                   return SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          View_Ontap_Images(images: images),
-                          const Divider(
-                            color: Color.fromARGB(255, 220, 220, 220),
+                    height: MediaQuery.of(context).size.height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        View_Ontap_Images(images: images),
+                        Expanded(
+                          child: ViewInventoryT(
+                            data: BookingPageDetails,
                           ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * .08,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 3.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('$company $modelname',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .047,
-                                              color:
-                                                  ProjectColors.secondarycolor2,
-                                              fontWeight: FontWeight.w600)),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 2.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text('from ',
-                                                style: GoogleFonts.oswald(
-                                                    color: Colors.grey)),
-                                            Text('₹ ${data['Price Per Day']}',
-                                                style: GoogleFonts.oswald(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: ProjectColors
-                                                        .primarycolor1,
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            .05)),
-                                            Text(
-                                              ' /day',
-                                              style: GoogleFonts.oswald(
-                                                  color: Colors.grey),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * .2,
-                                    height: MediaQuery.of(context).size.height *
-                                        .08,
-                                    child: Image.asset(
-                                      'assets/new/images.png',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          const Divider(
-                            thickness: 1,
-                            color: Color.fromARGB(255, 209, 209, 209),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * .99,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Overview',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  .045,
-                                              fontWeight: FontWeight.w600,
-                                              color: ProjectColors
-                                                  .secondarycolor2)),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (comparison) =>
-                                                      ComparisonCars(
-                                                          image1: mainimage,
-                                                          company1: company,
-                                                          modelname1: modelname,
-                                                          category1: category,
-                                                          engine1: engine,
-                                                          maxpower1: maxpower,
-                                                          maxtorque1: maxtorque,
-                                                          transmission1:
-                                                              transmission,
-                                                          gearbox1: gearbox,
-                                                          zerotohndrd1:
-                                                              zerotohundred,
-                                                          fueltype1: fueltype,
-                                                          fuelcapacity1:
-                                                              fueltank,
-                                                          seatingCapacity1:
-                                                              seatingcapacity,
-                                                          groundclearence1:
-                                                              groundclearence,
-                                                          id1: docsid)));
-                                        },
-                                        child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .05,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .3,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              border: Border.all(
-                                                  color: ProjectColors
-                                                      .primarycolor1,
-                                                  width: 2)),
-                                          child: const Center(
-                                            child: Text('Compare'),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  sizedboc,
-                                  const Divider(
-                                    thickness: 1,
-                                    color: Color.fromARGB(255, 141, 141, 141),
-                                  ),
-                                  sizedboc,
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * .9,
-                                    child: Text(overview,
-                                        style: GoogleFonts.gowunBatang(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .037,
-                                            fontWeight: FontWeight.w600)),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 8.0, right: 8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                        'assets/new/company ad.jpg',
-                                      ),
-                                      fit: BoxFit.cover)),
-                              height: MediaQuery.of(context).size.height * .1,
-                              width: MediaQuery.of(context).size.width,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Technical Specification',
-                                    style: GoogleFonts.poppins(
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                .045,
-                                        fontWeight: FontWeight.w600,
-                                        color: ProjectColors.secondarycolor2)),
-                              ],
-                            ),
-                          ),
-                          const Divider(),
-                          OntapDetails(
-                              engine: engine,
-                              power: maxpower,
-                              torque: maxtorque,
-                              transmission: transmission,
-                              gearbox: gearbox,
-                              zero: zerotohundred,
-                              fuelty: fueltype,
-                              fueltank: fueltank,
-                              seating: seatingcapacity,
-                              ground: groundclearence,
-                              category: category),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   );
                 } else {
@@ -430,29 +302,34 @@ class _ParticularInventoryState extends State<ParticularInventory> {
             children: [
               GestureDetector(
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      duration: const Duration(seconds: 2),
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      behavior: SnackBarBehavior.floating,
-                      content: SizedBox(
-                        height: MediaQuery.of(context).size.height * .1,
-                        child: Center(
-                          child: LottieBuilder.asset(
-                            'assets/animations/cartadded.json',
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      )));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (c) => ComparisonCars(
+                          company1: datamap['Company'],
+                          modelname1: datamap['model'],
+                          image1: datamap['image'],
+                          category1: datamap['Category'],
+                          engine1: datamap['Engine'],
+                          maxpower1: datamap['MaxPower'],
+                          maxtorque1: datamap['MaxTorque'],
+                          transmission1: datamap['Transmission'],
+                          gearbox1: datamap['Gearbox'],
+                          zerotohndrd1: datamap['Zero'],
+                          fueltype1: datamap['Fuel Type'],
+                          fuelcapacity1: datamap['Fuel Tank'],
+                          seatingCapacity1: datamap['Seating'],
+                          groundclearence1: datamap['Ground Clearence'],
+                          id1: widget.id)));
                 },
                 child: Container(
-                  decoration: const BoxDecoration(color: Colors.white),
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 255, 255)),
                   height: MediaQuery.of(context).size.height * .1,
                   width: MediaQuery.of(context).size.width * .5,
                   child: Center(
                     child: ProjectUtils().headingsmall(
                         context: context,
-                        color: ProjectColors.primarycolor1,
-                        text: 'Add to Favourites'),
+                        color: ProjectColors.black,
+                        text: 'Compare'),
                   ),
                 ),
               ),

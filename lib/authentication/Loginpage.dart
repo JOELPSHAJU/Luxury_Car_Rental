@@ -12,7 +12,6 @@ import 'package:luxurycars/admin_panel/admin_home_page/admin_home.dart';
 import 'package:luxurycars/authentication/Auth.dart';
 import 'package:luxurycars/authentication/forget_password/forget_password.dart';
 
-
 import 'package:luxurycars/authentication/register_screen/register_main.dart';
 
 import 'package:luxurycars/main.dart';
@@ -25,9 +24,9 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-final maincolorf = Color.fromARGB(255, 46, 70, 90);
+final maincolor = Color.fromARGB(255, 46, 70, 90);
 bool obsecure = true;
-final maincolor = Colors.white;
+
 bool isLoading = false;
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 248, 248, 248),
         body: ListView(
           children: [
             SizedBox(
@@ -81,8 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(
                     'Welcome back! Glad',
                     style: GoogleFonts.raleway(
-                        color: maincolorf,
-                        fontSize: MediaQuery.of(context).size.width * .08,
+                        color: Colors.black,
+                        fontSize: 24,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -96,8 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(
                     'to see you, Again!',
                     style: GoogleFonts.raleway(
-                        color: maincolorf,
-                        fontSize: MediaQuery.of(context).size.width * .099,
+                        color: Colors.black,
+                        fontSize: 35,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -115,11 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: TextFormField(
-                          cursorColor: Colors.black,
+                          cursorColor: Color.fromARGB(255, 0, 0, 0),
                           cursorWidth: 1,
                           style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromARGB(255, 0, 0, 0),
                           ),
                           controller: _emailcontroller,
                           validator: (value) {
@@ -131,11 +130,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.grey[100],
+                            fillColor: Color.fromARGB(255, 219, 219, 219),
                             hintText: 'Enter your email',
                             hintStyle: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w300,
-                                color: Colors.grey),
+                                color: Color.fromARGB(255, 74, 74, 74)),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 18, horizontal: 10),
                             border: InputBorder.none,
@@ -148,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   width: 1,
-                                  color: Colors.grey,
+                                  color: Color.fromARGB(255, 42, 114, 173),
                                 ),
                                 borderRadius: BorderRadius.circular(5)),
                           )),
@@ -160,11 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: TextFormField(
-                        cursorColor: Colors.black,
+                        cursorColor: Color.fromARGB(255, 0, 0, 0),
                         cursorWidth: 1,
                         style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromARGB(255, 0, 0, 0),
                         ),
                         controller: _passwordcontroller,
                         validator: (value) {
@@ -176,11 +175,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.grey[100],
+                            fillColor: Color.fromARGB(255, 225, 225, 225),
                             hintText: 'Enter your password',
                             hintStyle: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w300,
-                                color: Colors.grey),
+                                color: Color.fromARGB(255, 58, 58, 58)),
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 18, horizontal: 10),
                             border: InputBorder.none,
@@ -193,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   width: 1,
-                                  color: Colors.grey,
+                                  color: Color.fromARGB(255, 42, 114, 173),
                                 ),
                                 borderRadius: BorderRadius.circular(5)),
                             suffixIcon: IconButton(
@@ -227,7 +226,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       'Forgot password?',
-                      style: GoogleFonts.poppins(color: maincolorf),
+                      style: GoogleFonts.poppins(
+                          color: const Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ),
@@ -244,17 +244,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               },
               child: ProjectUtils()
-                  .button(context: context, text: 'Login', Color: maincolorf),
+                  .button(context: context, text: 'Login', Color: maincolor),
             ),
             ProjectUtils().sizedbox20,
-            Divider(),
             ProjectUtils().sizedbox20,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ProjectUtils().headingsmall(
                     context: context,
-                    color: const Color.fromARGB(255, 117, 117, 117),
+                    color: Color.fromARGB(255, 0, 0, 0),
                     text: "Don't Have An Account?   "),
                 GestureDetector(
                   onTap: () {
@@ -262,7 +261,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         builder: (c) => const RegisterMain()));
                   },
                   child: ProjectUtils().headingsmall(
-                      context: context, color: maincolorf, text: 'Register'),
+                      context: context,
+                      color: Color.fromARGB(255, 7, 120, 207),
+                      text: 'Register'),
                 )
               ],
             ),

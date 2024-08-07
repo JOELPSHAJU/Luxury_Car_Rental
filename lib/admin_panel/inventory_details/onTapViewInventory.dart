@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 import 'package:luxurycars/Universaltools.dart';
 
 // ignore: must_be_immutable
@@ -37,12 +35,17 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 122, 122, 122)),
           ),
-          Text(
-            '$data $addons',
-            style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 0, 0, 0)),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .45,
+            child: Text(
+              '$data $addons',
+              maxLines: 1,
+              style: const TextStyle(
+                  fontSize: 15,
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0)),
+            ),
           )
         ],
       ),
@@ -89,7 +92,7 @@ class _ViewSingleInventoryState extends State<ViewSingleInventory> {
                     String company = data['Company'];
                     String category = data['Category'];
                     String modelname = data['Model Name'];
-                    String mainimage = data['MainImage'];
+                    String mainimage = data['DisplayImage'];
                     String engine = data['Engine Displacement'];
                     String fueltank = data['Fuel Tank Capacity'];
                     String fueltype = data['Fuel Type'];

@@ -39,14 +39,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             child: Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(color: Colors.grey[100]),
+      decoration: BoxDecoration(color: Color.fromARGB(255, 216, 216, 216)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
-            height: MediaQuery.of(context).size.height * .66,
+            height: 600,
             width: MediaQuery.of(context).size.width * .9,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

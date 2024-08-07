@@ -207,18 +207,18 @@ class ProjectUtils {
                 width: 1,
                 color: ProjectUtils().textformfieldcolor,
               ),
-              borderRadius: BorderRadius.circular(20)),
+              borderRadius: BorderRadius.circular(5)),
           enabledBorder: OutlineInputBorder(
               gapPadding: 4,
               borderSide: BorderSide(width: 1, color: enabled),
-              borderRadius: BorderRadius.circular(20)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              borderRadius: BorderRadius.circular(5)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 width: 1,
                 color: Color.fromARGB(255, 255, 58, 44),
               ),
-              borderRadius: BorderRadius.circular(20)),
+              borderRadius: BorderRadius.circular(5)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,
@@ -364,7 +364,7 @@ class ProjectUtils {
       style: GoogleFonts.poppins(
         color: color,
         fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontSize: 14,
       ),
     );
   }
@@ -375,7 +375,7 @@ class ProjectUtils {
       text,
       style: TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: MediaQuery.of(context).size.height * 0.035,
+          fontSize: 24,
           fontFamily: 'fonts/Righteous-Regular.ttf',
           color: color),
     );

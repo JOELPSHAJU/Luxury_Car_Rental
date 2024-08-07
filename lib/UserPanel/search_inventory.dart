@@ -3,8 +3,10 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -99,19 +101,10 @@ class _SearchInventoryState extends State<SearchInventory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey,
         extendBody: true,
         appBar: AppBar(
           surfaceTintColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(
-              Icons.filter_list,
-              color: ProjectColors.black,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ctx) => const FilterPage()));
-            },
-          ),
           toolbarHeight: 70,
           backgroundColor: Colors.white,
           title: SizedBox(
@@ -134,8 +127,15 @@ class _SearchInventoryState extends State<SearchInventory> {
                 },
                 decoration: InputDecoration(
                   filled: true,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => const FilterPage()));
+                      },
+                      icon: const Icon(Icons.filter_list)),
                   fillColor: Colors.grey[100],
                   hintText: 'Search your inventory',
+                  prefixIcon: const Icon(Icons.search),
                   hintStyle: GoogleFonts.poppins(
                       fontWeight: FontWeight.w300, color: Colors.grey),
                   contentPadding:
@@ -156,7 +156,7 @@ class _SearchInventoryState extends State<SearchInventory> {
         ),
         body: Container(
           decoration: const BoxDecoration(
-            color: Colors.white,
+            color: Color.fromARGB(255, 219, 219, 219),
           ),
           child: Column(
             children: [
@@ -203,108 +203,32 @@ class _SearchInventoryState extends State<SearchInventory> {
                                       ParticularInventory(id: documentID)));
                             },
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 10, left: 10, right: 10, bottom: 10),
-                                child: Stack(
-                                  children: [
-                                    Container(
+                              padding: const EdgeInsets.only(
+                                  top: 10, left: 10, right: 10, bottom: 10),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                      height: 260,
                                       width: MediaQuery.of(context).size.width,
-                                      height: 250,
-                                      decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                              begin: Alignment.bottomCenter,
-                                              end: Alignment.topCenter,
-                                              colors: [
-                                            Color.fromARGB(31, 86, 86, 86),
-                                            Color.fromARGB(115, 255, 255, 255),
-                                            Colors.black12,
-                                          ])),
-                                    ),
-                                    Positioned(
-                                      top: 200,
-                                      left: 10,
-                                      child: SizedBox(
-                                        height: 40,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .9,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Container(
-                                              height: 40,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color:
-                                                          const Color.fromARGB(
-                                                              255, 0, 0, 0))),
-                                              child: Center(
-                                                child: RowSearch(
-                                                  image:
-                                                      'assets/carTypes/engine.png',
-                                                  Texts:
-                                                      ' ${_resultlist[index]['Maximum Power']}',
-                                                  last: 'hp',
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                                height: 40,
-                                                width: 110,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 0, 0, 0))),
-                                                child: Center(
-                                                    child: RowSearch(
-                                                        image:
-                                                            'assets/carTypes/seat.png',
-                                                        last: 'Person',
-                                                        Texts:
-                                                            '  ${_resultlist[index]['Seating Capacity']}'))),
-                                            Container(
-                                                height: 40,
-                                                width: 100,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 0, 0, 0))),
-                                                child: Center(
-                                                  child: RowSearch(
-                                                    last: '',
-                                                    image:
-                                                        'assets/carTypes/fuel.png',
-                                                    Texts:
-                                                        '${_resultlist[index]['Fuel Type']}',
-                                                  ),
-                                                ))
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: -45,
-                                      left: MediaQuery.of(context).size.width *
-                                          .025,
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .9,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .18,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  Positioned(
+                                    top: 10,
+                                    child: SizedBox(
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width *
+                                          .9,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
                                             children: [
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
                                               Text(
                                                 textAlign: TextAlign.center,
                                                 _resultlist[index]['Company']
@@ -317,90 +241,129 @@ class _SearchInventoryState extends State<SearchInventory> {
                                                 ),
                                               ),
                                             ],
-                                          )),
-                                    ),
-                                    Positioned(
-                                      top: -50,
-                                      left: MediaQuery.of(context).size.width *
-                                          .57,
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .9,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .18,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          Row(
                                             children: [
                                               Text(
                                                 textAlign: TextAlign.center,
-                                                "₹ ${_resultlist[index]['Price Per Day']}/day",
+                                                '₹${_resultlist[index]['Price Per Day'].toString().toUpperCase()}/day',
                                                 style: GoogleFonts.robotoFlex(
                                                   color: Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                  fontSize: 18,
+                                                      255, 51, 153, 55),
+                                                  fontSize: 16,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                            ],
-                                          )),
-                                    ),
-                                    Positioned(
-                                      top: -13,
-                                      left: MediaQuery.of(context).size.width *
-                                          .02,
-                                      child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .9,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .18,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              BorderedText(
-                                                strokeWidth: 2,
-                                                strokeColor:
-                                                    const Color.fromARGB(
-                                                        121, 88, 161, 216),
-                                                child: Text(
-                                                  textAlign: TextAlign.center,
-                                                  _resultlist[index]
-                                                          ['Model Name']
-                                                      .toString()
-                                                      .toUpperCase(),
-                                                  style: GoogleFonts.robotoFlex(
-                                                    color: Colors.transparent,
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            .08,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
+                                              const SizedBox(
+                                                width: 10,
                                               ),
                                             ],
-                                          )),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    MainImage(
-                                      resultlist: _resultlist,
-                                      image: _resultlist[index]['MainImage'],
+                                  ),
+                                  Positioned(
+                                    top: 40,
+                                    left: 10,
+                                    child: BorderedText(
+                                      strokeWidth: 2,
+                                      strokeColor: Color.fromARGB(154, 0, 0, 0),
+                                      child: Text(
+                                        textAlign: TextAlign.center,
+                                        _resultlist[index]['Model Name']
+                                            .toString()
+                                            .toUpperCase(),
+                                        style: GoogleFonts.robotoFlex(
+                                          color: Colors.transparent,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .08,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                )),
+                                  ),
+                                  SizedBox(
+                                      height: 200,
+                                      width: double.infinity,
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            "${_resultlist[index]['MainImage']}",
+                                        fit: BoxFit.cover,
+                                        placeholder: (context, url) {
+                                          return const Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        },
+                                      )),
+                                  Positioned(
+                                    bottom: 10,
+                                    child: SizedBox(
+                                      height: 40,
+                                      width: MediaQuery.of(context).size.width *
+                                          .9,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            height: 40,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: const Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                            child: Center(
+                                              child: RowSearch(
+                                                image:
+                                                    'assets/carTypes/engine.png',
+                                                Texts:
+                                                    ' ${_resultlist[index]['Maximum Power']}',
+                                                last: 'hp',
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                              height: 40,
+                                              width: 110,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255, 0, 0, 0))),
+                                              child: Center(
+                                                  child: RowSearch(
+                                                      image:
+                                                          'assets/carTypes/seat.png',
+                                                      last: 'Person',
+                                                      Texts:
+                                                          '  ${_resultlist[index]['Seating Capacity']}'))),
+                                          Container(
+                                              height: 40,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255, 0, 0, 0))),
+                                              child: Center(
+                                                child: RowSearch(
+                                                  last: '',
+                                                  image:
+                                                      'assets/carTypes/fuel.png',
+                                                  Texts:
+                                                      '${_resultlist[index]['Fuel Type']}',
+                                                ),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         },
                         itemCount: _resultlist.length,
@@ -426,7 +389,7 @@ class MainImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: -10,
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * .25,
         child: CachedNetworkImage(

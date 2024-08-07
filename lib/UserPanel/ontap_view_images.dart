@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:luxurycars/Universaltools.dart';
 import 'package:luxurycars/UserPanel/ontap_image_select.dart';
-import 'package:photo_view/photo_view.dart';
+
 
 class View_Ontap_Images extends StatefulWidget {
   final List<dynamic> images;

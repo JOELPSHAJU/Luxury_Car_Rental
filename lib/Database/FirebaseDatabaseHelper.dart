@@ -57,7 +57,7 @@ class DatabaseMethods {
       'MainImage': mainimage,
       'Price Per Day': newprice,
       'Overview': newoverview,
-      'DisplayImage':displayimage,
+      'DisplayImage': displayimage,
       'Image Urls': newimages
     });
   }
@@ -133,14 +133,42 @@ class DatabaseMethods {
         .delete();
   }
 
-  Future addprofiledetails(Map<String, dynamic> profile,String docid) async {
-    return await FirebaseFirestore.instance.collection("profile").doc(docid).set(profile);
+  Future addprofiledetails(Map<String, dynamic> profile, String docid) async {
+    return await FirebaseFirestore.instance
+        .collection("profile")
+        .doc(docid)
+        .set(profile);
   }
 
   Future addAdvertismentforuser(Map<String, dynamic> add) async {
     return await FirebaseFirestore.instance
         .collection("advertisements")
         .add(add);
+  }
+
+  Future<void> UpdateProfile(
+      String docid,
+      String newname,
+      String newage,
+      String newbio,
+      String newaddress,
+      String newpincode,
+      String newphonenumber,
+      String newprofile,
+      String newcover) {
+    return FirebaseFirestore.instance
+        .collection("Profile")
+        .doc(docid)
+        .update({
+      'fullname': newname,
+      'age': newage,
+      'bio': newbio,
+      'address': newaddress,
+      'pincode': newpincode,
+      'phonenumber': newphonenumber,
+      'profile': newprofile,
+      'Cover': newcover,
+    });
   }
 
   Future addprofilepics(Map<String, dynamic> add) async {

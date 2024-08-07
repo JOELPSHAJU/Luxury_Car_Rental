@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison, file_names, non_constant_identifier_names, empty_catches, constant_identifier_names
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -130,7 +132,7 @@ class _AddInventoryState extends State<AddInventory> {
     displayImage = '';
   }
 
-  final maincolorf = Color.fromARGB(255, 46, 70, 90);
+  final maincolorf = const Color.fromARGB(255, 46, 70, 90);
 
   imagepicker() async {
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);

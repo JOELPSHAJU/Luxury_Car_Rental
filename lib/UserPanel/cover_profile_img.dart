@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:luxurycars/main.dart';
 
 class Userpic extends StatefulWidget {
   final String user;
@@ -15,10 +14,6 @@ String? email;
 
 class _UserpicState extends State<Userpic> {
   Map<String, dynamic>? docData;
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-  }
 
   @override
   void initState() {
@@ -26,54 +21,55 @@ class _UserpicState extends State<Userpic> {
     fetchData();
 
     User? user = FirebaseAuth.instance.currentUser;
-
     email = user?.email;
   }
 
   Future<void> fetchData() async {
-    CollectionReference requestReplyCollection =
+    CollectionReference profileCollection =
         FirebaseFirestore.instance.collection('profile');
     try {
-      final querySnapshot = await requestReplyCollection
-          .where('id', isEqualTo: widget.user)
-          .get();
-      if (querySnapshot.docs.isNotEmpty) {
-        final docSnapshot = querySnapshot.docs.first;
-        String id = docSnapshot.id;
-        updateuseridprofile = id;
-
+      final docSnapshot = await profileCollection.doc(email).get();
+      if (docSnapshot.exists) {
         setState(() {
-          docData = docSnapshot.data() as Map<String, dynamic>;
+          docData = docSnapshot.data() as Map<String, dynamic>?;
         });
       } else {
         setState(() {
-          docData = {};
+          docData = null;
         });
       }
     } catch (error) {
       print('Error fetching data: $error');
+      setState(() {
+        docData = null;
+      });
     }
   }
 
-  fontstyle({required context}) {
+  TextStyle fontstyle(BuildContext context) {
     return TextStyle(
-        fontSize: MediaQuery.of(context).size.height * .02,
-        fontWeight: FontWeight.w500);
+      fontSize: MediaQuery.of(context).size.height * .02,
+      fontWeight: FontWeight.w500,
+    );
   }
 
   final sizedb = const SizedBox(
     height: 10,
   );
+
   @override
   Widget build(BuildContext context) {
     if (docData == null) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(
+        child: Text(
+          'Edit Profile to Add Details',
+          style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+        ),
+      );
     } else if (docData!.isEmpty) {
       return const Center(
-          child: Text(
-        'Edit Profile to Add Details',
-        style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-      ));
+        child: CircularProgressIndicator(),
+      );
     } else {
       return Container(
         width: MediaQuery.of(context).size.width * double.infinity,
@@ -86,8 +82,22 @@ class _UserpicState extends State<Userpic> {
             height: 160,
             width: 160,
             decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 103, 103, 103),
-                borderRadius: BorderRadius.circular(100)),
+              color: const Color.fromARGB(255, 103, 103, 103),
+              borderRadius: BorderRadius.circular(100),
+              image: docData!['profilePictureUrl'] != null
+                  ? DecorationImage(
+                      image: NetworkImage(docData!['profilePictureUrl']),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
+            ),
+            child: docData!['profilePictureUrl'] == null
+                ? const Icon(
+                    Icons.person,
+                    size: 100,
+                    color: Colors.white,
+                  )
+                : null,
           ),
         ),
       );

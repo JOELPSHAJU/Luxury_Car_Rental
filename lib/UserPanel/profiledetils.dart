@@ -2,21 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/BookingScreens/orders_done.dart';
 import 'package:luxurycars/UserPanel/add_profile.dart';
-
 import 'package:luxurycars/UserPanel/update_profile_detail.dart';
-import 'package:luxurycars/main.dart';
 
 class ProfileDetails extends StatefulWidget {
-  final String user;
-  const ProfileDetails({super.key, required this.user});
+  const ProfileDetails({
+    super.key,
+  });
 
   @override
   State<ProfileDetails> createState() => _ProfileDetailsState();
 }
 
+late String? email = user?.email;
 datas(
     {required context,
     required fontstyle,
@@ -43,15 +43,12 @@ datas(
           ),
         ),
       ),
-      Divider(
-        color: const Color.fromARGB(255, 214, 214, 214),
+      const Divider(
+        color: Color.fromARGB(255, 214, 214, 214),
       )
     ],
   );
 }
-
-String? email;
-String? password;
 
 class _ProfileDetailsState extends State<ProfileDetails> {
   Map<String, dynamic>? docData;
@@ -70,6 +67,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     email = user?.email;
   }
 
+  String id = '';
   String name = '';
   String age = '';
   String address = '';
@@ -87,6 +85,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       if (querySnapshot.exists) {
         setState(() {
           docData = querySnapshot.data() as Map<String, dynamic>;
+        
+          id = querySnapshot.id;
         });
       } else {
         setState(() {
@@ -101,14 +101,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   fontstyle({required context}) {
     return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.height * .018,
-        color: Color.fromARGB(255, 173, 173, 173),
+        color: const Color.fromARGB(255, 173, 173, 173),
         fontWeight: FontWeight.w500);
   }
 
   fontdatastyle({required context}) {
     return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.height * .018,
-        color: Color.fromARGB(255, 0, 0, 0),
+        color: const Color.fromARGB(255, 0, 0, 0),
         fontWeight: FontWeight.w500);
   }
 
@@ -131,8 +131,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * .25,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
                       image: AssetImage('assets/new/cover.jpg'),
                       fit: BoxFit.cover,
                     ),
@@ -162,7 +162,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.person),
+                const Icon(Icons.person),
                 Text(
                   email.toString(),
                   style: GoogleFonts.poppins(
@@ -171,7 +171,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GestureDetector(
@@ -189,9 +189,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         fontWeight: FontWeight.w600,
                         color: const Color.fromARGB(255, 0, 0, 0)),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.edit,
-                    color: const Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 0, 0, 0),
                   )
                 ],
               ),
@@ -245,7 +245,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -281,18 +281,20 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                     GestureDetector(
                       onTap: () {
                         Map<String, String> details = {
+                          'id': id,
                           'fullname': docData!['fullname'],
                           'age': docData!['age'],
                           'bio': docData!['bio'],
                           'gender': docData!['gender'],
-                          'address': docData!['age'],
+                          'address': docData!['address'],
                           'pincode': docData!['pincode'],
                           'phone': docData!['phonenumber'],
                           'profile': docData!['profile'],
                           'Cover': docData!['Cover'],
                         };
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (ctx) => UpdateProfile(details: details)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) =>
+                                UpdateProfileDetails(details: details)));
                       },
                       child: Row(
                         children: [
@@ -300,11 +302,11 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                             'Edit Profile',
                             style: GoogleFonts.oswald(),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 8.0),
                             child: Icon(
                               Icons.edit,
-                              color: const Color.fromARGB(255, 126, 126, 126),
+                              color: Color.fromARGB(255, 126, 126, 126),
                             ),
                           )
                         ],

@@ -8,21 +8,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luxurycars/Universaltools.dart';
 
 class ComparisonCars extends StatefulWidget {
-  final String category1;
-  final String engine1;
-  final String modelname1;
-  final String company1;
-  final String maxpower1;
-  final String maxtorque1;
-  final String transmission1;
-  final String gearbox1;
-  final String zerotohndrd1;
-  final String fueltype1;
-  final String fuelcapacity1;
-  final String image1;
-  final String seatingCapacity1;
-  final String groundclearence1;
-  final String id1;
+  final String? category1;
+  final String? engine1;
+  final String? modelname1;
+  final String? company1;
+  final String? maxpower1;
+  final String? maxtorque1;
+  final String? transmission1;
+  final String? gearbox1;
+  final String? zerotohndrd1;
+  final String? fueltype1;
+  final String? fuelcapacity1;
+  final String? image1;
+  final String? seatingCapacity1;
+  final String? groundclearence1;
+  final String? id1;
   const ComparisonCars(
       {super.key,
       required this.company1,
@@ -107,51 +107,17 @@ class _ComparisonCarsState extends State<ComparisonCars> {
       Modelname2 = carSnapshot['Model Name'];
       category2 = carSnapshot['Category'];
       engine2 = carSnapshot['Engine Displacement'];
-      maxpower2 = carSnapshot['Maximum Power'];
-      maxtorque2 = carSnapshot['Maximum Torque'];
+      maxpower2 = carSnapshot['Maximum Power'] + ' hp';
+      maxtorque2 = carSnapshot['Maximum Torque'] + ' nm';
       transmission2 = carSnapshot['Transmission'];
-      gearbox2 = carSnapshot['Gearbox'];
-      zerotohndrd2 = carSnapshot['Zero To Hundred'];
+      gearbox2 = carSnapshot['Gearbox'] + ' speed';
+      zerotohndrd2 = carSnapshot['Zero To Hundred'] + ' seconds';
       fueltype2 = carSnapshot['Fuel Type'];
-      fuelcapacity2 = carSnapshot['Fuel Tank Capacity'];
+      fuelcapacity2 = carSnapshot['Fuel Tank Capacity'] + ' ltrs';
       image2 = carSnapshot['MainImage'];
-      seatingCapacity2 = carSnapshot['Seating Capacity'];
-      groundclearence2 = carSnapshot['Ground Clearence'];
+      seatingCapacity2 = carSnapshot['Seating Capacity'] + ' persons';
+      groundclearence2 = carSnapshot['Ground Clearence'] + 'mm';
     });
-  }
-
-  textlabel({required context, required text, required colors}) {
-    return Container(
-      color: colors,
-      height: MediaQuery.of(context).size.height * .07,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w600,
-              fontSize: MediaQuery.of(context).size.width * .04),
-        ),
-      ),
-    );
-  }
-
-  textlabel1({required context, required text, required colors}) {
-    return Container(
-      color: colors,
-      height: MediaQuery.of(context).size.height * .07,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w400,
-              fontSize: MediaQuery.of(context).size.width * .04),
-        ),
-      ),
-    );
   }
 
   textlabel2({required context, required text, required colors}) {
@@ -177,15 +143,38 @@ class _ComparisonCarsState extends State<ComparisonCars> {
           );
   }
 
+  final snackBar = SnackBar(
+    backgroundColor: Colors.blue,
+    behavior: SnackBarBehavior.floating,
+    content: Center(
+      child: Text(
+        'Tap On The Car To Change The Car',
+        style: GoogleFonts.roboto(fontWeight: FontWeight.bold),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 40,
+        actions: [
+          IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              icon: Icon(
+                Icons.info_outline,
+                color: Colors.white,
+              ))
+        ],
         centerTitle: true,
         title: Text(
           'Compare Cars',
-          style: GoogleFonts.poppins(color: Colors.white, fontSize: 16),
+          style: GoogleFonts.poppins(
+              color: Color.fromARGB(255, 255, 255, 255), fontSize: 16),
         ),
         leading: IconButton(
           onPressed: () {
@@ -196,272 +185,290 @@ class _ComparisonCarsState extends State<ComparisonCars> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: ProjectColors.primarycolor1,
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * .5,
-                      child: Column(
-                        children: [
-                          Container(
-                              height: MediaQuery.of(context).size.height * .18,
-                              width: MediaQuery.of(context).size.width,
-                              child: GestureDetector(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                    backgroundColor: Colors.white,
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return SingleChildScrollView(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 20),
-                                          child: Column(
-                                            children: List.generate(
-                                                carNames.length, (index) {
-                                              String fullName =
-                                                  '${companynames[index]} ${carNames[index]}';
-                                              return ListTile(
-                                                tileColor: index % 2 == 1
-                                                    ? Color.fromARGB(
-                                                        255, 243, 243, 243)
-                                                    : Colors.transparent,
-                                                title: Text(
-                                                  fullName,
-                                                  style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                onTap: () {
-                                                  fetchCarDetailss(
-                                                      documentIds[index]);
-
-                                                  Navigator.pop(context);
-                                                },
-                                              );
-                                            }),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                                child: Center(
-                                    child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'assets/max/car replace_prev_ui (1).png',
-                                      height: 50,
-                                    ),
-                                    Text('Select Car')
-                                  ],
-                                )),
-                              )),
-                          textlabel(
-                              context: context, colors: color, text: 'Company'),
-                          textlabel(
+            Row(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * .18,
+                  width: MediaQuery.of(context).size.width * .5,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.image1.toString(),
+                    height: 50,
+                  ),
+                ),
+                image2.isEmpty
+                    ? Container(
+                        height: MediaQuery.of(context).size.height * .18,
+                        width: MediaQuery.of(context).size.width * .5,
+                        child: GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.white,
                               context: context,
-                              colors: Colors.transparent,
-                              text: 'Model'),
-                          textlabel(
-                              context: context,
-                              colors: color,
-                              text: 'Category'),
-                          textlabel(
-                              colors: Colors.transparent,
-                              context: context,
-                              text: 'Engine Displacement'),
-                          textlabel(
-                              context: context,
-                              colors: color,
-                              text: 'Maximum Power'),
-                          textlabel(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: 'Maximum Torque'),
-                          textlabel(
-                              context: context,
-                              colors: color,
-                              text: 'Transmission'),
-                          textlabel(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: 'Gearbox'),
-                          textlabel(
-                              context: context, colors: color, text: '0 - 100'),
-                          textlabel(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: 'Fuel Type'),
-                          textlabel(
-                              colors: color,
-                              context: context,
-                              text: 'Fuel Tank Capacity'),
-                          textlabel(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: 'Seating Capacity'),
-                          textlabel(
-                              context: context,
-                              colors: color,
-                              text: 'Ground Clearence')
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * .6,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .18,
-                            width: MediaQuery.of(context).size.width,
-                            child: CachedNetworkImage(imageUrl: widget.image1),
-                          ),
-                          textlabel1(
-                              context: context,
-                              colors: color,
-                              text: widget.company1),
-                          textlabel1(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: widget.modelname1),
-                          textlabel1(
-                              context: context,
-                              colors: color,
-                              text: widget.category1),
-                          textlabel1(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: widget.engine1),
-                          textlabel1(
-                              colors: color,
-                              context: context,
-                              text: widget.maxpower1 + ' hp'),
-                          textlabel1(
-                              colors: Colors.transparent,
-                              context: context,
-                              text: widget.maxtorque1 + ' nm'),
-                          textlabel1(
-                              colors: color,
-                              context: context,
-                              text: widget.transmission1),
-                          textlabel1(
-                              colors: Colors.transparent,
-                              context: context,
-                              text: widget.gearbox1 + ' speed'),
-                          textlabel1(
-                              colors: color,
-                              context: context,
-                              text: widget.zerotohndrd1 + ' seconds'),
-                          textlabel1(
-                              context: context,
-                              colors: Colors.transparent,
-                              text: widget.fueltype1),
-                          textlabel1(
-                              colors: color,
-                              context: context,
-                              text: widget.fuelcapacity1 + ' ltrs'),
-                          textlabel1(
-                              colors: Colors.transparent,
-                              context: context,
-                              text: widget.seatingCapacity1 + ' person'),
-                          textlabel1(
-                              colors: color,
-                              context: context,
-                              text: widget.groundclearence1 + ' mm')
-                        ],
-                      ),
-                    ),
-                    image2.isNotEmpty
-                        ? Container(
-                            width: MediaQuery.of(context).size.width * .6,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .18,
-                                  width: MediaQuery.of(context).size.width,
+                              builder: (BuildContext context) {
+                                return SingleChildScrollView(
                                   child: Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        .18,
-                                    width:
-                                        MediaQuery.of(context).size.width * .7,
-                                    child: CachedNetworkImage(imageUrl: image2),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    child: Column(
+                                      children: List.generate(carNames.length,
+                                          (index) {
+                                        String fullName =
+                                            '${companynames[index]} ${carNames[index]}';
+                                        return ListTile(
+                                          tileColor: index % 2 == 1
+                                              ? Color.fromARGB(
+                                                  255, 243, 243, 243)
+                                              : Colors.transparent,
+                                          title: Text(
+                                            fullName,
+                                            style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          onTap: () {
+                                            fetchCarDetailss(
+                                                documentIds[index]);
+
+                                            Navigator.pop(context);
+                                          },
+                                        );
+                                      }),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Center(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/max/car replace_prev_ui (1).png',
+                                height: 50,
+                              ),
+                              Text('Select Car')
+                            ],
+                          )),
+                        ))
+                    : GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            backgroundColor: Colors.white,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SingleChildScrollView(
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 20),
+                                  child: Column(
+                                    children:
+                                        List.generate(carNames.length, (index) {
+                                      String fullName =
+                                          '${companynames[index]} ${carNames[index]}';
+                                      return ListTile(
+                                        tileColor: index % 2 == 1
+                                            ? Color.fromARGB(255, 243, 243, 243)
+                                            : Colors.transparent,
+                                        title: Text(
+                                          fullName,
+                                          style: GoogleFonts.poppins(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        onTap: () {
+                                          fetchCarDetailss(documentIds[index]);
+
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    }),
                                   ),
                                 ),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: company2),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: Modelname2),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: category2),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: engine2),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: maxpower2 + ' hp'),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: maxtorque2 + ' nm'),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: transmission2),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: gearbox2 + ' speed'),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: zerotohndrd2 + ' seconds'),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: fueltype2),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: fuelcapacity2 + ' ltrs'),
-                                textlabel2(
-                                    context: context,
-                                    colors: Colors.transparent,
-                                    text: seatingCapacity2 + ' person'),
-                                textlabel2(
-                                    context: context,
-                                    colors: color,
-                                    text: groundclearence2 + ' nm')
-                              ],
-                            ),
-                          )
-                        : Container()
-                  ],
-                ),
-              ),
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * .18,
+                          width: MediaQuery.of(context).size.width * .5,
+                          child: CachedNetworkImage(
+                            imageUrl: image2,
+                            height: 50,
+                          ),
+                        ),
+                      )
+              ],
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Company',
+              car2: company2,
+              car1: widget.company1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Model',
+              car2: Modelname2,
+              car1: widget.modelname1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Category',
+              car2: category2,
+              car1: widget.category1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Engine Displacement',
+              car2: engine2,
+              car1: widget.engine1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Maximum Power',
+              car2: maxpower2,
+              car1: widget.maxpower1.toString() + ' hp',
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Maximum Torque',
+              car2: maxtorque2,
+              car1: widget.maxtorque1.toString() + ' nm',
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Transmission',
+              car2: transmission2,
+              car1: widget.transmission1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Gearbox',
+              car2: gearbox2,
+              car1: widget.toString() + ' speed',
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: '0 - 100',
+              car2: zerotohndrd2,
+              car1: widget.zerotohndrd1.toString() + ' seconds',
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Fuel Type',
+              car2: fueltype2,
+              car1: widget.fueltype1.toString(),
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Fuel Tank Capacity',
+              car2: fuelcapacity2,
+              car1: widget.fuelcapacity1.toString() + ' ltrs',
+            ),
+            ComparisonTile(
+              endpoint: '',
+              label: 'Seating Capacity',
+              car2: seatingCapacity2,
+              car1: widget.seatingCapacity1.toString() + ' persons',
+            ),
+            ComparisonTile(
+              endpoint: 'mm',
+              label: 'Ground Clearence',
+              car2: groundclearence2,
+              car1: widget.groundclearence1.toString() + ' mm',
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ComparisonTile extends StatelessWidget {
+  final String car1;
+  final String label;
+  final String endpoint;
+  final String car2;
+  const ComparisonTile(
+      {super.key,
+      required this.car1,
+      required this.label,
+      required this.car2,
+      required this.endpoint});
+  textlabel({
+    required text,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        text,
+        style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 15),
+      ),
+    );
+  }
+
+  textlabel1({
+    required text,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        text,
+        style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 12),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+          child: Container(
+            width: double.infinity,
+            height: 50,
+            color: Color.fromARGB(255, 222, 224, 225),
+            child: Center(
+                child: textlabel(
+              text: label,
+            )),
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+              child: Container(
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * .456,
+                  child: Center(
+                    child: textlabel1(text: car1),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+              child: Container(
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * .455,
+                  child: car2.isNotEmpty
+                      ? Center(
+                          child: textlabel1(text: car2),
+                        )
+                      : Center()),
+            )
+          ],
+        )
+      ],
     );
   }
 }

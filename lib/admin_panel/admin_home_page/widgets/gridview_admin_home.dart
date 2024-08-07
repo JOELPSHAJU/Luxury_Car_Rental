@@ -75,7 +75,7 @@ class _Gridview_adminState extends State<Gridview_admin> {
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * .15,
+                                    MediaQuery.of(context).size.height * .13,
                                 width: MediaQuery.of(context).size.width * .47,
                                 child: CachedNetworkImage(
                                   imageUrl: doc['Image'],

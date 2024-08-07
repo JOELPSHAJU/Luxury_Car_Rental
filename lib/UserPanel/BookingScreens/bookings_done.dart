@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/BookingScreens/bookings_sucessfull.dart';
 import 'package:luxurycars/UserPanel/UserHomePage.dart';
 
 class BookingsDone extends StatefulWidget {
@@ -89,21 +90,11 @@ class _BookingsDoneState extends State<BookingsDone> {
                   itemBuilder: (context, index) {
                     Map<String, dynamic> data =
                         documents[index].data() as Map<String, dynamic>;
-                    final docid = (documents[index].id);
 
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromARGB(255, 154, 154, 154)
-                                      .withOpacity(0.4),
-                                  spreadRadius: 4,
-                                  blurRadius: 5,
-                                  offset: Offset(0, 3),
-                                ),
-                              ],
                               color: ProjectUtils().listcolor,
                               borderRadius: BorderRadius.circular(10)),
                           child: Row(
@@ -144,7 +135,7 @@ class _BookingsDoneState extends State<BookingsDone> {
                                             // ignore: prefer_adjacent_string_concatenation
                                             'Status : ' +
                                                 '${data['Confirmation']}',
-                                            style: GoogleFonts.poppins(
+                                            style: GoogleFonts.roboto(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
                                                         .height *
@@ -160,15 +151,28 @@ class _BookingsDoneState extends State<BookingsDone> {
                                           ),
                                           Text(
                                             '${data['company']}',
-                                            style: GoogleFonts.gowunBatang(
+                                            style: GoogleFonts.roboto(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
                                                         .height *
                                                     .019,
                                                 color: ProjectColors.black,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.w400),
                                           ),
                                           sizedboc,
+                                          Text(
+                                            '${data['model']}',
+                                            style: GoogleFonts.roboto(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .019,
+                                                color: ProjectColors.black,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -176,283 +180,11 @@ class _BookingsDoneState extends State<BookingsDone> {
                                                 .04,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return AlertDialog(
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      scrollable: true,
-                                                      title: Center(
-                                                          child: Text(
-                                                        "Order Successful",
-                                                        style:
-                                                            GoogleFonts.oswald(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        147,
-                                                                        47)),
-                                                      )),
-                                                      content: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          CachedNetworkImage(
-                                                            imageUrl:
-                                                                data['Image'],
-                                                            placeholder:
-                                                                (context, url) {
-                                                              return Center(
-                                                                child:
-                                                                    CircularProgressIndicator(),
-                                                              );
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            '${data['company']} ${data['model']}',
-                                                            style: GoogleFonts.oswald(
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                color: ProjectColors
-                                                                    .primarycolor1,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                          Divider(),
-                                                          Text(
-                                                            'Category ',
-                                                            style: GoogleFonts.signikaNegative(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Text(
-                                                            '${data['category']}',
-                                                            style: GoogleFonts.gowunBatang(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Divider(),
-                                                          Text(
-                                                            'Pickup Date',
-                                                            style: GoogleFonts.signikaNegative(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Text(
-                                                            '${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Pickupdate']))}',
-                                                            style: GoogleFonts.gowunBatang(
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                          Divider(),
-                                                          Text(
-                                                            'Dropoff Date',
-                                                            style: GoogleFonts.signikaNegative(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Text(
-                                                            '${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['Dropoffdate']))}',
-                                                            style: GoogleFonts.gowunBatang(
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                          Divider(),
-                                                          Text(
-                                                            'Amount To Be Paid',
-                                                            style: GoogleFonts.signikaNegative(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Text(
-                                                            '₹ ${data['Totalamount']}/-',
-                                                            style: GoogleFonts.gowunBatang(
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                          Divider(),
-                                                          Text(
-                                                            'Pickup Location',
-                                                            style: GoogleFonts.signikaNegative(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                          Text(
-                                                            'Go Drive\nEttumanoor-Ernakulam Road,Vyttila\nNear Tony&Guy 682019',
-                                                            style: GoogleFonts.gowunBatang(
-                                                                fontSize: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    .019,
-                                                                color:
-                                                                    ProjectColors
-                                                                        .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                          Divider(),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .only(
-                                                                        right:
-                                                                            8.0),
-                                                                child: Text(
-                                                                  '- GO DRIVE -',
-                                                                  style: GoogleFonts
-                                                                      .oswald(),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      actions: [
-                                                        SizedBox(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              .04,
-                                                          child: ElevatedButton(
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                            style: ElevatedButton.styleFrom(
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                3),
-                                                                    side: BorderSide(
-                                                                        color: ProjectColors
-                                                                            .primarycolor1)),
-                                                                backgroundColor:
-                                                                    ProjectColors
-                                                                        .primarycolor1,
-                                                                elevation: 0),
-                                                            child: Text(
-                                                              'Back',
-                                                              style: GoogleFonts.oswald(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color: Color
-                                                                      .fromARGB(
-                                                                          255,
-                                                                          255,
-                                                                          255,
-                                                                          255)),
-                                                            ),
-                                                          ),
-                                                        )
-                                                      ],
-                                                    );
-                                                  },
-                                                );
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (s) =>
+                                                            Sucessful(
+                                                                data: data)));
                                               },
                                               style: ElevatedButton.styleFrom(
                                                   shape: RoundedRectangleBorder(
@@ -497,13 +229,24 @@ class _BookingsDoneState extends State<BookingsDone> {
                                           sizedboc,
                                           Text(
                                             '${data['company']}',
-                                            style: GoogleFonts.gowunBatang(
+                                            style: GoogleFonts.roboto(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
                                                         .height *
                                                     .019,
                                                 color: ProjectColors.black,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          sizedboc,
+                                          Text(
+                                            '${data['model']}',
+                                            style: GoogleFonts.roboto(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .019,
+                                                color: ProjectColors.black,
+                                                fontWeight: FontWeight.w400),
                                           ),
                                           sizedboc,
                                           SizedBox(
@@ -595,7 +338,7 @@ class _BookingsDoneState extends State<BookingsDone> {
                                                                             .primarycolor1)),
                                                                 backgroundColor:
                                                                     ProjectColors
-                                                                        .primarycolor1,
+                                                                        .black,
                                                                 elevation: 0),
                                                             child: Text(
                                                               'Back',

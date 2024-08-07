@@ -18,7 +18,7 @@ Widget item({required headingtext, required context, required bodytext}) {
     children: [
       Text(
         headingtext,
-        style: GoogleFonts.signikaNegative(
+        style: GoogleFonts.roboto(
             fontSize: MediaQuery.of(context).size.width * .042,
             fontWeight: FontWeight.w500,
             color: ProjectColors.secondarycolor1),
@@ -26,7 +26,7 @@ Widget item({required headingtext, required context, required bodytext}) {
       sizedboc,
       Text(
         bodytext,
-        style: GoogleFonts.signikaNegative(
+        style: GoogleFonts.roboto(
             fontSize: MediaQuery.of(context).size.width * .038,
             fontWeight: FontWeight.w400),
       )
@@ -149,7 +149,6 @@ class _PrivacyPoliciesState extends State<PrivacyPolicies> {
                     context: context,
                     bodytext:
                         'If you have any questions or concerns about this Privacy Policy, please contact us at on any of the below details\nBy using our car rental application, you agree to the terms outlined in this Privacy Policy.'),
-                
                 const Divider(
                   thickness: 1,
                 ),

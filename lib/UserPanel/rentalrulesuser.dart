@@ -51,15 +51,20 @@ class ViewRentalUser extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: Colors.grey)),
+                                    color: Color.fromARGB(255, 223, 223, 223),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(0),
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(10)),
+                                  ),
                                   width:
                                       MediaQuery.of(context).size.width * .93,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       '$a. ' + client['rule'],
-                                      style: GoogleFonts.signikaNegative(
+                                      style: GoogleFonts.roboto(
                                           fontSize: MediaQuery.of(context)
                                                   .size
                                                   .height *

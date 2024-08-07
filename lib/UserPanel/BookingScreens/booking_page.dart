@@ -1,13 +1,17 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:luxurycars/Database/FirebaseDatabaseHelper.dart';
 import 'package:luxurycars/Universaltools.dart';
+import 'package:luxurycars/UserPanel/UserHomePage.dart';
 import 'package:luxurycars/UserPanel/viewontapInventory.dart';
-
 
 class BookingPage extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -71,27 +75,23 @@ class _BookingPageState extends State<BookingPage> {
     required details,
     required label,
   }) {
-    return Row(
-      children: [
-        Row(
-          children: [
-            const Icon(
-              Icons.car_rental_outlined,
-              color: Color.fromARGB(255, 0, 0, 0),
-            ),
-            Text(label,
-                style: GoogleFonts.poppins(
-                    fontSize: MediaQuery.of(context).size.width * .035,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 0, 0, 0))),
-          ],
-        ),
-        Text(details,
-            style: GoogleFonts.poppins(
-                fontSize: MediaQuery.of(context).size.width * .035,
-                fontWeight: FontWeight.w300,
-                color: ProjectColors.black)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(label + ' : ',
+              style: GoogleFonts.roboto(
+                  fontSize: MediaQuery.of(context).size.width * .035,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 81, 81, 81))),
+          Text(details,
+              style: GoogleFonts.roboto(
+                  fontSize: MediaQuery.of(context).size.width * .035,
+                  fontWeight: FontWeight.w500,
+                  color: ProjectColors.black)),
+        ],
+      ),
     );
   }
 
@@ -108,12 +108,13 @@ class _BookingPageState extends State<BookingPage> {
     return GoogleFonts.poppins(
         fontSize: MediaQuery.of(context).size.width * .04,
         color: ProjectColors.secondarycolor2,
+        decoration: TextDecoration.underline,
         fontWeight: FontWeight.w600);
   }
 
   textstyle({required context}) {
-    return GoogleFonts.poppins(
-        fontSize: MediaQuery.of(context).size.width * .04,
+    return GoogleFonts.roboto(
+        fontSize: 17,
         color: ProjectColors.secondarycolor2,
         fontWeight: FontWeight.w600);
   }
@@ -123,7 +124,7 @@ class _BookingPageState extends State<BookingPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
-        backgroundColor: ProjectColors.primarycolor1,
+        backgroundColor: Colors.black,
         title: Text(
           'Book Your Inventory',
           style: GoogleFonts.poppins(
@@ -144,292 +145,325 @@ class _BookingPageState extends State<BookingPage> {
               color: Colors.white,
             )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: MediaQuery.of(context).size.width * .9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        height: 90,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '$company\n$modelname',
-                              style: textstyle(context: context),
-                            ),
-                            Row(
-                              children: [
-                                Text('Category : ',
-                                    style: GoogleFonts.poppins(
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                .037,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color.fromARGB(255, 0, 0, 0))),
-                                Text(
-                                  category,
-                                  style: GoogleFonts.poppins(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
-                                              .037,
-                                      fontWeight: FontWeight.w500,
-                                      color: const Color.fromARGB(
-                                          255, 127, 127, 127)),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      CachedNetworkImage(
-                          placeholder: (context, url) => Center(
-                                child: CircularProgressIndicator(
-                                  color: ProjectColors.primarycolor1,
-                                ),
-                              ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          imageUrl: mainimage)
-                    ],
-                  ),
-                ),
-                const Divider(
-                  thickness: 2,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .9,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .8,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Inventory Details',
-                              style: topicstyle(context: context),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '₹ $priceperday/-',
-                                label: ' Price Per Day : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '$maxpower hp',
-                                label: ' Maximum Power : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '$maxtorque nm',
-                                label: ' Maximum Torque : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '$fueltank ltrs',
-                                label: ' Fuel Tank Capacity : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(details: '$fueltype ', label: ' Fuel Type : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '$transmission ',
-                                label: ' Transmission : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            row(
-                                details: '$gearbox speed',
-                                label: ' Gearbox : '),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  thickness: 2,
-                ),
-                Text(
-                  'Booking Details',
-                  style: topicstyle(context: context),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Form(
-                    key: formkeycheck,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: TextFormField(
-                            keyboardType: TextInputType.none,
-                            validator: validator,
-                            controller: _pickupDateController,
-                            onTap: () async {
-                              final pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime.now(),
-                                lastDate: DateTime(2100),
-                              );
-                              setState(() {
-                                _pickupDate = pickedDate;
-                              });
-                              _calculateTotalCost();
-                            },
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.gowunBatang(),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
-                              labelText: 'Pickup Date',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: TextFormField(
-                            keyboardType: TextInputType.none,
-                            validator: validator,
-                            controller: _dropoffDateController,
-                            onTap: () async {
-                              final pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: _pickupDate ?? DateTime.now(),
-                                firstDate: _pickupDate ?? DateTime.now(),
-                                lastDate: DateTime(2100),
-                              );
-                              setState(() {
-                                _dropoffDate = pickedDate;
-                              });
-                              _calculateTotalCost();
-                            },
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.gowunBatang(),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
-                              labelText: 'Dropoff Date',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const Divider(
-                          thickness: 2,
-                        ),
-                        const SizedBox(
-                          height: 10,
+                        Text(
+                          '$company',
+                          style: textstyle(context: context),
                         ),
                         Text(
-                          'Personal Details',
-                          style: topicstyle(context: context),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: TextFormField(
-                            validator: validator,
-                            controller: _namecontroller,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.gowunBatang(),
-                              border: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(100)),
-                              labelText: 'Full Name',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16.0),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: TextFormField(
-                            validator: validator,
-                            controller: _phonenumbercontroller,
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.gowunBatang(),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
-                              labelText: 'Phone Number',
-                            ),
-                          ),
+                          '$modelname',
+                          style: GoogleFonts.roboto(
+                              fontSize: 22, fontWeight: FontWeight.bold),
                         ),
                       ],
-                    )),
-                const SizedBox(height: 15),
-                const Divider(
-                  thickness: 2,
+                    ),
+                  ),
+                  Expanded(
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) => Center(
+                        child: CircularProgressIndicator(
+                          color: ProjectColors.primarycolor1,
+                        ),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      imageUrl: mainimage,
+                      width: MediaQuery.of(context).size.width * .5,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Divider(
+              thickness: 2,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0, bottom: 10),
+                        child: Text(
+                          'Inventory Details',
+                          style: topicstyle(context: context),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$category', label: 'Category'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '₹ $priceperday/-', label: 'Price Per Day'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$maxpower hp', label: 'Maximum Power'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$maxtorque nm', label: 'Maximum Torque '),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(
+                          details: '$fueltank ltrs',
+                          label: 'Fuel Tank Capacity  '),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$fueltype ', label: 'Fuel Type'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$transmission ', label: 'Transmission'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      row(details: '$gearbox speed', label: ' Gearbox  '),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
-                        style: GoogleFonts.signikaNegative(
-                            fontSize: MediaQuery.of(context).size.width * .045,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                const Divider(
-                  thickness: 2,
-                ),
-                const SizedBox(height: 10),
-                const SizedBox(height: 10),
-                Center(
-                    child: SizedBox(
-                  height: 50,
-                  width: MediaQuery.of(context).size.width * .8,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ProjectColors.primarycolor1),
-                      onPressed: () {
-                        if (formkeycheck.currentState!.validate()) {
-                          uploadbookingdata();
-
-                          snackbar();
-                        } else {
-                          ProjectUtils().errormessage(
-                              context: context, text: 'Please Fill The Fields');
-                        }
-                      },
-                      child: Text('Request Rental',
-                          style: GoogleFonts.poppins(
-                              fontSize: MediaQuery.of(context).size.width * .05,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white))),
-                ))
               ],
             ),
-          ),
+            const Divider(
+              thickness: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: Text(
+                'Booking Details',
+                style: topicstyle(context: context),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Form(
+                key: formkeycheck,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: TextFormField(
+                        keyboardType: TextInputType.none,
+                        validator: validator,
+                        controller: _pickupDateController,
+                        onTap: () async {
+                          final pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          );
+                          setState(() {
+                            _pickupDate = pickedDate;
+                          });
+                          _calculateTotalCost();
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(15),
+                          labelStyle: GoogleFonts.gowunBatang(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          labelText: 'Pickup Date',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: TextFormField(
+                        keyboardType: TextInputType.none,
+                        validator: validator,
+                        controller: _dropoffDateController,
+                        onTap: () async {
+                          final pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: _pickupDate ?? DateTime.now(),
+                            firstDate: _pickupDate ?? DateTime.now(),
+                            lastDate: DateTime(2100),
+                          );
+                          setState(() {
+                            _dropoffDate = pickedDate;
+                          });
+                          _calculateTotalCost();
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(15),
+                          labelStyle: GoogleFonts.gowunBatang(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          labelText: 'Dropoff Date',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        'Personal Details',
+                        style: topicstyle(context: context),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: TextFormField(
+                        validator: validator,
+                        controller: _namecontroller,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(15),
+                          labelStyle: GoogleFonts.gowunBatang(),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(100)),
+                          labelText: 'Full Name',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: TextFormField(
+                        validator: validator,
+                        controller: _phonenumbercontroller,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(15),
+                          labelStyle: GoogleFonts.gowunBatang(),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          labelText: 'Phone Number',
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+            const SizedBox(height: 15),
+            const Divider(
+              thickness: 2,
+            ),
+            sizedboc,
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              child: Text('Pickup Location',
+                  style: GoogleFonts.poppins(
+                      fontSize: MediaQuery.of(context).size.width * .035,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                      color: ProjectColors.black)),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              child: Text(
+                  'Go Drive\nEttumanoor-Ernakulam Road,Vyttila\nNear Tony&Guy 682019',
+                  style: GoogleFonts.poppins(
+                      fontSize: MediaQuery.of(context).size.width * .035,
+                      fontWeight: FontWeight.w500,
+                      color: ProjectColors.black)),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              child: Text('Dropoff Location',
+                  style: GoogleFonts.poppins(
+                      fontSize: MediaQuery.of(context).size.width * .035,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                      color: ProjectColors.black)),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              child: Text(
+                  'Go Drive\nEttumanoor-Ernakulam Road,Vyttila\nNear Tony&Guy 682019',
+                  style: GoogleFonts.poppins(
+                      fontSize: MediaQuery.of(context).size.width * .035,
+                      fontWeight: FontWeight.w500,
+                      color: ProjectColors.black)),
+            ),
+            sizedboc,
+            sizedboc,
+            const Divider(
+              thickness: 2,
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text('Total Cost :  ₹${_totalCost.toStringAsFixed(2)}',
+                      style: GoogleFonts.signikaNegative(
+                          fontSize: MediaQuery.of(context).size.width * .045,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Divider(
+              thickness: 2,
+            ),
+            const SizedBox(height: 10),
+            const SizedBox(height: 10),
+            Center(
+                child: SizedBox(
+              height: 55,
+              width: MediaQuery.of(context).size.width * .7,
+              child: ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                  onPressed: () {
+                    if (formkeycheck.currentState!.validate()) {
+                      uploadbookingdata();
+
+                      snackbar();
+                    } else {
+                      ProjectUtils().errormessage(
+                          context: context, text: 'Please Fill The Fields');
+                    }
+                  },
+                  child: Text('Request Rental',
+                      style: GoogleFonts.poppins(
+                          fontSize: MediaQuery.of(context).size.width * .05,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white))),
+            )),
+            sizedboc,
+            sizedboc
+          ],
         ),
       ),
     );
